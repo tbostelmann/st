@@ -1,0 +1,3 @@
+[submodule "vendor/plugins/community_engine"]
+	path = vendor/plugins/community_engine
+	url = git://github.com/bborn/communityengine.git
