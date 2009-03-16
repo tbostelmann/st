@@ -1,0 +1,36 @@
+<table width="100%">
+  <% form_for(@donation) do |f| %>
+        <%= f.error_messages %>
+        <%= hidden_field_tag(:asset_development_case_id, @adc.id) %>
+    <tr>
+        <td align="right"><%= @donation.donation_line_items[0].description %>
+        </td>
+        <td align="left">
+            <%= text_field_tag("sdli[amount]",
+                    @donation.donation_line_items[0].amount, :size => 5) %>
+            <%= hidden_field_tag("sdli[account_id]",
+                    @donation.donation_line_items[0].account.id) %>
+            <%= hidden_field_tag("sdli[description]",
+                    @donation.donation_line_items[0].description) %>
+        </td>
+    </tr>
+    <tr>
+        <td align="right"><%= @donation.donation_line_items[1].description %>
+        </td>
+        <td align="left">
+            <%= text_field_tag("stdli[amount]",
+                    @donation.donation_line_items[1].amount, :size => 5) %>
+            <%= hidden_field_tag("stdli[account_id]",
+                    @donation.donation_line_items[1].account_id) %>
+            <%= hidden_field_tag("stdli[description]",
+                    @donation.donation_line_items[1].description) %>
+        </td>
+    </tr>
+    <tr>
+        <td>
+        </td>
+        <td><%= submit_tag "Continue" %>
+        </td>
+    </tr>
+  <% end %>
+</table>

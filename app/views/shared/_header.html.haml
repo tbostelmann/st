@@ -1,0 +1,22 @@
+#hd
+  %h1
+    %a{:href=>"/", :title=>"#{AppConfig.community_name}"}= AppConfig.community_name
+
+  - if logged_in?
+    = render :partial => 'shared/user_menu'
+  - else
+    %h2
+      =:welcome_message.l(:login_link => (link_to :log_in.l, login_path), :signup_link => (link_to :sign_up.l, signup_path))
+    
+  #NavBar
+    %ul
+      - Category.find(:all).each do |c|
+        = topnav_tab c.name, {:url => category_path(c), :section => c.name}
+      = topnav_tab :forums.l, { :url => forums_path, :section => 'forums' }
+      = topnav_tab :popular.l, { :url => popular_path, :section => 'popular' }
+      = topnav_tab :people.l, { :url => users_path, :section => 'users' }
+      - if current_user 
+        = topnav_tab :my_profile.l, { :url => user_path(current_user), :section => 'my_profile'}
+      
+  / NavBar 
+/ header

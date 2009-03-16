@@ -1,0 +1,76 @@
+<table width="100%">
+  <% form_for(@donation) do |f| %>
+        <%= f.error_messages %>
+	    <%= f.hidden_field :user %>
+    <tr>
+        <td>You are donation to support the Rural Savers Program operated by <%= @beneficiary.organization.profile.first_name %>
+        </td>
+        <td align="left">
+            <%= if (@beneficiary.organization.profile.photo)
+            image_tag @beneficiary.organization.profile.photo.public_filename
+            end %>
+        </td>
+    </tr>
+    <tr>
+        <td align="right"><%= @donation.donation_line_items[0].description %>
+        </td>
+        <td align="left">
+            <%= text_field_tag("bpli[amount]",
+                    @donation.donation_line_items[0].amount, :size => 5, :disabled => true) %>
+            <%= hidden_field_tag("bpli[from_account_id]",
+                    @donation.donation_line_items[0].from_account_id) %>
+            <%= hidden_field_tag("bpli[to_account_id]",
+                    @donation.donation_line_items[0].to_account_id) %>
+            <%= hidden_field_tag("bpli[description]",
+                    @donation.donation_line_items[0].description) %>
+        </td>
+    </tr>
+    <tr>
+        <td align="right">Would you like to donate to SaveTogether?
+        </td>
+        <td align="left">
+        </td>
+    </tr>
+    <tr>
+        <td align="right"><%= @donation.donation_line_items[1].description %>
+        </td>
+        <td align="left">
+            <%= text_field_tag("stpli[amount]",
+                    @donation.donation_line_items[1].amount, :size => 5, :disabled => true) %>
+            <%= hidden_field_tag("stpli[from_account_id]",
+                    @donation.donation_line_items[1].from_account_id) %>
+            <%= hidden_field_tag("stpli[to_account_id]",
+                    @donation.donation_line_items[1].to_account_id) %>
+            <%= hidden_field_tag("stpli[description]",
+                    @donation.donation_line_items[1].description) %>
+        </td>
+    </tr>
+    <tr>
+        <td>
+        </td>
+        <td>Terms and Conditions
+        </td>
+    </tr>
+    <% end %>
+    <tr>
+        <td>
+        </td>
+        <td>
+            <% payment_service_for @donation.id, 'paypalemail@mystore.com',
+                              :amount => @total,
+                              :currency => 'USD',
+                              :service => :paypal,
+                              :html => { :id => 'payment-form' } do |service| %>
+
+   <% service.invoice @donation.id %>
+   <% service.shipping '0.00' %>
+   <% service.tax '0.00' %>
+
+   <% service.notify_url url_for(:only_path => false, :action => 'notify') %>
+   <% service.return_url url_for(:only_path => false, :action => 'done') %>
+   <% service.cancel_return_url 'http://www.savetogether.org/' %>
+ <% end %>
+
+        </td>
+    </tr>
+</table>

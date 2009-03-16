@@ -1,0 +1,51 @@
+saver:
+  login: saver
+  email: quentin@example.com
+  description: I am friggin awesome
+  salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
+  crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
+  created_at: <%= 5.days.ago.to_s :db %>
+  activated_at: <%= 5.days.ago.to_s :db %>  
+  activation_code: 
+  state_id: 1
+  metro_area_id: 1
+  profile_public: true
+  login_slug: quentin
+  birthday: <%= 15.years.ago.to_s :db %>
+  activities_count: 0
+  role_id: 3
+donor:
+  login: donor
+  email: aaron@example.com
+  description: I am happy to be here. Community rawks!
+  salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
+  crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
+  created_at: <%= 1.days.ago.to_s :db %>
+  activated_at: <%= 30.minutes.ago.to_s :db %>  
+  activation_code: 
+  sb_posts_count: 2
+  sb_last_seen_at: <%= 5.minutes.ago.to_s :db %>
+  login_slug: aaron
+  birthday: <%= 15.years.ago.to_s :db %>  
+  role_id: 3
+minUser:
+  login: minUser
+  email: kevin@example.com
+  description: I am Garnett
+  salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
+  crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
+  created_at: <%= 5.days.ago.to_s :db %>
+  activated_at: <%= 5.days.ago.to_s :db %>  
+  activation_code: 
+  login_slug: kevin
+  birthday: <%= 15.years.ago.to_s :db %>  
+  role_id: 3
+kyle:
+  login: kyle
+  login_slug: kyle
+  email: kyle@email.com
+  created_at: <%= 3.days.ago.to_s :db %>
+  sb_posts_count: 0
+  activated_at: <%= 5.days.ago.to_s :db %>
+  activation_code:
+  role_id: 3
