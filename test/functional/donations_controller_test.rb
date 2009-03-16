@@ -11,20 +11,17 @@ class DonationsControllerTest < ActionController::TestCase
   end
 
   test "create donation" do
-    stOrg = Organization.find_savetogether_org
-    user = users(:quentin)
+    adc = asset_development_cases(:saverCase)
+    user = users(:donor)
     login_as(user.login)
-    beneficiary = beneficiaries(:minBeneficiary)
+    stOrg = Organization.find_savetogether_org
 
     post :create, :donation => {:user_id => user.id},
-                  :beneficiary_id => beneficiary.id,
-                  :bpli => {:amount => 25, :from_account_id => user.account.id,
-                            :to_account_id => beneficiary.account.id,
-                            :description => "Donation to #{beneficiary.profile.name}"},
-                  :stpli => {:amount => 2.50, :from_account_id => user.account.id,
-                            :to_account_id => stOrg.account.id,
-                            :description => "Donation to #{stOrg.profile.name}"},
-                  :user_id => user.id
+                  :asset_development_case_id => adc.id,
+                  :sdli => {:cents => 2500, :account => adc.account,
+                            :description => "Donation to #{adc.user.display_name}"},
+                  :stdli => {:cents => 250, :account => stOrg.account,
+                            :description => "Donation to #{stOrg.name}"}
     assert_response :success
   end
 

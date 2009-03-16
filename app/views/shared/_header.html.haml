@@ -12,9 +12,7 @@
     %ul
       - Category.find(:all).each do |c|
         = topnav_tab c.name, {:url => category_path(c), :section => c.name}
-      = topnav_tab :forums.l, { :url => forums_path, :section => 'forums' }
-      = topnav_tab :popular.l, { :url => popular_path, :section => 'popular' }
-      = topnav_tab :people.l, { :url => users_path, :section => 'users' }
+      = topnav_tab :savers.l, { :url => users_path, :section => 'users' }
       - if current_user 
         = topnav_tab :my_profile.l, { :url => user_path(current_user), :section => 'my_profile'}
       

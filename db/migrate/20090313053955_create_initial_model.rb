@@ -29,9 +29,12 @@ class CreateInitialModel < ActiveRecord::Migration
       t.integer :account_id
       t.timestamps
     end
+
+    add_column(:users, :saver, :boolean, :default => false)  
   end
 
   def self.down
+    remove_column(:users, :saver)
     drop_table :donation_line_items
     drop_table :donations
     drop_table :assert_development_cases

@@ -1,20 +1,23 @@
+require 'money'
+
 class DonationsController < BaseController
   
-  # GET /donations/new/{:asset_development_case_id}
-  # GET /donations/new/{:asset_development_case_id}.xml
+  # GET /donations/new/{:saver_id}
+  # GET /donations/new/{:saver_id}.xml
   def new
     stOrg = Organization.find_savetogether_org
-    @adc = AssetDevelopmentCase.find(params[:asset_development_case_id])
+    @saver_id = params[:saver_id]
+    @adc = AssetDevelopmentCase.find_by_user_id(@saver_id)
     user = current_user
     @donation = Donation.new(:user => user)
     @donation.donation_line_items << DonationLineItem.new(
             :description => "Donation to #{@adc.user.display_name}",
-            :amount => Money.new(5000), # TODO: this should be a configurable value
+            :amount => '50', # TODO: this should be a configurable value
             :account => @adc.account,
             :donation => @donation)
     @donation.donation_line_items << DonationLineItem.new(
             :description => "Donation to #{stOrg.name}",
-            :amount => Money.new(500), # TODO: this value should be a configuration value
+            :amount => '5', # TODO: this value should be a configuration value
             :account => stOrg.account,
             :donation => @donation)    
 
@@ -27,28 +30,28 @@ class DonationsController < BaseController
   # POST /donations
   # POST /donations.xml
   def create
-    @beneficiary = Beneficiary.find(params[:beneficiary_id])
-
-    # TODO: This probably needs to be combined into a model method - not sure what the method signature would look like, though (best practice here?)
-    @donation = Donation.new(params[:donation])
-    bpli = DonationLineItem.new(params[:bpli])
-    bpli.donation = @donation
-    @donation.donation_line_items << bpli
-    stpli = DonationLineItem.new(params[:stpli])
-    stpli.donation = @donation
-    @donation.donation_line_items << stpli
-
-    @total = 0
-    @donation.donation_line_items.each do |pli|
-      @total = @total.to_f + pli.amount.to_f
-    end
+    @saver_id = params[:saver_id]
+    @adc = AssetDevelopmentCase.find_by_user_id(@saver_id)
+    @donation = Donation.new(:user => current_user)
+    sdli = DonationLineItem.new(
+            :amount => params[:sdli][:amount].to_money,
+            :account => Account.find(params[:sdli][:account_id]),
+            :description => params[:sdli][:description])
+    sdli.donation = @donation
+    @donation.donation_line_items << sdli
+    stdli = DonationLineItem.new(
+            :amount => params[:stdli][:amount].to_money,
+            :account => Account.find(params[:stdli][:account_id]),
+            :description => params[:stdli][:description])
+    stdli.donation = @donation
+    @donation.donation_line_items << stdli
 
     respond_to do |format|
       if @donation.save
         format.html # new.html.erb
         format.xml  { render :xml => @donation }
       else
-        format.html { render :action => "new" }
+        format.html { render :action => "new", :user_id => @user_id }
         format.xml  { render :xml => @donation.errors, :status => :unprocessable_entity }
       end
     end
