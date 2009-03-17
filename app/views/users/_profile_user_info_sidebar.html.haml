@@ -5,10 +5,6 @@
     = link_to( "&raquo; #{:assume_user_id.l}", assume_user_path(@user) )
     %br/
     = link_to( "&raquo; #{:delete_this_user.l}", user_path(@user), {:method => :delete, :confirm => :are_you_sure_you_want_to_permanently_delete_this_user.l} )
-    %br/
-    = link_to( "&raquo; #{:toggle.l} #{AppConfig.featured_writer_label}", toggle_featured_user_path(@user), {:method => :put} )
-    %br/
-    = link_to( "&raquo; #{:assign_role.l}: #{@user.moderator? ? :member.l : :moderator.l}", toggle_moderator_user_path(@user), {:method => :put} )
 
 #profile_details.box.hentry
   %h3

@@ -1,7 +1,7 @@
 %span#location_chooser
   = :country.l
   %br
-  = select_tag(:country_id, options_from_collection_for_select(Country.find_countries_with_metros, "id", "name", selected_country), {:style => "width:100px"})
+  = select_tag(:country_id, '<option></option>' + options_from_collection_for_select(Country.find_countries_with_metros, "id", "name", selected_country), {:style => "width:100px"})
 
   %br
   = :state.l 

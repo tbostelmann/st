@@ -1,0 +1,32 @@
+- @section = 'my_profile'
+
+=render :partial => "users/dashboard_nav"
+    
+
+  
+#yui-main
+  .yui-b
+    .box
+      %h3= "Hello, #{@user}"
+    
+      -if @network_activity.empty? && @recommended_posts.empty?
+        %p
+          =:this_is_your_dashboard.l
+
+        %p
+          =link_to :update_profile.l, edit_user_path(current_user)
+
+    
+      -unless @network_activity.empty?
+        %h2=:activity_from_your_network.l
+        .box.fresh
+          =render :partial => "activities/activity", :collection => @network_activity
+          %h6.all= link_to :see_all_activity.l, network_user_activities_path(current_user)
+
+      -unless @recommended_posts.empty?
+        %h3=:recommended_posts.l
+        #posts
+          %ul
+            -@recommended_posts.each do |post|
+              %li
+                = link_to( "#{post.tag_for_first_image_in_body} #{truncate(post.display_title, :length => 75)} <span class='post_excerpt'>#{ truncate_words(post.post, 35, '...' )} (:by.l #{post.user.login})</span>", user_post_path(post.user, post), :title => ":by.l #{post.user.login}" )

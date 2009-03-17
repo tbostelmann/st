@@ -4,7 +4,6 @@ class Donation < ActiveRecord::Base
   has_many :donation_line_items
   belongs_to :user
 
-  validates_presence_of :user
   validates_presence_of :donation_line_items
 
   def amount

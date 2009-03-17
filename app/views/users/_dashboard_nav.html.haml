@@ -1,0 +1,19 @@
+.yui-b
+  .box
+    %h3=:dashboard.l
+    .yui-g
+      .yui-u.first
+        = image_tag 'icons/accept.png', :plugin => 'community_engine'            
+        =:view_my.l
+        %ul
+          %li=link_to :profile.l, user_path(@user)  
+          %li=link_to :photos.l, user_photos_path(@user)
+      .yui-u
+        = image_tag 'icons/wrench.png', :plugin => 'community_engine'      
+        =:manage_my.l
+        %ul
+          %li=link_to :profile.l, edit_user_path(@user)
+          %li=link_to :account_settings.l, edit_account_user_path(@user)
+          -if current_user.admin?
+            %li=link_to :admin_dashboard.l, admin_dashboard_path
+            

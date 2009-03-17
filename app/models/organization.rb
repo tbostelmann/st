@@ -2,7 +2,6 @@ class Organization < ActiveRecord::Base
   has_one :account, :as => :owner
   has_many :cases
 
-  validates_presence_of :account
   validates_presence_of :name
 
   def self.find_savetogether_org

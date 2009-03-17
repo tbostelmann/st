@@ -2,9 +2,7 @@
   %h1
     %a{:href=>"/", :title=>"#{AppConfig.community_name}"}= AppConfig.community_name
 
-  - if logged_in?
-    = render :partial => 'shared/user_menu'
-  - else
+  - unless logged_in?
     %h2
       =:welcome_message.l(:login_link => (link_to :log_in.l, login_path), :signup_link => (link_to :sign_up.l, signup_path))
     

@@ -6,161 +6,161 @@ namespace :db do
     require 'action_controller'
     require 'action_controller/test_process.rb'
 
-    file = "#{RAILS_ROOT}/test/files/WACASH_logo.png"
-    mimetype = 'image/png'
-    org = Organization.create(
-            :phone => "206-352-1945",
-            :web_site_url => "http://www.washingtoncash.org/"
-    )
-    profile = Profile.create(
-      :first_name => "Washington CASH",
-      :statement => "Washington Community Alliance for Self Help (CASH) is a microenterprise development organization that provides low income women, people with disabilities and other underserved individuals access to capital and business development training.",
-      :photo => Photo.new(:uploaded_data => ActionController::TestUploadedFile.new(file, mimetype)),
-      :profiled => org
-    )
-    address = Address.create(
-        :line1 => "2100 24th Avenue South",
-        :line2 => "Suite 380",
-        :city => "Seattle",
-        :state => "WA",
-        :zip => "98144",
-        :addressable => org    
-    )
-    file = "#{RAILS_ROOT}/test/files/WACASH_saver1.jpg"
-    mimetype = 'image/jpg'
-    beneficiary = Beneficiary.create(:organization => org)
-    Account.create(:owner => beneficiary)
-    profile = Profile.create(
-            :first_name => "Samantha",
-            :last_name => "Smith",
-            :statement => "Samantha is saving to open her own framing business.",
-            :photo => Photo.new(:uploaded_data => ActionController::TestUploadedFile.new(file, mimetype)),
-            :profiled => beneficiary    
-            )
-    group_member = GroupMember.create(
-      :beneficiary => beneficiary,
-      :group => Group.create(
-        :name => "Class of Spring 2009",
-        :organization => org
-      )
-    )
+    MetroArea.destroy_all
+    State.destroy_all
+    Country.destroy_all
+    us = Country.create(:name => "United States")
 
-    file = "#{RAILS_ROOT}/test/files/EARN_logo.gif"
-    mimetype = 'image/gif'
-    org = Organization.create(
-            :phone => "206-555-1212",
-            :web_site_url => "http://www.sfearn.org/"
-    )
-    profile = Profile.create(
-            :first_name => "EARN",
-            :statement => "EARN breaks the cycle of poverty by matching the savings of low-wage workers and helping them invest in assets that build wealth, creating a cycle of prosperity across generations.",
-            :photo => Photo.new(:uploaded_data => ActionController::TestUploadedFile.new(file, mimetype)),
-            :profiled => org
-    )
-    address = Address.create(
-            :line1 => "235 Montgomery Street",
-            :line2 => "Suite 300",
-            :city => "San Francisco",
-            :state => "CA",
-            :zip => "94104",
-            :addressable => org
-    )
-    file = "#{RAILS_ROOT}/test/files/EARN_saver1.jpg"
-    mimetype = 'image/jpg'
-    beneficiary = Beneficiary.create(:organization => org)
-    Account.create(:owner => beneficiary)
-    profile = Profile.create(
-            :first_name => "Juanita",
-            :last_name => "Jones",
-            :statement => "Emily is saving to purchase a townhome.",
-            :photo => Photo.new(:uploaded_data => ActionController::TestUploadedFile.new(file, mimetype)),
-            :profiled => beneficiary
-            )
-    group_member = GroupMember.create(
-      :beneficiary => beneficiary,
-      :group => Group.create(
-        :name => "Bay Area Homeowners Winter 2008",
-        :organization => org
-      )
-    )
+    wa = State.create(:name => "WA")
+    ca = State.create(:name => "CA")
+    ma = State.create(:name => "MA")
 
-    file = "#{RAILS_ROOT}/test/files/Opportunity_logo.gif"
-    mimetype = 'image/gif'
-    org = Organization.create(
-            :phone => "206-555-1212",
-            :web_site_url => "http://www.opportunityfund.org/"
-    )
-    profile = Profile.create(
-            :first_name => "Opportunity Fund",
-            :statement => "Opportunity Fund advances the economic well-being of working people by helping them earn, save, and invest in their future.",
-            :photo => Photo.new(:uploaded_data => ActionController::TestUploadedFile.new(file, mimetype)),
-            :profiled => org
-    )
-    address = Address.create(
-            :line1 => "111 W. St. John Street",
-            :line2 => "Suite 800",
-            :city => "San Jose",
-            :state => "CA",
-            :zip => "95113",
-            :addressable => org
-    )
-    file = "#{RAILS_ROOT}/test/files/Opportunity_saver1.jpg"
-    mimetype = 'image/jpg'
-    beneficiary = Beneficiary.create(:organization => org)
-    Account.create(:owner => beneficiary)
-    profile = Profile.create(
-            :first_name => "Rosie",
-            :last_name => "Alvarez",
-            :statement => "Rosie is saving to open her own produce stand at the local public market.",
-            :photo => Photo.new(:uploaded_data => ActionController::TestUploadedFile.new(file, mimetype)),
-            :profiled => beneficiary
-            )
-    group_member = GroupMember.create(
-      :beneficiary => beneficiary,
-      :group => Group.create(
-        :name => "Bay Area Homeowners Winter 2008",
-        :organization => org
-      )
-    )
+    sanfran = MetroArea.create(:name => 'San Francisco', :state => ca, :country => us)
+    seattle = MetroArea.create(:name => 'Seattle', :state => wa, :country => us)
+    lawrence = MetroArea.create(:name => 'Lawrence', :state => ma, :country => us)
+    sanjose = MetroArea.create(:name => 'San Jose', :state => ca, :country => us)
 
-    file = "#{RAILS_ROOT}/test/files/LCW_logo.JPG"
-    mimetype = 'image/jpg'
-    org = Organization.create(
-            :phone => "206-555-1212",
-            :web_site_url => "http://www.kcworks.org/"
-    )
-    profile = Profile.create(
-            :first_name => "Lawrence Community Works",
-            :statement => "Lawrence CommunityWorks (LCW) is a nonprofit community development corporation working to transform and revitalize the physical, economic, and social landscape of Lawrence with a growing network of residents and stakeholders who are building family and community assets, providing each other with caring and mutual support, building leadership and civic engagement skills, and engaging in collective action for positive growth and change in Lawrence.",
-            :photo => Photo.new(:uploaded_data => ActionController::TestUploadedFile.new(file, mimetype)),
-            :profiled => org
-    )
-    address = Address.create(
-            :line1 => "166-168 Newberry Street",
-            :city => "Lawrence",
-            :state => "MA",
-            :zip => "01841",
-            :addressable => org
-    )
-    file = "#{RAILS_ROOT}/test/files/LCW_saver_1.JPG"
-    mimetype = 'image/jpg'
-    beneficiary = Beneficiary.create(:organization => org)
-    Account.create(:owner => beneficiary)
-    profile = Profile.create(
-            :first_name => "Sonja",
-            :last_name => "Johnson",
-            :statement => "Sonja is saving to open her own produce stand at the local public market.",
-            :photo => Photo.new(:uploaded_data => ActionController::TestUploadedFile.new(file, mimetype)),
-            :profiled => beneficiary
-            )
-    group_member = GroupMember.create(
-      :beneficiary => beneficiary,
-      :group => Group.create(
-        :name => "Fall 2008 Microentrepreneurs",
-        :organization => org
-      )
-    )
-    
+    admin = Role.create(:name => 'admin')
+    moderator = Role.create(:name => 'moderator')
+    member = Role.create(:name => 'member')
+
+    stOrg = Organization.create(:name => 'SaveTogether')
+    account = Account.create(:owner => stOrg)
+
+    org = Organization.create(:name => 'Washington CASH')
+    account = Account.create(:owner => org)
+    saver = User.create(
+      :login => "samantha",
+      :email => "samantha@example.com",
+      :description => "Samantha is saving to open her own framing business.",
+      :salt => "7e3041ebc2fc05a40c60028e2c4901a81035d3cd",
+      :crypted_password => "00742970dc9e6319f8019fd54864d3ea740f04b1", # test
+      :state => wa,
+      :metro_area => seattle,
+      :birthday => 30.years.ago,
+      :activities_count => 0,      
+      :role => Role[:member],
+      :saver => true)
+    saver.activate
+#    photo = Photo.new(
+#            :name => "Washington CASH Saver",
+#            :uploaded_data => ActionController::TestUploadedFile.new("#{RAILS_ROOT}/test/files/WACASH_saver1.jpg", 'image/jpg'),
+#            :user => saver)
+#    photo.save
+#    saver.avatar = photo
+#    saver.save
+    saverCase = AssetDevelopmentCase.create(
+            :user => saver,
+            :organization => org)
+    account = Account.create(:owner => saverCase)
+
+    org = Organization.create(:name => 'EARN')
+    account = Account.create(:owner => org)
+    saver = User.create(
+      :login => "juanita",
+      :email => "juanita@example.com",
+      :description => "Juanita is saving to purchase a townhome.",
+      :salt => "7e3041ebc2fc05a40c60028e2c4901a81035d3cd",
+      :crypted_password => "00742970dc9e6319f8019fd54864d3ea740f04b1", # test
+      :state => ca,
+      :metro_area => sanfran,
+      :birthday => 30.years.ago,
+      :activities_count => 0,
+      :role => Role[:member],
+      :saver => true)
+    saver.activate
+#    photo = Photo.new(
+#            :name => "EARN Saver",
+#            :uploaded_data => ActionController::TestUploadedFile.new("#{RAILS_ROOT}/test/files/EARN_saver1.jpg", 'image/jpg'),
+#            :user => saver)
+#    photo.save
+#    saver.avatar = photo
+#    saver.save
+    saverCase = AssetDevelopmentCase.create(
+            :user => saver,
+            :organization => org)
+    account = Account.create(:owner => saverCase)
+
+
+    org = Organization.create(:name => 'Opportunity Fund')
+    account = Account.create(:owner => org)
+    saver = User.create(
+      :login => "rosie",
+      :email => "rosie@example.com",
+      :description => "Rosie is saving to open her own produce stand at the local public market.",
+      :salt => "7e3041ebc2fc05a40c60028e2c4901a81035d3cd",
+      :crypted_password => "00742970dc9e6319f8019fd54864d3ea740f04b1", # test
+      :state => ca,
+      :metro_area => sanjose,
+      :birthday => 30.years.ago,
+      :activities_count => 0,
+      :role => Role[:member],
+      :saver => true)
+    saver.activate
+#    photo = Photo.new(
+#            :name => "Opportunity Fund Saver",
+#            :uploaded_data => ActionController::TestUploadedFile.new("#{RAILS_ROOT}/test/files/Opportunity_saver1.jpg", 'image/jpg'))
+#    photo.user = saver
+#    photo.save
+#    saver.avatar = photo
+#    saver.save
+    saverCase = AssetDevelopmentCase.create(
+            :user => saver,
+            :organization => org)
+    account = Account.create(:owner => saverCase)
+
+    org = Organization.create(:name => 'Lawrence Community Works')
+    account = Account.create(:owner => org)
+    saver = User.create(
+      :login => "sonja",
+      :email => "sonja@example.com",
+      :description => "Sonja is saving to open her own produce stand at the local public market.",
+      :salt => "7e3041ebc2fc05a40c60028e2c4901a81035d3cd",
+      :crypted_password => "00742970dc9e6319f8019fd54864d3ea740f04b1", # test
+      :state => ma,
+      :metro_area => lawrence,
+      :birthday => 30.years.ago,
+      :activities_count => 0,
+      :role => Role[:member],
+      :saver => true)
+    saver.activate
+#    photo = Photo.new(
+#            :name => "Lawrence Community Works Saver",
+#            :uploaded_data => ActionController::TestUploadedFile.new("#{RAILS_ROOT}/test/files/LCW_saver_1.JPG", 'image/jpg'),
+#            :user => saver)
+#    photo.save
+#    saver.avatar = photo
+#    saver.save
+    saverCase = AssetDevelopmentCase.create(
+            :user => saver,
+            :organization => org)
+    account = Account.create(:owner => saverCase)
+  
+    admin = User.create(
+      :login => "admin",
+      :email => "tom@savetogether.org",
+      :description => "Person with adminstrator role",
+      :salt => "7e3041ebc2fc05a40c60028e2c4901a81035d3cd",
+      :crypted_password => "00742970dc9e6319f8019fd54864d3ea740f04b1", # test
+      :state => wa,
+      :metro_area => seattle,
+      :birthday => 30.years.ago,
+      :activities_count => 0,
+      :role => Role[:admin])
+    admin.activate
+
+    tbostelmann = User.create(
+      :login => "tbostelmann",
+      :email => "tbostelmann@gmail.com",
+      :description => "Just a developer",
+      :salt => "7e3041ebc2fc05a40c60028e2c4901a81035d3cd",
+      :crypted_password => "00742970dc9e6319f8019fd54864d3ea740f04b1", # test
+      :state => wa,
+      :metro_area => seattle,
+      :birthday => 30.years.ago,
+      :activities_count => 0,
+      :role => Role[:admin])
+    tbostelmann.activate
 #    [Category, Product, Person].each(&:delete_all)
 #    
 #      category.name = Populator.words(1..3).titleize
