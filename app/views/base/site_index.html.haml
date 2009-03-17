@@ -1,12 +1,12 @@
 - @meta = { :description => AppConfig.meta_description, :keywords => AppConfig.meta_keywords, :robots => AppConfig.robots_meta_list_content }
 
--unless logged_in?
-  =render :partial => 'base/homepage_banner_message'
-
 #yui-main
   .yui-b
     .box.hfeed
-      %h3
-        =:recent_posts.l
-      = render :partial => 'posts/post', :collection => @posts
-      
+      %h3 "Welcome to our pre-launch site!"
+
+      = image_tag( 'welcome-pig.jpg', :align => 'left', :class => 'polaroid')
+
+      = "<p>SaveTogether is a non-profit organization helping working families build assets and achieve financial security by leveraging the support of an interactive, internet-based community of donors, savers, and partner organizations. Individual savers commit to a savings goal and financial training plan to prepare to acquire an asset (i.e. post secondary education, starting a business, or improving a home). Along the way, one of our partner organizations help guide them along this proven asset-building path. In turn, SaveTogether's donors provide matching contributions to boost the available savings, incentivizing savers and helping accelerate the results. Ongoing communication between savers and donors sustains all of the groups in their commitments to building individual and community strength.</p>"
+
+      = "<p>By creating an engaging savings-oriented community, SaveTogether can magnify the promise of effective asset-building strategies. Please explore our pre-launch site while we prepare for SaveTogether's launch, and let us know what you think.</p>"
