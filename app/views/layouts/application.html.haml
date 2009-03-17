@@ -40,12 +40,10 @@
               = link_to :log_in.l , login_path 
           - else
             %li
-              %a{:href=>"logout", :title=>:log_out_of_your.l + " #{AppConfig.community_name} " + :account.l}
-                =:log_out.l
+              = link_to :log_out.l , logout_path
+
           %li
-            %a{:href=>"about", :title=>:what_is.l + " #{AppConfig.community_name}?"}
-              =:about.l
+            = link_to  :about.l, about_path
           %li
-            %a{:href=>"faq", :title=>:frequent_asked_questions.l}
-              =:faq.l
+            = link_to  :faq.l, faq_path
 
