@@ -3,10 +3,10 @@ require 'test_helper'
 class DonationsControllerTest < ActionController::TestCase
   include AuthenticatedTestHelper
   test "get new" do
-    adc = asset_development_cases(:saverCase)
+    saver = users(:saver)
     user = users(:donor)
     login_as(user.login)
-    get :new, {:asset_development_case_id => adc.id}
+    get :new, {:saver_id => saver.id}
     assert_response :success
   end
 
@@ -17,11 +17,15 @@ class DonationsControllerTest < ActionController::TestCase
     stOrg = Organization.find_savetogether_org
 
     post :create, :donation => {:user_id => user.id},
-                  :asset_development_case_id => adc.id,
-                  :sdli => {:cents => 2500, :account => adc.account,
-                            :description => "Donation to #{adc.user.display_name}"},
-                  :stdli => {:cents => 250, :account => stOrg.account,
-                            :description => "Donation to #{stOrg.name}"}
+                  :donation_line_item_attributes => [
+                          "0", {
+                            :amount => "50.00",
+                            :account_id => adc.account.id,
+                            :description => "Donation for Juanita"},
+                          "1", {
+                            :amount => "5.00",
+                            :account_id => stOrg.account.id,
+                            :description => "Donation for SaveTogether"}]
     assert_response :success
   end
 

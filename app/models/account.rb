@@ -1,4 +1,4 @@
 class Account < ActiveRecord::Base
   belongs_to :owner, :polymorphic => true
-  belongs_to :donation_line_item
+  has_many :donation_line_items  
 end

@@ -1,35 +1,27 @@
 <table width="100%">
-  <% form_for(@donation) do |f| %>
+  <% form_for @donation do |f| %>
         <%= f.error_messages %>
+        <%= f.hidden_field :user_id %>
         <%= hidden_field_tag(:saver_id, @saver_id) %>
-    <tr>
-        <td align="right"><%= @donation.donation_line_items[0].description %>
-        </td>
-        <td align="left">
-            <%= text_field_tag("sdli[amount]",
-                    @donation.donation_line_items[0].amount, :size => 7) %>
-            <%= hidden_field_tag("sdli[account_id]",
-                    @donation.donation_line_items[0].account.id) %>
-            <%= hidden_field_tag("sdli[description]",
-                    @donation.donation_line_items[0].description) %>
-        </td>
-    </tr>
-    <tr>
-        <td align="right"><%= @donation.donation_line_items[1].description %>
-        </td>
-        <td align="left">
-            <%= text_field_tag("stdli[amount]",
-                    @donation.donation_line_items[1].amount, :size => 7) %>
-            <%= hidden_field_tag("stdli[account_id]",
-                    @donation.donation_line_items[1].account.id) %>
-            <%= hidden_field_tag("stdli[description]",
-                    @donation.donation_line_items[1].description) %>
-        </td>
-    </tr>
+    <div id="donation_line_items">
+        <div class="donation_line_item">
+
+<% @donation.donation_line_items.each_with_index do |donation_line_item, index| -%>
+            <p>
+    <% fields_for "donation[donation_line_item_attributes][#{index}]", donation_line_item do |dli_form| -%>
+            <%= donation_line_item.description %>
+            <%= dli_form.text_field :amount, :size => 7 %>
+         <%= dli_form.hidden_field :account_id %>
+         <%= dli_form.hidden_field :description %>
+    <% end -%>
+            </p>
+<% end -%>
+        </div>
+    </div>
     <tr>
         <td>
         </td>
-        <td><%= submit_tag "Continue" %>
+        <td><%= f.submit "Continue" %>
         </td>
     </tr>
   <% end %>

@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class OrganizationTest < ActiveSupport::TestCase
-  test "create_minimum_organization" do
+  test "create organization" do
     org = Organization.new()
     assert !org.valid?
 
@@ -11,7 +11,7 @@ class OrganizationTest < ActiveSupport::TestCase
 
     org = Organization.new(
             :name => "Test Org")
-    assert !org.valid?
+    assert org.valid?
 
     org = Organization.new(
             :name => "Test Org",
