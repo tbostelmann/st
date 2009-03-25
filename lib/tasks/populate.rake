@@ -59,7 +59,7 @@ namespace :db do
     saver = User.create(
       :login => "juanita",
       :email => "juanita@example.com",
-      :description => "Juanita is saving to purchase a townhome.",
+      :description => "<p>Juana's dream is to get a nursing degree and work in an emergency room. She is saving to enroll at the City College of San Francisco School of Nursing. Since completing high school, she has worked for two years as a retail clerk to help afford the tuition.</p>  <p>Last year, Juana was selected to open a matched savings account with Opportunity Fund, one of the leading microfinance organizations in America. She is saving diligently every month, and attending classes on money management and college readiness.</p><p>I have always been told that I have a gift for making people feel better,' she says. 'I will make the most of the help I am getting from Opportunity Fund, and I intend to give back by caring for people who are facing emergencies'.</p>",
       :salt => "7e3041ebc2fc05a40c60028e2c4901a81035d3cd",
       :crypted_password => "00742970dc9e6319f8019fd54864d3ea740f04b1", # test
       :state => ca,

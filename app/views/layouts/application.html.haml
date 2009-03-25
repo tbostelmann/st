@@ -5,21 +5,23 @@
     %meta{"http-equiv"=>"Content-Type", :content=>"text/html;charset=utf-8"}
 
     %title= page_title
-    -if @meta
-      -@meta.each do |key|
+    - if @meta
+      - @meta.each do |key|
         %meta{:name=>key[0], :content=>key[1]}
   
     = render :partial => "shared/scripts_and_styles"
     - if @rss_title && @rss_url
       = auto_discovery_link_tag(:rss, @rss_url, {:title => @rss_title})
-    
+
+
   %body
-    #doc2{:class => "yui-t#{@sidebar_left ? 3 : 6}"}
-      = render :partial => "shared/header"
+    #doc{:class => "yui-t#7"}
+      #hd
+        = render :partial => "shared/header"
             
       #bd
         = render :partial => "shared/messages"
-                  
+
         = @content_for_layout
                             
       #ft

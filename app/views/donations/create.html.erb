@@ -18,7 +18,7 @@
         <td>
         </td>
         <td>
-            <% payment_service_for @donation.id, 'paypalemail@mystore.com',
+            <% payment_service_for @donation.id, PAYPAL_ACCOUNT,
                               :amount => @donation.amount,
                               :currency => 'USD',
                               :service => :paypal,

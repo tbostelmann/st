@@ -4,5 +4,4 @@
     %p
       = render :partial => 'shared/location_chooser', :locals => {:selected_country => @search['country_id'].to_i, :selected_state => @search['state_id'].to_i, :selected_metro_area => @search['metro_area_id'].to_i, :states => @states, :metro_areas => @metro_areas}
 
-    %p 
       %input{"type"=>"submit", "value"=>:search.l}
