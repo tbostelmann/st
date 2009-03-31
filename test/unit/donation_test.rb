@@ -22,4 +22,19 @@ class DonationTest < ActiveSupport::TestCase
 
     assert donation.amount == Money.new(250)
   end
+
+  def self.createDonation
+    donation = Donation.new()
+
+    user = users(:donor)
+    donation.user = user
+
+    stOrg = Organization.find_savetogether_org
+    stOrgDli = DonationLineItem.new(
+            :account => stOrg.account,
+            :donation => donation)
+    donation.donation_line_items << stOrgDli
+
+    stOrgDli.amount = Money.new(250)
+  end
 end
