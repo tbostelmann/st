@@ -91,4 +91,4 @@ else
 end
 
 email_add = AppConfig.support_email
-ExceptionNotifier.exception_recipients = %w(tbostelmann@gmail.com bill@schmoe.com)
+ExceptionNotifier.exception_recipients = email_add

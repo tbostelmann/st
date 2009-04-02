@@ -18,14 +18,13 @@ class ApplicationController < ActionController::Base
     
   end
 
-
 #do not log routing errors, unknown actions
 #this keeps the log file size from growing unnecessarily
-EXCEPTIONS_NOT_LOGGED = ['ActionController::UnknownAction',
-                         'ActionController::RoutingError']
-protected
-  def log_error(exc)
-    super unless EXCEPTIONS_NOT_LOGGED.include?(exc.class.name)
-  end
+#EXCEPTIONS_NOT_LOGGED = ['ActionController::UnknownAction',
+#                         'ActionController::RoutingError']
+#protected
+#  def log_error(exc)
+#    super unless EXCEPTIONS_NOT_LOGGED.include?(exc.class.name)
+#  end
 
 end
