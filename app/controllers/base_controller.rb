@@ -1,7 +1,7 @@
 class BaseController < ApplicationController
   def site_index    
     @posts = Post.find_recent(:limit => 20)
-
+    @fsaver = Array.new(User.find(:all, :limit=>1, :conditions => {:saver => true}))
     @rss_title = "#{AppConfig.community_name} "+:recent_posts.l
     @rss_url = rss_url
     respond_to do |format|
