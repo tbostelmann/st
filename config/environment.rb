@@ -90,3 +90,5 @@ else
   PAYPAL_ACCOUNT = 'tom@savetogether.org'
 end
 
+email_add = AppConfig.support_email
+ExceptionNotifier.exception_recipients = %w(tbostelmann@gmail.com bill@schmoe.com)
