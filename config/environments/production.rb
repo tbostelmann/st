@@ -7,6 +7,9 @@ config.cache_classes = true
 # Enable threaded mode
 # config.threadsafe!
 
+#only log at the warn level or higher
+config.log_level = :warn
+
 # Use a different logger for distributed setups
 # config.logger = SyslogLogger.new
 
