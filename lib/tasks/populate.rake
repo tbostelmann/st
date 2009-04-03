@@ -20,10 +20,6 @@ namespace :db do
     lawrence = MetroArea.create(:name => 'Lawrence', :state => ma, :country => us)
     sanjose = MetroArea.create(:name => 'San Jose', :state => ca, :country => us)
 
-    admin = Role.create(:name => 'admin')
-    moderator = Role.create(:name => 'moderator')
-    member = Role.create(:name => 'member')
-
     stOrg = Organization.create(:name => 'SaveTogether')
     account = Account.create(:owner => stOrg)
 
@@ -157,7 +153,7 @@ namespace :db do
       :crypted_password => "00742970dc9e6319f8019fd54864d3ea740f04b1", # test
       :state => wa,
       :metro_area => seattle,
-      :birthday => 30.years.ago,
+      :birthday => 40.years.ago,
       :activities_count => 0,
       :role => Role[:admin])
     tbostelmann.activate
