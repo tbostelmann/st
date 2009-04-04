@@ -1,12 +1,8 @@
 - @meta = { :description => AppConfig.meta_description, :keywords => AppConfig.meta_keywords, :robots => AppConfig.robots_meta_list_content }
 
 #yui-main
-  .yui-gc
-    %div{ :class => 'yui-gc first', :align => 'left' }
-      = image_tag( 'howitworks.png')
-      = render :partial => "users/fsaver", :collection => @fsaver
+  %div{ :class=>'yui-gc first', :align => 'center' }
+    = image_tag( 'howitworks.png')
+    = render :partial => "users/fsaver", :collection => @fsaver
 
-    .yui-gc
-      .box.hfeed
-        = "<p><br>SaveTogether is a non-profit organization helping working families build assets and achieve financial security by leveraging the support of an interactive, internet-based community of donors, savers, and partner organizations. Individual savers commit to a savings goal and financial training plan to prepare to acquire an asset (i.e. post secondary education, starting a business, or improving a home). Along the way, one of our partner organizations help guide them along this proven asset-building path. In turn, SaveTogether's donors provide matching contributions to boost the available savings, incentivizing savers and helping accelerate the results. Ongoing communication between savers and donors sustains all of the groups in their commitments to building individual and community strength.</p>"
 

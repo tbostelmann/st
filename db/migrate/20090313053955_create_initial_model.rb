@@ -37,7 +37,7 @@ class CreateInitialModel < ActiveRecord::Migration
     remove_column(:users, :saver)
     drop_table :donation_line_items
     drop_table :donations
-    drop_table :assert_development_cases
+    drop_table :asset_development_cases
     drop_table :organizations
     drop_table :accounts
   end

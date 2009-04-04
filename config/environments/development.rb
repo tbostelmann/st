@@ -18,5 +18,4 @@ config.action_mailer.raise_delivery_errors = false
 
 # development.rb, production.rb, and test.rb should include something like:
 APP_URL = "http://localhost:3000"
-
 ActionMailer::Base.delivery_method = :sendmail

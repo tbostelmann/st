@@ -95,6 +95,7 @@ class User < ActiveRecord::Base
     country     = Country.find(search['country_id']) if !search['country_id'].blank?
     state       = State.find(search['state_id']) if !search['state_id'].blank?
     metro_area  = MetroArea.find(search['metro_area_id']) if !search['metro_area_id'].blank?
+    asset_type  = AssetType.find(search['asset_type_id']) if !search['asset_type_id'].blank?
 
     if metro_area && metro_area.country
       country ||= metro_area.country 
@@ -102,7 +103,9 @@ class User < ActiveRecord::Base
       search['country_id'] = metro_area.country.id if metro_area.country
       search['state_id'] = metro_area.state.id if metro_area.state      
     end
-    
+   
+   search['asset_type_id'] = asset_type.id if asset_type  
+ 
     states  = country ? country.states.sort_by{|s| s.name} : []
     if states.any?
       metro_areas = state ? state.metro_areas.all(:order => "name") : []
@@ -110,7 +113,7 @@ class User < ActiveRecord::Base
       metro_areas = country ? country.metro_areas : []
     end    
     
-    return [metro_areas, states]
+    return [metro_areas, states, asset_type]
   end
 
   def self.prepare_params_for_search(params)
@@ -181,10 +184,10 @@ class User < ActiveRecord::Base
   def self.paginated_users_conditions_with_search(params)
     search = prepare_params_for_search(params)
 
-    metro_areas, states = find_country_and_state_from_search_params(search)
+    metro_areas, states, asset_types = find_country_and_state_from_search_params(search)
     
     cond = build_conditions_for_search(search)
-    return cond, search, metro_areas, states
+    return cond, search, metro_areas, states, asset_types
   end  
 
   
