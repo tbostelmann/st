@@ -11,9 +11,17 @@ class CreateInitialModel < ActiveRecord::Migration
       t.timestamps
     end
 
+    create_table :asset_types do |t|
+      t.string :asset_name
+      t.timestamps
+    end
+
     create_table :asset_development_cases do |t|
       t.integer :user_id
       t.integer :organization_id
+      t.integer :asset_type_id
+      t.integer :requested_match_total_cents
+      t.integer :requested_match_left_cents
       t.timestamps
     end
 
@@ -53,6 +61,7 @@ class CreateInitialModel < ActiveRecord::Migration
     drop_table :donation_line_items
     drop_table :donations
     drop_table :assert_development_cases
+    drop_table :asset_types
     drop_table :organizations
     drop_table :accounts
   end

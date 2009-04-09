@@ -20,6 +20,10 @@ namespace :db do
     lawrence = MetroArea.create(:name => 'Lawrence', :state => ma, :country => us)
     sanjose = MetroArea.create(:name => 'San Jose', :state => ca, :country => us)
 
+    education = AssetType.create :asset_name => "education"
+    home = AssetType.create :asset_name => "home"
+    business = AssetType.create :asset_name => "business"
+
     stOrg = Organization.create(:name => 'SaveTogether')
     account = Account.create(:owner => stOrg)
 
@@ -47,6 +51,9 @@ namespace :db do
 #    saver.save
     saverCase = AssetDevelopmentCase.create(
             :user => saver,
+            :asset_type => business,
+            :requested_match_total => "2000",
+            :requested_match_left => "500",
             :organization => org)
     account = Account.create(:owner => saverCase)
 
@@ -74,6 +81,9 @@ namespace :db do
 #    saver.save
     saverCase = AssetDevelopmentCase.create(
             :user => saver,
+            :asset_type => education,
+            :requested_match_total => "2000",
+            :requested_match_left => "700",
             :organization => org)
     account = Account.create(:owner => saverCase)
 
@@ -102,6 +112,9 @@ namespace :db do
 #    saver.save
     saverCase = AssetDevelopmentCase.create(
             :user => saver,
+            :asset_type => business,
+            :requested_match_total => "2000",
+            :requested_match_left => "1500",
             :organization => org)
     account = Account.create(:owner => saverCase)
 
@@ -129,6 +142,9 @@ namespace :db do
 #    saver.save
     saverCase = AssetDevelopmentCase.create(
             :user => saver,
+            :asset_type => business,    
+            :requested_match_total => "2000",
+            :requested_match_left => "200",
             :organization => org)
     account = Account.create(:owner => saverCase)
   

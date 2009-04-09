@@ -11,6 +11,10 @@ class AssetDevelopmentCaseTest < ActiveSupport::TestCase
 
     org = organizations(:minOrganization)
     adc.organization = org
+    assert !adc.valid?
+
+    adc.requested_match_total_cents = 2000 * 100
+    adc.requested_match_left_cents = 500 * 100
     assert adc.valid?
   end
 

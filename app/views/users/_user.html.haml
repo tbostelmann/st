@@ -5,8 +5,12 @@
         = link_to image_tag( user.avatar_photo_url(:thumb), :class => "polaroid" ), user_path(user)
 
       .yui-u
+        Total Amount:
+        = "#{@usercaseinfo[user.id.to_s].requested_match_total.format(:html)}"
+        %span{:style=>"color:red"} Remaining:
+        %span{:style=>"color:red"}= "#{@usercaseinfo[user.id.to_s].requested_match_left.format(:html)}"
+        %br
         = link_to( :donate.l, :controller => 'donations', :action => 'new', :saver_id => user.id )
-
     .yui-u
       %h3= user.login
       - if @search && @search['description']
