@@ -28,7 +28,6 @@ Rails::Initializer.run do |config|
   config.gem "haml"
   config.gem "htmlentities"
   config.gem "money"
-  config.gem "mysql"
   config.gem "RedCloth"
 
   # Only load the plugins named here, in the order given (default is alphabetical).
