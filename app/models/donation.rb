@@ -2,6 +2,7 @@ require 'money'
 
 class Donation < ActiveRecord::Base
   has_many :donation_line_items
+  has_many :payments
   belongs_to :user
 
   validates_presence_of :donation_line_items

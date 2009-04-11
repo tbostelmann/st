@@ -1,24 +1,36 @@
-= render :partial => 'about_nav'
+=# render :partial => 'about_nav'
 
 #yui-main
   .yui-b
     .box
       %h3=:frequently_asked_questions.l
 
-      %h4#what_is_it
-        What Is
-        = AppConfig.community_name
-      %p 
-        Explain what it is"
+      %b How are savers chosen to participate in the program? 
 
-      %h4#tags What Are "Tags"?
-      %p Tags are one-word descriptors that you can assign to your blogs, pictures, and clippings.
-      %p Tags are a keywords you choose to help organize your stuff on this site. You can assign as many tags as you like and rename or delete them later.
+      %p Savers hear about the IDA program from a participating nonprofit program and see if they meet the income eligibility guidelines for the program.  .[CHART ON INCOME GUIDELINES] After the individual determines if he or she qualifies for the program, the next step is to attend an orientation and apply for the program. At the orientation he or she will fill out an application and schedule a 1-on-1 interview with our the nonprofit organization. During the interview, the program staff looks to see that the applicant demonstrates a pattern or willingness to save and commitment to the financial education part of the program.  Applicants are asked to submit the following documentation during the application process:
+      
+      %b What are the financial education program components? 
 
-      %h4#images_and_flash How do I embed images and flash using the rich text editor?
-      %p 
-        You can add images or flash media to your profile and your blog posts by using the image 
-        %img{:src=>"/plugin_assets/community_engine/javascripts/tiny_mce/themes/advanced/images/image.gif"}
-        and media 
-        %img{:src=>"/plugin_assets/community_engine/javascripts/tiny_mce/plugins/media/images/media.gif"}
-        buttons on the rich text editor.
+      %p Financial education classes cover the following topics: banking (picking the best bank and accounts for you), budgeting (how to manage your money), saving (strategies to save more money), credit (credit scores and reports, how to improve your credit), loans (how to pick a loan or credit card), and investing (where and how to invest). Depending on the saver’s goal, he/she will also take one or more classes on Education, Small business, Citizenship, Homeownership or another goal. Completing the financial education classes is required to participate in the IDA program. These classes are held on Saturdays and weekday evenings and are offered free of charge to IDA participants. (Include link to testimonials from savers about financial education classes?) 
+
+      %b Why aren’t savers allowed to save for goals outside of the four (education, home payment, retirement, small business)? (Do we want to address this at all, and if so, here?)
+
+      %p Traditionally, IDA accounts have been used for these four goals to help families build assets to move them out of poverty.  Many organizations are experimenting with new savings goals such as saving for citizenship or saving to build emergency funds.  As [name of website] grows, we hope to offer other goals to savers and donors. 
+
+      %b How are the savings dispensed to individuals?
+
+      %p The savings and matched funds are held in an escrow account by the nonprofit organization.  When a saver is ready to make a purchase towards their goal, the nonprofit releases the funds directly to the vendor.  For example, if a saver is paying for school, the matched savings program will write a check or make a fund transfer directly to the university.  A saver can withdraw his or her own savings from the escrow account at any time, but loses all matching funds and effectively withdraws from the program if they do so.  Matched savings programs work hard to work with clients to manage their financial situation so that they don’t have to drop out of the program.  [Attrition rates here] 
+      
+      %b How much does a saver save on average each month? 
+
+      %p Savers are required to save a minimum of $20 every month that they are in the program. On average, savers in the Bay Area save_[avg]/month  
+
+      %b What happens after a saver has reached his or her savings goal? Are they still involved in the program? Can they apply for another goal? 
+
+      %p The saver may then apply to withdraw funds for use in one of the approved end goals. We only offer one account per person per lifetime in order to serve more people. Savers can participate in alumni groups through which they can share personal stories or help new savers in the program 
+
+      %h3=:need_to_contact_us.l
+      %p
+        =:dont_wait_its.l
+        %a{:href=>"mailto:#{AppConfig.support_email}"}= AppConfig.support_email
+

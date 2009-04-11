@@ -2,6 +2,7 @@
 # Likewise, all the methods added will be available for all controllers.
 
 class ApplicationController < ActionController::Base
+  include ExceptionNotifiable
   helper :all # include all helpers, all the time
   filter_parameter_logging :password #prevent logging of password param
   # See ActionController::RequestForgeryProtection for details
@@ -17,14 +18,13 @@ class ApplicationController < ActionController::Base
     
   end
 
-
 #do not log routing errors, unknown actions
 #this keeps the log file size from growing unnecessarily
-EXCEPTIONS_NOT_LOGGED = ['ActionController::UnknownAction',
-                         'ActionController::RoutingError']
-protected
-  def log_error(exc)
-    super unless EXCEPTIONS_NOT_LOGGED.include?(exc.class.name)
-  end
+#EXCEPTIONS_NOT_LOGGED = ['ActionController::UnknownAction',
+#                         'ActionController::RoutingError']
+#protected
+#  def log_error(exc)
+#    super unless EXCEPTIONS_NOT_LOGGED.include?(exc.class.name)
+#  end
 
 end

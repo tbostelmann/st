@@ -20,10 +20,6 @@ namespace :db do
     lawrence = MetroArea.create(:name => 'Lawrence', :state => ma, :country => us)
     sanjose = MetroArea.create(:name => 'San Jose', :state => ca, :country => us)
 
-    admin = Role.create(:name => 'admin')
-    moderator = Role.create(:name => 'moderator')
-    member = Role.create(:name => 'member')
-
     stOrg = Organization.create(:name => 'SaveTogether')
     account = Account.create(:owner => stOrg)
 
@@ -157,7 +153,7 @@ namespace :db do
       :crypted_password => "00742970dc9e6319f8019fd54864d3ea740f04b1", # test
       :state => wa,
       :metro_area => seattle,
-      :birthday => 30.years.ago,
+      :birthday => 40.years.ago,
       :activities_count => 0,
       :role => Role[:admin])
     tbostelmann.activate
@@ -183,5 +179,14 @@ namespace :db do
 #      person.state   = Faker::Address.us_state_abbr
 #      person.zip     = Faker::Address.zip_code
 #    end
+   
+   #Link asset development cases to particular asset types
+   peopledata = { 1=>{:asset_type_id => '1'}, 2=> {:asset_type_id => '2'}, 3=>{:asset_type_id=> '3'}, 4=>{:asset_type_id=>'2'} }
+   AssetDevelopmentCase.update(peopledata.keys,peopledata.values)
+
+   #put in requested match totals and amount left for asset development case examples
+   peopledata = { 1=>{:requested_match_total => '2000.00', :requested_match_left=>'500.00'}, 2=>{:requested_match_total=>'1500.00', :requested_match_left=>'10.00'}, 3=>{:requested_match_total=>'1000.00', :requested_match_left=>'325.22'}, 4=>{:requested_match_total=>'567.11', :requested_match_left=>'1.23'}}
+   AssetDevelopmentCase.update(peopledata.keys,peopledata.values)
+
   end
 end

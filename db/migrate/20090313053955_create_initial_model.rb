@@ -30,10 +30,25 @@ class CreateInitialModel < ActiveRecord::Migration
       t.timestamps
     end
 
-    add_column(:users, :saver, :boolean, :default => false)  
+    add_column(:users, :saver, :boolean, :default => false)
+
+    create_table :payments do |t|
+      t.string :account
+      t.string :currency
+      t.integer :gross
+      t.integer :fee
+      t.datetime :received_at
+      t.string :status
+      t.boolean :test
+      t.string :transaction_id
+      t.string :type
+      t.integer :donation_id
+      t.timestamps
+    end
   end
 
   def self.down
+    drop_table :payments
     remove_column(:users, :saver)
     drop_table :donation_line_items
     drop_table :donations
