@@ -1,3 +1,5 @@
 saverCase:
     user: saver
+    requested_match_total_cents: 200000
+    requested_match_left_cents: 50000
     organization: minOrganization
