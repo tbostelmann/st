@@ -5,5 +5,5 @@
 
   = :Goal
 
-  = select_tag(:asset_type_id, '<option></option>' + options_from_collection_for_select(AssetType.find(:all), "id", "asset_name", selected_asset_type), {:stype => "width:100px"})
+  = select_tag(:asset_type_id, '<option></option>' + options_from_collection_for_select(AssetType.find(:all), "id", "asset_name", :selected_asset_type), {:stype => "width:100px"})
 
