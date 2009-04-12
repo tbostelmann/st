@@ -65,3 +65,5 @@ end
 
 email_add = AppConfig.support_email
 ExceptionNotifier.exception_recipients = email_add
+
+I18n.reload!
