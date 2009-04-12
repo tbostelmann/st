@@ -195,5 +195,14 @@ namespace :db do
 #      person.state   = Faker::Address.us_state_abbr
 #      person.zip     = Faker::Address.zip_code
 #    end
+   
+   #Link asset development cases to particular asset types
+   peopledata = { 1=>{:asset_type_id => '1'}, 2=> {:asset_type_id => '2'}, 3=>{:asset_type_id=> '3'}, 4=>{:asset_type_id=>'2'} }
+   AssetDevelopmentCase.update(peopledata.keys,peopledata.values)
+
+   #put in requested match totals and amount left for asset development case examples
+   peopledata = { 1=>{:requested_match_total => '2000.00', :requested_match_left=>'500.00'}, 2=>{:requested_match_total=>'1500.00', :requested_match_left=>'10.00'}, 3=>{:requested_match_total=>'1000.00', :requested_match_left=>'325.22'}, 4=>{:requested_match_total=>'567.11', :requested_match_left=>'1.23'}}
+   AssetDevelopmentCase.update(peopledata.keys,peopledata.values)
+
   end
 end
