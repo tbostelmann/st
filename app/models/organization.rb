@@ -1,3 +1,14 @@
+# == Schema Information
+# Schema version: 20090408231608
+#
+# Table name: organizations
+#
+#  id         :integer(4)      not null, primary key
+#  name       :string(255)
+#  created_at :datetime
+#  updated_at :datetime
+#
+
 class Organization < ActiveRecord::Base
   has_one :account, :as => :owner
   has_many :cases

@@ -1,3 +1,17 @@
+# == Schema Information
+# Schema version: 20090408231608
+#
+# Table name: donation_line_items
+#
+#  id          :integer(4)      not null, primary key
+#  cents       :integer(4)
+#  donation_id :integer(4)
+#  description :string(255)
+#  account_id  :integer(4)
+#  created_at  :datetime
+#  updated_at  :datetime
+#
+
 require 'money'
 
 class DonationLineItem < ActiveRecord::Base
