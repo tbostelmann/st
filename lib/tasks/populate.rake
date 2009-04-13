@@ -160,49 +160,5 @@ namespace :db do
       :activities_count => 0,
       :role => Role[:admin])
     admin.activate
-
-    tbostelmann = User.create(
-      :login => "tbostelmann",
-      :email => "tbostelmann@gmail.com",
-      :description => "Just a developer",
-      :salt => "7e3041ebc2fc05a40c60028e2c4901a81035d3cd",
-      :crypted_password => "00742970dc9e6319f8019fd54864d3ea740f04b1", # test
-      :state => wa,
-      :metro_area => seattle,
-      :birthday => 40.years.ago,
-      :activities_count => 0,
-      :role => Role[:admin])
-    tbostelmann.activate
-#    [Category, Product, Person].each(&:delete_all)
-#    
-#      category.name = Populator.words(1..3).titleize
-#      Product.populate 10..100 do |product|
-#        product.category_id = category.id
-#        product.name = Populator.words(1..5).titleize
-#        product.description = Populator.sentences(2..10)
-#        product.price = [4.99, 19.95, 100]
-#        product.created_at = 2.years.ago..Time.now
-#      end
-#    end
-#    
-#    Person.populate 100 do |person|
-#      person.name    = Faker::Name.name
-#      person.company = Faker::Company.name
-#      person.email   = Faker::Internet.email
-#      person.phone   = Faker::PhoneNumber.phone_number
-#      person.street  = Faker::Address.street_address
-#      person.city    = Faker::Address.city
-#      person.state   = Faker::Address.us_state_abbr
-#      person.zip     = Faker::Address.zip_code
-#    end
-   
-   #Link asset development cases to particular asset types
-   peopledata = { 1=>{:asset_type_id => '1'}, 2=> {:asset_type_id => '2'}, 3=>{:asset_type_id=> '3'}, 4=>{:asset_type_id=>'2'} }
-   AssetDevelopmentCase.update(peopledata.keys,peopledata.values)
-
-   #put in requested match totals and amount left for asset development case examples
-   peopledata = { 1=>{:requested_match_total => '2000.00', :requested_match_left=>'500.00'}, 2=>{:requested_match_total=>'1500.00', :requested_match_left=>'10.00'}, 3=>{:requested_match_total=>'1000.00', :requested_match_left=>'325.22'}, 4=>{:requested_match_total=>'567.11', :requested_match_left=>'1.23'}}
-   AssetDevelopmentCase.update(peopledata.keys,peopledata.values)
-
   end
 end
