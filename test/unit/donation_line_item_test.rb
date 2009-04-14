@@ -11,10 +11,6 @@ class DonationLineItemTest < ActiveSupport::TestCase
     assert !pli.valid?
 
     pli.amount = Money.new(5000)
-    assert !pli.valid?
-
-    donation = Donation.new()
-    pli.donation = donation
     assert pli.valid?
   end
 end
