@@ -30,7 +30,7 @@
                 <INPUT TYPE="hidden" NAME="return" value="url_for(:only_path => false, :action => 'return') %>">
                 <input type="hidden" name="cancel_return" value="url_for(:only_path => false, :action => 'cancel') %>"/>
                 <input type="hidden" name="notify_url" value="url_for(:only_path => false, :action => 'notify') %>"/>
-                <input type="submit" name="submit" value="Donate"/>
+                <!--input type="submit" name="submit" value="Donate"/-->
             </FORM>
         </td>
         <td>
@@ -46,7 +46,7 @@
                    <% service.notify_url url_for(:only_path => false, :action => 'notify') %>
                    <% service.return_url url_for(:only_path => false, :action => 'done') %>
                    <% service.cancel_return_url 'http://www.savetogether.org/' %>
-                   <%= submit_tag "Donate" %>
+                   <!--%= submit_tag "Donate" %-->
              <% end %>
         </td>
     </tr>

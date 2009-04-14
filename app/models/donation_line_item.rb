@@ -21,7 +21,6 @@ class DonationLineItem < ActiveRecord::Base
 
   validates_presence_of :account
   validates_presence_of :cents
-  validates_presence_of :donation
 
   def account_id=(account_id)
     self.account = Account.find(account_id)
