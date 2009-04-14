@@ -53,9 +53,37 @@ class UsersController < BaseController
     for sel_user in @users
       usercondstring = "user_id = #{sel_user.id.to_s}"
       thisadcobj = AssetDevelopmentCase.find(:first, :conditions=>usercondstring)
-      @usercaseinfo[sel_user.id.to_s] = thisadcobj
+      @usercaseinfo[sel_user.id.to_s] = Hash.new
+      @usercaseinfo[sel_user.id.to_s]['adc'] = thisadcobj
+      @usercaseinfo[sel_user.id.to_s]['percent'] = (@usercaseinfo[sel_user.id.to_s]['adc'].requested_match_total.to_s.to_f-@usercaseinfo[sel_user.id.to_s]['adc'].requested_match_left.to_s.to_f)/(@usercaseinfo[sel_user.id.to_s]['adc'].requested_match_total.to_s.to_f)
     end
     @tags = Saver.tag_counts :limit => 10
     setup_metro_areas_for_cloud
+  end
+
+  def show
+    @friend_count               = @user.accepted_friendships.count
+    @accepted_friendships       = @user.accepted_friendships.find(:all, :limit => 5).collect{|f| f.friend }
+    @pending_friendships_count  = @user.pending_friendships.count()
+
+    @comments       = @user.comments.find(:all, :limit => 10, :order => 'created_at DESC')
+    @photo_comments = Comment.find_photo_comments_for(@user)
+    @users_comments = Comment.find_comments_by_user(@user, :limit => 5)
+
+    @recent_posts   = @user.posts.find(:all, :limit => 2, :order => "published_at DESC")
+    @clippings      = @user.clippings.find(:all, :limit => 5)
+    @photos         = @user.photos.find(:all, :limit => 5)
+    @comment        = Comment.new(params[:comment])
+
+    @my_activity = Activity.recent.by_users([@user.id]).find(:all, :limit => 10)
+    update_view_count(@user) unless current_user && current_user.eql?(@user)
+    #using the user's id, find the asset_dev_case data
+    @usercaseinfo = Hash.new
+    usercondstring = "user_id = #{@user.id.to_s}"
+    thisadcobj = AssetDevelopmentCase.find(:first, :conditions=>usercondstring)
+    @usercaseinfo[@user.id.to_s] = Hash.new
+    @usercaseinfo[@user.id.to_s]['adc'] = thisadcobj
+    @usercaseinfo[@user.id.to_s]['percent'] = (@usercaseinfo[@user.id.to_s]['adc'].requested_match_total.to_s.to_f-@usercaseinfo[@user.id.to_s]['adc'].requested_match_left.to_s.to_f)/(@usercaseinfo[@user.id.to_s]['adc'].requested_match_total.to_s.to_f)
+
   end
 end

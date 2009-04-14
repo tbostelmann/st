@@ -12,7 +12,7 @@
     = render :partial => "shared/scripts_and_styles"
     - if @rss_title && @rss_url
       = auto_discovery_link_tag(:rss, @rss_url, {:title => @rss_title})
-
+    = progress_bar_includes
 
   %body
     #doc{:class => "yui-t#7"}

@@ -20,9 +20,9 @@ namespace :db do
     lawrence = MetroArea.create(:name => 'Lawrence', :state => ma, :country => us)
     sanjose = MetroArea.create(:name => 'San Jose', :state => ca, :country => us)
 
-    education = AssetType.create :asset_name => "education"
-    home = AssetType.create :asset_name => "home"
-    business = AssetType.create :asset_name => "business"
+    education = AssetType.create :asset_name => "Education"
+    home = AssetType.create :asset_name => "Home"
+    business = AssetType.create :asset_name => "Business"
 
     stOrg = Organization.create(:name => 'SaveTogether')
     account = Account.create(:owner => stOrg)
@@ -32,7 +32,7 @@ namespace :db do
     saver = User.create(
       :login => "samantha",
       :email => "samantha@example.com",
-      :description => "Samantha is saving to open her own framing business.",
+      :description => "<p>Samantha is saving for a downpayment towards a house. Samantha's dream is to own her own home. She is saving to provide a home for her 2 children. Since completing high school, she has worked for two years as a retail clerk to help afford the tuition.</p>  <p>Last year, Samantha was selected to open a matched savings account with Opportunity Fund, one of the leading microfinance organizations in America. She is saving diligently every month, and attending classes on money management and college readiness.</p><p>I have always been told that I have a gift for making people feel better,' she says. 'I will make the most of the help I am getting from Opportunity Fund, and I intend to give back by caring for people who are facing emergencies'.</p>",
       :salt => "7e3041ebc2fc05a40c60028e2c4901a81035d3cd",
       :crypted_password => "00742970dc9e6319f8019fd54864d3ea740f04b1", # test
       :state => wa,
@@ -42,16 +42,16 @@ namespace :db do
       :role => Role[:member],
       :saver => true)
     saver.activate
-#    photo = Photo.new(
-#            :name => "Washington CASH Saver",
-#            :uploaded_data => ActionController::TestUploadedFile.new("#{RAILS_ROOT}/test/files/WACASH_saver1.jpg", 'image/jpg'),
-#            :user => saver)
-#    photo.save
-#    saver.avatar = photo
-#    saver.save
+    photo = Photo.new(
+            :name => "Washington CASH Saver",
+            :uploaded_data => ActionController::TestUploadedFile.new("#{RAILS_ROOT}/test/files/WACASH_saver1.jpg", 'image/jpg'),
+            :user => saver)
+    photo.save
+    saver.avatar = photo
+    saver.save
     saverCase = AssetDevelopmentCase.create(
             :user => saver,
-            :asset_type => business,
+            :asset_type => home,
             :requested_match_total => "2000",
             :requested_match_left => "500",
             :organization => org)
@@ -72,13 +72,13 @@ namespace :db do
       :role => Role[:member],
       :saver => true)
     saver.activate
-#    photo = Photo.new(
-#            :name => "EARN Saver",
-#            :uploaded_data => ActionController::TestUploadedFile.new("#{RAILS_ROOT}/test/files/EARN_saver1.jpg", 'image/jpg'),
-#            :user => saver)
-#    photo.save
-#    saver.avatar = photo
-#    saver.save
+    photo = Photo.new(
+            :name => "EARN Saver",
+            :uploaded_data => ActionController::TestUploadedFile.new("#{RAILS_ROOT}/test/files/EARN_saver1.jpg", 'image/jpg'),
+            :user => saver)
+    photo.save
+    saver.avatar = photo
+    saver.save
     saverCase = AssetDevelopmentCase.create(
             :user => saver,
             :asset_type => education,
@@ -93,7 +93,7 @@ namespace :db do
     saver = User.create(
       :login => "rosie",
       :email => "rosie@example.com",
-      :description => "Rosie is saving to open her own produce stand at the local public market.",
+      :description => "Rosie is saving to open her own produce stand at the local public market. Since completing high school, she has worked for two years as a retail clerk to help afford the tuition.</p>  <p>Last year, Samantha was selected to open a matched savings account with Opportunity Fund, one of the leading microfinance organizations in America. She is saving diligently every month, and attending classes on money management and college readiness.</p><p>I have always been told that I have a gift for making people feel better,' she says. 'I will make the most of the help I am getting from Opportunity Fund, and I intend to give back by caring for people who are facing emergencies'.</p>",
       :salt => "7e3041ebc2fc05a40c60028e2c4901a81035d3cd",
       :crypted_password => "00742970dc9e6319f8019fd54864d3ea740f04b1", # test
       :state => ca,
@@ -103,13 +103,13 @@ namespace :db do
       :role => Role[:member],
       :saver => true)
     saver.activate
-#    photo = Photo.new(
-#            :name => "Opportunity Fund Saver",
-#            :uploaded_data => ActionController::TestUploadedFile.new("#{RAILS_ROOT}/test/files/Opportunity_saver1.jpg", 'image/jpg'))
-#    photo.user = saver
-#    photo.save
-#    saver.avatar = photo
-#    saver.save
+    photo = Photo.new(
+            :name => "Opportunity Fund Saver",
+            :uploaded_data => ActionController::TestUploadedFile.new("#{RAILS_ROOT}/test/files/Opportunity_saver1.jpg", 'image/jpg'))
+    photo.user = saver
+    photo.save
+    saver.avatar = photo
+    saver.save
     saverCase = AssetDevelopmentCase.create(
             :user => saver,
             :asset_type => business,
@@ -123,7 +123,7 @@ namespace :db do
     saver = User.create(
       :login => "sonja",
       :email => "sonja@example.com",
-      :description => "Sonja is saving to open her own produce stand at the local public market.",
+      :description => "Sonja is saving to open her own crafts stand at the local flea market. Sonja is eager to provide a valuable service to the community. She will leverage her considerable strengths in putting together innovative craft projects. She has been helping elementary school children for the past 10 years in after school arts and crafts programs.",
       :salt => "7e3041ebc2fc05a40c60028e2c4901a81035d3cd",
       :crypted_password => "00742970dc9e6319f8019fd54864d3ea740f04b1", # test
       :state => ma,
@@ -133,13 +133,13 @@ namespace :db do
       :role => Role[:member],
       :saver => true)
     saver.activate
-#    photo = Photo.new(
-#            :name => "Lawrence Community Works Saver",
-#            :uploaded_data => ActionController::TestUploadedFile.new("#{RAILS_ROOT}/test/files/LCW_saver_1.JPG", 'image/jpg'),
-#            :user => saver)
-#    photo.save
-#    saver.avatar = photo
-#    saver.save
+    photo = Photo.new(
+            :name => "Lawrence Community Works Saver",
+            :uploaded_data => ActionController::TestUploadedFile.new("#{RAILS_ROOT}/test/files/LCW_saver_1.JPG", 'image/jpg'),
+            :user => saver)
+    photo.save
+    saver.avatar = photo
+    saver.save
     saverCase = AssetDevelopmentCase.create(
             :user => saver,
             :asset_type => business,    
@@ -197,11 +197,11 @@ namespace :db do
 #    end
    
    #Link asset development cases to particular asset types
-   peopledata = { 1=>{:asset_type_id => '1'}, 2=> {:asset_type_id => '2'}, 3=>{:asset_type_id=> '3'}, 4=>{:asset_type_id=>'2'} }
+   peopledata = { 1=>{:asset_type_id => '2'}, 2=> {:asset_type_id => '1'}, 3=>{:asset_type_id=> '3'}, 4=>{:asset_type_id=>'3'} }
    AssetDevelopmentCase.update(peopledata.keys,peopledata.values)
 
    #put in requested match totals and amount left for asset development case examples
-   peopledata = { 1=>{:requested_match_total => '2000.00', :requested_match_left=>'500.00'}, 2=>{:requested_match_total=>'1500.00', :requested_match_left=>'10.00'}, 3=>{:requested_match_total=>'1000.00', :requested_match_left=>'325.22'}, 4=>{:requested_match_total=>'567.11', :requested_match_left=>'1.23'}}
+   peopledata = { 1=>{:requested_match_total => '2000.00', :requested_match_left=>'500.00'}, 2=>{:requested_match_total=>'1500.00', :requested_match_left=>'10.00'}, 3=>{:requested_match_total=>'1000.00', :requested_match_left=>'325.00'}, 4=>{:requested_match_total=>'600.00', :requested_match_left=>'100.00'}}
    AssetDevelopmentCase.update(peopledata.keys,peopledata.values)
 
   end
