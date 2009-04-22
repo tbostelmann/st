@@ -1,7 +1,7 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class UserTest < ActiveSupport::TestCase
-  test "create user" do
+  test "create saver" do
     user = User.new(
           :login => "samantha",
           :email => "samantha@example.com",

@@ -1,9 +1,9 @@
 class UsersController < BaseController
   def index
-    cond, @search, @metro_areas, @states, @asset_types = Saver.paginated_users_conditions_with_search(params)
+    cond, @search, @metro_areas, @states, @asset_types = User.paginated_users_conditions_with_search(params)
     useridstr=nil
     #if not searching based on asset_type, find all users based on metro area, etc
-    @users = Saver.recent.find(:all,
+    @users = User.recent.find(:all,
             :conditions => cond.to_sql,
             :include => [:tags]
     )
@@ -33,14 +33,14 @@ class UsersController < BaseController
     if not useridstr.nil?
       useridstr.gsub!(/^\sOR/, '')
       #now only find the users for the given asset_type
-      @users = Saver.find(:all,
+      @users = User.find(:all,
               :conditions => useridstr,
               :page => {:current => params[:page], :size => 20}
       )
     end
 
     if @asset_types.blank?
-      @users = Saver.find(:all,
+      @users = User.find(:all,
               :conditions => cond.to_sql,
               :include => [:tags],
               :page => {:current => params[:page], :size => 20}
@@ -55,7 +55,7 @@ class UsersController < BaseController
       thisadcobj = AssetDevelopmentCase.find(:first, :conditions=>usercondstring)
       @usercaseinfo[sel_user.id.to_s] = thisadcobj
     end
-    @tags = Saver.tag_counts :limit => 10
+    @tags = User.tag_counts :limit => 10
     setup_metro_areas_for_cloud
   end
 end
