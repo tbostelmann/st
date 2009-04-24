@@ -108,7 +108,8 @@ class DonationsController < BaseController
       raise "no such donation"
     else
       # TODO: need to put this in a transaction
-      FinancialTransaction.create_complete_transaction(donation)
+      ft = FinancialTransaction.create_complete_transaction(donation)
+      ft.post_to_accounts
     end
 
     respond_to do |format|
