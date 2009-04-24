@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 20090408231608
+# Schema version: 20090422073021
 #
 # Table name: donation_line_items
 #
@@ -17,6 +17,7 @@ require 'money'
 class DonationLineItem < ActiveRecord::Base
   belongs_to :donation
   belongs_to :account
+  has_many :line_items
   composed_of :amount, :class_name => "Money", :mapping => [%w(cents cents)], :converter => Proc.new { |value| value.to_money }
 
   validates_presence_of :account

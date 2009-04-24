@@ -1,0 +1,37 @@
+# == Schema Information
+# Schema version: 20090422073021
+#
+# Table name: donation_line_items
+#
+#  id          :integer(4)      not null, primary key
+#  cents       :integer(4)
+#  donation_id :integer(4)
+#  description :string(255)
+#  account_id  :integer(4)
+#  created_at  :datetime
+#  updated_at  :datetime
+#
+
+dli1:
+    cents: 5000
+    donation: donor_donation
+    description: "donation to saver"
+    account: saverCaseAccount
+
+dli2:
+    cents: 500
+    donation: donor_donation
+    description: "donation to SaveTogether"
+    account: saveTogetherAccount
+
+dli3:
+    cents: 2500
+    donation: anonymous_donation
+    description: "donation to saver"
+    account: saverCaseAccount
+
+dli4:
+    cents: 250
+    donation: anonymous_donation
+    description: "donation to SaveTogether"
+    account: saverCaseAccount

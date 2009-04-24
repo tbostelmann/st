@@ -1,12 +1,12 @@
 # == Schema Information
 # Schema version: 20090422073021
 #
-# Table name: asset_types
+# Table name: financial_transactions
 #
-#  id         :integer(4)      not null, primary key
-#  asset_name :string(255)
-#  created_at :datetime
-#  updated_at :datetime
+#  id          :integer(4)      not null, primary key
+#  donation_id :integer(4)
+#  created_at  :datetime
+#  updated_at  :datetime
 #
 
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html

@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 20090408231608
+# Schema version: 20090422073021
 #
 # Table name: asset_types
 #
