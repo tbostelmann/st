@@ -10,9 +10,9 @@
     </tr>
   <% end -%>
     <tr>
-        <td align="right"><%= @donation.donation_line_items[1].description %>
+        <td align="right">total
         </td>
-        <td align="left"><%= @donation.donation_line_items[1].amount.format(:html) %>
+        <td align="left"><%= @donation.amount.format(:html) %>
         </td>
     </tr>
     <tr>

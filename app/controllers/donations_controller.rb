@@ -101,20 +101,21 @@ class DonationsController < BaseController
   def done
     # TODO: need to figure out how to handle anonymous donations - for now just complete the donation
     donation_id = params[:donation_id]
-    donation = Donation.find(donation_id)
+    @donation = Donation.find(donation_id)
 
-    if donation.nil?
+    if @donation.nil?
       # TODO: need to handle this gracefully
       raise "no such donation"
     else
       # TODO: need to put this in a transaction
-      ft = FinancialTransaction.create_complete_transaction(donation)
+      ft = FinancialTransaction.create_complete_transaction(@donation)
       ft.post_to_accounts
-    end
 
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @donation }
+      if current_user
+        redirect_to :controller => 'users', :action => 'show', :id => current_user
+      else
+        redirect_to :controller => 'users', :action => 'new', :donation_id => @donation.id
+      end
     end
   end
 
