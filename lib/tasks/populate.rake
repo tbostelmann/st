@@ -6,30 +6,39 @@ namespace :db do
     require 'action_controller'
     require 'action_controller/test_process.rb'
 
-    MetroArea.destroy_all
-    State.destroy_all
-    Country.destroy_all
-    us = Country.create(:name => "United States")
+    us = Country.find(:first, :conditions => {:name => "United States"})
 
-    wa = State.create(:name => "WA")
-    ca = State.create(:name => "CA")
-    ma = State.create(:name => "MA")
+    wa = State.find(:first, :conditions => {:name => "WA"})
+    ca = State.find(:first, :conditions => {:name => "CA"})
+    ma = State.find(:first, :conditions => {:name => "MA"})
 
-    sanfran = MetroArea.create(:name => 'San Francisco', :state => ca, :country => us)
-    seattle = MetroArea.create(:name => 'Seattle', :state => wa, :country => us)
-    lawrence = MetroArea.create(:name => 'Lawrence', :state => ma, :country => us)
-    sanjose = MetroArea.create(:name => 'San Jose', :state => ca, :country => us)
+    sanfran = MetroArea.find(:first, :conditions => {:name => 'San Francisco'})
+    seattle = MetroArea.find(:first, :conditions => {:name => 'Seattle'})
+    lawrence = MetroArea.find(:first, :conditions => {:name => 'Lawrence'})
+    sanjose = MetroArea.find(:first, :conditions => {:name => 'San Jose'})
 
-    education = AssetType.create :asset_name => "Education"
-    home = AssetType.create :asset_name => "Home"
-    business = AssetType.create :asset_name => "Business"
+    Education = AssetType.find(:first, :conditions=> {:asset_name=>'Education'})
+    Home = AssetType.find(:first, :conditions=>{:asset_name => "Home"})
+    Business = AssetType.find(:first, :conditions=>{:asset_name => "Business"})
 
-    stOrg = Organization.create(:name => 'SaveTogether')
-    account = Account.create(:owner => stOrg)
+    stOrg = Organization.find(:first, :conditions => {:name => 'SaveTogether'})
 
-    org = Organization.create(:name => 'Washington CASH')
-    account = Account.create(:owner => org)
-    saver = User.create(
+    admin = User.create!(
+      :login => "admin",
+      :email => "tom@savetogether.org",
+      :description => "Person with adminstrator role",
+      :salt => "7e3041ebc2fc05a40c60028e2c4901a81035d3cd",
+      :crypted_password => "00742970dc9e6319f8019fd54864d3ea740f04b1", # test
+      :state => wa,
+      :metro_area => seattle,
+      :birthday => 30.years.ago,
+      :activities_count => 0,
+      :role => Role[:admin])
+    admin.activate
+
+    org = Organization.create!(:name => 'Washington CASH')
+    account = Account.create!(:owner => org)
+    saver = User.create!(
       :login => "samantha",
       :email => "samantha@example.com",
       :description => "<p>Samantha is saving for a downpayment towards a house. Samantha's dream is to own her own home. She is saving to provide a home for her 2 children. Since completing high school, she has worked for two years as a retail clerk to help afford the tuition.</p>  <p>Last year, Samantha was selected to open a matched savings account with Opportunity Fund, one of the leading microfinance organizations in America. She is saving diligently every month, and attending classes on money management and college readiness.</p><p>I have always been told that I have a gift for making people feel better,' she says. 'I will make the most of the help I am getting from Opportunity Fund, and I intend to give back by caring for people who are facing emergencies'.</p>",
@@ -38,7 +47,7 @@ namespace :db do
       :state => wa,
       :metro_area => seattle,
       :birthday => 30.years.ago,
-      :activities_count => 0,      
+      :activities_count => 0,
       :role => Role[:member],
       :saver => true)
     saver.activate
@@ -51,15 +60,14 @@ namespace :db do
     saver.save
     saverCase = AssetDevelopmentCase.create(
             :user => saver,
-            :asset_type => home,
-            :requested_match_total => "2000",
-            :requested_match_left => "500",
+            :asset_type => Home,
+            :requested_match_total_cents => "2000",
             :organization => org)
-    account = Account.create(:owner => saverCase)
+    account = Account.create!(:owner => saverCase)
 
-    org = Organization.create(:name => 'EARN')
-    account = Account.create(:owner => org)
-    saver = User.create(
+    org = Organization.create!(:name => 'EARN')
+    account = Account.create!(:owner => org)
+    saver = User.create!(
       :login => "juanita",
       :email => "juanita@example.com",
       :description => "<p>Juana's dream is to get a nursing degree and work in an emergency room. She is saving to enroll at the City College of San Francisco School of Nursing. Since completing high school, she has worked for two years as a retail clerk to help afford the tuition.</p>  <p>Last year, Juana was selected to open a matched savings account with Opportunity Fund, one of the leading microfinance organizations in America. She is saving diligently every month, and attending classes on money management and college readiness.</p><p>I have always been told that I have a gift for making people feel better,' she says. 'I will make the most of the help I am getting from Opportunity Fund, and I intend to give back by caring for people who are facing emergencies'.</p>",
@@ -81,16 +89,15 @@ namespace :db do
     saver.save
     saverCase = AssetDevelopmentCase.create(
             :user => saver,
-            :asset_type => education,
-            :requested_match_total => "2000",
-            :requested_match_left => "700",
+            :asset_type => Education,
+            :requested_match_total_cents => "2000",
             :organization => org)
-    account = Account.create(:owner => saverCase)
+    account = Account.create!(:owner => saverCase)
 
 
-    org = Organization.create(:name => 'Opportunity Fund')
-    account = Account.create(:owner => org)
-    saver = User.create(
+    org = Organization.create!(:name => 'Opportunity Fund')
+    account = Account.create!(:owner => org)
+    saver = User.create!(
       :login => "rosie",
       :email => "rosie@example.com",
       :description => "Rosie is saving to open her own produce stand at the local public market. Since completing high school, she has worked for two years as a retail clerk to help afford the tuition.</p>  <p>Last year, Samantha was selected to open a matched savings account with Opportunity Fund, one of the leading microfinance organizations in America. She is saving diligently every month, and attending classes on money management and college readiness.</p><p>I have always been told that I have a gift for making people feel better,' she says. 'I will make the most of the help I am getting from Opportunity Fund, and I intend to give back by caring for people who are facing emergencies'.</p>",
@@ -112,15 +119,14 @@ namespace :db do
     saver.save
     saverCase = AssetDevelopmentCase.create(
             :user => saver,
-            :asset_type => business,
-            :requested_match_total => "2000",
-            :requested_match_left => "1500",
+            :asset_type => Business,
+            :requested_match_total_cents => "2000",
             :organization => org)
-    account = Account.create(:owner => saverCase)
+    account = Account.create!(:owner => saverCase)
 
-    org = Organization.create(:name => 'Lawrence Community Works')
-    account = Account.create(:owner => org)
-    saver = User.create(
+    org = Organization.create!(:name => 'Lawrence Community Works')
+    account = Account.create!(:owner => org)
+    saver = User.create!(
       :login => "sonja",
       :email => "sonja@example.com",
       :description => "Sonja is saving to open her own crafts stand at the local flea market. Sonja is eager to provide a valuable service to the community. She will leverage her considerable strengths in putting together innovative craft projects. She has been helping elementary school children for the past 10 years in after school arts and crafts programs.",
@@ -142,9 +148,8 @@ namespace :db do
     saver.save
     saverCase = AssetDevelopmentCase.create(
             :user => saver,
-            :asset_type => business,    
-            :requested_match_total => "2000",
-            :requested_match_left => "200",
+            :asset_type => Business,
+            :requested_match_total_cents => "2000",
             :organization => org)
     account = Account.create(:owner => saverCase)
   
@@ -201,7 +206,7 @@ namespace :db do
    AssetDevelopmentCase.update(peopledata.keys,peopledata.values)
 
    #put in requested match totals and amount left for asset development case examples
-   peopledata = { 1=>{:requested_match_total => '2000.00', :requested_match_left=>'500.00'}, 2=>{:requested_match_total=>'1500.00', :requested_match_left=>'10.00'}, 3=>{:requested_match_total=>'1000.00', :requested_match_left=>'325.00'}, 4=>{:requested_match_total=>'600.00', :requested_match_left=>'100.00'}}
+   peopledata = { 1=>{:requested_match_total_cents => '200000', :requested_match_left_cents=>'50000'}, 2=>{:requested_match_total_cents=>'150000', :requested_match_left_cents=>'1000'}, 3=>{:requested_match_total_cents=>'100000', :requested_match_left_cents=>'32500'}, 4=>{:requested_match_total_cents=>'60000', :requested_match_left_cents=>'10000'}}
    AssetDevelopmentCase.update(peopledata.keys,peopledata.values)
 
   end

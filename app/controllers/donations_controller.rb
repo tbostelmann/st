@@ -24,22 +24,7 @@ class DonationsController < BaseController
   # POST /donations
   # POST /donations.xml
   def create
-#    @saver_id = params[:saver_id]
-#    @adc = AssetDevelopmentCase.find_by_user_id(@saver_id)
-#    @donation = Donation.new(:user => current_user)
-#    sdli = DonationLineItem.new(
-#            :amount => params[:sdli][:amount].to_money,
-#            :account => Account.find(params[:sdli][:account_id]),
-#            :description => params[:sdli][:description])
-#    sdli.donation = @donation
-#    @donation.donation_line_items << sdli
-#    stdli = DonationLineItem.new(
-#            :amount => params[:stdli][:amount].to_money,
-#            :account => Account.find(params[:stdli][:account_id]),
-#            :description => params[:stdli][:description])
-#    stdli.donation = @donation
-#    @donation.donation_line_items << stdli
-
+    # TODO: need to addn donation_status default setting to initializer
     @donation = Donation.new(params[:donation])
 
     respond_to do |format|
@@ -114,7 +99,24 @@ class DonationsController < BaseController
   end
 
   def done
+    # TODO: need to figure out how to handle anonymous donations - for now just complete the donation
+    donation_id = params[:donation_id]
+    @donation = Donation.find(donation_id)
 
+    if @donation.nil?
+      # TODO: need to handle this gracefully
+      raise "no such donation"
+    else
+      # TODO: need to put this in a transaction
+      ft = FinancialTransaction.create_complete_transaction(@donation)
+      ft.post_to_accounts
+
+      if current_user
+        redirect_to :controller => 'users', :action => 'show', :id => current_user
+      else
+        redirect_to :controller => 'users', :action => 'new', :donation_id => @donation.id
+      end
+    end
   end
 
   def cancel
@@ -125,6 +127,7 @@ class DonationsController < BaseController
           
   def new_default_donation(user, asset_development_case)
     stOrg = Organization.find_savetogether_org
+    # TODO: need to addn donation_status default setting to initializer
     donation = Donation.new(:user => user)
     donation.donation_line_items << DonationLineItem.new(
             :description => "Donation to #{asset_development_case.user.display_name}",

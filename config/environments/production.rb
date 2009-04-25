@@ -28,4 +28,4 @@ config.log_level = :warn
 # config.threadsafe!
 
 # development.rb, production.rb, and test.rb should include something like:
-APP_URL = "http://localhost:3000"
+APP_URL = "http://demo.savetogether.org"

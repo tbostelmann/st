@@ -1,3 +1,18 @@
+# == Schema Information
+# Schema version: 20090422073021
+#
+# Table name: asset_development_cases
+#
+#  id                          :integer(4)      not null, primary key
+#  user_id                     :integer(4)
+#  organization_id             :integer(4)
+#  asset_type_id               :integer(4)
+#  requested_match_total_cents :integer(4)
+#  requested_match_left_cents  :integer(4)
+#  created_at                  :datetime
+#  updated_at                  :datetime
+#
+
 saverCase:
     user: saver
     requested_match_total_cents: 200000

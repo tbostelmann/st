@@ -2,8 +2,13 @@ require 'test_helper'
 require 'money'
 
 class DonationTest < ActiveSupport::TestCase
+  test "validate donation" do
+    donation = donations(:donor_donation)
+    assert !donation.nil?  
+  end
+
   test "create donation" do
-    donation = Donation.new()
+    donation = Donation.new
     assert !donation.valid?
 
     user = users(:donor)

@@ -38,9 +38,10 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources  :donations
   map.new '/donations/new/:saver_id', :controller => 'donations', :action => 'new'
-  map.done '/done', :controller => 'donations', :action => 'done'
-  map.cancel '/cancel', :controller => 'donations', :action => 'cancel'
+  map.done '/done/:donation_id', :controller => 'donations', :action => 'done'
+  map.cancel '/cancel/:donation_id', :controller => 'donations', :action => 'cancel'
   map.notify '/notify', :controller => 'donations', :action => 'notify'
+  map.signup_after '/signup/:donation_id', :controller => 'users', :action => 'new'
 
   # Install the default routes as the lowest priority.
   # Note: These default routes make all actions in every controller accessible via GET requests. You should
