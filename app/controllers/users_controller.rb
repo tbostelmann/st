@@ -1,5 +1,6 @@
 class UsersController < BaseController
   def index
+    User.has_many :asset_development_cases
     cond, @search, @metro_areas, @states, @asset_types = User.paginated_users_conditions_with_search(params)
 
    cond.saver==true
@@ -53,15 +54,15 @@ class UsersController < BaseController
 
     #need to search asset_development_case model for total amt, amt left, and asset_type
     #store data per user id in hash obj for view to use
-    @usercaseinfo = Hash.new
-    for sel_user in @users
-      usercondstring = "user_id = #{sel_user.id.to_s}"
-      thisadcobj = AssetDevelopmentCase.find(:first, :conditions=>usercondstring)
-      @usercaseinfo[sel_user.id.to_s] = Hash.new
-      @usercaseinfo[sel_user.id.to_s]['adc'] = thisadcobj
-      @usercaseinfo[sel_user.id.to_s]['assettype'] = AssetType.find(thisadcobj.asset_type_id).asset_name
-      @usercaseinfo[sel_user.id.to_s]['percent'] = (thisadcobj.requested_match_total_cents-thisadcobj.requested_match_left_cents)/(thisadcobj.requested_match_total_cents)
-    end
+#    @usercaseinfo = Hash.new
+#    for sel_user in @users
+#      usercondstring = "user_id = #{sel_user.id.to_s}"
+#      thisadcobj = AssetDevelopmentCase.find(:first, :conditions=>usercondstring)
+#      @usercaseinfo[sel_user.id.to_s] = Hash.new
+#      @usercaseinfo[sel_user.id.to_s]['adc'] = thisadcobj
+#      @usercaseinfo[sel_user.id.to_s]['assettype'] = AssetType.find(thisadcobj.asset_type_id).asset_name
+#      @usercaseinfo[sel_user.id.to_s]['percent'] = (thisadcobj.requested_match_total-thisadcobj.requested_match_left)/(thisadcobj.requested_match_total)
+#    end
     @tags = User.tag_counts :limit => 10
     setup_metro_areas_for_cloud
   end
@@ -82,13 +83,8 @@ class UsersController < BaseController
 
     @my_activity = Activity.recent.by_users([@user.id]).find(:all, :limit => 10)
     update_view_count(@user) unless current_user && current_user.eql?(@user)
-    #using the user's id, find the asset_dev_case data
-    @usercaseinfo = Hash.new
-    usercondstring = "user_id = #{@user.id.to_s}"
-    thisadcobj = AssetDevelopmentCase.find(:first, :conditions=>usercondstring)
-    @usercaseinfo[@user.id.to_s] = Hash.new
-    @usercaseinfo[@user.id.to_s]['adc'] = thisadcobj
-    @usercaseinfo[@user.id.to_s]['percent'] = (@usercaseinfo[@user.id.to_s]['adc'].requested_match_total_cents.to_s.to_f-@usercaseinfo[@user.id.to_s]['adc'].requested_match_left_cents.to_s.to_f)/(@usercaseinfo[@user.id.to_s]['adc'].requested_match_total_cents.to_s.to_f)
 
+    #using the user's id, find the asset_dev_case data
+    @adc = AssetDevelopmentCase.find(:first, :conditions => {:user_id => @user.id})
   end
 end

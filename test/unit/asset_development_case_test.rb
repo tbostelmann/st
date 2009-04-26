@@ -23,5 +23,7 @@ class AssetDevelopmentCaseTest < ActiveSupport::TestCase
     assert !adc.nil?
 
     assert adc.user == user
+
+    assert adc.match_percent == 0
   end
 end

@@ -4,17 +4,16 @@
       .yui-u.first
         = link_to image_tag( user.avatar_photo_url(:thumb), :class => "polaroid" ), user_path(user)
       .yui-u
-        Goal:
-        = "#{@usercaseinfo[user.id.to_s]['assettype']}"
-        Total:
-        = "#{@usercaseinfo[user.id.to_s]['adc'].requested_match_total_cents}"
-        %br
-        %span{:style=>"color:red"} Need:
-        %span{:style=>"color:red"}= "#{@usercaseinfo[user.id.to_s]['adc'].requested_match_left_cents}"
-        %br
-        = link_to( :donate.l, :controller => 'donations', :action => 'new', :saver_id => user.id )
-        %br
-        = custom_progress_bar(user.id.to_s+"progbar",@usercaseinfo[user.id.to_s]['percent'],{:show_text=>true, :bar_images=>['progress_bar/percentImage_back1.png','progress_bar/percentImage_back2.png','progress_bar/percentImage_back3.png','progress_bar/percentImage_back4.png'], :width=>120,:height=>10})
+        - if !user.asset_development_cases.nil? && user.asset_development_cases.size > 0
+          = user.asset_development_cases[0].asset_type.asset_name
+          = user.asset_development_cases[0].requested_match_total
+          %br
+          %span{:style=>"color:red"} Need:
+          %span{:style=>"color:red"}= "#{user.asset_development_cases[0].match_left}"
+          %br
+          = link_to( :donate.l, :controller => 'donations', :action => 'new', :saver_id => user.id )
+          %br
+          = custom_progress_bar(user.id.to_s+"progbar",user.asset_development_cases[0].match_percent,{:show_text=>true, :bar_images=>['progress_bar/percentImage_back1.png','progress_bar/percentImage_back2.png','progress_bar/percentImage_back3.png','progress_bar/percentImage_back4.png'], :width=>120,:height=>10})
     .yui-u
       %h2= user.login.capitalize
       - if @search && @search['description']

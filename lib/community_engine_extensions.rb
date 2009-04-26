@@ -1,5 +1,7 @@
 module ActsLikeSaver
   def ActsLikeSaver.append_features(someClass)
+    someClass.has_many :asset_development_cases
+
     def someClass.build_conditions_for_search(search)
       cond = Caboose::EZ::Condition.new
 
