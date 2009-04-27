@@ -33,8 +33,11 @@ class AssetDevelopmentCase < ActiveRecord::Base
   end
 
   def match_percent
-    if account.balance.cents > 0
-      account.balance.cents / requested_match_total.cents
+    blnce = account.cents
+    rmt = requested_match_total_cents
+    if blnce > 0
+      perc = blnce.to_f / rmt.to_f
+      return perc
     else
       return 0
     end
