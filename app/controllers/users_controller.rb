@@ -1,6 +1,8 @@
 class UsersController < BaseController
   def index
+    # TODO: this is a hack to maintain these User relationships
     User.has_many :asset_development_cases
+    
     cond, @search, @metro_areas, @states, @asset_types = User.paginated_users_conditions_with_search(params)
 
    cond.saver==true
@@ -68,6 +70,10 @@ class UsersController < BaseController
   end
 
   def show
+    # TODO: this is a hack to maintain these User relationships
+    User.has_many :asset_development_cases
+    User.has_many :donations
+
     @friend_count               = @user.accepted_friendships.count
     @accepted_friendships       = @user.accepted_friendships.find(:all, :limit => 5).collect{|f| f.friend }
     @pending_friendships_count  = @user.pending_friendships.count()
@@ -86,6 +92,13 @@ class UsersController < BaseController
 
     #using the user's id, find the asset_dev_case data
     @adc = AssetDevelopmentCase.find(:first, :conditions => {:user_id => @user.id})
+
+    @users = []
+    if @user.donations
+      @user.donations.each do |donation|
+        @users << donation.saver
+      end
+    end
   end
 
   def create

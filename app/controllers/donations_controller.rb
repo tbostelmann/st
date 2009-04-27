@@ -15,7 +15,7 @@ class DonationsController < BaseController
         format.html # new.html.erb
         format.xml  { render :xml => @donation }
       else
-        format.html { render :action => "new", :user_id => @user_id }
+        format.html { render :action => "new", :saver_id => @saver_id }
         format.xml  { render :xml => @donation.errors, :status => :unprocessable_entity }
       end
     end
@@ -128,7 +128,7 @@ class DonationsController < BaseController
   def new_default_donation(user, asset_development_case)
     stOrg = Organization.find_savetogether_org
     # TODO: need to addn donation_status default setting to initializer
-    donation = Donation.new(:user => user)
+    donation = Donation.new(:user => user, :saver => asset_development_case.user)
     donation.donation_line_items << DonationLineItem.new(
             :description => "Donation to #{asset_development_case.user.display_name}",
             :amount => '50', # TODO: this should be a configurable value

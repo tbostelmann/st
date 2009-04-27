@@ -5,6 +5,7 @@
 #
 #  id              :integer(4)      not null, primary key
 #  user_id         :integer(4)
+#  saver_id        :integer(4)
 #  donation_status :string(255)     default("pending")
 #  created_at      :datetime
 #  updated_at      :datetime
@@ -21,9 +22,11 @@ class Donation < ActiveRecord::Base
   has_many :payments
   has_many :financial_transactions
   belongs_to :user
+  belongs_to :saver, :class_name => "User", :foreign_key => "saver_id" 
 
   validates_presence_of :donation_line_items
   validates_presence_of :donation_status
+  validates_presence_of :saver
 
   def donation_line_item_attributes=(dli_attributes)
     dli_attributes.each do |index, attributes|

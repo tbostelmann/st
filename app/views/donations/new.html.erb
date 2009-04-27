@@ -2,6 +2,7 @@
   <% form_for @donation do |f| %>
         <%= f.error_messages %>
         <%= f.hidden_field :user_id %>
+        <%= f.hidden_field :saver_id %>
         <%= hidden_field_tag(:saver_id, @saver_id) %>
     <div id="donation_line_items">
         <div class="donation_line_item">

@@ -22,6 +22,10 @@ class DonationTest < ActiveSupport::TestCase
     donation.donation_line_items << stOrgDli
     assert !donation.valid?
 
+    saver = users(:saver)
+    donation.saver = saver
+    assert !donation.valid?
+
     stOrgDli.amount = Money.new(250)
     assert donation.valid?
 

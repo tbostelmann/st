@@ -28,6 +28,7 @@ class CreateInitialModel < ActiveRecord::Migration
 
     create_table :donations do |t|
       t.integer :user_id
+      t.integer :saver_id
       t.string :donation_status, :default => Donation::STATUS_PENDING
       t.timestamps
     end

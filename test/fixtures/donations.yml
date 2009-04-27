@@ -5,6 +5,7 @@
 #
 #  id              :integer(4)      not null, primary key
 #  user_id         :integer(4)
+#  saver_id        :integer(4)
 #  donation_status :string(255)     default("pending")
 #  created_at      :datetime
 #  updated_at      :datetime

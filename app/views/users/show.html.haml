@@ -54,3 +54,9 @@
               = truncate_words(comment.comment, 10)
               %br
               = link_to "&raquo; " + :view_comment.l, user_photo_path(@user, comment.commentable) + "#comment_#{comment.id}"
+
+
+- unless @users.empty?
+  .yui-g
+  .box.user_list
+    = render :partial => "users/user", :collection => @users
