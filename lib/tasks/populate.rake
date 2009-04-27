@@ -152,32 +152,7 @@ namespace :db do
             :requested_match_total_cents => "2000",
             :organization => org)
     account = Account.create(:owner => saverCase)
-  
-    admin = User.create(
-      :login => "admin",
-      :email => "tom@savetogether.org",
-      :description => "Person with adminstrator role",
-      :salt => "7e3041ebc2fc05a40c60028e2c4901a81035d3cd",
-      :crypted_password => "00742970dc9e6319f8019fd54864d3ea740f04b1", # test
-      :state => wa,
-      :metro_area => seattle,
-      :birthday => 30.years.ago,
-      :activities_count => 0,
-      :role => Role[:admin])
-    admin.activate
 
-    tbostelmann = User.create(
-      :login => "tbostelmann",
-      :email => "tbostelmann@gmail.com",
-      :description => "Just a developer",
-      :salt => "7e3041ebc2fc05a40c60028e2c4901a81035d3cd",
-      :crypted_password => "00742970dc9e6319f8019fd54864d3ea740f04b1", # test
-      :state => wa,
-      :metro_area => seattle,
-      :birthday => 40.years.ago,
-      :activities_count => 0,
-      :role => Role[:admin])
-    tbostelmann.activate
 #    [Category, Product, Person].each(&:delete_all)
 #    
 #      category.name = Populator.words(1..3).titleize

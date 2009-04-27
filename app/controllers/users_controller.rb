@@ -87,4 +87,18 @@ class UsersController < BaseController
     #using the user's id, find the asset_dev_case data
     @adc = AssetDevelopmentCase.find(:first, :conditions => {:user_id => @user.id})
   end
+
+  def create
+    @user       = User.new(params[:user])
+    @user.role  = Role[:member]
+    @user.birthday = 18.years.ago
+
+    if (!AppConfig.require_captcha_on_signup || verify_recaptcha(@user)) && @user.save
+      create_friendship_with_inviter(@user, params)
+      flash[:notice] = :email_signup_thanks.l_with_args(:email => @user.email)
+      redirect_to signup_completed_user_path(@user)
+    else
+      render :action => 'new'
+    end
+  end
 end
