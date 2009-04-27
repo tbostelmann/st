@@ -53,18 +53,6 @@ class UsersController < BaseController
               :page => {:current => params[:page], :size => 20}
       )
     end
-
-    #need to search asset_development_case model for total amt, amt left, and asset_type
-    #store data per user id in hash obj for view to use
-#    @usercaseinfo = Hash.new
-#    for sel_user in @users
-#      usercondstring = "user_id = #{sel_user.id.to_s}"
-#      thisadcobj = AssetDevelopmentCase.find(:first, :conditions=>usercondstring)
-#      @usercaseinfo[sel_user.id.to_s] = Hash.new
-#      @usercaseinfo[sel_user.id.to_s]['adc'] = thisadcobj
-#      @usercaseinfo[sel_user.id.to_s]['assettype'] = AssetType.find(thisadcobj.asset_type_id).asset_name
-#      @usercaseinfo[sel_user.id.to_s]['percent'] = (thisadcobj.requested_match_total-thisadcobj.requested_match_left)/(thisadcobj.requested_match_total)
-#    end
     @tags = User.tag_counts :limit => 10
     setup_metro_areas_for_cloud
   end
@@ -105,6 +93,15 @@ class UsersController < BaseController
     @user       = User.new(params[:user])
     @user.role  = Role[:member]
     @user.birthday = 18.years.ago
+
+    # If a donation_id is supplied, we add it to the user's donation list
+    if params[:donation_id]
+      donation = Donation.find(params[:donation_id])
+      if !donation.user
+        donation.user = @user
+        donation.save
+      end
+    end
 
     if (!AppConfig.require_captcha_on_signup || verify_recaptcha(@user)) && @user.save
       create_friendship_with_inviter(@user, params)

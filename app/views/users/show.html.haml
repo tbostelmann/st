@@ -59,4 +59,5 @@
 - unless @users.empty?
   .yui-g
   .box.user_list
+    %h3= "Savers you have donated to"
     = render :partial => "users/user", :collection => @users
