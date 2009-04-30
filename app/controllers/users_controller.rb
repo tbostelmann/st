@@ -4,7 +4,7 @@ class UsersController < BaseController
     User.has_many :asset_development_cases
     
     cond, @search, @metro_areas, @states, @asset_types = User.paginated_users_conditions_with_search(params)
-
+  
    cond.saver==true
    useridstr=nil
 
@@ -13,26 +13,28 @@ class UsersController < BaseController
            :conditions => cond.to_sql,
            :include => [:tags]
    )
-
-    if not @asset_types.blank?
+   if not params['asset_type_id'].nil? and params['asset_type_id'] != ""
+      @asset_types = params['asset_type_id']
+   end
+   if not @asset_types.nil?
       # if asset type is a critieria, find all the cases for the given asset type and their users
-      @tmpusers = AssetDevelopmentCase.find(:all, :conditions => ["asset_type_id = ? ", @asset_types.id])
+      @tmpusers = AssetDevelopmentCase.find(:all, :conditions => ["asset_type_id = ? ", @asset_types])
       if not @tmpusers.blank?
         for tmpuser in @tmpusers
           founduser = 0
-          tmpid = tmpuser.id
+          tmpid = tmpuser.user_id
           if not @users.blank?
             for user in @users
               founduser = 1 if (user.id.to_i == tmpid.to_i)
             end
           end
           if (founduser == 1)
-            useridstr = (useridstr || "") + " OR users.id = #{tmpuser.id.to_s}"
+            useridstr = (useridstr || "") + " OR users.id = #{tmpuser.user_id.to_s}"
           end
         end
       end
     end
-
+  
     if useridstr.nil?
       useridstr = "users.id=0"
     end
@@ -42,11 +44,12 @@ class UsersController < BaseController
       #now only find the users for the given asset_type
       @users = User.find(:all,
               :conditions => useridstr,
+              :include => [:tags],
               :page => {:current => params[:page], :size => 20}
       )
     end
 
-    if @asset_types.blank?
+    if @asset_types.nil?
       @users = User.find(:all,
               :conditions => cond.to_sql,
               :include => [:tags],
