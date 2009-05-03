@@ -67,7 +67,7 @@ class CreateInitialModel < ActiveRecord::Migration
       t.integer :organization_id
       t.integer :asset_type_id
       t.integer :requested_match_total_cents
-      t.integer :requested_match_left_cents
+      #t.integer :requested_match_left_cents
       t.timestamps
     end
   end

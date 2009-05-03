@@ -63,7 +63,7 @@ namespace :db do
             :asset_type => Home,
             :requested_match_total_cents => "2000",
             :organization => org)
-    account = Account.create!(:owner => saverCase)
+    account = Account.create!(:owner => saverCase, :cents=>1000)
 
     org = Organization.create!(:name => 'EARN')
     account = Account.create!(:owner => org)
@@ -92,7 +92,7 @@ namespace :db do
             :asset_type => Education,
             :requested_match_total_cents => "2000",
             :organization => org)
-    account = Account.create!(:owner => saverCase)
+    account = Account.create!(:owner => saverCase, :cents=>1000)
 
 
     org = Organization.create!(:name => 'Opportunity Fund')
@@ -122,7 +122,7 @@ namespace :db do
             :asset_type => Business,
             :requested_match_total_cents => "2000",
             :organization => org)
-    account = Account.create!(:owner => saverCase)
+    account = Account.create!(:owner => saverCase, :cents=>500)
 
     org = Organization.create!(:name => 'Lawrence Community Works')
     account = Account.create!(:owner => org)
@@ -151,7 +151,7 @@ namespace :db do
             :asset_type => Business,
             :requested_match_total_cents => "2000",
             :organization => org)
-    account = Account.create(:owner => saverCase)
+    account = Account.create(:owner => saverCase, :cents=>100)
 
 #    [Category, Product, Person].each(&:delete_all)
 #    
@@ -181,7 +181,7 @@ namespace :db do
    AssetDevelopmentCase.update(peopledata.keys,peopledata.values)
 
    #put in requested match totals and amount left for asset development case examples
-   peopledata = { 1=>{:requested_match_total_cents => '200000', :requested_match_left_cents=>'50000'}, 2=>{:requested_match_total_cents=>'150000', :requested_match_left_cents=>'1000'}, 3=>{:requested_match_total_cents=>'100000', :requested_match_left_cents=>'32500'}, 4=>{:requested_match_total_cents=>'60000', :requested_match_left_cents=>'10000'}}
+   peopledata = { 1=>{:requested_match_total_cents => '200000'}, 2=>{:requested_match_total_cents=>'150000'}, 3=>{:requested_match_total_cents=>'100000'}, 4=>{:requested_match_total_cents=>'60000'}}
    AssetDevelopmentCase.update(peopledata.keys,peopledata.values)
 
   end
