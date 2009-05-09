@@ -5,11 +5,13 @@
         = link_to image_tag( user.avatar_photo_url(:thumb), :class => "polaroid" ), user_path(user)
       .yui-u
         - if !user.asset_development_cases.nil? && user.asset_development_cases.size > 0
+          Goal: 
           = user.asset_development_cases[0].asset_type.asset_name
-          = user.asset_development_cases[0].requested_match_total
+          %br Total: 
+          = user.asset_development_cases[0].total_amt_display
           %br
           %span{:style=>"color:red"} Need:
-          %span{:style=>"color:red"}= "#{user.asset_development_cases[0].match_left}"
+          %span{:style=>"color:red"}= user.asset_development_cases[0].match_left_display
           %br
           = link_to( :donate.l, :controller => 'donations', :action => 'new', :saver_id => user.id )
           %br
