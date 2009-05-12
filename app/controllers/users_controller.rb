@@ -93,20 +93,23 @@ class UsersController < BaseController
   end
 
   def create
+    User.has_many :asset_development_cases
+    User.has_many :donations
+
     @user       = User.new(params[:user])
     @user.role  = Role[:member]
     @user.birthday = 18.years.ago
 
-    # If a donation_id is supplied, we add it to the user's donation list
-    if params[:donation_id]
-      donation = Donation.find(params[:donation_id])
-      if !donation.user
-        donation.user = @user
-        donation.save
-      end
-    end
-
+    donation_id = params[:donation_id]
     if (!AppConfig.require_captcha_on_signup || verify_recaptcha(@user)) && @user.save
+      # If a donation_id is supplied, we add it to the user's donation list
+      unless donation_id.blank?
+        donation = Donation.find(donation_id)
+        if !donation.user
+          donation.user = @user
+          donation.save
+        end
+      end
       create_friendship_with_inviter(@user, params)
       flash[:notice] = :email_signup_thanks.l_with_args(:email => @user.email)
       redirect_to signup_completed_user_path(@user)

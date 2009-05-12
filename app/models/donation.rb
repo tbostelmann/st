@@ -21,7 +21,7 @@ class Donation < ActiveRecord::Base
   has_many :donation_line_items
   has_many :payments
   has_many :financial_transactions
-  belongs_to :user
+  belongs_to :user, :class_name => "User", :foreign_key => "user_id"
   belongs_to :saver, :class_name => "User", :foreign_key => "saver_id" 
 
   validates_presence_of :donation_line_items
