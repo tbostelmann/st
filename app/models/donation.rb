@@ -1,14 +1,15 @@
 # == Schema Information
-# Schema version: 20090422073021
+# Schema version: 20090513215116
 #
 # Table name: donations
 #
-#  id              :integer(4)      not null, primary key
-#  user_id         :integer(4)
-#  saver_id        :integer(4)
-#  donation_status :string(255)     default("pending")
-#  created_at      :datetime
-#  updated_at      :datetime
+#  id                  :integer(4)      not null, primary key
+#  user_id             :integer(4)
+#  saver_id            :integer(4)
+#  donation_status     :string(255)     default("pending")
+#  created_at          :datetime
+#  updated_at          :datetime
+#  notification_email  :string(255)
 #
 
 require 'money'
@@ -27,6 +28,9 @@ class Donation < ActiveRecord::Base
   validates_presence_of :donation_line_items
   validates_presence_of :donation_status
   validates_presence_of :saver
+  validates_presence_of :notification_email
+  validates_length_of   :notification_email, :within => 3..100
+  validates_format_of   :notification_email, :with => /^([^@\s]+)@((?:[-a-z0-9A-Z]+\.)+[a-zA-Z]{2,})$/
 
   def donation_line_item_attributes=(dli_attributes)
     dli_attributes.each do |index, attributes|

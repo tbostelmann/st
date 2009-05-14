@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 20090422073021
+# Schema version: 20090513215116
 #
 # Table name: donations
 #
@@ -9,13 +9,16 @@
 #  donation_status :string(255)     default("pending")
 #  created_at      :datetime
 #  updated_at      :datetime
+#  email           :string(255)
 #
 
 donor_donation:
     user: donor
     donation_status: Donation::STATUS_PENDING
     saver: saver
+    notification_email: a@b.com
 
 anonymous_donation:
     donation_status: Donation::STATUS_PENDING
     saver: saver
+    notification_email: a@b.com
