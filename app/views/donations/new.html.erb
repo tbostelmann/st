@@ -1,5 +1,5 @@
 <table width="100%">
-  <% form_for @donation do |f| %>
+  <% form_for @donation, :url => { :action => :create } do |f| %>
         <%= f.error_messages %>
         <%= f.hidden_field :user_id %>
         <%= f.hidden_field :saver_id %>
@@ -10,15 +10,33 @@
 <% @donation.donation_line_items.each_with_index do |donation_line_item, index| -%>
             <p>
     <% fields_for "donation[donation_line_item_attributes][#{index}]", donation_line_item do |dli_form| -%>
+    <tr>
+        <td align="left" width="25%">
             <%= donation_line_item.description %>
+        </td>
+        <td align="left">
             <%= dli_form.text_field :amount, :size => 7 %>
-         <%= dli_form.hidden_field :account_id %>
-         <%= dli_form.hidden_field :description %>
+            <%= dli_form.hidden_field :account_id %>
+            <%= dli_form.hidden_field :description %>
+        </td>
+    </tr>
     <% end -%>
             </p>
 <% end -%>
         </div>
     </div>
+    <tr>
+        <td align="left" width="25%">Send Notifications To
+        </td>
+        <td align="left"><%= f.text_field :notification_email %>
+        </td>
+    </tr>
+    <tr>
+        <td align="left" width="25%">Confirm Notification Email
+        </td>
+        <td align="left"><%= f.text_field :notification_email_confirmation %>
+        </td>
+    </tr>
     <tr>
         <td>
         </td>
