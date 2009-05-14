@@ -1,7 +1,13 @@
 <table width="100%">
   <% form_for :donation, @donation, :url => {:action => 'done', :donation_id => @donation.id} do |f| -%>
     <%= f.error_messages %>
-  <% @donation.donation_line_items.each_with_index do |dli, index| -%>
+    <tr>
+        <td align="right">Notify
+        </td>
+        <td align="left"><%= @donation.notification_email %>
+        </td>
+    </tr>
+   <% @donation.donation_line_items.each_with_index do |dli, index| -%>
     <tr>
         <td align="right"><%= dli.description %>
         </td>

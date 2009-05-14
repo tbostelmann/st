@@ -1,5 +1,5 @@
 <table width="100%">
-  <% form_for @donation do |f| %>
+  <% form_for @donation, :url => { :action => :create } do |f| %>
         <%= f.error_messages %>
         <%= f.hidden_field :user_id %>
         <%= f.hidden_field :saver_id %>
@@ -17,6 +17,7 @@
     <% end -%>
             </p>
 <% end -%>
+        Send Notifications To: <%= f.text_field :notification_email %>
         </div>
     </div>
     <tr>
