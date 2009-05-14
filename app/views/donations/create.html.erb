@@ -16,27 +16,11 @@
         </td>
     </tr>
     <tr>
-        <td><%= submit_tag 'Continue' %></td>
+        <td><!--%= submit_tag 'Continue' %--></td>
         <td></td>
     </tr>
     <% end -%>
     <tr>
-        <td>
-            <FORM action="https://www.paypal.com/cgi-bin/webscr" method="post">
-                <input TYPE="hidden" name="cmd" value="_donations"/>
-                <input type="hidden" name="invoice" value="<%= @donation.id %>"/>
-                <INPUT TYPE="hidden" NAME="currency_code" value="USD">
-  <% @donation.donation_line_items.each_with_index do |dli, index| -%>
-                <input type="hidden" name="item_number_<%= index %>" value="<%= dli.account %>"/>
-                <input type="hidden" name="item_name_1" value="<%= dli.description %>"/>
-                <input type="hidden" name="amount_1" value="<%= dli.amount %>"/>
-  <% end -%>
-                <INPUT TYPE="hidden" NAME="return" value="url_for(:only_path => false, :action => 'return') %>">
-                <input type="hidden" name="cancel_return" value="url_for(:only_path => false, :action => 'cancel') %>"/>
-                <input type="hidden" name="notify_url" value="url_for(:only_path => false, :action => 'notify') %>"/>
-                <!--input type="submit" name="submit" value="Donate"/-->
-            </FORM>
-        </td>
         <td>
             <% payment_service_for @donation.id, PAYPAL_ACCOUNT,
                               :amount => @donation.amount,
@@ -46,11 +30,15 @@
                    <% service.invoice @donation.id %>
                    <% service.shipping '0.00' %>
                    <% service.tax '0.00' %>
-
+               <% @donation.donation_line_items.each_with_index do |dli, index| -%>
+                   <input type="hidden" name="item_number_<%= index %>" value="<%= dli.account.id %>"/>
+                   <input type="hidden" name="item_name_<%= index %>" value="<%= dli.description %>"/>
+                   <input type="hidden" name="amount_<%= index %>" value="<%= dli.amount %>"/>
+               <% end -%>
                    <% service.notify_url url_for(:only_path => false, :action => 'notify') %>
                    <% service.return_url url_for(:only_path => false, :action => 'done') %>
                    <% service.cancel_return_url 'http://www.savetogether.org/' %>
-                   <!--%= submit_tag "Donate" %-->
+                   <%= submit_tag "Donate" %>
              <% end %>
         </td>
     </tr>

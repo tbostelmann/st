@@ -9,6 +9,7 @@ class CreateInitialModel < ActiveRecord::Migration
 
     create_table :financial_transactions do |t|
       t.integer :donation_id
+      t.text :raw
       t.timestamps
     end
 
@@ -38,20 +39,6 @@ class CreateInitialModel < ActiveRecord::Migration
       t.integer :donation_id
       t.string :description
       t.integer :account_id
-      t.timestamps
-    end
-
-    create_table :payments do |t|
-      t.string :account
-      t.string :currency
-      t.integer :gross
-      t.integer :fee
-      t.datetime :received_at
-      t.string :status
-      t.boolean :test
-      t.string :transaction_id
-      t.string :type
-      t.integer :donation_id
       t.timestamps
     end
 
