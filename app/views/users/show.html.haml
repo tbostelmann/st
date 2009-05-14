@@ -15,6 +15,7 @@
         - if @adc
           Goal:
           = @adc.asset_type.asset_name
+          %br
           Total:
           = @adc.requested_match_total.format(:no_cents, :html)
           %br
