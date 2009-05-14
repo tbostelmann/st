@@ -28,9 +28,12 @@ class Donation < ActiveRecord::Base
   validates_presence_of :donation_line_items
   validates_presence_of :donation_status
   validates_presence_of :saver
-  validates_presence_of :notification_email
-  validates_length_of   :notification_email, :within => 3..100
-  validates_format_of   :notification_email, :with => /^([^@\s]+)@((?:[-a-z0-9A-Z]+\.)+[a-zA-Z]{2,})$/
+  # validate maximum length - minimum length is handled by formate validator below this one
+  validates_length_of   :notification_email, :within => 0..100
+  validates_format_of   :notification_email,
+                        :with => /^([^@\s]+)@((?:[-a-z0-9A-Z]+\.)+[a-zA-Z]{2,})$/,
+                        :message => "must be in form of \"yourname@host.com\" (or .org, .net, etc.)"
+  validates_confirmation_of :notification_email, :message => "should match confirmation"
 
   def donation_line_item_attributes=(dli_attributes)
     dli_attributes.each do |index, attributes|
