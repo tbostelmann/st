@@ -38,7 +38,7 @@ class FinancialTransaction < ActiveRecord::Base
 
 
     if notification.acknowledge
-      ft = create(:donation => donation, :raw => raw_post)
+      ft = create(:donation => donation, :status => notification.status, :raw => raw_post)
 
       @payment = Payment.find_by_transaction_id(notification.transaction_id) ||
         @donation.payments.create(:account => notify.account,
