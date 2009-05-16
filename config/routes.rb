@@ -38,8 +38,8 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources  :donations
   map.new '/donations/new/:saver_id', :controller => 'donations', :action => 'new'
-  map.done '/done/:donation_id', :controller => 'donations', :action => 'done'
-  map.cancel '/cancel/:donation_id', :controller => 'donations', :action => 'cancel'
+  map.done '/done', :controller => 'donations', :action => 'done'
+  map.cancel '/cancel', :controller => 'donations', :action => 'cancel'
   map.notify '/notify', :controller => 'donations', :action => 'notify'
   map.signup_after '/signup/:donation_id', :controller => 'users', :action => 'new'
 
