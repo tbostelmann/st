@@ -28,6 +28,16 @@ class AssetDevelopmentCase < ActiveRecord::Base
   validates_presence_of :requested_match_total_cents
   #validates_presence_of :asset_type
 
+  #two methods to return money amounts with $ prefix and without cents
+  def total_amt_display
+    return  Money.us_dollar(requested_match_total_cents).format(:no_cents);
+  end
+
+  def match_left_display
+    amt_left = requested_match_total-account.balance
+    return Money.us_dollar(amt_left.cents).format(:no_cents); 
+  end
+
   def match_left
     requested_match_total - account.balance
   end

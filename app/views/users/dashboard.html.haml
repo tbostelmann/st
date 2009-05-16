@@ -7,16 +7,12 @@
 #yui-main
   .yui-b
     .box
-      %h3= "Hello, #{@user}"
+      %h3= "Hello, #{@user.login}!"
     
       -if @network_activity.empty? && @recommended_posts.empty?
         %p
           =:this_is_your_dashboard.l
 
-        %p
-          =link_to :update_profile.l, edit_user_path(current_user)
-
-    
       -unless @network_activity.empty?
         %h2=:activity_from_your_network.l
         .box.fresh
