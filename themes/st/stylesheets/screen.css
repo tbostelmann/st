@@ -10,12 +10,16 @@ a {
 	color:#5085AF;
 }
 
+#bd {
+    background: url(/images/theme/bg_body.png) repeat-x; }    
+}
+
 #CommunityFooter {
   background: #fff;
   padding: 10px; }
 
 #hd {
-  background: url(/images/theme/header.jpg) no-repeat top left;
+  background: #C7DCE1 url(/images/theme/header.jpg) no-repeat scroll 50% 0;
   padding: 0 10px 0 10px;
   border-top: 4px solid #000; }
 	#hd h1 {
