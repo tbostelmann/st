@@ -4,6 +4,5 @@ community_description:  "SaveTogether description"
 support_email:  "tom@savetogether.org"
 meta_description: 'A description of your community for use in META tags.'
 meta_keywords: 'keywords for use in META tags'
-theme: st
 #sections_enabled: ['photos', 'posts', 'clippings', 'contests', 'categories', 'events']
 #sections_enabled: ['photos']
