@@ -11,13 +11,8 @@ class DonationsController < BaseController
     @donation = new_default_donation(user, @adc)
 
     respond_to do |format|
-      if @donation.valid?
-        format.html # new.html.erb
-        format.xml  { render :xml => @donation }
-      else
-        format.html { render :action => "new", :saver_id => @saver_id }
-        format.xml  { render :xml => @donation.errors, :status => :unprocessable_entity }
-      end
+      format.html # new.html.erb
+      format.xml  { render :xml => @donation }
     end
   end
 
@@ -29,7 +24,7 @@ class DonationsController < BaseController
 
     respond_to do |format|
       if @donation.save
-        format.html # new.html.erb
+        format.html # create.html.erb
         format.xml  { render :xml => @donation }
       else
         format.html { render :action => "new", :user_id => @user_id }

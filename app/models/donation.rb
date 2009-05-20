@@ -1,14 +1,15 @@
 # == Schema Information
-# Schema version: 20090422073021
+# Schema version: 20090513215116
 #
 # Table name: donations
 #
-#  id              :integer(4)      not null, primary key
-#  user_id         :integer(4)
-#  saver_id        :integer(4)
-#  donation_status :string(255)     default("pending")
-#  created_at      :datetime
-#  updated_at      :datetime
+#  id                  :integer(4)      not null, primary key
+#  user_id             :integer(4)
+#  saver_id            :integer(4)
+#  donation_status     :string(255)     default("pending")
+#  created_at          :datetime
+#  updated_at          :datetime
+#  notification_email  :string(255)
 #
 
 require 'money'
@@ -27,6 +28,12 @@ class Donation < ActiveRecord::Base
   validates_presence_of :donation_line_items
   validates_presence_of :donation_status
   validates_presence_of :saver
+  # validate maximum length - minimum length is handled by format validator below this one
+  validates_length_of   :notification_email, :within => 0..100
+  validates_format_of   :notification_email,
+                        :with => /^([^@\s]+)@((?:[-a-z0-9A-Z]+\.)+[a-zA-Z]{2,})$/,
+                        :message => "must be in form of \"yourname@host.com\" (or .org, .net, etc.)"
+  validates_confirmation_of :notification_email, :message => "should match confirmation"
 
   def donation_line_item_attributes=(dli_attributes)
     dli_attributes.each do |index, attributes|

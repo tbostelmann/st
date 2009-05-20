@@ -3,5 +3,9 @@
 #yui-main
   %div{ :class=>'yui-gc first', :align => 'center' }
     = image_tag( 'howitworks.png')
-    = render :partial => "users/fsaver", :collection => @fsaver
+  %div{ :class=>'yui-gc', :align=>'center'}
+    %font{:size=>"+2"} Featured Saver   
+    = link_to("(All Savers)", :controller=>'users', :action=>'index')
+  %br
+  = render :partial => "users/user", :collection => @fsaver
 

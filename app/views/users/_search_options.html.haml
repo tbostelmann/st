@@ -2,6 +2,6 @@
   = link_to( "&raquo; #{:back_to_all_users.l}", users_path) if params['login'] || params['tag_list']
   - form_tag users_path, :method => :get , :class => 'MainForm' do
     %p
-      = render :partial => 'shared/location_chooser', :locals => {:selected_asset_type => @search['asset_type_id'].to_i, :selected_country => @search['country_id'].to_i, :selected_state => @search['state_id'].to_i, :selected_metro_area => @search['metro_area_id'].to_i, :states => @states, :metro_areas => @metro_areas}
+      = render :partial => 'shared/location_chooser', :locals => {:show_goal=>1,:selected_asset_type => @search['asset_type_id'].to_i, :selected_country => @search['country_id'].to_i, :selected_state => @search['state_id'].to_i, :selected_metro_area => @search['metro_area_id'].to_i, :states => @states, :metro_areas => @metro_areas}
 
       %input{"type"=>"submit", "align"=>"right", "value"=>:search.l}
