@@ -26,7 +26,7 @@ a {
 		background-color:#000;
 		-moz-opacity: 0.8;
 		opacity:.80;
-		filter: alpha(opacity=80);		
+		filter: alpha(opacity=80);
 		}
   #hd h1 a {
     display: block;
@@ -38,11 +38,11 @@ a {
   #hd h2 {
     color: #fff; 
 		background-color:#000;
-		-moz-opacity: 0.8;
-		opacity:.80;
-		filter: alpha(opacity=80);				
+		-moz-opacity: 0.5;
+		opacity:.50;
+		filter: alpha(opacity=50);
 		padding: 10px;
-		margin-top: 150px;
+		margin-top: 100px;
 		}
     #hd h2 a {
       color: #B59F6D; 
@@ -50,10 +50,13 @@ a {
 
 #NavBar {
   height: 45px;
-  margin-top: 198px;
+  margin-top: 153px;
   margin-left: -10px;
   margin-right: -10px; 
 	background: #efefef;	
+	-moz-opacity: 0.6;
+	opacity:.60;
+	filter: alpha(opacity=60);
 	}
 	#NavBar ul li a {
 		display: block;
