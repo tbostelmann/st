@@ -24,7 +24,7 @@ class DonationsController < BaseController
 
     respond_to do |format|
       if @donation.save
-        format.html # new.html.erb
+        format.html # create.html.erb
         format.xml  { render :xml => @donation }
       else
         format.html { render :action => "new", :user_id => @user_id }
