@@ -15,7 +15,8 @@
     .yui-g
       %font{:size=>"+2"} Featured Saver   
       = link_to("(All Savers)", :controller=>'users', :action=>'index')
-    .yui-g
-      = render :partial => "users/user", :collection => @fsaver
+    .yui-ge
+      .yui-u.first
+        = render :partial => "users/user", :collection => @fsaver
 / Secondary block
 .yui-b
