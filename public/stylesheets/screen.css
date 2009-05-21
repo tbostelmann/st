@@ -100,6 +100,25 @@ a {
     padding-top: 5px;
   }
 
+table.concepts {
+  margin-top: 45px;
+}
+
+table.concepts td {
+  font-size: 77%;
+  font-weight: bold;
+  color: #1E1352;
+}
+
+table.concepts td.image {
+  text-align: center;
+}
+
+table.concepts td.step {
+  font-size: 138.5%;
+  color: black;
+}
+
 /* Can get rid of this one? */
 .box h3 {
   border-bottom: 1px solid #314C61; }
