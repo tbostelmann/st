@@ -10,11 +10,6 @@ a {
 	color:#5085AF;
 }
 
-#custom-doc {
-  width:  80.769em; /* 1200/13 */
-  *width: 78.752em; /* 1200/13.333 IE */
-}
-
 #bd {
     background: url(/images/bg_body.png) repeat-x; }    
 }
@@ -24,9 +19,9 @@ a {
   padding: 10px; }
 
 #hd {
-  background: #C7DCE1 url(/images/header.jpg) no-repeat scroll 50% 0;
+  background: #C7DCE1 url(/images/header-750.jpg) no-repeat scroll 50% 0;
   padding: 0 10px 0 10px;
-  border-top: 4px solid #000; }
+  border-top: 4px solid #16313F; }
 	#hd h1 {
 		background-color:#000;
 		-moz-opacity: 0.8;
@@ -54,8 +49,8 @@ a {
 			}
 
 #NavBar {
-  height: 45px;
-  margin-top: 153px;
+  height: 25px;
+  margin-top: 116px;
   margin-left: -10px;
   margin-right: -10px; 
 	background: #efefef;	
@@ -66,7 +61,7 @@ a {
 	#NavBar ul li a {
 		display: block;
 		font-size: 95%;
-		padding: 15px 10px;
+		padding: 5px 10px;
 		margin:none;
 		text-transform: none;
 		font-weight: bold;
@@ -78,12 +73,21 @@ a {
 		background: #fff;
 		text-decoration: none !important;
 		}
-		
 
-#welcome .box {
-  background:#DCFBA8;
-  border-top: 1px solid #314C61;
-  border-bottom: 1px solid #314C61; }
+#bd h3 {
+  font-size: 131%;
+  font-weight: bold;
+  font-variant: small-caps;
+  border-bottom: 1px solid #314C61; 
+}
+
+#bd h3 a {
+  font-size: 77%;
+}
+
+#bd .st-block {
+  padding: 5px 10px 5px 10px;
+}
 
 .box h3 {
   border-bottom: 1px solid #314C61; }
