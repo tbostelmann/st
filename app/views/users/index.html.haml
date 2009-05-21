@@ -1,12 +1,11 @@
 - @section = (params[:metro_area_id] ? 'metro_area' : 'users')
 
-/ Main block
-#yui-main
-  .yui-b
+.yui-b
+  .st-block
     / Savers list and controls
     .yui-g
       = render :partial => 'users/search_options'
-    .box.user_list
+    .yui-g
       %h3=:site_savers.l :site => AppConfig.community_name
 
       .pagination= paginating_links @users, :params => params if @users.page_count > 1
@@ -15,5 +14,3 @@
 
       %br.clear
       .pagination= paginating_links @users, :params => params if @users.page_count > 1
-/ Secondary block
-.yui-b
