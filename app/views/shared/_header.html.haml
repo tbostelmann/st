@@ -1,13 +1,14 @@
 / NavBar
-.yui-g
-  #NavBar
-    %ul
-      = topnav_tab :home.l, { :url => home_path, :section => 'index'}
-      = topnav_tab :savers.l, { :url => users_path, :section => 'users' }
-      = topnav_tab :about.l, {:url =>about_path, :section=>'about'}
-      = topnav_tab :faq.l, {:url=>faq_path, :section=>'faq'}
-      - if current_user 
-        = topnav_tab :my_profile.l, { :url => user_path(current_user), :section => 'my_profile'}
-      - else
-        = topnav_tab :log_in.l, { :url => login_path, :section => 'login'}
-        = topnav_tab :sign_up.l, { :url => signup_path, :section => 'signup'}
+.yui-gc
+  .yui-u.first
+    #NavBar
+      %ul
+        = topnav_tab :home.l, { :url => home_path, :section => 'index'}
+        = topnav_tab :savers.l, { :url => users_path, :section => 'users' }
+        = topnav_tab :about.l, {:url =>about_path, :section=>'about'}
+        = topnav_tab :faq.l, {:url=>faq_path, :section=>'faq'}
+        - if current_user
+          = topnav_tab :my_profile.l, { :url => user_path(current_user), :section => 'my_profile'}
+        - else
+          = topnav_tab :log_in.l, { :url => login_path, :section => 'login'}
+          = topnav_tab :sign_up.l, { :url => signup_path, :section => 'signup'}
