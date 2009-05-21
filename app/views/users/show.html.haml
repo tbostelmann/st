@@ -14,7 +14,6 @@
           %h3
             =:about_me.l
           - if @adc
-            Must Render
             = render :partial => "users/adc", :object => @user.asset_development_cases[0], :locals => { :user => @user }
             %p
               = @user.description
