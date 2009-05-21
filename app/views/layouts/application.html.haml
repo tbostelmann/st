@@ -12,10 +12,11 @@
     = render :partial => "shared/scripts_and_styles"
     - if @rss_title && @rss_url
       = auto_discovery_link_tag(:rss, @rss_url, {:title => @rss_title})
+    = stylesheet_link_tag 'screen.css'
     = progress_bar_includes
 
   %body
-    #doc{:class => "yui-t#7"}
+    #doc3.yui-t1
       #hd
         = render :partial => "shared/header"
             
