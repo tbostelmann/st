@@ -1,31 +1,42 @@
-.yui-g
-  .yui-g.first
-    .yui-u.first
+%table.savers
+  %tr
+    %td
       = link_to image_tag( user.avatar_photo_url(:thumb), :class => "polaroid" ), user_path(user)
-    .yui-u
+    %td
       - if !user.asset_development_cases.nil? && user.asset_development_cases.size > 0
-        Goal: 
-        = user.asset_development_cases[0].asset_type.asset_name
-        %br Total: 
-        = user.asset_development_cases[0].total_amt_display
-        %br
-        %span{:style=>"color:red"} Need:
-        %span{:style=>"color:red"}= user.asset_development_cases[0].match_left_display
-        %br
-        = link_to( :donate.l, :controller => 'donations', :action => 'new', :saver_id => user.id )
-        %br
-        = custom_progress_bar("progbar#{user.id}",user.asset_development_cases[0].match_percent,:show_text=>true, :bar_images=>['progress_bar/percentImage_back1.png','progress_bar/percentImage_back2.png','progress_bar/percentImage_back3.png','progress_bar/percentImage_back4.png'], :width=>120,:height=>10)
-  .yui-u
-    %font{:size=>"+1"}= user.login.capitalize
-    %br
-    - if @search && @search['description']
-      = truncate_words_with_highlight user.description, @search['description']
-    - else
-      = truncate_words user.description, 18, '...'
-
-    - if current_user && current_user.admin?
+        %table.asset_case
+          %tr
+            %td
+              Goal:
+            %td
+              = user.asset_development_cases[0].asset_type.asset_name
+          %tr
+            %td
+              Total:
+            %td
+              = user.asset_development_cases[0].total_amt_display
+          %tr
+            %td
+              %span{:style=>"color:red"} Need:
+            %td
+              %span{:style=>"color:red"}= user.asset_development_cases[0].match_left_display
+          %tr
+            %td{:colspan => "2"}
+              = custom_progress_bar("progbar#{user.id}",user.asset_development_cases[0].match_percent,:show_text=>true, :bar_images=>['progress_bar/percentImage_back1.png','progress_bar/percentImage_back2.png','progress_bar/percentImage_back3.png','progress_bar/percentImage_back4.png'], :width=>120,:height=>10)
+          %tr
+            %td{:colspan => "2"}
+              = link_to( :donate.l, :controller => 'donations', :action => 'new', :saver_id => user.id )
+    %td
+      %font{:size=>"+1"}= user.login.capitalize
       %br
-      = link_to( :assume_id.l, assume_user_path(user) )
+      - if @search && @search['description']
+        = truncate_words_with_highlight user.description, @search['description']
+      - else
+        = truncate_words user.description, 50, '...'
+
+      - if current_user && current_user.admin?
+        %br
+        = link_to( :assume_id.l, assume_user_path(user) )
 
     = "<p>" + user.tags[0...6].collect{|t| link_to( t.name, tag_url(t), :class => "tag") if t }.join(" ") + "</p>" unless user.tags.empty?
 

@@ -82,3 +82,12 @@ a {
 
 .box h3 {
   border-bottom: 1px solid #314C61; }
+
+.savers td {
+  vertical-align: top;
+}
+
+.asset_case td {
+  width: 100px;
+  padding: 0px 0px 3px 0px;
+  }
