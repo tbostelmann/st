@@ -51,12 +51,12 @@ a {
 #st-nav {margin-top: 115px;}
 #st-nav ul {display:block; float: left; list-style: none; padding: 0; position: relative; bottom: 0; margin-left: 12px;}
 #st-nav ul li {display: inline; float: left; margin-left: 2px; }
-#st-nav ul a {background:#ffffff url(/images/nav/nav_left.gif) no-repeat bottom left; cursor: pointer; float: left; padding: 0 0 0 4px; width: auto !important; width: 0.1em; white-space: nowrap; text-decoration: none; }
-#st-nav ul a span {background:#ffffff url(/images/nav/nav_right.gif) no-repeat bottom right; color:#ffffff; cursor: pointer; display: block; float: left; font-size: 12px; font-weight: bold; height: 13px; line-height: 6px; padding: 10px 17px 2px 13px; white-space: nowrap; }
-#st-nav ul a:hover {background-position: top left; }
-#st-nav ul a:hover span {color:#16313F;}
-#st-nav ul li.current a {background-position: top left; }
-#st-nav ul li.current a span {background-position: top right; color:#16313F; }
+#st-nav ul a {background:#1E2072 url(/images/nav/nav_left.gif) no-repeat bottom left; cursor: pointer; float: left; padding: 0 0 0 4px; width: auto !important; width: 0.1em; white-space: nowrap; text-decoration: none; }
+#st-nav ul a span {background:#1E2072 url(/images/nav/nav_right.gif) no-repeat bottom right; color:#ffffff; cursor: pointer; display: block; float: left; font-size: 12px; font-weight: bold; height: 13px; line-height: 6px; padding: 10px 17px 2px 13px; white-space: nowrap; }
+#st-nav ul a:hover {background: #EBE8D9; background-position: top left; }
+#st-nav ul a:hover span {background: #EBE8D9; color:#16313F;}
+#st-nav ul li.current a {background: #EBE8D9; background-position: top left; }
+#st-nav ul li.current a span {background: #EBE8D9; background-position: top right; color:#16313F; }
 #st-nav ul li.current a:hover span {color:#3E5179;}
 #st-nav ul a:hover span {background-position: right top;}
 
