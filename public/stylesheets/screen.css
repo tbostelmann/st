@@ -51,13 +51,13 @@ a {
 #st-nav {margin-top: 108px;}
 #st-nav ul {display:block; float: left; list-style: none; padding: 0; position: relative; bottom: 0; margin-left: 12px;}
 #st-nav ul li {display: inline; float: left; margin-left: 2px; }
-#st-nav ul a {background:#ffffff url(/images/nav/nav_left.gif) no-repeat bottom left; cursor: pointer; float: left; padding: 0 0 0 4px; width: auto !important; width: 0.1em; white-space: nowrap; }
-#st-nav ul a span {background:#ffffff url(/images/nav/nav_right.gif) no-repeat bottom right; color:#ffffff; cursor: pointer; display: block; float: left; font-size: 12px; height: 21px; line-height: 13px; padding: 10px 20px 2px 17px; white-space: nowrap; }
-#st-nav ul a:hover {background-position: top left; text-decoration: none; }
-#st-nav ul a:hover span {color:#135E06;}
+#st-nav ul a {background:#ffffff url(/images/nav/nav_left.gif) no-repeat bottom left; cursor: pointer; float: left; padding: 0 0 0 4px; width: auto !important; width: 0.1em; white-space: nowrap; text-decoration: none; }
+#st-nav ul a span {background:#ffffff url(/images/nav/nav_right.gif) no-repeat bottom right; color:#ffffff; cursor: pointer; display: block; float: left; font-size: 12px; font-weight: bold; height: 21px; line-height: 13px; padding: 10px 20px 2px 17px; white-space: nowrap; }
+#st-nav ul a:hover {background-position: top left; }
+#st-nav ul a:hover span {color:#16313F;}
 #st-nav ul li.current a {background-position: top left; }
-#st-nav ul li.current a span {background-position: top right; color:#135E06; }
-#st-nav ul li.current a:hover span {color:#ffffff;}
+#st-nav ul li.current a span {background-position: top right; color:#16313F; }
+#st-nav ul li.current a:hover span {color:#3E5179;}
 #st-nav ul a:hover span {background-position: right top;}
 
 #bd .st-block {
