@@ -48,31 +48,17 @@ a {
       color: #B59F6D; 
 			}
 
-#NavBar {
-  height: 25px;
-  margin-top: 116px;
-  margin-left: -10px;
-  margin-right: -10px; 
-	background: #efefef;	
-	-moz-opacity: 0.6;
-	opacity:.60;
-	filter: alpha(opacity=60);
-	}
-	#NavBar ul li a {
-		display: block;
-		font-size: 95%;
-		padding: 5px 10px;
-		margin:none;
-		text-transform: none;
-		font-weight: bold;
-		border:none;
-		color: #464337;
-		text-decoration: none;		
-		}
-		#NavBar ul li#active a, #NavBar ul li.current a{
-		background: #fff;
-		text-decoration: none !important;
-		}
+#st-nav {margin-top: 108px;}
+#st-nav ul {display:block; float: left; list-style: none; padding: 0; position: relative; bottom: 0; margin-left: 12px;}
+#st-nav ul li {display: inline; float: left; margin-left: 2px; }
+#st-nav ul a {background:#ffffff url(/images/nav/nav_left.gif) no-repeat bottom left; cursor: pointer; float: left; padding: 0 0 0 4px; width: auto !important; width: 0.1em; white-space: nowrap; }
+#st-nav ul a span {background:#ffffff url(/images/nav/nav_right.gif) no-repeat bottom right; color:#ffffff; cursor: pointer; display: block; float: left; font-size: 12px; height: 21px; line-height: 13px; padding: 10px 20px 2px 17px; white-space: nowrap; }
+#st-nav ul a:hover {background-position: top left; text-decoration: none; }
+#st-nav ul a:hover span {color:#135E06;}
+#st-nav ul li.current a {background-position: top left; }
+#st-nav ul li.current a span {background-position: top right; color:#135E06; }
+#st-nav ul li.current a:hover span {color:#ffffff;}
+#st-nav ul a:hover span {background-position: right top;}
 
 #bd .st-block {
   padding: 5px 10px 5px 10px;
