@@ -36,12 +36,12 @@ ActionController::Routing::Routes.draw do |map|
 
   map.from_plugin :community_engine
 
-  map.resources  :donations
-  map.new '/donations/new/:saver_id', :controller => 'donations', :action => 'new'
-  map.done '/done', :controller => 'donations', :action => 'done'
-  map.cancel '/cancel', :controller => 'donations', :action => 'cancel'
-  map.notify '/notify', :controller => 'donations', :action => 'notify'
-  map.signup_after '/signup/:donation_id', :controller => 'users', :action => 'new'
+  map.resources  :pledges
+  map.new '/pledges/new/:saver_id', :controller => 'pledges', :action => 'new'
+  map.done '/done', :controller => 'pledges', :action => 'done'
+  map.cancel '/cancel', :controller => 'pledges', :action => 'cancel'
+  map.notify '/notify', :controller => 'pledges', :action => 'notify'
+  map.signup_after '/signup/:pledge_id', :controller => 'users', :action => 'new'
 
   # Install the default routes as the lowest priority.
   # Note: These default routes make all actions in every controller accessible via GET requests. You should

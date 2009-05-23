@@ -1,6 +1,6 @@
 require 'money'
 
-class DonationsController < BaseController
+class PledgesController < BaseController
   
   # GET /donations/new/{:saver_id}
   # GET /donations/new/{:saver_id}.xml
@@ -20,7 +20,7 @@ class DonationsController < BaseController
   # POST /donations.xml
   def create
     # TODO: need to addn donation_status default setting to initializer
-    @donation = Donation.new(params[:donation])
+    @donation = Pledge.new(params[:donation])
 
     respond_to do |format|
       if @donation.save
@@ -44,7 +44,7 @@ class DonationsController < BaseController
 
     handle_pay_pal_notification(notification)
 
-    @donation = Donation.find(notification.invoice())
+    @donation = Pledge.find(notification.invoice())
 
     if current_user
       redirect_to :controller => 'users', :action => 'show', :id => current_user
@@ -61,7 +61,7 @@ class DonationsController < BaseController
 
   def handle_pay_pal_notification(notify)
     notify = Paypal::Notification.new(request.raw_post)
-    @donation = Donation.find(notify.invoice())
+    @donation = Pledge.find(notify.invoice())
 
     # TODO: need to put this in a transaction
     ft = FinancialTransaction.create_complete_transaction(notify)
@@ -73,7 +73,7 @@ class DonationsController < BaseController
   def new_default_donation(user, asset_development_case)
     stOrg = Organization.find_savetogether_org
     # TODO: need to addn donation_status default setting to initializer
-    donation = Donation.new(:user => user, :saver => asset_development_case.user)
+    donation = Pledge.new(:user => user, :saver => asset_development_case.user)
     donation.donation_line_items << DonationLineItem.new(
             :description => "Donation to #{asset_development_case.user.display_name}",
             :amount => '50', # TODO: this should be a configurable value

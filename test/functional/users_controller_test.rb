@@ -23,7 +23,7 @@ class UsersControllerTest < ActionController::TestCase
     assert_redirected_to signup_completed_user_path(:testuser)
     user = User.find_by_login('testuser')
     donations = user.donations
-    donation = Donation.find(donation.id)
+    donation = Pledge.find(donation.id)
     assert !donation.user.nil?
   end  
 

@@ -5,23 +5,39 @@ class CreateConfigurationData < ActiveRecord::Migration
     MetroArea.destroy_all
     AssetType.destroy_all
 
-    us = Country.create(:name => "United States")
+    us = Country.create!(:name => "United States")
 
-    wa = State.create(:name => "WA")
-    ca = State.create(:name => "CA")
-    ma = State.create(:name => "MA")
+    wa = State.create!(:name => "WA")
+    ca = State.create!(:name => "CA")
+    ma = State.create!(:name => "MA")
 
-    sanfran = MetroArea.create(:name => 'San Francisco', :state => ca, :country => us)
-    seattle = MetroArea.create(:name => 'Seattle', :state => wa, :country => us)
-    lawrence = MetroArea.create(:name => 'Lawrence', :state => ma, :country => us)
-    sanjose = MetroArea.create(:name => 'San Jose', :state => ca, :country => us)
+    sanfran = MetroArea.create!(:name => 'San Francisco', :state => ca, :country => us)
+    seattle = MetroArea.create!(:name => 'Seattle', :state => wa, :country => us)
+    lawrence = MetroArea.create!(:name => 'Lawrence', :state => ma, :country => us)
+    sanjose = MetroArea.create!(:name => 'San Jose', :state => ca, :country => us)
 
-    education = AssetType.create :asset_name => "Education"
-    home = AssetType.create :asset_name => "Home"
-    business = AssetType.create :asset_name => "Business"
+    sanfran = MetroArea.find(:first, :conditions => {:name => 'San Francisco'})
+    seattle = MetroArea.find(:first, :conditions => {:name => 'Seattle'})
+    lawrence = MetroArea.find(:first, :conditions => {:name => 'Lawrence'})
+    sanjose = MetroArea.find(:first, :conditions => {:name => 'San Jose'})
 
-    stOrg = Organization.create(:name => 'SaveTogether')
-    account = Account.create(:owner => stOrg)      
+    education = AssetType.create! :asset_name => "Education"
+    home = AssetType.create! :asset_name => "Home"
+    business = AssetType.create! :asset_name => "Business"
+
+    stOrg = Organization.create!(
+      :full_name => 'SaveTogether',
+      :login => "savetogether",
+      :email => "savetogether@example.com",
+      :description => "<p>SaveTogether description.</p>",
+      :salt => "7e3041ebc2fc05a40c60028e2c4901a81035d3cd",
+      :crypted_password => "00742970dc9e6319f8019fd54864d3ea740f04b1", # test
+      :state => wa,
+      :metro_area => seattle,
+      :birthday => 30.years.ago,
+      :activities_count => 0,
+      :role => Role[:member])
+    stOrg.activate
   end
 
   def self.down

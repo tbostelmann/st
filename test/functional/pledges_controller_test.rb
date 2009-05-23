@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class DonationsControllerTest < ActionController::TestCase
+class PledgesControllerTest < ActionController::TestCase
   include AuthenticatedTestHelper
   
   test "get new" do

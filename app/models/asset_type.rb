@@ -10,5 +10,5 @@
 #
 
 class AssetType < ActiveRecord::Base
-  has_many :asset_development_cases
+  has_many :savers
 end

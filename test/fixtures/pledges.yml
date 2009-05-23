@@ -1,0 +1,24 @@
+# == Schema Information
+# Schema version: 20090513215116
+#
+# Table name: donations
+#
+#  id              :integer(4)      not null, primary key
+#  user_id         :integer(4)
+#  saver_id        :integer(4)
+#  donation_status :string(255)     default("pending")
+#  created_at      :datetime
+#  updated_at      :datetime
+#  email           :string(255)
+#
+
+donor_donation:
+    user: donor
+    donation_status: Donation::STATUS_PENDING
+    saver: saver
+    notification_email: a@b.com
+
+anonymous_donation:
+    donation_status: Donation::STATUS_PENDING
+    saver: saver
+    notification_email: a@b.com

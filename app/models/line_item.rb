@@ -13,25 +13,13 @@
 #  updated_at               :datetime
 #
 
+require 'money'
+
 class LineItem < ActiveRecord::Base
-  belongs_to :financial_transaction
-  belongs_to :donation_line_item
-  belongs_to :account
+  has_many :financial_transactions, :order => :position
+  belongs_to :invoice 
 
   composed_of :amount, :class_name => "Money", :mapping => [%w(cents cents)], :converter => Proc.new { |value| value.to_money }
 
-  validates_presence_of :account
-  validates_presence_of :donation_line_item
-  validates_presence_of :financial_transaction
-
-  def self.create_complete_transaction(ft, dli)
-    li = create(
-        :account => dli.account,
-        :financial_transaction => ft,
-        :donation_line_item => dli,
-        :amount => dli.amount,
-        :debit => false)
-    ft.line_items << li
-    return li
-  end
+  validates_presence_of :invoice
 end

@@ -14,7 +14,7 @@ class FinancialTransactionTest < ActiveSupport::TestCase
     ft = FinancialTransaction.find(ft.id)
     ft.post_to_accounts
 
-    donation = Donation.find(donation.id)
+    donation = Pledge.find(donation.id)
     ending_balance = donation.donation_line_items[0].account.balance
     assert (start_balance + credit_amount) == ending_balance
   end

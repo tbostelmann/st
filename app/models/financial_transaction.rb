@@ -11,22 +11,28 @@
 require 'money'
 
 class FinancialTransaction < ActiveRecord::Base
-  CANCELED_REVERSAL = 'Canceled_Reversal'
-  DENIED = 'Denied'
-  EXPIRED = 'Expired'
-  FAILED = 'Failed'
-  PENDING = 'Pending'
-  REFUNDED = 'Refunded'
-  REVERSED = 'Reversed'
-  PROCESSED = 'Processed'
-  VOIDED = 'Voided'
+  STATUS_CANCELED_REVERSAL = 'Canceled_Reversal'
+  STATUS_DENIED = 'Denied'
+  STATUS_EXPIRED = 'Expired'
+  STATUS_FAILED = 'Failed'
+  STATUS_PENDING = 'Pending'
+  STATUS_REFUNDED = 'Refunded'
+  STATUS_REVERSED = 'Reversed'
+  STATUS_PROCESSED = 'Processed'
+  STATUS_VOIDED = 'Voided'
 
-  belongs_to :donation
-  has_many :line_items
+  belongs_to :line_item
+  belongs_to :payment_notification
 
+  acts_as_list :scope => :line_item
+
+  validates_presence_of :status
+  validates_presence_of :line_item
+  validates_presence_of :payment_notification
+  
   def self.create_pay_pal_transaction(raw_post)
     notification = Paypal::Notification.new(request.raw_post)
-    donation = Donation.find(notification.invoice())
+    donation = Pledge.find(notification.invoice())
 
     ft = create(:donation => donation, :raw => raw_post)
 
@@ -34,7 +40,7 @@ class FinancialTransaction < ActiveRecord::Base
       ftli = LineItem.create_complete_transaction(ft, dli)
       ft.line_items << ftli
     end
-    donation.donation_status = Donation::STATUS_COMPLETE
+    donation.donation_status = Pledge::STATUS_COMPLETE
 
 
     if notification.acknowledge

@@ -1,11 +1,8 @@
 class UsersController < BaseController
   def index
-    # TODO: this is a hack to maintain these User relationships
-    User.has_many :asset_development_cases
     
     cond, @search, @metro_areas, @states, @asset_types = User.paginated_users_conditions_with_search(params)
   
-   cond.saver==true
    useridstr=nil
 
    #find all users based on conditions
@@ -104,7 +101,7 @@ class UsersController < BaseController
     if (!AppConfig.require_captcha_on_signup || verify_recaptcha(@user)) && @user.save
       # If a donation_id is supplied, we add it to the user's donation list
       unless donation_id.blank?
-        donation = Donation.find(donation_id)
+        donation = Pledge.find(donation_id)
         if !donation.user
           donation.user = @user
           donation.save

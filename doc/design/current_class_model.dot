@@ -16,6 +16,6 @@ digraph models_diagram {
 	"Organization" -> "Account" [arrowtail=odot, arrowhead=dot, dir=both]
 	"AssetType" -> "AssetDevelopmentCase" [arrowtail=crow, arrowhead=dot, dir=both]
 	"Donation" -> "FinancialTransaction" [arrowtail=crow, arrowhead=dot, dir=both]
-	"Donation" -> "DonationLineItem" [arrowtail=crow, arrowhead=dot, dir=both]
 	"Donation" -> "Payment" [arrowtail=crow, arrowhead=dot, dir=both]
+	"Donation" -> "DonationLineItem" [arrowtail=crow, arrowhead=dot, dir=both]
 }

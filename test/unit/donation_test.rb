@@ -4,7 +4,7 @@ require 'money'
 class DonationTest < ActiveSupport::TestCase
   
   def setup
-    @anon_donation = Donation.new
+    @anon_donation = Pledge.new
     @anon_donation.saver = users(:saver)
     @anon_donation.notification_email = "a@b.com"
     
