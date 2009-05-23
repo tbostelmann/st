@@ -1,19 +1,13 @@
-#hd
-  %h1
-    =link_to((image_tag("savetogether-logo.jpg", {:width=>200,:height=>50})), "/")
-  - unless logged_in?
-    %h2
-      =:welcome_message.l(:login_link => (link_to :log_in.l, login_path), :signup_link => (link_to :sign_up.l, signup_path))
-    
-  #NavBar
+/ Navagation
+.yui-g
+  #st-nav
     %ul
-      - Category.find(:all).each do |c|
-        = topnav_tab c.name, {:url => category_path(c), :section => c.name}
-      = topnav_tab :savers.l, { :url => users_path, :section => 'users' }
-      = topnav_tab :about.l, {:url =>about_path, :section=>'about'}
-      = topnav_tab :faq.l, {:url=>faq_path, :section=>'faq'}
-      - if current_user 
+      = topnav_tab :home.l,         { :url => home_path,   :section => 'home'   }
+      = topnav_tab :savers.l,       { :url => users_path,  :section => 'savers' }
+      = topnav_tab :about.l,        { :url =>about_path,   :section => 'about'  }
+      = topnav_tab :faq.l,          { :url =>faq_path,     :section => 'faq'    }
+      - if current_user
         = topnav_tab :my_profile.l, { :url => user_path(current_user), :section => 'my_profile'}
-      
-  / NavBar 
-/ header
+      - else
+        = topnav_tab :log_in.l,     { :url => login_path,  :section => 'login'  }
+        = topnav_tab :sign_up.l,    { :url => signup_path, :section => 'signup' }
