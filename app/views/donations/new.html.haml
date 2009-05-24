@@ -1,34 +1,44 @@
-%table.donation
-  - form_for @donation, :url => { :action => :create } do |f|
-    = f.error_messages
-    = f.hidden_field :user_id
-    = f.hidden_field :saver_id
-    = hidden_field_tag(:saver_id, @saver_id)
-    #donation_line_items
-      - @donation.donation_line_items.each_with_index do |donation_line_item, index|
-        .donation_line_item
-          - fields_for "donation[donation_line_item_attributes][#{index}]", donation_line_item do |dli_form|
+.st-block
+  #profile_details.box.hentry
+    .yui-g
+      .yui-u.first
+        %h3
+          = @donation.saver.login
+        .centered
+          = image_tag( @donation.saver.avatar_photo_url(:medium), :class => 'polaroid')
+      .yui-u
+        %h3
+          Donation
+        %table.donation
+          - form_for @donation, :url => { :action => :create } do |f|
+            = f.error_messages
+            = f.hidden_field :user_id
+            = f.hidden_field :saver_id
+            = hidden_field_tag(:saver_id, @saver_id)
+            #donation_line_items
+              - @donation.donation_line_items.each_with_index do |donation_line_item, index|
+                .donation_line_item
+                  - fields_for "donation[donation_line_item_attributes][#{index}]", donation_line_item do |dli_form|
+                    %tr
+                      %td.label
+                        %label{:for => "line_item_description"}
+                          = donation_line_item.description
+                      %td
+                        = dli_form.text_field :amount, :size => "7"
+                        = dli_form.hidden_field :account_id
+                        = dli_form.hidden_field :description
             %tr
               %td.label
-                %label{:for => "line_item_description"}
-                  = donation_line_item.description
+                %label{:for => "notification_email"}
+                  Send Notifications To
               %td
-                = dli_form.text_field :amount, :size => "7"
-                = dli_form.hidden_field :account_id
-                = dli_form.hidden_field :description
-    %tr
-      %td.label
-        %label{:for => "notification_email"}
-          Send Notifications To
-      %td
-        = f.text_field :notification_email
-    %tr
-      %td.label
-        %label{:for => "email_confirmation"}
-          Confirm Notification Email
-      %td
-        = f.text_field :notification_email_confirmation
-    %tr
-      %td
-      %td
-        = f.submit "Continue"
+                = f.text_field :notification_email
+            %tr
+              %td.label
+                %label{:for => "email_confirmation"}
+                  Confirm Notification Email
+              %td
+                = f.text_field :notification_email_confirmation
+            %tr
+              %td{:colspan => "2"}
+                = f.submit "Continue"
