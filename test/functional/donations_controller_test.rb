@@ -28,7 +28,7 @@ class DonationsControllerTest < ActionController::TestCase
     stOrg = Organization.find_savetogether_org
 
     incomplete_param_list = gimme_some_donation_params
-    incomplete_param_list.delete(:saver_id)
+    incomplete_param_list.delete(:notification_email)
     
     post :create, :donation => incomplete_param_list
                     
