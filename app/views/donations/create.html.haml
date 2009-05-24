@@ -5,7 +5,7 @@
         %h3
           = @donation.saver.login
         .centered
-          = image_tag( @donation.saver.avatar_photo_url(:medium), :class => 'polaroid')
+          = link_to image_tag( @donation.saver.avatar_photo_url(:medium), :class => 'polaroid'), user_path(@donation.saver)
       .yui-u
         %h3
           Confirm Donation
@@ -15,20 +15,20 @@
             %tr
               %td.label
                 %label{:for => "notification_email"}
-                  Send Progress Notifications to
+                  Send progress emails to:
               %td
                 = @donation.notification_email
               - @donation.donation_line_items.each_with_index do |dli, index|
                 %tr
                   %td.label
                     %label{:for => "line_item_description"}
-                      = dli.description
+                      = "#{dli.description}:"
                   %td
                     = dli.amount.format(:html)
-            %tr
+            %tr.total
               %td.label
                 %label{:for => "total"}
-                  Total
+                  Total:
               %td
                 = @donation.amount.format(:html)
             %tr

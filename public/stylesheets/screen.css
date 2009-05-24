@@ -119,10 +119,21 @@ table.asset_case td {
 table.donation {
   width: 100%;
 }
-  table.donation td {
-    /* text-align: left; */
-  }
+  /* The label is 50% of the table */
   table.donation td.label {
-    width: 55%;
+    width: 50%;
+  }
+  /* Monetary input fields (applied to input tag, not td tag)
+  are 40% of what is available after the label field is sized*/
+  table.donation .monetary {
+    width: 40%;
+  }
+  /* Email input fields (applied to input tag, not td tag)
+  are 90% of what is available after the label field is sized*/
+  table.donation .email {
+    width: 90%;
+  }
+  table.donation .total {
+    font-weight: bold;
   }
 
