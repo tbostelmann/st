@@ -1,8 +1,8 @@
 - # This is for identifying current tab selection in navbar
 - @section = (params[:metro_area_id] ? 'metro_area' : 'savers')
 
-.yui-b
-  .st-block
+.st-block.box
+  .yui-b
     / Savers list and controls
     .yui-g
       = render :partial => 'users/search_options'

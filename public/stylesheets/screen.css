@@ -48,6 +48,7 @@ a {
       color: #B59F6D; 
 			}
 
+/* Special navbar styles - dump CE NavBar for now (dgs - should look into reusing it somehow) */
 #st-nav {margin-top: 115px;}
 #st-nav ul {display:block; float: left; list-style: none; padding: 0; position: relative; bottom: 0; margin-left: 12px;}
 #st-nav ul li {display: inline; float: left; margin-left: 2px; }
@@ -59,32 +60,29 @@ a {
 #st-nav ul li.current a span {background: #EBE8D9 url(/images/nav/nav_right.gif); background-position: top right; color:#16313F; }
 #st-nav ul li.current a:hover span {color:#3E5179;}
 
+/* The box all ST content should layout within */
 #bd .st-block {
   padding: 5px 10px 5px 10px;
 }
 
-  #bd h3 {
-    font-size: 131%;
-    font-weight: bold;
-    font-variant: small-caps;
-    padding-top: 20px;
-    border-bottom: 1px solid #314C61; 
-  }
+/* Override margin, border for CE .box style */
+.box h3 {
+  margin: 1.5em 0 0.75em 0;
+  border-bottom: 1px solid #314C61;
+}
 
-  #bd h3 a {
-    font-size: 77%;
-  }
-  
-  #bd h4 {
-    font-size: 108%;    
-    font-weight: bold;
-    padding-top: 10px;
-  }
-  
-  .faq {
-    padding-top: 5px;
-  }
+/* Add 4th-level header to CE .box style */
+.box h4 {
+  font-size: 108%;    
+  font-weight: bold;  
+}
 
+/* Padding for FAQ entries */
+.faq {
+  padding-top: 5px;
+}
+
+/* Concepts table */
 table.concepts {
   margin-top: 45px;
 }
@@ -101,14 +99,18 @@ table.concepts {
     color: black;
   }
 
+/* Table for savers list */
 table.savers td {
   vertical-align: top;
 }
-  table.savers table.asset_case td {
-    width: 100px;
-    padding: 0px 0px 3px 0px;
-  }
 
+/* Table for asset case details */
+table.asset_case td {
+  width: 100px;
+  padding: 0px 0px 3px 0px;
+}
+
+/* Table for Donation details */
 table.donation {
   width: 100%;
 }
@@ -119,6 +121,3 @@ table.donation {
     width: 25%;
   }
 
-/* Can get rid of this one? */
-.box h3 {
-  border-bottom: 1px solid #314C61; }
