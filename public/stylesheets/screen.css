@@ -71,6 +71,11 @@ a {
   border-bottom: 1px solid #314C61;
 }
 
+/* Add special anchor style for 3rd-level header (for links included in header) */
+.box h3 a {
+  font-size: 77%;
+}
+
 /* Add 4th-level header to CE .box style */
 .box h4 {
   font-size: 108%;    
