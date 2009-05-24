@@ -88,31 +88,37 @@ a {
 table.concepts {
   margin-top: 45px;
 }
+  table.concepts td {
+    font-size: 77%;
+    font-weight: bold;
+    color: #1E1352;
+  }
+  table.concepts td.image {
+    text-align: center;
+  }
+  table.concepts td.step {
+    font-size: 138.5%;
+    color: black;
+  }
 
-table.concepts td {
-  font-size: 77%;
-  font-weight: bold;
-  color: #1E1352;
+table.savers td {
+  vertical-align: top;
 }
+  table.savers table.asset_case td {
+    width: 100px;
+    padding: 0px 0px 3px 0px;
+  }
 
-table.concepts td.image {
-  text-align: center;
+table.donation {
+  width: 100%;
 }
-
-table.concepts td.step {
-  font-size: 138.5%;
-  color: black;
-}
+  table.donation td {
+    /* text-align: left; */
+  }
+  table.donation td.label {
+    width: 25%;
+  }
 
 /* Can get rid of this one? */
 .box h3 {
   border-bottom: 1px solid #314C61; }
-
-.savers td {
-  vertical-align: top;
-}
-
-.asset_case td {
-  width: 100px;
-  padding: 0px 0px 3px 0px;
-  }

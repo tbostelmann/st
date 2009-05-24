@@ -1,24 +1,24 @@
-%table{:width => "100%"}
+%table.donation
   - form_for :donation, @donation, :url => {:action => 'done', :donation_id => @donation.id} do |f|
     = f.error_messages
     %tr
-      %td{:align => "left", :width => "25%"}
+      %td.label
         %label{:for => "notification_email"}
           Notify
-      %td{:align =>"left"}
+      %td
         = @donation.notification_email
       - @donation.donation_line_items.each_with_index do |dli, index|
         %tr
-          %td{:align => "left"}
+          %td.label
             %label{:for => "line_item_description"}
               = dli.description
-          %td{:align => "left"}
+          %td
             = dli.amount.format(:html)
     %tr
-      %td{:align => "left"}
+      %td.label
         %label{:for => "total"}
           Total
-      %td{:align => "left"}
+      %td
         = @donation.amount.format(:html)
     %tr
       %td
