@@ -10,19 +10,22 @@
           - fields_for "donation[donation_line_item_attributes][#{index}]", donation_line_item do |dli_form|
             %tr
               %td{:align =>"left", :width => "25%"}
-                = donation_line_item.description
+                %label{:for => "line_item_description"}
+                  = donation_line_item.description
               %td{:align => "left"}
                 = dli_form.text_field :amount, :size => "7"
                 = dli_form.hidden_field :account_id
                 = dli_form.hidden_field :description
     %tr
-      %td{:align => "left", :width => "25%"}
-        Send Notifications To
+      %td{:align => "left"}
+        %label{:for => "notification_email"}
+          Send Notifications To
       %td{:align => "left"}
         = f.text_field :notification_email
     %tr
-      %td{:align => "left", :width => "25%"}
-        Confirm Notification Email
+      %td{:align => "left"}
+        %label{:for => "email_confirmation"}
+          Confirm Notification Email
       %td{:align => "left"}
         = f.text_field :notification_email_confirmation
     %tr
