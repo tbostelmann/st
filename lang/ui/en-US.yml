@@ -988,7 +988,7 @@ en:
   #en: sign_up_for_a_: Sign up for a
   sign_up_for_a_: Sign up for a
   #en: sign_up_reason_1: Some reason to sign up
-  sign_up_reason_1: Thank you for making your donation!!  Please create a profile so you can track the progress of your saver
+  sign_up_reason_1: Thank you for making your donation! Please create a profile so you can track the progress of your saver.
   #en: sign_up_reason_2: Some reason to sign up
   sign_up_reason_2: Insert text that we present to users who are clicking on the signup link before they make a donation
   #en: singular_posts: "{{count}} post"

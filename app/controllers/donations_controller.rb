@@ -125,7 +125,7 @@ class DonationsController < BaseController
     # TODO: need to addn donation_status default setting to initializer
     donation = Donation.new(:user => user, :saver => asset_development_case.user)
     donation.donation_line_items << DonationLineItem.new(
-            :description => "Donation to #{asset_development_case.user.display_name}",
+            :description => "Donation to #{asset_development_case.user.display_name.capitalize}",
             :amount => '50', # TODO: this should be a configurable value
             :account => asset_development_case.account,
             :donation => donation)
