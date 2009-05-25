@@ -2,20 +2,20 @@
 - @section = 'signup'
 
 .st-block
-  .yui-b
-    .box
-      %h3
-        =:why_sign_up.l
-      %ul.list.checks
-      - if params[:donation_id]
-        %li
-          = :sign_up_reason_1.l
-      - unless params[:donation_id]
-        %li
-          = :sign_up_reason_2.l
+  .yui-gf
+    .yui-u.first
+      .box
+        %h3
+          =:why_sign_up.l
+        %ul.list.checks
+        - if params[:donation_id]
+          %li
+            = :sign_up_reason_1.l
+        - unless params[:donation_id]
+          %li
+            = :sign_up_reason_2.l
 
-  #yui-main
-    .yui-b
+    .yui-u
       .box
         %h3=:sign_up.l
         = error_messages_for :user
@@ -44,11 +44,12 @@
           = hidden_field_tag :inviter_code, params[:inviter_code]
           %p= submit_tag :sign_up.l
 
-      .box.alt
-        %h3=:tips.l
-        %p
-          =:after_signing_up_youll_receive_an_e_mail_confirmation_message.l
-        %p
-          =:click_the_activation_link_in_the_e_mail_to_log_in.l
-        %p= link_to :already_have_an_account.l, "/login"
+  .yui-g
+    .box.alt
+      %h3=:tips.l
+      %p
+        =:after_signing_up_youll_receive_an_e_mail_confirmation_message.l
+      %p
+        =:click_the_activation_link_in_the_e_mail_to_log_in.l
+      %p= link_to :already_have_an_account.l, "/login"
 
