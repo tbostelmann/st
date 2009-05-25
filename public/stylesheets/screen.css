@@ -21,7 +21,7 @@ a {
 #hd {
   background: #C7DCE1 url(/images/header-750.jpg) no-repeat scroll 50% 0;
   padding: 0 10px 0 10px;
-  border-top: 4px solid #16313F; }
+  border-top: 4px solid #100B49; }
 	#hd h1 {
 		background-color:#000;
 		-moz-opacity: 0.8;
@@ -93,6 +93,15 @@ a {
   font-weight: bold;
   color: #777;
 }
+
+/* Override MainForm colors for button */
+.MainForm p input, .MainForm p button {
+  background: #2D3997;
+  border: 4px solid #100B49;
+}
+  .MainForm p input:hover {
+    background: #100B49;
+  }
 
 /* Concepts table */
 table.concepts {
