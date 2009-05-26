@@ -1,6 +1,6 @@
 %table.asset_case
   %tr
-    %td
+    %td.label
       Goal:
     %td
       = adc.asset_type.asset_name
@@ -9,11 +9,11 @@
       Total:
     %td
       = adc.total_amt_display
-  %tr
+  %tr.remainder
     %td
-      %span{:style=>"color:red"} Need:
+      Need:
     %td
-      %span{:style=>"color:red"}= adc.match_left_display
+      = adc.match_left_display
   %tr
     %td{:colspan => "2"}
       = custom_progress_bar("progbar#{user.id}", adc.match_percent, :show_text=>true, :bar_images=>['progress_bar/percentImage_back1.png','progress_bar/percentImage_back2.png','progress_bar/percentImage_back3.png','progress_bar/percentImage_back4.png'], :width=>120, :height=>10)

@@ -113,7 +113,7 @@ a {
   }
   .box.alt.skinny {
     margin-bottom: 0;
-    padding: 0.25em;
+    padding: 0.5em;
   }
   .first_alt {
     margin-top: 2.5em;
@@ -140,9 +140,21 @@ table.concepts {
 table.savers td {
   vertical-align: top;
 }
+  table.savers td.photo {
+    width: 18%;
+  }
+  table.savers td.adc {
+    width: 21.5%;
+  }
 
 /* Table for asset case details */
 table.asset_case td {
   width: 100px;
   padding: 0px 0px 3px 0px;
 }
+  table.asset_case tr.remainder {
+    color: red;
+  }
+  table.asset_case td.label {
+    width: 50%;
+  }
