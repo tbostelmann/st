@@ -1,6 +1,6 @@
 %table.savers
   %tr
-    %td
+    %td.photo
       = link_to image_tag( user.avatar_photo_url(:thumb), :class => "polaroid" ), user_path(user)
     %td
       = render :partial => "users/adc", :object => user, :locals => { :saver => user }

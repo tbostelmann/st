@@ -1,0 +1,19 @@
+# == Schema Information
+# Schema version: 20090422073021
+#
+# Table name: asset_types
+#
+#  id         :integer(4)      not null, primary key
+#  asset_name :string(255)
+#  created_at :datetime
+#  updated_at :datetime
+#
+
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+education:
+    asset_name: education
+business:
+    asset_name: business
+home:
+    asset_name: home

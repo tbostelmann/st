@@ -56,14 +56,18 @@ saver:
   metro_area: seattle
   profile_public: true
   login_slug: saver
-  birthday: <%= 15.years.ago.to_s :db %>
+  birthday: <%= 25.years.ago.to_s :db %>
+  gender: F
   activities_count: 0
   role_id: 3
+  asset_type: education
+  organization: earn
+  requested_match_cents: 200000
   type: Saver
 saver2:
   login: saver2
   email: saver2@example.com
-  description: I am a saver
+  description: I am also a friggin awesome gal
   salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
   crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
   created_at: <%= 5.days.ago.to_s :db %>
@@ -73,9 +77,55 @@ saver2:
   metro_area: sanfrancisco
   profile_public: true
   login_slug: saver2
-  birthday: <%= 15.years.ago.to_s :db %>
+  birthday: <%= 30.years.ago.to_s :db %>
+  gender: F
   activities_count: 0
   role_id: 3
+  asset_type: education
+  organization: earn
+  requested_match_cents: 200000
+  type: Saver
+saver3:
+  login: saver3
+  email: saver3@example.com
+  description: I am a friggin awesome guy
+  salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
+  crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
+  created_at: <%= 5.days.ago.to_s :db %>
+  activated_at: <%= 5.days.ago.to_s :db %>
+  activation_code:
+  state: california
+  metro_area: sanfrancisco
+  profile_public: true
+  login_slug: saver2
+  birthday: <%= 35.years.ago.to_s :db %>
+  gender: M
+  activities_count: 0
+  role_id: 3
+  asset_type: business
+  organization: earn
+  requested_match_cents: 100000
+  type: Saver
+saver4:
+  login: saver4
+  email: saver4@example.com
+  description: I am an friggin awesome gal of a certain age
+  salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
+  crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
+  created_at: <%= 5.days.ago.to_s :db %>
+  activated_at: <%= 5.days.ago.to_s :db %>
+  activation_code:
+  state: california
+  metro_area: sanfrancisco
+  profile_public: true
+  login_slug: saver2
+  birthday: <%= 40.years.ago.to_s :db %>
+  gender: F
+  activities_count: 0
+  role_id: 3
+  asset_type: home
+  organization: earn
+  requested_match_cents: 400000
   type: Saver
 
 earn:

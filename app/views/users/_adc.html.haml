@@ -1,6 +1,6 @@
 %table.asset_case
   %tr
-    %td
+    %td.label
       Goal:
     %td
       = saver.asset_type.asset_name
@@ -9,9 +9,9 @@
       Total:
     %td
       = saver.total_amt_display
-  %tr
+  %tr.remainder
     %td
-      %span{:style=>"color:red"} Need:
+      Need:
     %td
       %span{:style=>"color:red"}= saver.match_left_display
   %tr

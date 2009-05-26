@@ -18,7 +18,7 @@
             %p
               = @user.description
       - unless @users_comments.empty?
-        #photo_comments.yui-g.box.alt
+        #photo_comments.box.alt
           %h3=:my_recent_comments.l
           - @users_comments.each do |comment|
             %dl.vcard

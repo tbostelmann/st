@@ -32,6 +32,7 @@ namespace :db do
       :state => wa,
       :metro_area => seattle,
       :birthday => 30.years.ago,
+      :gender => "M",
       :activities_count => 0,
       :role => Role[:admin])
     admin.activate
@@ -57,7 +58,8 @@ namespace :db do
       :crypted_password => "00742970dc9e6319f8019fd54864d3ea740f04b1", # test
       :state => wa,
       :metro_area => seattle,
-      :birthday => 30.years.ago,
+      :birthday => 28.years.ago,
+      :gender => "F",
       :activities_count => 0,
       :role => Role[:member],
       :organization => org,
@@ -93,7 +95,8 @@ namespace :db do
       :crypted_password => "00742970dc9e6319f8019fd54864d3ea740f04b1", # test
       :state => ca,
       :metro_area => sanfran,
-      :birthday => 30.years.ago,
+      :birthday => 25.years.ago,
+      :gender => "F",
       :activities_count => 0,
       :role => Role[:member],
       :organization => org,
@@ -129,7 +132,8 @@ namespace :db do
       :crypted_password => "00742970dc9e6319f8019fd54864d3ea740f04b1", # test
       :state => ca,
       :metro_area => sanjose,
-      :birthday => 30.years.ago,
+      :birthday => 35.years.ago,
+      :gender => "F",
       :activities_count => 0,
       :role => Role[:member],
       :organization => org,
@@ -165,7 +169,8 @@ namespace :db do
       :crypted_password => "00742970dc9e6319f8019fd54864d3ea740f04b1", # test
       :state => ma,
       :metro_area => lawrence,
-      :birthday => 30.years.ago,
+      :birthday => 45.years.ago,
+      :gender => "F",
       :activities_count => 0,
       :role => Role[:member],
       :organization => org,
