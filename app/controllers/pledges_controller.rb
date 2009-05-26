@@ -2,13 +2,23 @@ require 'money'
 
 class PledgesController < BaseController
   
-  # GET /donations/new/{:saver_id}
-  # GET /donations/new/{:saver_id}.xml
+  # GET /pledges/new/{:saver_id}
+  # GET /pledges/new/{:saver_id}.xml
   def new
-    @saver_id = params[:saver_id]
-    @adc = AssetDevelopmentCase.find_by_user_id(@saver_id)
+    @saver = Saver.find(params[:saver_id])
     user = current_user
-    @donation = new_default_donation(user, @adc)
+    stOrg = Organization.find_savetogether_org
+
+    @pledge = Pledge.new
+    line1 = Donation.new(:amount => "50", :user => @saver)
+    line2 = Donation.new(:amount => "5", :user => stOrg)
+    @pledge.line_items << line1
+    @pledge.line_items << line2
+    if !user.nil?
+      @pledge.notification_email = user.email
+      line1.donor = user
+      line2.donor = user
+    end
 
     respond_to do |format|
       format.html # new.html.erb

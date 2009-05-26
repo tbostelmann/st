@@ -3,11 +3,16 @@
 #
 # Table name: financial_transactions
 #
-#  id          :integer(4)      not null, primary key
-#  donation_id :integer(4)
-#  created_at  :datetime
-#  updated_at  :datetime
+#  id                      :integer(4)      not null, primary key
+#  line_item_id            :integer(4)
+#  payment_notification_id :integer(4)
+#  status                  :string(255)
+#  position                :integer(4)
+#  created_at              :datetime
+#  updated_at              :datetime
 #
+
+
 require 'money'
 
 class FinancialTransaction < ActiveRecord::Base

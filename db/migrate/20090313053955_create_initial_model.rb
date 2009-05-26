@@ -10,6 +10,7 @@ class CreateInitialModel < ActiveRecord::Migration
       t.integer :cents
       t.integer :invoice_id
       t.integer :user_id
+      t.integer :donor_id
       t.string :type
       t.timestamps
     end

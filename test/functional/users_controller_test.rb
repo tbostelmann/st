@@ -1,31 +1,31 @@
 require 'test_helper'
 
 class UsersControllerTest < ActionController::TestCase
-  test "Test create user with no donation_id" do
-    put :create, :user => {
-            :login => 'testuser', :email => 'test@domain.com',
-            :password => 'testuserpassword', :password_confirmation => 'testuserpassword'}
-    assert_redirected_to signup_completed_user_path(:testuser)
-  end
-
-  test "Test create user with donation_id set to empty string" do
-    put :create, :donation_id => "", :user => {
-            :login => 'testuser', :email => 'test@domain.com',
-            :password => 'testuserpassword', :password_confirmation => 'testuserpassword'}
-    assert_redirected_to signup_completed_user_path(:testuser)
-  end
-
-  test "Test create user with donation_id set" do
-    donation = donations(:anonymous_donation)
-    put :create, :donation_id => donation.id, :user => {
-            :login => 'testuser', :email => 'test@domain.com',
-            :password => 'testuserpassword', :password_confirmation => 'testuserpassword'}
-    assert_redirected_to signup_completed_user_path(:testuser)
-    user = User.find_by_login('testuser')
-    donations = user.donations
-    donation = Pledge.find(donation.id)
-    assert !donation.user.nil?
-  end  
+#  test "Test create user with no donation_id" do
+#    put :create, :user => {
+#            :login => 'testuser', :email => 'test@domain.com',
+#            :password => 'testuserpassword', :password_confirmation => 'testuserpassword'}
+#    assert_redirected_to signup_completed_user_path(:testuser)
+#  end
+#
+#  test "Test create user with donation_id set to empty string" do
+#    put :create, :donation_id => "", :user => {
+#            :login => 'testuser', :email => 'test@domain.com',
+#            :password => 'testuserpassword', :password_confirmation => 'testuserpassword'}
+#    assert_redirected_to signup_completed_user_path(:testuser)
+#  end
+#
+#  test "Test create user with donation_id set" do
+#    donation = donations(:anonymous_donation)
+#    put :create, :donation_id => donation.id, :user => {
+#            :login => 'testuser', :email => 'test@domain.com',
+#            :password => 'testuserpassword', :password_confirmation => 'testuserpassword'}
+#    assert_redirected_to signup_completed_user_path(:testuser)
+#    user = User.find_by_login('testuser')
+#    donations = user.donations
+#    donation = Pledge.find(donation.id)
+#    assert !donation.user.nil?
+#  end  
 
 #    assert_redirected_to donation_path(assigns(:donation))
 #  end

@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 20090408231608
+# Schema version: 20090422073021
 #
 # Table name: users
 #
@@ -36,18 +36,22 @@
 #  sb_posts_count            :integer(4)      default(0)
 #  sb_last_seen_at           :datetime
 #  role_id                   :integer(4)
-#  saver                     :boolean(1)
+#  type                      :string(255)
+#  requested_match_cents     :integer(4)
+#  asset_type_id             :integer(4)
+#  organization_id           :integer(4)
+#  full_name                 :string(255)
 #
 
 saver:
   login: saver
   email: saver@example.com
-  description: I am friggin awesome
+  description: I am a saver
   salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
   crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
-  created_at: <%= 5.days.ago.to_s :db %>
-  activated_at: <%= 5.days.ago.to_s :db %>  
-  activation_code: 
+  created_at: <%= 6.days.ago.to_s :db %>
+  activated_at: <%= 6.days.ago.to_s :db %>
+  activation_code:
   state: washington
   metro_area: seattle
   profile_public: true
@@ -55,7 +59,62 @@ saver:
   birthday: <%= 15.years.ago.to_s :db %>
   activities_count: 0
   role_id: 3
-  saver: true
+  type: Saver
+saver2:
+  login: saver2
+  email: saver2@example.com
+  description: I am a saver
+  salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
+  crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
+  created_at: <%= 5.days.ago.to_s :db %>
+  activated_at: <%= 5.days.ago.to_s :db %>
+  activation_code:
+  state: california
+  metro_area: sanfrancisco
+  profile_public: true
+  login_slug: saver2
+  birthday: <%= 15.years.ago.to_s :db %>
+  activities_count: 0
+  role_id: 3
+  type: Saver
+
+earn:
+  full_name: EARN
+  login: earn_login
+  email: earn@example.com
+  description: <p>EARN description.</p>
+  salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
+  crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
+  created_at: <%= 5.days.ago.to_s :db %>
+  activated_at: <%= 5.days.ago.to_s :db %>
+  activation_code:
+  state: 2
+  metro_area: 1
+  profile_public: true
+  login_slug: earn_login
+  birthday: <%= 15.years.ago.to_s :db %>
+  activities_count: 0
+  role_id: 3
+  type: Organization
+savetogether:
+  full_name: SaveTogether
+  login: savetogether_login
+  email: savetogether@example.com
+  description: <p>SaveTogether description.</p>
+  salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
+  crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
+  created_at: <%= 5.days.ago.to_s :db %>
+  activated_at: <%= 5.days.ago.to_s :db %>
+  activation_code:
+  state: 2
+  metro_area: 1
+  profile_public: true
+  login_slug: savetogether_login
+  birthday: <%= 15.years.ago.to_s :db %>
+  activities_count: 0
+  role_id: 3
+  type: Organization
+
 donor:
   login: donor
   email: donor@example.com
@@ -70,6 +129,7 @@ donor:
   login_slug: donor
   birthday: <%= 15.years.ago.to_s :db %>  
   role_id: 3
+  type: User
 minUser:
   login: minUser
   email: minUser@example.com
@@ -82,23 +142,7 @@ minUser:
   login_slug: minUser
   birthday: <%= 15.years.ago.to_s :db %>  
   role_id: 3
-saver2:
-  login: saver2
-  email: saver2@example.com
-  description: I am friggin awesome
-  salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
-  crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
-  created_at: <%= 5.days.ago.to_s :db %>
-  activated_at: <%= 5.days.ago.to_s :db %>
-  activation_code:
-  state: california
-  metro_area: sanfrancisco
-  profile_public: true
-  login_slug: saver2
-  birthday: <%= 15.years.ago.to_s :db %>
-  activities_count: 0
-  role_id: 3
-  saver: true
+  type: User
 admin:
   login: administrator
   email: admin@example.com
@@ -111,3 +155,4 @@ admin:
   login_slug: admin
   birthday: <%= 15.years.ago.to_s :db %>
   role_id: 1
+  type: User

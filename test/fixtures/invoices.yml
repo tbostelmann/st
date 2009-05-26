@@ -1,7 +1,15 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+# == Schema Information
+# Schema version: 20090422073021
+#
+# Table name: invoices
+#
+#  id                 :integer(4)      not null, primary key
+#  type               :string(255)
+#  notification_email :string(255)
+#  created_at         :datetime
+#  updated_at         :datetime
+#
 
-one:
-  pledge_id: 1
-
-two:
-  pledge_id: 1
+pledge:
+    notification_email: test@example.net
+    type: Pledge

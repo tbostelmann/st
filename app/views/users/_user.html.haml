@@ -3,8 +3,7 @@
     %td
       = link_to image_tag( user.avatar_photo_url(:thumb), :class => "polaroid" ), user_path(user)
     %td
-      - if !user.asset_development_cases.nil? && user.asset_development_cases.size > 0
-        = render :partial => "users/adc", :object => user.asset_development_cases[0], :locals => { :user => user }
+      = render :partial => "users/adc", :object => user, :locals => { :saver => user }
     %td
       %font{:size=>"+1"}= user.login.capitalize
       %br
