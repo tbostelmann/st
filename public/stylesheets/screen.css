@@ -115,6 +115,9 @@ a {
     margin-bottom: 0;
     padding: 0.25em;
   }
+  .first_alt {
+    margin-top: 2.5em;
+  }
 
 /* Concepts table */
 table.concepts {
