@@ -12,7 +12,7 @@ class DonationsControllerTest < ActionController::TestCase
   end
 
   test "create action on valid donation should render 'create' template" do
-    adc = asset_development_cases(:saverCase)
+    adc = asset_development_cases(:saver1_case)
     saver = users(:saver)
     stOrg = Organization.find_savetogether_org
 
@@ -23,7 +23,7 @@ class DonationsControllerTest < ActionController::TestCase
   end
 
   test "create action on invalid donation should render 'new' template" do
-    adc = asset_development_cases(:saverCase)
+    adc = asset_development_cases(:saver1_case)
     saver = users(:saver)
     stOrg = Organization.find_savetogether_org
 
@@ -37,7 +37,7 @@ class DonationsControllerTest < ActionController::TestCase
   end
   
   def gimme_some_donation_params
-    adc = asset_development_cases(:saverCase)
+    adc = asset_development_cases(:saver1_case)
     saver = users(:saver)
     stOrg = Organization.find_savetogether_org
     

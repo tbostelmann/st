@@ -12,8 +12,17 @@
 #
 
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-saverCaseAccount:
-    owner: saverCase (AssetDevelopmentCase)
+saver1_case_account:
+    owner: saver1_case (AssetDevelopmentCase)
+
+saver2_case_account:
+    owner: saver2_case (AssetDevelopmentCase)
+
+saver3_case_account:
+    owner: saver3_case (AssetDevelopmentCase)
+
+saver4_case_account:
+    owner: saver4_case (AssetDevelopmentCase)
 
 saveTogetherAccount:
     owner: saveTogetherOrg (Organization)

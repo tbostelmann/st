@@ -13,8 +13,27 @@
 #  updated_at                  :datetime
 #
 
-saverCase:
+saver1_case:
     user: saver
+    asset_type: education
     requested_match_total_cents: 200000
+    #requested_match_left_cents: 50000
+    organization: minOrganization
+saver2_case:
+    user: saver2
+    asset_type: business
+    requested_match_total_cents: 100000
+    #requested_match_left_cents: 50000
+    organization: minOrganization
+saver3_case:
+    user: saver3
+    asset_type: home
+    requested_match_total_cents: 150000
+    #requested_match_left_cents: 50000
+    organization: minOrganization
+saver4_case:
+    user: saver4
+    asset_type: education
+    requested_match_total_cents: 250000
     #requested_match_left_cents: 50000
     organization: minOrganization
