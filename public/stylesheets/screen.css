@@ -102,6 +102,19 @@ a {
   .MainForm p input:hover {
     background: #100B49;
   }
+  
+  /* Turn off some of vertical space */
+.MainForm p.skinny {
+  margin-bottom: 0;
+  line-height: 0;
+}
+  .MainForm p.skinny input {
+    margin: 0;
+  }
+  .box.alt.skinny {
+    margin-bottom: 0;
+    padding: 0.25em;
+  }
 
 /* Concepts table */
 table.concepts {
