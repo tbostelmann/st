@@ -9,7 +9,7 @@
       .yui-u
         %h3
           Donation
-        - form_for @pledge, :url => { :action => :create } :html => { :class => "MainForm" } do |f|
+        - form_for @pledge, :url => { :action => :create }, :html => { :class => "MainForm" } do |f|
           = hidden_field_tag :saver_id, @saver.id
           = f.error_messages
           #donation_line_items
