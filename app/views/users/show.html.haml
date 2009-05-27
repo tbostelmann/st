@@ -15,8 +15,8 @@
             =:about_me.l
           - if @adc
             = render :partial => "users/adc", :object => @user.asset_development_cases[0], :locals => { :user => @user }
-            %p
-              = @user.description
+          %p
+            = @user.description
       - unless @users_comments.empty?
         #photo_comments.box.alt
           %h3=:my_recent_comments.l
