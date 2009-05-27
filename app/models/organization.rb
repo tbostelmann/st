@@ -45,8 +45,8 @@
 
 class Organization < User
   has_many :savers
-  has_many :fees
-  has_many :donations
+  has_many :fees, :foreign_key => :user_id
+  has_many :donations, :foreign_key => :user_id
 
   def self.find_savetogether_org
     Organization.find(:first,

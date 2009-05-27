@@ -1,27 +1,27 @@
-require 'test_helper'
+require File.dirname(__FILE__) + '/../test_helper'
 
 class PledgesControllerTest < ActionController::TestCase
   include AuthenticatedTestHelper
   
-#  test "get new" do
-#    saver = users(:saver)
-#    user = users(:donor)
-#    login_as(user.login)
-#    get :new, {:saver_id => saver.id}
-#    assert_response :success
-#  end
-#
-#  test "create action on valid donation should render 'create' template" do
-#    adc = asset_development_cases(:saverCase)
-#    saver = users(:saver)
-#    stOrg = Organization.find_savetogether_org
-#
-#    post :create, :donation => gimme_some_donation_params
-#
-#    assert_template 'create'
-#    assert_response :success
-#  end
-#
+  test "get new" do
+    saver = users(:saver)
+    user = users(:donor)
+    login_as(user.login)
+    get :new, {:saver_id => saver.id}
+    assert_template 'new'
+    assert_response :success
+  end
+
+  test "review action on valid donation should render 'review' template" do
+    saver = users(:saver)
+    stOrg = Organization.find_savetogether_org
+
+    post :review, {:saver_id => saver.id, :pledge => gimme_some_donation_params}
+
+    assert_template 'review'
+    assert_response :success
+  end
+
 #  test "create action on invalid donation should render 'new' template" do
 #    adc = asset_development_cases(:saverCase)
 #    saver = users(:saver)
@@ -36,53 +36,24 @@ class PledgesControllerTest < ActionController::TestCase
 #    assert_response :success
 #  end
 #
-#  def gimme_some_donation_params
-#    adc = asset_development_cases(:saverCase)
-#    saver = users(:saver)
-#    stOrg = Organization.find_savetogether_org
-#
-#    # minimum required donation elements
-#    donation_params = {
-#      :saver_id => saver.id,
-#      :notification_email => "a@b.com",
-#      :donation_line_item_attributes => {
-#        "0" => {
-#          :amount => "50.00",
-#          :account_id => adc.account.id,
-#          :description => "Donation for Juanita"
-#          },
-#        "1" => {
-#          :amount => "5.00",
-#          :account_id => stOrg.account.id,
-#          :description => "Donation for SaveTogether"
-#          }
-#        }
-#      }
-#  end
+  def gimme_some_donation_params
+    saver = users(:saver)
+    stOrg = Organization.find_savetogether_org
 
-#    assert_redirected_to donation_path(assigns(:donation))
-#  end
-#
-#  def test_should_show_donation
-#    get :show, :id => donations(:one).id
-#    assert_response :success
-#  end
-#
-#  def test_should_get_edit
-#    get :edit, :id => donations(:one).id
-#    assert_response :success
-#  end
-#
-#  def test_should_update_donation
-#    put :update, :id => donations(:one).id, :donation => { }
-#    assert_redirected_to donation_path(assigns(:donation))
-#  end
-#
-#  def test_should_destroy_donation
-#    assert_difference('Donation.count', -1) do
-#      delete :destroy, :id => donations(:one).id
-#    end
-#
-#    assert_redirected_to donations_path
-#  end
+    # minimum required donation elements
+    return {
+      :notification_email => "a@b.com",
+      :notification_email_confirmation => "a@b.com",
+      :line_item_attributes => [
+        {
+          :amount => "50.00",
+          :user_id => saver.id
+          },
+        {
+          :amount => "5.00",
+          :user_id => stOrg.id
+          }
+        ]
+      }
+  end
 end

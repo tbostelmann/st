@@ -3,7 +3,7 @@ require 'money'
 
 class PledgeTest < ActiveSupport::TestCase
   test "validate donation" do
-    pledge = invoices(:pledge1)
+    pledge = invoices(:pledge)
     assert !pledge.nil?
   end
 

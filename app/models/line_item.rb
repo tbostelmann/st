@@ -18,8 +18,7 @@ class LineItem < ActiveRecord::Base
   has_many :financial_transactions
   belongs_to :invoice
   belongs_to :user
+  belongs_to :donor
 
   composed_of :amount, :class_name => "Money", :mapping => [%w(cents cents)], :converter => Proc.new { |value| value.to_money }
-
-  validates_presence_of :invoice
 end

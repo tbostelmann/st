@@ -148,7 +148,7 @@ earn:
   type: Organization
 savetogether:
   full_name: SaveTogether
-  login: savetogether_login
+  login: savetogether
   email: savetogether@example.com
   description: <p>SaveTogether description.</p>
   salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
@@ -179,7 +179,7 @@ donor:
   login_slug: donor
   birthday: <%= 15.years.ago.to_s :db %>  
   role_id: 3
-  type: User
+  type: Donor
 minUser:
   login: minUser
   email: minUser@example.com
@@ -192,7 +192,7 @@ minUser:
   login_slug: minUser
   birthday: <%= 15.years.ago.to_s :db %>  
   role_id: 3
-  type: User
+  type: Donor
 admin:
   login: administrator
   email: admin@example.com
@@ -205,4 +205,4 @@ admin:
   login_slug: admin
   birthday: <%= 15.years.ago.to_s :db %>
   role_id: 1
-  type: User
+  type: Donor

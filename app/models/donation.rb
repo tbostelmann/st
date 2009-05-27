@@ -14,6 +14,4 @@
 
 class Donation < LineItem
   belongs_to :donor, :class_name => 'User', :foreign_key => :donor_id
-  belongs_to :saver, :class_name => 'Saver', :foreign_key => :user_id
-  belongs_to :organization, :class_name => 'Organization', :foreign_key => :user_id
 end

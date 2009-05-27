@@ -3,42 +3,31 @@ require 'money'
 class PledgesController < BaseController
   
   # GET /pledges/new/{:saver_id}
-  # GET /pledges/new/{:saver_id}.xml
   def new
     @saver = Saver.find(params[:saver_id])
-    user = current_user
-    stOrg = Organization.find_savetogether_org
+    @user = current_user
+    @storg = Organization.find_savetogether_org
 
     @pledge = Pledge.new
-    line1 = Donation.new(:amount => "50", :user => @saver)
-    line2 = Donation.new(:amount => "5", :user => stOrg)
-    @pledge.line_items << line1
-    @pledge.line_items << line2
-    if !user.nil?
-      @pledge.notification_email = user.email
-      line1.donor = user
-      line2.donor = user
-    end
 
     respond_to do |format|
       format.html # new.html.erb
-      format.xml  { render :xml => @donation }
     end
   end
 
-  # POST /donations
-  # POST /donations.xml
-  def create
-    # TODO: need to addn donation_status default setting to initializer
-    @donation = Pledge.new(params[:donation])
+  # POST /pledges/review
+  def review
+    @saver = Saver.find(params[:saver_id])
+    @user = current_user
+    @storg = Organization.find_savetogether_org
+
+    @pledge = Pledge.new(params[:pledge])
 
     respond_to do |format|
-      if @donation.save
+      if @pledge.valid?
         format.html # create.html.erb
-        format.xml  { render :xml => @donation }
       else
-        format.html { render :action => "new", :user_id => @user_id }
-        format.xml  { render :xml => @donation.errors, :status => :unprocessable_entity }
+        format.html { render :action => "new", :saver_id => params[:saver_id] }
       end
     end
   end

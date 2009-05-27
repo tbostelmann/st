@@ -16,12 +16,14 @@ donation1:
   cents: 5000
   invoice_id: 1
   user: saver
+  donor: donor
   type: Donation
   
 donation2:
   cents: 500
   invoice_id: 1
   user: savetogether
+  donor: donor
   type: Donation
 
 fee1:
