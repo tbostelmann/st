@@ -32,8 +32,21 @@ class PledgesController < BaseController
     end
   end
 
+  def done
+    notify = Paypal::Notification.new(request.raw_post)
+    
+    handle_pay_pal_notification(notification)
+
+    @donation = Pledge.find(notification.invoice())
+
+    if current_user
+      redirect_to :controller => 'users', :action => 'show', :id => current_user
+    else
+      redirect_to :controller => 'users', :action => 'new', :donation_id => notification.invoice()
+    end
+  end
+
   def notify
-    def notify
       notify = Paypal::Notification.new(request.raw_post)
       donation = Donation.find(notify.invoice())
 
@@ -90,26 +103,12 @@ class PledgesController < BaseController
           @payment.save
         end
       end
-      render :nothing => true
-    end
+      render :nothing => true  
   end
 
-  def done
-
-
-    handle_pay_pal_notification(notification)
-
-    @donation = Pledge.find(notification.invoice())
-
-    if current_user
-      redirect_to :controller => 'users', :action => 'show', :id => current_user
-    else
-      redirect_to :controller => 'users', :action => 'new', :donation_id => notification.invoice()
-    end
-  end
 
   def cancel
-    
+    handle_pay_pal_notification(notification)
   end
 
   private

@@ -36,11 +36,12 @@ ActionController::Routing::Routes.draw do |map|
 
   map.from_plugin :community_engine
 
-  map.resources  :pledges
+#  map.resources  :pledges
   map.new '/pledges/new/:saver_id', :controller => 'pledges', :action => 'new'
-  map.done '/done', :controller => 'pledges', :action => 'done'
-  map.cancel '/cancel', :controller => 'pledges', :action => 'cancel'
-  map.notify '/notify', :controller => 'pledges', :action => 'notify'
+  map.create '/pledges/create', :controller => 'pledges', :action => 'create'
+  map.done '/pledges/done', :controller => 'pledges', :action => 'done'
+  map.cancel '/pledges/cancel', :controller => 'pledges', :action => 'cancel'
+  map.notify '/pledges/notify', :controller => 'pledges', :action => 'notify'
   map.signup_after '/signup/:pledge_id', :controller => 'users', :action => 'new'
 
   # Install the default routes as the lowest priority.

@@ -7,7 +7,7 @@
     <%= hidden_field_tag :upload, "1" %>
     <%= hidden_field_tag :notify_url,url_for(:only_path => false, :action => 'notify') %>
     <%= hidden_field_tag :charset, "utf-8" %>
-    <%= hidden_field_tag :return, url_for(:only_path => false, :action => 'create') %>
+    <%= hidden_field_tag :return, url_for(:only_path => false, :action => 'done') %>
     <%= hidden_field_tag :invoice, @pledge.id %>
 
     <%= hidden_field_tag :tax, "0.00" %>
