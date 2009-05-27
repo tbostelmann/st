@@ -15,7 +15,7 @@ class Pledge < Invoice
   validates_confirmation_of :notification_email, :message => "should match confirmation"
 
   def line_item_attributes=(li_attributes)
-    li_attributes.each_with_index do |attributes, index|
+    li_attributes.each do |index, attributes|
       line_items.build(attributes)
     end
   end

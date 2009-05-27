@@ -1,6 +1,6 @@
 <table width="100%">
-  <% form_for @pledge, :url => { :action => :review } do |f| %>
-      <%= f.hidden_field :saver_id, :value => @saver.id%>
+  <% form_for @pledge, :url => { :action => :create } do |f| %>
+      <%= hidden_field_tag :saver_id, @saver.id %>
       <%= f.error_messages %>
     <div id="donation_line_items">
       <% fields_for "pledge[line_item_attributes][0]" do |li_form| -%>
@@ -16,14 +16,14 @@
         </tr>
       </div>
       <% end -%>
-      <% fields_for "pledge[line_item_attributes][0]" do |li_form| -%>
+      <% fields_for "pledge[line_item_attributes][1]" do |li_form| -%>
       <div class="donation_line_item">
           <tr>
               <td align="left" width="25%">
                   (Optional) amount you would like to donate to SaveTogether
               </td>
               <td align="left">
-                  <%= li_form.text_field :amount, :size => 7, :default => "5" %>
+                  <%= li_form.text_field :amount, :size => 7, :value => "5" %>
                   <%= li_form.hidden_field :user_id, :value => @storg.id %>
               </td>
           </tr>

@@ -1,0 +1,55 @@
+<table width="100%">
+  <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
+    <%= hidden_field_tag :cancel_return, "http://www.savetogether.org/" %>
+    <%= hidden_field_tag :bn, "ActiveMerchant" %>
+    <%= hidden_field_tag :redirect_cmd, "_cart" %>
+    <%= hidden_field_tag :cmd, "_cart" %>
+    <%= hidden_field_tag :upload, "1" %>
+    <%= hidden_field_tag :notify_url,url_for(:only_path => false, :action => 'notify') %>
+    <%= hidden_field_tag :charset, "utf-8" %>
+    <%= hidden_field_tag :return, url_for(:only_path => false, :action => 'create') %>
+    <%= hidden_field_tag :invoice, @pledge.id %>
+
+    <%= hidden_field_tag :tax, "0.00" %>
+    <%= hidden_field_tag :business, "tom@savetogether.org" %>
+    <%= hidden_field_tag :address_override, "0" %>
+    <%= hidden_field_tag :shipping, "0.00" %>
+    <%= hidden_field_tag :no_note, "1" %>
+    <%= hidden_field_tag :no_shipping, "1" %>
+    <%= hidden_field_tag :currency_code, "USD" %>
+    <div id="donation_line_items">
+      <div class="donation_line_item">
+        <tr>
+            <td align="left" width="25%">
+                Amount you would like to donate to <%= @saver.login %>
+            </td>
+            <td align="left">
+                <%= @pledge.line_items[0].amount.format(:html) %>
+                <%= hidden_field_tag :item_number_0, @saver.id %>
+                <%= hidden_field_tag :item_name_0, @saver.login %>
+                <%= hidden_field_tag :item_amount_0, @pledge.line_items[0].amount %>
+            </td>
+        </tr>
+      </div>
+      <div class="donation_line_item">
+          <tr>
+            <td align="left" width="25%">
+              (Optional) amount you would like to donate to SaveTogether
+            </td>
+            <td align="left">
+                <%= @pledge.line_items[1].amount.format(:html) %>
+                <%= hidden_field_tag :item_number_1, @storg.id %>
+                <%= hidden_field_tag :item_name_1, @storg.login %>
+                <%= hidden_field_tag :item_amount_1, @pledge.line_items[1].amount %>
+            </td>
+          </tr>
+      </div>
+    </div>
+    <tr>
+        <td>
+        </td>
+        <td><%= submit_tag "Continue" %>
+        </td>
+    </tr>
+  </form>
+</table>

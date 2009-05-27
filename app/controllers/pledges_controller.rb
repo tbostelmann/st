@@ -16,7 +16,7 @@ class PledgesController < BaseController
   end
 
   # POST /pledges/review
-  def review
+  def create
     @saver = Saver.find(params[:saver_id])
     @user = current_user
     @storg = Organization.find_savetogether_org
@@ -24,7 +24,7 @@ class PledgesController < BaseController
     @pledge = Pledge.new(params[:pledge])
 
     respond_to do |format|
-      if @pledge.valid?
+      if @pledge.save
         format.html # create.html.erb
       else
         format.html { render :action => "new", :saver_id => params[:saver_id] }

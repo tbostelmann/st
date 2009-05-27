@@ -12,13 +12,13 @@ class PledgesControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "review action on valid donation should render 'review' template" do
+  test "create action on valid donation should render 'create' template" do
     saver = users(:saver)
     stOrg = Organization.find_savetogether_org
 
-    post :review, {:saver_id => saver.id, :pledge => gimme_some_donation_params}
+    post :create, {:saver_id => saver.id, :pledge => gimme_some_donation_params}
 
-    assert_template 'review'
+    assert_template 'create'
     assert_response :success
   end
 
@@ -44,16 +44,16 @@ class PledgesControllerTest < ActionController::TestCase
     return {
       :notification_email => "a@b.com",
       :notification_email_confirmation => "a@b.com",
-      :line_item_attributes => [
-        {
+      :line_item_attributes => {
+        "0" => {
           :amount => "50.00",
           :user_id => saver.id
           },
-        {
+        "1" => {
           :amount => "5.00",
           :user_id => stOrg.id
           }
-        ]
+        }
       }
   end
 end
