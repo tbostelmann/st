@@ -21,9 +21,10 @@
         = render :partial => "shared/header"
             
       #bd
-        = render :partial => "shared/messages"
+        .st-block
+          = render :partial => "shared/messages"
 
-        = @content_for_layout
+          = @content_for_layout
                             
       #ft
         -if show_footer_content?    
