@@ -1,0 +1,30 @@
+.st-block
+  #profile_details.box.hentry
+    .yui-g
+      .yui-u.first
+        %h3
+          = @donation.saver.login
+        .centered
+          = link_to image_tag( @donation.saver.avatar_photo_url(:medium), :class => 'polaroid'), user_path(@donation.saver)
+      .yui-u
+        %h3
+          Donation
+        - form_for @donation, :url => { :action => :create }, :html => { :class => "MainForm" } do |f|
+          = f.error_messages
+          = f.hidden_field :user_id
+          = f.hidden_field :saver_id
+          = hidden_field_tag(:saver_id, @saver_id)
+          #donation_line_items
+            - @donation.donation_line_items.each_with_index do |donation_line_item, index|
+              .donation_line_item
+                - fields_for "donation[donation_line_item_attributes][#{index}]", donation_line_item do |dli_form|
+                  %label{:for => "line_item_description"}="#{donation_line_item.description}:"
+                  = dli_form.text_field :amount
+                  = dli_form.hidden_field :account_id
+                  = dli_form.hidden_field :description
+          %label{:for => "notification_email"}="Send Notifications To:"
+          = f.text_field :notification_email
+          %label{:for => "email_confirmation"}="Confirm Notification Email:"
+          = f.text_field :notification_email_confirmation
+          %p
+            = submit_tag "Continue"
