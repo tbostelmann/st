@@ -13,7 +13,7 @@
     %td
       Need:
     %td
-      %span{:style=>"color:red"}= saver.match_amount_left.format(:no_cents)
+      =saver.match_amount_left.format(:no_cents)
   %tr
     %td{:colspan => "2"}
       = custom_progress_bar("progbar#{saver.id}", saver.match_percent, :show_text=>true, :bar_images=>['progress_bar/percentImage_back1.png','progress_bar/percentImage_back2.png','progress_bar/percentImage_back3.png','progress_bar/percentImage_back4.png'], :width=>120, :height=>10)

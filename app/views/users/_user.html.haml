@@ -2,7 +2,7 @@
   %tr
     %td.photo
       = link_to image_tag( user.avatar_photo_url(:thumb), :class => "polaroid" ), user_path(user)
-    %td
+    %td.adc
       = render :partial => "users/adc", :object => user, :locals => { :saver => user }
     %td
       %font{:size=>"+1"}= user.login.capitalize
