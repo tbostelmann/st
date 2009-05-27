@@ -64,7 +64,7 @@ namespace :db do
       :role => Role[:member],
       :organization => org,
       :asset_type => Home,
-      :requested_match_cents => "2000")
+      :requested_match_amount => "2000")
     saver.activate
     photo = Photo.new(
             :name => "Washington CASH Saver",
@@ -101,7 +101,7 @@ namespace :db do
       :role => Role[:member],
       :organization => org,
       :asset_type => Education,
-      :requested_match_cents => "2000")
+      :requested_match_amount => "2000")
     saver.activate
     photo = Photo.new(
             :name => "EARN Saver",
@@ -138,7 +138,7 @@ namespace :db do
       :role => Role[:member],
       :organization => org,
       :asset_type => Business,
-      :requested_match_cents => "2000")
+      :requested_match_amount => "2000")
     saver.activate
     photo = Photo.new(
             :name => "Opportunity Fund Saver",
@@ -175,7 +175,7 @@ namespace :db do
       :role => Role[:member],
       :organization => org,
       :asset_type => Business,
-      :requested_match_cents => "2000")
+      :requested_match_amount => "2000")
     saver.activate
     photo = Photo.new(
             :name => "Lawrence Community Works Saver",

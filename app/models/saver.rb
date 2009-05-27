@@ -48,7 +48,7 @@ class Saver < User
   belongs_to :asset_type
   has_many :donations, :foreign_key => :user_id
 
-  composed_of :requested_match_amount, :class_name => "Money", :mapping => [%w(cents requested_match_cents)], :converter => Proc.new { |value| value.to_money }
+  composed_of :requested_match_amount, :class_name => "Money", :mapping => [%w(requested_match_cents cents)], :converter => Proc.new { |value| value.to_money }
 
   validates_presence_of :organization
   validates_presence_of :requested_match_cents
@@ -126,18 +126,18 @@ class Saver < User
   end
 
   def match_amount_left
-    Money.us_dollar(requested_match_amount_cents)
+    return Money.us_dollar(match_amount_left_cents)
   end
 
   def matched_amount
-    Money.us_dollar(matched_amount_cents)
+    return Money.us_dollar(matched_amount_cents)
   end
 
   def match_amount_left_cents
-    amt_left_cents = requested_match_amount_cents - matched_amount_cents
+    return requested_match_cents - matched_amount_cents
   end
 
   def matched_amount_cents
-    donations.sum(:cents)
+    return donations.sum(:cents)
   end
 end
