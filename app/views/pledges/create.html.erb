@@ -1,5 +1,5 @@
 <table width="100%">
-  <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
+  <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" id="payment-form" method="post">
     <%= hidden_field_tag :cancel_return, "http://www.savetogether.org/" %>
     <%= hidden_field_tag :bn, "ActiveMerchant" %>
     <%= hidden_field_tag :redirect_cmd, "_cart" %>
@@ -25,9 +25,9 @@
             </td>
             <td align="left">
                 <%= @pledge.line_items[0].amount.format(:html) %>
-                <%= hidden_field_tag :item_number_0, @saver.id %>
-                <%= hidden_field_tag :item_name_0, @saver.login %>
-                <%= hidden_field_tag :item_amount_0, @pledge.line_items[0].amount %>
+                <%= hidden_field_tag :item_number_1, @saver.id %>
+                <%= hidden_field_tag :item_name_1, @saver.login %>
+                <%= hidden_field_tag :amount_1, @pledge.line_items[0].amount %>
             </td>
         </tr>
       </div>
@@ -38,9 +38,9 @@
             </td>
             <td align="left">
                 <%= @pledge.line_items[1].amount.format(:html) %>
-                <%= hidden_field_tag :item_number_1, @storg.id %>
-                <%= hidden_field_tag :item_name_1, @storg.login %>
-                <%= hidden_field_tag :item_amount_1, @pledge.line_items[1].amount %>
+                <%= hidden_field_tag :item_number_2, @storg.id %>
+                <%= hidden_field_tag :item_name_2, @storg.login %>
+                <%= hidden_field_tag :amount_2, @pledge.line_items[1].amount %>
             </td>
           </tr>
       </div>
