@@ -23,7 +23,7 @@ class LineItem < ActiveRecord::Base
 
   composed_of :amount, :class_name => "Money", :mapping => [%w(cents cents)], :converter => Proc.new { |value| value.to_money }
 
-  validate_presence_of :financial_transactions
+  validates_presence_of :financial_transactions
   
   def status
     ft = financial_transactions.find(:first, :order => {:created_at => :desc}).status
