@@ -11,5 +11,9 @@
 #
 
 pledge:
-    notification_email: test@example.net
+    notification_email: donor@example.net
+    type: Pledge
+
+pledge2:
+    notification_email: donor@example.net
     type: Pledge

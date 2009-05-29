@@ -33,6 +33,7 @@ class PledgesController < BaseController
   end
 
   def done
+    pn = PaymentNotification.create(:raw_data => request.raw_post)
     notify = Paypal::Notification.new(request.raw_post)
     
     handle_pay_pal_notification(notification)

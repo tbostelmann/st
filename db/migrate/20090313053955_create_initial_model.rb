@@ -1,6 +1,7 @@
 class CreateInitialModel < ActiveRecord::Migration
   def self.up
     create_table :invoices do |t|
+      t.integer :user_id
       t.string :type
       t.string :notification_email
       t.timestamps
@@ -11,6 +12,7 @@ class CreateInitialModel < ActiveRecord::Migration
       t.integer :invoice_id
       t.integer :user_id
       t.integer :donor_id
+      t.string :status
       t.string :type
       t.timestamps
     end
@@ -35,7 +37,6 @@ class CreateInitialModel < ActiveRecord::Migration
       t.integer :line_item_id
       t.integer :payment_notification_id
       t.string :status
-      t.integer :position
       t.timestamps
     end
   end

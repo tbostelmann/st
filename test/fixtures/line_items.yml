@@ -13,22 +13,22 @@
 #  updated_at :datetime
 #
 
-donation1:
-  cents: 5000
-  invoice_id: 1
-  user: saver
-  donor: donor
-  type: Donation
-  
-donation2:
-  cents: 500
-  invoice_id: 1
-  user: savetogether
-  donor: donor
-  type: Donation
-
-fee1:
-  cents: 190
-  invoice_id: 1
-  user: savetogether
-  type: Fee
+#donation1:
+#  cents: 5000
+#  invoice: pledge2
+#  user: saver
+#  donor: donor
+#  type: Donation
+#
+#donation2:
+#  cents: 500
+#  invoice: pledge2
+#  user: savetogether
+#  donor: donor
+#  type: Donation
+#
+#fee1:
+#  cents: 190
+#  invoice: pledge2
+#  user: savetogether
+#  type: Fee

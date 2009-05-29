@@ -16,6 +16,7 @@ config/services.yml
 coverage/
 doc/api
 doc/app
+doc/plugins
 log/*
 out/*
 perf/*
