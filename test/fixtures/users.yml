@@ -158,8 +158,26 @@ savetogether:
   activation_code:
   state: 2
   metro_area: 1
-  profile_public: true
-  login_slug: savetogether_login
+  profile_public: false
+  login_slug: savetogether
+  birthday: <%= 15.years.ago.to_s :db %>
+  activities_count: 0
+  role_id: 3
+  type: Organization
+paypal:
+  full_name: Paypal
+  login: paypal
+  email: paypal@example.com
+  description: <p>paypal description.</p>
+  salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
+  crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
+  created_at: <%= 5.days.ago.to_s :db %>
+  activated_at: <%= 5.days.ago.to_s :db %>
+  activation_code:
+  state: 2
+  metro_area: 1
+  profile_public: false
+  login_slug: paypal
   birthday: <%= 15.years.ago.to_s :db %>
   activities_count: 0
   role_id: 3
@@ -180,6 +198,37 @@ donor:
   birthday: <%= 15.years.ago.to_s :db %>  
   role_id: 3
   type: Donor
+donor2:
+  login: donor2
+  email: donor2@example.com
+  description: I am happy to be here. Community rawks!
+  salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
+  crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
+  created_at: <%= 1.days.ago.to_s :db %>
+  activated_at: <%= 30.minutes.ago.to_s :db %>
+  activation_code:
+  sb_posts_count: 2
+  sb_last_seen_at: <%= 5.minutes.ago.to_s :db %>
+  login_slug: donor2
+  birthday: <%= 15.years.ago.to_s :db %>
+  role_id: 3
+  type: Donor
+donor3:
+  login: donor3
+  email: donor3@example.com
+  description: I am happy to be here. Community rawks!
+  salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
+  crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
+  created_at: <%= 1.days.ago.to_s :db %>
+  activated_at: <%= 30.minutes.ago.to_s :db %>
+  activation_code:
+  sb_posts_count: 2
+  sb_last_seen_at: <%= 5.minutes.ago.to_s :db %>
+  login_slug: donor3
+  birthday: <%= 15.years.ago.to_s :db %>
+  role_id: 3
+  type: Donor
+
 minUser:
   login: minUser
   email: minUser@example.com

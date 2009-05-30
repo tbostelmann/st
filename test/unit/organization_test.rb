@@ -1,27 +1,15 @@
 require 'test_helper'
 
 class OrganizationTest < ActiveSupport::TestCase
-#  test "create organization" do
-#    org = Organization.new()
-#    assert !org.valid?
-#
-#    org = Organization.new(
-#            :account => Account.new())
-#    assert !org.valid?
-#
-#    org = Organization.new(
-#            :name => "Test Org")
-#    assert org.valid?
-#
-#    org = Organization.new(
-#            :name => "Test Org",
-#            :account => Account.new())
-#    assert org.valid?
-#  end
-#
-#  test "find SaveTogether org" do
-#    stOrg = Organization.find_savetogether_org
-#    assert !stOrg.nil?
-#    assert !stOrg.account.nil?
-#  end
+  test "check find_paypal_org" do
+    paypal = Organization.find_paypal_org
+    assert !paypal.nil?
+    assert paypal.login == Organization::PAYPAL_LOGIN
+  end
+
+  test "check find_savetogether_org" do
+    storg = Organization.find_savetogether_org
+    assert !storg.nil?
+    assert storg.login == Organization::SAVETOGETHER_LOGIN
+  end
 end

@@ -13,7 +13,14 @@
 pledge:
     notification_email: donor@example.net
     type: Pledge
+    donor: donor
 
 pledge2:
-    notification_email: donor@example.net
+    notification_email: donor2@example.net
     type: Pledge
+    donor: donor2
+
+pledge3:
+    notification_email: donor3@example.net
+    type: Pledge
+    donor: donor3

@@ -12,58 +12,66 @@
 
 class Invoice < ActiveRecord::Base
   has_many :line_items
-
-  def update_user(user)
-    self.user = user
-    unless line_items.empty?
-      line_items.each do |line_item|
-        line_item.donor = user
-      end
-    end
-  end
+  belongs_to :donor 
 
   def self.process_payment_notification(pn)
     notify = pn.notification
     invoice = Invoice.find(notify.invoice)
 
-    if notify.acknowledge
-      if invoice.line_items.empty?
-        invoice.populate_invoice(notify)
+    if invoice.nil?
+      raise "Invoice not found"
+    end
+
+    Invoice.transaction do
+      if notify.acknowledge
+        # Verify Donation values against payment notification values
+        # Then update status
+        index = 1
+        while item_number = notify.params["item_number#{index}"]
+          beneficiary = User.find(item_number)
+          if beneficiary.nil?
+            raise "Beneficiary of Donation with id=#{beneficiary.id}, referenced in the payment notification, is not found"
+          end
+
+          amount = notify.params["amount#{index}"]
+          line_item = line_items.find_by_to_user(beneficiary)
+          if (line_item.nil?)
+            raise "LineItem for user #{beneficiary.id} not found"
+          elsif (amount.to_f != line_item.amount.to_f)
+            raise "LineItem.amount=#{line_item.amount} does not equal reported amount of #{amount}"
+          end
+
+          line_item.status = notify.status
+          index = index + 1
+        end
+
+        # Verify that the reported number of LineItems matches Invoice's Donation size
+        reported_size = index - 1   # Remove trailing increase of index
+        donations = line_items.find_by_type(:donation)
+        unless reported_size == donations.size
+          raise "Reported LineItem count does not match Invoice LineItem count"
+        end
+
+        # Add reported Fee if it hasn't been reported already'
+        amount = notify.fee
+        paypal = Organization.find_paypal_org
+        fee = line_items.find_by_to_user(paypal)
+        if fee.nil?
+          storg = Organization.find_savetogether_org
+          invoice.line_items << Fee.create(:from_user => storg, :to_user => paypal,
+                  :amount => amount, :invoice => invoice, :status => notify.status)
+        elsif fee.amount.to_f != amount.to_f
+          raise "Report Fee has changed since last notification"
+        else
+          fee.status = notify.status
+        end
+
+        invoice.set_transaction_status(pn, notify.status)
+      else
+        return false
       end
-
-      invoice.set_transaction_status(pn, notify.status)
-    else
-      return false
     end
 
-    return invoice.save
-  end
-
-  private
-
-  def set_transaction_status(pn, status)
-    line_items.each do |line_item|
-      FinancialTransaction.create(
-              :payment_notification => pn, :line_item => line_item, :status => status)
-      line_item.status = status
-      line_item.save
-    end
-  end
-
-  def populate_invoice(notify)
-    index = 1
-    while item_number = notify.params["item_number#{index}"]
-      amount = notify.params["amount#{index}"]
-      beneficiary = User.find(item_number)
-      invoice.line_items << Donation.create(:donor => user, :user => beneficiary,
-              :amount => amount, :invoice => invoice, :status => notify.status)
-      index = index + 1
-    end
-    amount = notify.fee
-    if amount.to_f > 0
-      storg = Organization.find_savetogether_org
-      invoice.line_items << Fee.create(:user => storg, :amount => amount,
-              :invoice => invoice, :status => notify.status)
-    end
+    return true
   end
 end

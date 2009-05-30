@@ -13,22 +13,61 @@
 #  updated_at :datetime
 #
 
-#donation1:
-#  cents: 5000
-#  invoice: pledge2
-#  user: saver
-#  donor: donor
-#  type: Donation
-#
-#donation2:
-#  cents: 500
-#  invoice: pledge2
-#  user: savetogether
-#  donor: donor
-#  type: Donation
-#
-#fee1:
-#  cents: 190
-#  invoice: pledge2
-#  user: savetogether
-#  type: Fee
+donation1:
+  cents: 5000
+  invoice: pledge
+  to_user: saver
+  from_user: donor
+  status: Processed
+  type: Donation
+donation2:
+  cents: 500
+  invoice: pledge
+  to_user: savetogether
+  from_user: donor
+  status: Processed
+  type: Donation
+fee1:
+  cents: 190
+  invoice: pledge2
+  from_user: savetogether
+  to_user: paypal
+  status: Processed
+  type: Fee
+
+donation3:
+  cents: 5000
+  invoice: pledge2
+  to_user: saver2
+  from_user: donor2
+  status: Pending
+  type: Donation
+donation4:
+  cents: 500
+  invoice: pledge2
+  to_user: savetogether
+  from_user: donor2
+  status: Pending
+  type: Donation
+
+donation5:
+  cents: 5000
+  invoice: pledge3
+  to_user: saver3
+  from_user: donor3
+  status: Denied
+  type: Donation
+donation6:
+  cents: 500
+  invoice: pledge3
+  to_user: savetogether
+  from_user: donor3
+  status: Denied
+  type: Donation
+fee2:
+  cents: 190
+  invoice: pledge3
+  from_user: savetogether
+  to_user: paypal
+  status: Processed
+  type: Fee

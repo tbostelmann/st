@@ -44,13 +44,14 @@
 #
 
 class Organization < User
-  has_many :savers
-  has_many :fees, :foreign_key => :user_id
-  has_many :donations, :foreign_key => :user_id
+  PAYPAL_LOGIN = 'paypal'
+  SAVETOGETHER_LOGIN = 'savetogether'
 
   def self.find_savetogether_org
-    Organization.find(:first,
-            :conditions => {:login => 'savetogether'}
-            )
+    find_by_login(SAVETOGETHER_LOGIN)
+  end
+
+  def self.find_paypal_org
+    find_by_login(PAYPAL_LOGIN)
   end
 end
