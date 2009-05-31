@@ -43,7 +43,7 @@
 #  full_name                 :string(255)
 #
 
-class Organization < User
+class Organization < Party
   PAYPAL_LOGIN = 'paypal'
   SAVETOGETHER_LOGIN = 'savetogether'
 
