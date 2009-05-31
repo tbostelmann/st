@@ -44,6 +44,14 @@
 #
 
 class Organization < Party
+  
+  has_many :all_donations_received, :class_name => 'Donation', :foreign_key => :to_user_id
+  has_many :donations_received, :class_name => 'Donation', :foreign_key => :to_user_id,
+           :conditions => "status = '#{LineItem::STATUS_PROCESSED}' OR status = '#{LineItem::STATUS_PENDING}'"
+           
+  has_many :fees_paid, :class_name => 'Fee', :foreign_key => :from_user_id
+  has_many :fees_received, :class_name => 'Fee', :foreign_key => :to_user_id
+
   PAYPAL_LOGIN = 'paypal'
   SAVETOGETHER_LOGIN = 'savetogether'
 
