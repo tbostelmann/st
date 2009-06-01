@@ -49,17 +49,6 @@ class Party < User
 
   has_many :members, :class_name => 'Saver', :foreign_key => :organization_id  
 
-  has_many :fees_paid, :class_name => 'Fee', :foreign_key => :from_user_id
-  has_many :fees_received, :class_name => 'Fee', :foreign_key => :to_user_id
-
-  has_many :all_donations_given, :class_name => 'Donation', :foreign_key => :from_user_id
-  has_many :donations_given, :class_name => 'Donation', :foreign_key => :from_user_id,
-           :conditions => "status = '#{LineItem::STATUS_PROCESSED}' OR status = '#{LineItem::STATUS_PENDING}'"
-
-  has_many :all_donations_received, :class_name => 'Donation', :foreign_key => :to_user_id
-  has_many :donations_received, :class_name => 'Donation', :foreign_key => :to_user_id,
-           :conditions => "status = '#{LineItem::STATUS_PROCESSED}' OR status = '#{LineItem::STATUS_PENDING}'"
-
   composed_of :requested_match_amount, :class_name => "Money", :mapping => [%w(requested_match_cents cents)], :converter => Proc.new { |value| value.to_money }
 
   def self.build_conditions_for_search(search)

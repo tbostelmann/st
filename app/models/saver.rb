@@ -44,6 +44,11 @@
 #
 
 class Saver < Party
+  
+  has_many :all_donations_received, :class_name => 'Donation', :foreign_key => :to_user_id
+  has_many :donations_received, :class_name => 'Donation', :foreign_key => :to_user_id,
+           :conditions => "status = '#{LineItem::STATUS_PROCESSED}' OR status = '#{LineItem::STATUS_PENDING}'"
+
   validates_presence_of :organization
   validates_presence_of :requested_match_cents
   validates_presence_of :asset_type  
