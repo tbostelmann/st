@@ -43,5 +43,5 @@
 #  full_name                 :string(255)
 #
 
-class Donor < Party
+class Donor < Party 
 end

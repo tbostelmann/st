@@ -5,18 +5,18 @@ class PledgesControllerTest < ActionController::TestCase
   
   test "get new" do
     saver = users(:saver)
-    user = users(:donor)
-    login_as(user.login)
     get :new, {:saver_id => saver.id}
     assert_template 'new'
     assert_response :success
   end
 
-  test "create action on valid donation should render 'create' template" do
+  test "create valid donation and register valid user should render 'create' template" do
     saver = users(:saver)
     stOrg = Organization.find_savetogether_org
 
-    post :create, {:saver_id => saver.id, :pledge => gimme_some_donation_params}
+    post :create, {:saver_id => saver.id,
+                   :pledge => pledge_params(saver),
+                   :donor => new_donor_params('testlogin'), }
 
     assert_template 'create'
     assert_response :success
@@ -36,24 +36,30 @@ class PledgesControllerTest < ActionController::TestCase
 #    assert_response :success
 #  end
 #
-  def gimme_some_donation_params
-    saver = users(:saver)
+  private
+  def new_donor_params(login)
+    return {
+        :login => login,
+        :email => "#{login}@example.com",
+        :password => "password",
+        :password_confirmation => "password"}
+  end
+
+  def pledge_params(saver)
     stOrg = Organization.find_savetogether_org
 
     # minimum required donation elements
     return {
-      :notification_email => "a@b.com",
-      :notification_email_confirmation => "a@b.com",
-      :line_item_attributes => {
-        "0" => {
-          :amount => "50.00",
-          :user_id => saver.id
-          },
-        "1" => {
-          :amount => "5.00",
-          :user_id => stOrg.id
+        :line_item_attributes => {
+          "0" => {
+            :amount => "50.00",      
+            :to_user_id => saver.id
+            },
+          "1" => {
+            :amount => "5.00",
+            :to_user_id => stOrg.id
+            }
           }
         }
-      }
   end
 end
