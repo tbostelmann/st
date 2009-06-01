@@ -1,0 +1,23 @@
+- @meta = { :description => "#{@donor.login}'s profile on #{AppConfig.community_name}.", :keywords => "#{@donor.login}, #{@donor.tags.join(", ") unless @donor.tags.nil?}", :robots => AppConfig.robots_meta_show_content }
+- @section = @donor.eql?(current_user) ? 'my_profile' : 'donors'
+- @sidebar_left = true
+
+.st-block
+  .yui-g
+    .yui-u.first
+      .box
+        = render :partial => 'users/profile_user_info_sidebar', :locals => {:user => @donor}
+
+    .yui-u
+      - if @donor.description
+        #about_me.box
+          %h3
+            =:about_me.l
+          %p
+            = @donor.description
+
+  - unless @savers.empty?
+    .yui-g
+    .box.user_list
+      %h3= "Savers you have donated to"
+      = render :partial => "savers/saver", :collection => @savers

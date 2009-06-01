@@ -34,18 +34,25 @@ ActionController::Routing::Routes.draw do |map|
 
   # See how all your routes lay out with "rake routes"
 
-  map.savers '/savers',     :controller => 'savers', :action => 'index'
-  map.saver  '/savers/:id', :controller => 'savers', :action => 'show'
+  map.savers     '/savers',               :controller => 'savers', :action => 'index'
+  map.saver      '/savers/:id',           :controller => 'savers', :action => 'show'
+  
+  # map.donors     '/donors',               :controller => 'donors', :action => 'index'
+  # map.donor      '/donors/:id',           :controller => 'donors', :action => 'show'
+  
+  map.resources :donors
+  
+  map.signup '/signup', :controller => "donors", :action => "new"
   
   map.from_plugin :community_engine
 
 #  map.resources  :pledges
-  map.new '/pledges/new/:saver_id', :controller => 'pledges', :action => 'new'
-  map.create '/pledges/create', :controller => 'pledges', :action => 'create'
-  map.done '/pledges/done', :controller => 'pledges', :action => 'done'
-  map.cancel '/pledges/cancel', :controller => 'pledges', :action => 'cancel'
-  map.notify '/pledges/notify', :controller => 'pledges', :action => 'notify'
-  map.signup_after '/signup/:pledge_id', :controller => 'users', :action => 'new'
+  map.new          '/pledges/new/:saver_id', :controller => 'pledges', :action => 'new'
+  map.create       '/pledges/create',        :controller => 'pledges', :action => 'create'
+  map.done         '/pledges/done',          :controller => 'pledges', :action => 'done'
+  map.cancel       '/pledges/cancel',        :controller => 'pledges', :action => 'cancel'
+  map.notify       '/pledges/notify',        :controller => 'pledges', :action => 'notify'
+  map.signup_after '/signup/:pledge_id',     :controller => 'donors',  :action => 'new'
 
   # Install the default routes as the lowest priority.
   # Note: These default routes make all actions in every controller accessible via GET requests. You should
