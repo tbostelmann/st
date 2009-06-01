@@ -1,24 +1,11 @@
-class UsersController < BaseController
-  def index  
-    cond, @search, @metro_areas, @states, @asset_types = Saver.paginated_users_conditions_with_search(params)
-    @users = Saver.recent.find(:all,
-      :conditions => cond.to_sql,
-      :include => [:tags],
-      :page => {:current => params[:page], :size => 20}
-      )
-
-    @tags = User.tag_counts :limit => 10
-
-    setup_metro_areas_for_cloud
-  end
-
+class DonorsController < ApplicationController
   def show
     @clippings      = @user.clippings.find(:all, :limit => 5)
     @photos         = @user.photos.find(:all, :limit => 5)
 
     @savers = []
-    if @user.donations
-      @user.donations.each do |donation|
+    if @donor.donations_given
+      @donor.donations_given.each do |donation|
         @savers << donation.saver
       end
     end

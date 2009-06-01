@@ -34,6 +34,9 @@ ActionController::Routing::Routes.draw do |map|
 
   # See how all your routes lay out with "rake routes"
 
+  map.savers '/savers',     :controller => 'savers', :action => 'index'
+  map.saver  '/savers/:id', :controller => 'savers', :action => 'show'
+  
   map.from_plugin :community_engine
 
 #  map.resources  :pledges

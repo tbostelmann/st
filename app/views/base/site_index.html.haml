@@ -44,6 +44,6 @@
   .yui-g
     %h3
       Featured Saver
-      = link_to("(All Savers)", :controller=>'users', :action=>'index')
+      = link_to("(All Savers)", :controller => 'savers', :action => 'index')
   .yui-g
-    = render :partial => "users/user", :collection => @fsaver
+    = render :partial => "savers/saver", :collection => @fsaver

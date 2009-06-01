@@ -1,0 +1,20 @@
+%table.savers
+  %tr
+    %td.photo
+      = link_to image_tag( saver.avatar_photo_url(:thumb), :class => "polaroid" ), saver_path(saver)
+    %td.adc
+      = render :partial => "savers/adc", :object => saver, :locals => { :saver => saver }
+    %td
+      %font{:size=>"+1"}= saver.login.capitalize
+      %br
+      - if @search && @search['description']
+        = truncate_words_with_highlight user.description, @search['description']
+      - else
+        = truncate_words saver.description, 50, '...'
+
+      - if current_user && current_user.admin?
+        %br
+        = link_to( :assume_id.l, assume_user_path(saver) )
+
+    = "<p>" + saver.tags[0...6].collect{|t| link_to( t.name, tag_url(t), :class => "tag") if t }.join(" ") + "</p>" unless saver.tags.empty?
+
