@@ -34,18 +34,14 @@ ActionController::Routing::Routes.draw do |map|
 
   # See how all your routes lay out with "rake routes"
 
-  map.savers     '/savers',               :controller => 'savers', :action => 'index'
-  map.saver      '/savers/:id',           :controller => 'savers', :action => 'show'
-  
-  # map.donors     '/donors',               :controller => 'donors', :action => 'index'
-  # map.donor      '/donors/:id',           :controller => 'donors', :action => 'show'
-  
+  # map.resources gives us RESTful routes to these models
+  # Run rake routes to see the list (these will be the first listed)
+  map.resources :savers
   map.resources :donors
   
+  # Re-route signup to the donors controller - signup is for donors only
   map.signup '/signup', :controller => "donors", :action => "new"
   
-  map.from_plugin :community_engine
-
 #  map.resources  :pledges
   map.new          '/pledges/new/:saver_id', :controller => 'pledges', :action => 'new'
   map.create       '/pledges/create',        :controller => 'pledges', :action => 'create'
@@ -53,6 +49,9 @@ ActionController::Routing::Routes.draw do |map|
   map.cancel       '/pledges/cancel',        :controller => 'pledges', :action => 'cancel'
   map.notify       '/pledges/notify',        :controller => 'pledges', :action => 'notify'
   map.signup_after '/signup/:pledge_id',     :controller => 'donors',  :action => 'new'
+
+  # Any route ST app-specific should come before the community engine routes
+  map.from_plugin :community_engine
 
   # Install the default routes as the lowest priority.
   # Note: These default routes make all actions in every controller accessible via GET requests. You should
