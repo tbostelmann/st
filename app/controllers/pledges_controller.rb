@@ -18,16 +18,36 @@ class PledgesController < BaseController
   # POST /pledges/review
   def create
     @saver = Saver.find(params[:saver_id])
-    @user = current_user
     @storg = Organization.find_savetogether_org
-
     @pledge = Pledge.new(params[:pledge])
 
-    respond_to do |format|
-      if @pledge.save
-        format.html # create.html.erb
-      else
-        format.html { render :action => "new", :saver_id => params[:saver_id] }
+    if params[:commit] == :log_in.l
+      self.current_user = Donor.authenticate(params[:login], params[:password])
+      respond_to do |format|
+        if logged_in? && @pledge.save
+          if params[:remember_me] == "1"
+            self.current_user.remember_me
+            cookies[:auth_token] = { :value => self.current_user.remember_token , :expires => self.current_user.remember_token_expires_at }
+          end
+
+          flash[:notice] = :thanks_youre_now_logged_in.l
+          current_user.track_activity(:logged_in)
+          format.html # create.html.erb
+        else
+          flash[:notice] = :uh_oh_we_couldnt_log_you_in_with_the_username_and_password_you_entered_try_again.l
+          format.html { render :action => "new", :saver_id => params[:saver_id] }
+        end
+      end
+    else
+      @user       = Donor.new(params[:donor])
+      @user.role  = Role[:member]
+      @user.birthday = 21.years.ago.to_s :db
+      respond_to do |format|
+        if @user.save && @pledge.save && (!AppConfig.require_captcha_on_signup || verify_recaptcha(@user))
+          format.html # create.html.erb
+        else
+          format.html { render :action => "new", :saver_id => params[:saver_id] }
+        end
       end
     end
   end

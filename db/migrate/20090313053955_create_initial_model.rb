@@ -35,13 +35,13 @@ class CreateInitialModel < ActiveRecord::Migration
   end
 
   def self.down
-    drop_table :financial_transactions
     drop_table :payment_notifications
     remove_column(:users, :full_name)
     remove_column(:users, :organization_id)
     remove_column(:users, :asset_type_id)
     remove_column(:users, :requested_match_cents)
     remove_column(:users, :type)
+    drop_table :asset_types
     drop_table :line_items
     drop_table :invoices
    end
