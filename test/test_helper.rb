@@ -51,7 +51,21 @@ class ActiveSupport::TestCase
           }    
   end
 
-  def test_pledge(pledge)
+  def test_pledge_no_fees(pledge)
+    test_basic_pledge(pledge)
+
+    fees = pledge.fees
+    assert fees.size == 0
+  end
+
+  def test_pledge_with_fees(pledge)
+    test_basic_pledge(pledge)
+
+    fees = pledge.fees
+    assert fees.size == 1
+  end
+
+  def test_basic_pledge(pledge)
     line_items = pledge.line_items
     assert !line_items.empty?
     assert line_items.size == 2
@@ -60,7 +74,9 @@ class ActiveSupport::TestCase
     assert !donations.empty?
     assert donations.size == 2
 
-    fees = pledge.fees
-    assert fees.empty?
+    donor = pledge.donor
+    assert !donor.nil?
+    assert donor.all_donations_given.size >= 2
+    assert donor.pledges.size > 0
   end
 end

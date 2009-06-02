@@ -36,14 +36,14 @@ class PledgesControllerTest < ActionController::TestCase
     assert !donor.pledges.empty?
     d_pledge = donor.pledges[0]
 
-    test_pledge(d_pledge)
+    test_pledge_no_fees(d_pledge)
 
     # Reload pledge and assert it's values
     pledge = Pledge.find(d_pledge.id)
     assert !pledge.nil?
     d_pledge.id == pledge.id
 
-    test_pledge(pledge)
+    test_pledge_no_fees(pledge)
   end
 
   test "create valid donation and login valid user should render 'create' template" do
@@ -68,14 +68,14 @@ class PledgesControllerTest < ActionController::TestCase
     assert !donor.pledges.empty?
     d_pledge = donor.pledges[0]
 
-    test_pledge(d_pledge)
+    test_pledge_no_fees(d_pledge)
 
     # Reload pledge and assert it's values
     pledge = Pledge.find(d_pledge.id)
     assert !pledge.nil?
     d_pledge.id == pledge.id
 
-    test_pledge(pledge)
+    test_pledge_no_fees(pledge)
   end
 
   test "create valid donation with logged in user should render 'create' template" do
@@ -90,6 +90,22 @@ class PledgesControllerTest < ActionController::TestCase
 
     assert_template 'create'
     assert_response :success
+
+    donor = Donor.find(donor.id)
+    assert !donor.nil?
+
+    # Use donor to find pledge and assert they're the same
+    assert !donor.pledges.empty?
+    d_pledge = donor.pledges[0]
+
+    test_pledge_no_fees(d_pledge)
+
+    # Reload pledge and assert it's values
+    pledge = Pledge.find(d_pledge.id)
+    assert !pledge.nil?
+    d_pledge.id == pledge.id
+
+    test_pledge_no_fees(pledge)
   end
 #  test "create action on invalid donation should render 'new' template" do
 #    adc = asset_development_cases(:saverCase)
