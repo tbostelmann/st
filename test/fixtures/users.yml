@@ -228,6 +228,21 @@ donor3:
   birthday: <%= 15.years.ago.to_s :db %>
   role_id: 3
   type: Donor
+donor4:
+  login: donor4
+  email: donor4@example.com
+  description: I am happy to be here. Community rawks!
+  salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
+  crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
+  created_at: <%= 1.days.ago.to_s :db %>
+  activated_at: <%= 30.minutes.ago.to_s :db %>
+  activation_code:
+  sb_posts_count: 2
+  sb_last_seen_at: <%= 5.minutes.ago.to_s :db %>
+  login_slug: donor4
+  birthday: <%= 15.years.ago.to_s :db %>
+  role_id: 3
+  type: Donor
 
 minUser:
   login: minUser
