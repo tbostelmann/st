@@ -2,28 +2,16 @@ require File.dirname(__FILE__) + '/../test_helper'
 
 class DonorTest < ActiveSupport::TestCase
   
-  def setup
-    @properties_of_valid_cd_user = {
-      :login => "foobar",
-      :email => "a@b.com",
-      :password => "foo2thebar",
-      :password_confirmation => "foo2thebar",
-      :birthday => 21.years.ago
-      }
-  end
-  
   test "Donor email must be confirmed" do
-    donor = Donor.new(@properties_of_valid_cd_user)
+    donor = create_a_donor({:email => "a@b.com", :email_confirmation => nil})
     assert !donor.valid?
     assert donor.errors.on(:email)
     
-    @properties_of_valid_cd_user[:email_confirmation] = "foo@bar.com"
-    donor = Donor.new(@properties_of_valid_cd_user)
+    donor = create_a_donor({:email => "a@b.com", :email_confirmation => "foo@bar.com"})
     assert !donor.valid?
     assert donor.errors.on(:email)
     
-    @properties_of_valid_cd_user[:email_confirmation] = "a@b.com"
-    donor = Donor.new(@properties_of_valid_cd_user)
+    donor = create_a_donor({:email => "a@b.com", :email_confirmation => "a@b.com"})
     assert donor.valid?
   end
   
@@ -49,4 +37,17 @@ class DonorTest < ActiveSupport::TestCase
       assert d.class == Donation
     end
   end
+
+  protected
+    def create_a_donor(options = {})
+      Donor.new({
+        :login => "foobar",
+        :email => "a@b.com",
+        :email_confirmation => "a@b.com",
+        :password => "foo2thebar",
+        :password_confirmation => "foo2thebar",
+        :birthday => 21.years.ago
+        }.merge(options))
+    end
+
 end
