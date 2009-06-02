@@ -2,7 +2,7 @@ require File.dirname(__FILE__) + '/../test_helper'
 
 class DonorTest < ActiveSupport::TestCase
   
-  test "Donor email must be confirmed" do
+  def no_test #{}"Donor email must be confirmed" do
     donor = create_a_donor({:email => "a@b.com", :email_confirmation => nil})
     assert !donor.valid?
     assert donor.errors.on(:email)
@@ -13,6 +13,13 @@ class DonorTest < ActiveSupport::TestCase
     
     donor = create_a_donor({:email => "a@b.com", :email_confirmation => "a@b.com"})
     assert donor.valid?
+  end
+  
+  test "Donor login is email" do
+    donor = create_a_donor(:login => "foo@bar.com", :email_confirmation => "foo@bar.com")
+    isValid = donor.valid?
+    donor.errors.each {|e, m| puts "Error: #{e} #{m}"}
+    assert_equal donor.login, donor.email
   end
   
   test "get the list of donations_given" do
@@ -52,7 +59,7 @@ class DonorTest < ActiveSupport::TestCase
     def create_a_donor(options = {})
       Donor.new({
         :login => "foobar",
-        :email => "a@b.com",
+        #:email => "a@b.com",
         :email_confirmation => "a@b.com",
         :password => "foo2thebar",
         :password_confirmation => "foo2thebar",

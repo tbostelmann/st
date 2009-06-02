@@ -55,7 +55,19 @@ class Donor < Party
   # validates_confirmation_of :email
   # The following was written because we can't figure out why the above doesn't get called
   validate :confirmation_of_email
+  validate :login_is_email
 
+  def login=(login)
+    puts "Inside Donor login method with: #{login}"
+    self.email = login
+    super
+  end
+  
+  #def email=(email)
+  #  puts "Inside Donor email method with: #{email}"
+  #  super
+  #end
+  
   # Virtual accessors to support our hand-rolled email confirmation
   def email_confirmation
     @email_confirmation
@@ -65,10 +77,20 @@ class Donor < Party
     @email_confirmation = email
   end
   
+  def validate
+    puts "I'm in validate method"
+    errors.each {|e, m| puts "Validate: Error: #{e} #{m}"}
+  end
+  
   private
   
   # Hand-rolled email confirmation
   def confirmation_of_email
+    puts "I'm in confirmation_of_email"
     errors.add :email, "doesn't match confirmation" unless email == email_confirmation
+  end
+  def login_is_email
+    puts "I'm in login is email"
+    errors.add :elogin, "invalid format" unless login =~ /^[\sA-Za-z0-9_-]+$/
   end
 end
