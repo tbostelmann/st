@@ -44,7 +44,28 @@
 #
 
 class Donor < Party
+  
   has_many :all_donations_given, :class_name => 'Donation', :foreign_key => :from_user_id
   has_many :donations_given, :class_name => 'Donation', :foreign_key => :from_user_id,
            :conditions => "status = '#{LineItem::STATUS_PROCESSED}' OR status = '#{LineItem::STATUS_PENDING}'"
+  
+  # validates_confirmation_of :email
+  # The following was written because we can't figure out why the above doesn't get called
+  validate :confirmation_of_email
+
+  # Virtual accessors to support our hand-rolled email confirmation
+  def email_confirmation
+    @email_confirmation
+  end
+  
+  def email_confirmation=(email)
+    @email_confirmation = email
+  end
+  
+  private
+  
+  # Hand-rolled email confirmation
+  def confirmation_of_email
+    errors.add :email, "doesn't match confirmation" unless email == email_confirmation
+  end
 end

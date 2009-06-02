@@ -41,7 +41,9 @@ class DonorsControllerTest < ActionController::TestCase
   end
   
   test "Unsuccessful donor creation re-renders the new template" do
-    post :create, :donor => @bad_donor_properties
+    assert_no_difference 'Donor.count' do
+      post :create, :donor => @bad_donor_properties
+    end
     assert_template 'new'
     assert_response :success
   end
