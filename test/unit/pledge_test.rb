@@ -2,57 +2,53 @@ require File.dirname(__FILE__) + '/../test_helper'
 require 'money'
 
 class PledgeTest < ActiveSupport::TestCase
-  test "validate donation" do
-    pledge = invoices(:pledge)
+  test "create initial, pending pledge" do
+    donor = users(:donor4)
+    saver = users(:saver4)
+    pledge = Pledge.new(:donor => donor)
+    pledge.donations << Donation.new(:from_user => donor, :to_user => saver, :amount => "50")
+    pledge.donations << Donation.new(:from_user => donor, :to_user => Organization.find_savetogether_org, :amount => "5")  
+    pledge.save
+
+    # Reload pledge and assert it's values
+    pledge = Pledge.find(pledge.id)
     assert !pledge.nil?
+
+    test_pledge(pledge)
+
+    # Use donor to find pledge and assert they're the same
+    donor = Donor.find(donor.id)
+    assert !donor.pledges.empty?
+    d_pledge = donor.pledges[0]
+    d_pledge.id == pledge.id
+
+    test_pledge(d_pledge)
   end
 
-  test "donation requires notification email" do
-    pledge = Pledge.new
-    assert !pledge.valid?
+  test "create initial, pending pledge using donation_attribures=" do
+    donor = users(:donor4)
+    saver = users(:saver4)
+    pledge = Pledge.create(:donor => donor)
+    pledge.donation_attributes= pledge_params(saver)
+    pledge.donations.each do |donation|
+      donation.from_user = donor
+    end
+    saved = pledge.save
+    assert saved
+    pledge = Pledge.find(pledge.id)
 
-    pledge.notification_email = 'a@b.com'
-    assert pledge.valid?
-  end
+    # Reload pledge and assert it's values
+    pledge = Pledge.find(pledge.id)
+    assert !pledge.nil?
 
-  test "notification email format must be valid" do
-    pledge = Pledge.new
-    pledge.notification_email = 'a@b.com'
-    assert pledge.valid?
+    test_pledge(pledge)
 
-    # Must supply an account on the domain
-    pledge.notification_email = "@b.com"
-    assert !pledge.valid?
+    # Use donor to find pledge and assert they're the same
+    donor = Donor.find(donor.id)
+    assert !donor.pledges.empty?
+    d_pledge = donor.pledges[0]
+    d_pledge.id == pledge.id
 
-    # Top-level domain is required
-    pledge.notification_email = "a@b"
-    assert !pledge.valid?
-
-    # Organization domain is required
-    pledge.notification_email = "a@.com"
-    assert !pledge.valid?
-
-    # @ is required
-    pledge.notification_email = "a.b.com"
-    assert !pledge.valid?
-
-    # domain must be at least 2 chars
-    pledge.notification_email = "a@b.c"
-    assert !pledge.valid?
-
-    pledge.notification_email = "a@b.cc"
-    assert pledge.valid?
-
-    # Multiple domain separators not allowed in sequence
-    pledge.notification_email = "a@b..com"
-    assert !pledge.valid?
-
-    # Sub-organizational domains allowed
-    pledge.notification_email = "a@foo.bar.com"
-    assert pledge.valid?
-
-    # validation doesn't check for validity of top-level domain
-    pledge.notification_email = "a@b.joe"
-    assert pledge.valid?
+    test_pledge(d_pledge)
   end
 end

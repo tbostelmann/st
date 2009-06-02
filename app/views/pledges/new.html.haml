@@ -13,21 +13,33 @@
           = hidden_field_tag :saver_id, @saver.id
           = f.error_messages
           #donation_line_items
-            - fields_for "pledge[line_item_attributes][0]" do |li_form|
+            - fields_for "pledge[donation_attributes][0]" do |li_form|
               .donation_line_item
                 %label{:for => "saver_donation"}
                   = "Amount you would like to donate to #{@saver.login}:"
                 = li_form.text_field :amount, :size => 7, :value => "50"
-                = li_form.hidden_field :user_id, :value => @saver.id
-            - fields_for "pledge[line_item_attributes][1]" do |li_form|
+                = li_form.hidden_field :to_user_id, :value => @saver.id
+            - fields_for "pledge[donation_attributes][1]" do |li_form|
               .donation_line_item
                 %label{:for => "st_donation"}
                   (Optional) amount you would like to donate to SaveTogether:
                 = li_form.text_field :amount, :size => 7, :value => "5"
-                = li_form.hidden_field :user_id, :value => @saver.id
+                = li_form.hidden_field :to_user_id, :value => @saver.id
             - if !current_user
+              %h3
+                = :log_in_to_site.l(:site => AppConfig.community_name)
+                %label{"for"=>"username"}=:username.l
+                = text_field_tag 'login', nil, :size => 35
+                %label{"for"=>"password"}=:password.l
+                = password_field_tag 'password', nil, :size => 35
+                %fieldset
+                  %label{"for"=>"remember_me"}
+                    = :remember_me.l
+                    = check_box_tag 'remember_me'
+              %p
+                = submit_tag :log_in.l
               %h3= :sign_up.l
-              = error_messages_for :user
+              = error_messages_for :donor
               - fields_for :donor do |donor_form|
                 %label{:for => "user_login"}
                   = :username.l
@@ -51,17 +63,3 @@
             %p
               = submit_tag :continue.l
 
-
-              %h3
-                = :log_in_to_site.l(:site => AppConfig.community_name)
-              - form_tag sessions_path, :class => 'MainForm' do
-                %label{"for"=>"username"}=:username.l
-                = text_field_tag 'login', nil, :size => 35
-                %label{"for"=>"password"}=:password.l
-                = password_field_tag 'password', nil, :size => 35
-                %fieldset
-                  %label{"for"=>"remember_me"}
-                    = :remember_me.l
-                    = check_box_tag 'remember_me'
-            %p
-              = submit_tag :log_in.l

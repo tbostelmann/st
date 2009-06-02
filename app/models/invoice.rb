@@ -15,7 +15,6 @@ class Invoice < ActiveRecord::Base
   has_many :line_items, :foreign_key => :invoice_id
   has_many :donations, :foreign_key => :invoice_id
   has_many :fees, :foreign_key => :invoice_id
-  belongs_to :donor 
 
   def self.process_payment_notification?(pn, acknowledge = false)
     notify = pn.notification
@@ -73,11 +72,5 @@ class Invoice < ActiveRecord::Base
     end
 
     return true
-  end
-
-  def line_item_attributes=(li_attributes)
-    li_attributes.each do |index, attributes|
-      line_items.build(attributes)
-    end
   end
 end

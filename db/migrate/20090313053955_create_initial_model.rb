@@ -12,7 +12,7 @@ class CreateInitialModel < ActiveRecord::Migration
       t.integer :invoice_id
       t.integer :from_user_id
       t.integer :to_user_id
-      t.string :status
+      t.string :status, :default => LineItem::STATUS_PENDING
       t.string :type
       t.timestamps
     end

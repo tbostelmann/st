@@ -12,6 +12,11 @@
 #
 
 class Pledge < Invoice
-  validates_email_format_of :notification_email
-  validates_confirmation_of :notification_email, :message => "should match confirmation"
+  belongs_to :donor 
+
+  def donation_attributes=(d_attributes)
+    d_attributes.each do |index, attributes|
+      donations.build(attributes)
+    end
+  end
 end

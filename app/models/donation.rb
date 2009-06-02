@@ -15,5 +15,4 @@
 #
 
 class Donation < LineItem
-  belongs_to :donor, :class_name => 'User', :foreign_key => :donor_id
 end

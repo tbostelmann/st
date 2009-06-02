@@ -35,4 +35,32 @@ class ActiveSupport::TestCase
   fixtures :all
 
   # Add more helper methods to be used by all tests here...
+  def pledge_params(saver)
+    stOrg = Organization.find_savetogether_org
+
+    # minimum required donation elements
+    return {
+          "0" => {
+            :amount => "50.00",
+            :to_user_id => saver.id
+            },
+          "1" => {
+            :amount => "5.00",
+            :to_user_id => stOrg.id
+            }
+          }    
+  end
+
+  def test_pledge(pledge)
+    line_items = pledge.line_items
+    assert !line_items.empty?
+    assert line_items.size == 2
+
+    donations = pledge.donations
+    assert !donations.empty?
+    assert donations.size == 2
+
+    fees = pledge.fees
+    assert fees.empty?
+  end
 end
