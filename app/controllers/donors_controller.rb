@@ -10,15 +10,10 @@ class DonorsController < BaseController
   end
   
   def show
-    @clippings      = @user.clippings.find(:all, :limit => 5)
-    @photos         = @user.photos.find(:all, :limit => 5)
+    @donor = current_user
+    @photos = @donor.photos.find(:all, :limit => 5)
 
-    @savers = []
-    if @donor.donations_given
-      @donor.donations_given.each do |donation|
-        @savers << donation.saver
-      end
-    end
+    @savers = @donor.beneficiaries
   end
 
   def create

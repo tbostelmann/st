@@ -38,6 +38,16 @@ class DonorTest < ActiveSupport::TestCase
     end
   end
 
+  test "get a list of savers that the donor has given to" do
+    donor = users(:donor)
+    beneficiaries = donor.beneficiaries
+    assert !beneficiaries.empty?
+    assert beneficiaries.size > 0
+    beneficiaries.each do |party|
+      assert party.class == Saver
+    end
+  end
+  
   protected
     def create_a_donor(options = {})
       Donor.new({
