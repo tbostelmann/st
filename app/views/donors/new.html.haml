@@ -22,14 +22,14 @@
         - form_for :donor, :url => donors_path, :method => :post, :html => {:class => 'MainForm'} do |f|
           = hidden_field_tag 'donation_id', "#{params[:donation_id]}"
           %label{"for"=>"donor_login"} 
-            =:username.l
-            %em=:required_your_username_must_not_contain_numerals_spaces_or_special_characters.l
+            =:e_mail_address.l
+            %em=:required_your_email_address_will_be_used_to_identify_you_to_save_together.l
           = f.text_field :login
 
           %label{"for"=>"donor_email"}
-            =:e_mail_address.l
-            %em=:required_we_will_send_a_confirmation_e_mail_to_the_address_you_enter.l
-          = f.text_field :email
+            =:e_mail_address_confirmation.l
+            %em=:required_please_re_enter_your_email_address_to_confirm_we_will_send_a_confirmation_e_mail_to_the_address_you_enter.l
+          = f.text_field :login_confirmation
 
           - if AppConfig.require_captcha_on_signup
             .right{:style => 'margin-top:2em;'}= recaptcha_tags
