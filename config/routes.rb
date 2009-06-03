@@ -40,7 +40,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :donors
   
   # Re-route signup to the donors controller - signup is for donors only
-  map.signup '/signup', :controller => "donors", :action => "new"
+  map.signup '/signup', :controller => "donors", :action => "new" 
   
 #  map.resources  :pledges
   map.new          '/pledges/new/:saver_id', :controller => 'pledges', :action => 'new'

@@ -71,7 +71,7 @@ class PledgesController < BaseController
   end
 
   def done
-    pn = PaymentNotification.create(:raw_data => request.raw_post)
+    pn = PaymentNotification.create(:raw_data => request.query_string)
     notification = pn.notification
 
     pledge = Pledge.find(notification.invoice)
@@ -88,7 +88,7 @@ class PledgesController < BaseController
       # We're assuming that a notification that is not acknowledged will be sent again.
     end
 
-    redirect_to :controller => 'users', :action => 'show', :id => current_user  
+    redirect_to :controller => 'donors', :action => 'show'
   end
 
   def notify

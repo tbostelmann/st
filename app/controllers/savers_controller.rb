@@ -14,7 +14,6 @@ class SaversController < BaseController
   
   def show
     @saver     = Saver.find_by_login(params[:id])
-    @clippings = @saver.clippings.find(:all, :limit => 5)
     @photos    = @saver.photos.find(:all, :limit => 5)
   end
 

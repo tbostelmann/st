@@ -16,7 +16,7 @@
           %p
             = @donor.description
 
-  - unless @savers.empty?
+  - unless @savers.size == 0
     .yui-g
     .box.user_list
       %h3= "Savers you have donated to"

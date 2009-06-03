@@ -25,13 +25,13 @@ class Pledge < Invoice
     # Then update status
     index = 1
     while item_number = notify.params["item_number#{index}"]
-      saver = Party.find(item_number)
+      saver = User.find(item_number)
       if saver.nil?
         raise "Beneficiary of Donation with id=#{saver.id}, referenced in the payment notification, is not found"
       end
 
       amount = notify.params["mc_gross_#{index}"]
-      line_item = self.donations.find(:first, :conditions => {:to_user_id => saver})
+      line_item = self.donations.find(:first, :conditions => {:to_user_id => saver.id})
       if (line_item.nil?)
         raise "LineItem for user #{saver.id} not found"
       elsif (amount.to_f != line_item.amount.to_s.to_f)
@@ -56,7 +56,7 @@ class Pledge < Invoice
       storg = Organization.find_savetogether_org
       self.fees << Fee.new(:from_user => storg, :to_user => paypal,
               :amount => amount, :status => notify.status)
-    elsif fee.amount.to_f != amount.to_f
+    elsif fee.amount.to_s.to_f != amount.to_f
       raise "Fee amount has changed since last notification"
     else
       fee.status = notify.status

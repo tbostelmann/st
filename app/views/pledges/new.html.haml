@@ -24,7 +24,7 @@
                 %label{:for => "st_donation"}
                   (Optional) amount you would like to donate to SaveTogether:
                 = li_form.text_field :amount, :size => 7, :value => "5"
-                = li_form.hidden_field :to_user_id, :value => @saver.id
+                = li_form.hidden_field :to_user_id, :value => @storg.id
             - if !current_user
               %h3
                 = :log_in_to_site.l(:site => AppConfig.community_name)
