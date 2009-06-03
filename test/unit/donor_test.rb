@@ -4,7 +4,7 @@ class DonorTest < ActiveSupport::TestCase
   
   test "Donor email is off-limits to direct manipulation" do
     assert_raise RuntimeError do
-      donor = create_a_donor(:email => "a@b.com")
+      donor = new_test_donor(:email => "a@b.com")
     end
   end
   
@@ -12,28 +12,28 @@ class DonorTest < ActiveSupport::TestCase
   # the fact that they are verified in the CE tests (doesn't protect our expectations
   # from changes in CE code, though)
   test "Donor login is now email and must follow email formating rules" do
-    donor = create_a_donor(:login => "a@b..com", :login_confirmation => "a@b..com")
+    donor = new_test_donor(:login => "a@b..com", :login_confirmation => "a@b..com")
     assert !donor.valid?
     assert donor.errors.on(:login)
     assert_equal donor.login, donor.email
   end
 
   test "Donor login and email are the same" do
-    donor = create_a_donor(:login => "a@b.com", :login_confirmation => "a@b.com")
+    donor = new_test_donor(:login => "a@b.com", :login_confirmation => "a@b.com")
     assert donor.valid?
     assert_equal donor.login, donor.email
   end
 
   test "Donor email must be confirmed" do
-    donor = create_a_donor({:login => "a@b.com", :login_confirmation => nil})
+    donor = new_test_donor({:login => "a@b.com", :login_confirmation => nil})
     assert !donor.valid?
     assert donor.errors.on(:login)
     
-    donor = create_a_donor({:login => "a@b.com", :login_confirmation => "foo@bar.com"})
+    donor = new_test_donor({:login => "a@b.com", :login_confirmation => "foo@bar.com"})
     assert !donor.valid?
     assert donor.errors.on(:login)
     
-    donor = create_a_donor({:login => "a@b.com", :login_confirmation => "a@b.com"})
+    donor = new_test_donor({:login => "a@b.com", :login_confirmation => "a@b.com"})
     assert donor.valid?
   end
     
@@ -71,14 +71,15 @@ class DonorTest < ActiveSupport::TestCase
   end
   
   protected
-    def create_a_donor(options = {})
-      Donor.new({
-        :login => "a@b.com",
-        :login_confirmation => "a@b.com",
-        :password => "foo2thebar",
-        :password_confirmation => "foo2thebar",
-        :birthday => 21.years.ago
-        }.merge(options))
-    end
+  
+  def new_test_donor(options = {})
+    Donor.new({
+      :login => "a@b.com",
+      :login_confirmation => "a@b.com",
+      :password => "foo2thebar",
+      :password_confirmation => "foo2thebar",
+      :birthday => 21.years.ago
+      }.merge(options))
+  end
 
 end
