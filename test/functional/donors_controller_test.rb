@@ -12,8 +12,9 @@ class DonorsControllerTest < ActionController::TestCase
     assert_difference 'Donor.count', +1 do
       post :create, :donor => min_donor_props
     end
-    assert_redirected_to :controller => :users, :action => :signup_completed, :id => min_donor_props[:login]
-    assert_equal flash[:notice], :email_signup_thanks.l_with_args(:email => min_donor_props[:email])
+    donor = Donor.find_by_login(min_donor_props[:login])
+    assert_redirected_to :controller => :users, :action => :signup_completed, :id => donor.id
+    assert_equal flash[:notice], :email_signup_thanks.l_with_args(:email => donor.email)
   end
   
   test "Unsuccessful donor creation re-renders the new template" do
