@@ -52,45 +52,53 @@ class Donor < Party
   has_many :beneficiaries, :through => :donations_given, :source => :to_user,
            :uniq => true, :conditions => "users.type = 'Saver'"
   
-  # validates_confirmation_of :email
+  # validates_confirmation_of :login
   # The following was written because we can't figure out why the above doesn't get called
-  validate :confirmation_of_email
-  validate :login_is_email
+  validate :confirmation_of_login
 
+  # Make login and email the same
   def login=(login)
-    puts "Inside Donor login method with: #{login}"
-    self.email = login
+    becomes(User).email = login
     super
   end
   
-  #def email=(email)
-  #  puts "Inside Donor email method with: #{email}"
-  #  super
-  #end
-  
-  # Virtual accessors to support our hand-rolled email confirmation
-  def email_confirmation
-    @email_confirmation
+  # Only allow email manipulation via login accessor
+  def email=(email)
+    raise "email lockdown: To set email attribute call login"
   end
   
-  def email_confirmation=(email)
-    @email_confirmation = email
+  # Virtual accessors to support our hand-rolled login (as email) confirmation
+  def login_confirmation
+    @login_confirmation
   end
+  
+  def login_confirmation=(login)
+    @login_confirmation = login
+  end
+  
+  # Examine validation state and manipulate to make sure we can save parties that meet
+  # new requirements of login equaling email - CE user login validations are still flushed,
+  # but we do this copy trick to get rid of them. Because email format is now login
+  # format, email validation errors are now "rebranded" as login validation errors.
   
   def validate
-    puts "I'm in validate method"
-    errors.each {|e, m| puts "Validate: Error: #{e} #{m}"}
+    repl_errs = User.new.errors
+    # Copy all errors except login errors, and any email errors re-key as login errors
+    errors.each do |e, m|
+      case e
+        when "email", "party_login" then repl_errs.add :login, m
+        when "login" then #skip
+        else repl_errs.add e, m
+      end
+    end
+    errors.clear
+    repl_errs.each {|e, m| errors.add(e, m)}
   end
   
   private
   
-  # Hand-rolled email confirmation
-  def confirmation_of_email
-    puts "I'm in confirmation_of_email"
-    errors.add :email, "doesn't match confirmation" unless email == email_confirmation
-  end
-  def login_is_email
-    puts "I'm in login is email"
-    errors.add :elogin, "invalid format" unless login =~ /^[\sA-Za-z0-9_-]+$/
+  # Hand-rolled login (as email) confirmation
+  def confirmation_of_login
+    errors.add :party_login, "doesn't match confirmation" unless login == login_confirmation
   end
 end
