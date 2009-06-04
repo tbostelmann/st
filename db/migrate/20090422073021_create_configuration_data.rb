@@ -25,7 +25,7 @@ class CreateConfigurationData < ActiveRecord::Migration
     home = AssetType.create! :asset_name => "Home"
     business = AssetType.create! :asset_name => "Business"
 
-    admin = Party.create!(
+    admin = Donor.create!(
       :login => "tom@savetogether.org",
       :login_confirmation => "tom@savetogether.org",
       :description => "Person with adminstrator role",
