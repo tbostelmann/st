@@ -23,12 +23,14 @@
           = hidden_field_tag 'donation_id', "#{params[:donation_id]}"
           %label{"for"=>"donor_login"} 
             =:e_mail_address.l
-            %em=:required_your_email_address_will_be_used_to_identify_you_to_save_together.l
+            %br
+            %em=:required_your_email_address_will_identify_you_to_save_together.l
           = f.text_field :login
 
-          %label{"for"=>"donor_email"}
-            =:e_mail_address_confirmation.l
-            %em=:required_please_re_enter_your_email_address_to_confirm_we_will_send_a_confirmation_e_mail_to_the_address_you_enter.l
+          %label{"for"=>"donor_login_confirmation"}
+            =:re_enter_e_mail_address_to_confirm.l
+            %br
+            %em=:required_we_will_send_a_confirmation_e_mail_to_the_address_you_enter.l
           = f.text_field :login_confirmation
 
           - if AppConfig.require_captcha_on_signup

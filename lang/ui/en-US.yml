@@ -319,10 +319,10 @@ en:
   drag_this_to_your_bookmarks_toolbar: Drag this to your bookmarks toolbar
   #en: e_mail: E-mail
   e_mail: E-mail
-  #en: e_mail_address: E-mail address
-  e_mail_address: E-mail address
-  #en: e_mail_address_confirmation: E-mail address confirmation
-  e_mail_address_confirmation: E-mail address confirmation
+  #en: e_mail_address: "E-mail address:"
+  e_mail_address: "E-mail address:"
+  #en: re_enter_e_mail_address_to_confirm: "Re-enter e-mail address to confirm:"
+  re_enter_e_mail_address_to_confirm: "Re-enter e-mail address to confirm:"
   #en: edit: Edit
   edit: Edit
   #en: edit_account: Edit account
@@ -896,11 +896,13 @@ en:
   #en: required: required
   required: required
   #en: required_we_will_send_a_confirmation_e_mail_to_the_address_you_enter: "(Required: We will send a confirmation e-mail to the address you enter.)"
-  required_please_re_enter_your_email_address_to_confirm_we_will_send_a_confirmation_e_mail_to_the_address_you_enter: "(Required: Please re-enter your email address to confirm. We will send a confirmation e-mail to the address you enter.)"
+  required_we_will_send_a_confirmation_e_mail_to_the_address_you_enter: "(Required: We will send a confirmation e-mail to the address you enter.)"
   #en: required_you_must_be_at_least_years_old_to_sign_up: "(Required: you must be at least 13 years old to sign up.)"
   required_you_must_be_at_least_years_old_to_sign_up: "(Required: you must be at least 13 years old to sign up.)"
   #en: required_your_username_must_not_contain_numerals_spaces_or_special_characters: "(Required: Your username must not contain numerals, spaces or special characters.)"
-  required_your_email_address_will_be_used_to_identify_you_to_save_together: "(Required: Your email address will be used to identify you to SaveTogether.)"
+  required_your_username_must_not_contain_numerals_spaces_or_special_characters: "(Required: Your username must not contain numerals, spaces or special characters.)"
+  #en: required_your_email_address_will_identify_you_to_save_together: "(Required: Your email address will identify you to SaveTogether.)"
+  required_your_email_address_will_identify_you_to_save_together: "(Required: Your email address will identify you to SaveTogether.)"
   #en: resend_my_activation_e_mail: Resend my activation e-mail
   resend_my_activation_e_mail: Resend my activation e-mail
   #en: resend_your_activation_e_mail: Resend your activation e-mail
