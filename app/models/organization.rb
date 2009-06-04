@@ -52,8 +52,8 @@ class Organization < Party
   has_many :fees_paid, :class_name => 'Fee', :foreign_key => :from_user_id
   has_many :fees_received, :class_name => 'Fee', :foreign_key => :to_user_id
 
-  PAYPAL_LOGIN = 'paypal'
-  SAVETOGETHER_LOGIN = 'savetogether'
+  PAYPAL_LOGIN = 'paypal@savetogether.org'
+  SAVETOGETHER_LOGIN = 'st@savetogether.org'
 
   def self.find_savetogether_org
     find_by_login(SAVETOGETHER_LOGIN)
