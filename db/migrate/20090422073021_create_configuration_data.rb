@@ -25,9 +25,9 @@ class CreateConfigurationData < ActiveRecord::Migration
     home = AssetType.create! :asset_name => "Home"
     business = AssetType.create! :asset_name => "Business"
 
-    admin = User.create!(
-      :login => "admin",
-      :email => "tom@savetogether.org",
+    admin = Party.create!(
+      :login => "tom@savetogether.org",
+      :login_confirmation => "tom@savetogether.org",
       :description => "Person with adminstrator role",
       :salt => "7e3041ebc2fc05a40c60028e2c4901a81035d3cd",
       :crypted_password => "00742970dc9e6319f8019fd54864d3ea740f04b1", # test
@@ -41,8 +41,8 @@ class CreateConfigurationData < ActiveRecord::Migration
 
     stOrg = Organization.create!(
       :full_name => 'SaveTogether',
-      :login => "savetogether",
-      :email => "savetogether@example.com",
+      :login => "st@savetogether.org",
+      :login_confirmation => "st@savetogether.org",
       :description => "<p>SaveTogether description.</p>",
       :salt => "7e3041ebc2fc05a40c60028e2c4901a81035d3cd",
       :crypted_password => "00742970dc9e6319f8019fd54864d3ea740f04b1", # test
@@ -56,8 +56,8 @@ class CreateConfigurationData < ActiveRecord::Migration
 
     paypal = Organization.create!(
       :full_name => 'Paypal',
-      :login => "paypal",
-      :email => "paypal@example.com",
+      :login => "paypal@savetogether.org",
+      :login_confirmation => "paypal@savetogether.org",
       :description => "<p>Paypal description.</p>",
       :salt => "7e3041ebc2fc05a40c60028e2c4901a81035d3cd",
       :crypted_password => "00742970dc9e6319f8019fd54864d3ea740f04b1", # test

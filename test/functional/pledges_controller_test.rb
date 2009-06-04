@@ -82,7 +82,7 @@ class PledgesControllerTest < ActionController::TestCase
     saver = users(:saver)
     stOrg = Organization.find_savetogether_org
     donor = users(:donor4)
-    login_as(donor.login)
+    login_as(:donor4)
 
     post :create, {
         :saver_id => saver.id,

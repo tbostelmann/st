@@ -44,8 +44,7 @@
 #
 
 saver:
-  login: saver
-  email: saver@example.com
+  login: saver@example.com
   description: I am a saver
   salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
   crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
@@ -64,9 +63,9 @@ saver:
   organization: earn
   requested_match_cents: 200000
   type: Saver
+  
 saver2:
-  login: saver2
-  email: saver2@example.com
+  login: saver2@example.com
   description: I am also a friggin awesome gal
   salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
   crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
@@ -85,9 +84,9 @@ saver2:
   organization: earn
   requested_match_cents: 200000
   type: Saver
+  
 saver3:
-  login: saver3
-  email: saver3@example.com
+  login: saver3@example.com
   description: I am a friggin awesome guy
   salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
   crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
@@ -106,9 +105,9 @@ saver3:
   organization: earn
   requested_match_cents: 100000
   type: Saver
+  
 saver4:
-  login: saver4
-  email: saver4@example.com
+  login: saver4@example.com
   description: I am an friggin awesome gal of a certain age
   salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
   crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
@@ -130,8 +129,7 @@ saver4:
 
 earn:
   full_name: EARN
-  login: earn_login
-  email: earn@example.com
+  login: earn@earn.org
   description: <p>EARN description.</p>
   salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
   crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
@@ -146,10 +144,10 @@ earn:
   activities_count: 0
   role_id: 3
   type: Organization
+  
 savetogether:
   full_name: SaveTogether
-  login: savetogether
-  email: savetogether@example.com
+  login: st@savetogether.org
   description: <p>SaveTogether description.</p>
   salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
   crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
@@ -164,10 +162,10 @@ savetogether:
   activities_count: 0
   role_id: 3
   type: Organization
+  
 paypal:
   full_name: Paypal
-  login: paypal
-  email: paypal@example.com
+  login: paypal@savetogether.org
   description: <p>paypal description.</p>
   salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
   crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
@@ -184,8 +182,7 @@ paypal:
   type: Organization
 
 donor:
-  login: donor
-  email: donor@example.com
+  login: donor@example.com
   description: I am happy to be here. Community rawks!
   salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
   crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
@@ -198,9 +195,9 @@ donor:
   birthday: <%= 15.years.ago.to_s :db %>  
   role_id: 3
   type: Donor
+  
 donor2:
-  login: donor2
-  email: donor2@example.com
+  login: donor2@example.com
   description: I am happy to be here. Community rawks!
   salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
   crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
@@ -213,9 +210,9 @@ donor2:
   birthday: <%= 15.years.ago.to_s :db %>
   role_id: 3
   type: Donor
+  
 donor3:
-  login: donor3
-  email: donor3@example.com
+  login: donor3@example.com
   description: I am happy to be here. Community rawks!
   salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
   crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
@@ -228,9 +225,9 @@ donor3:
   birthday: <%= 15.years.ago.to_s :db %>
   role_id: 3
   type: Donor
+  
 donor4:
-  login: donor4
-  email: donor4@example.com
+  login: donor4@example.com
   description: I am happy to be here. Community rawks!
   salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
   crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
@@ -245,8 +242,7 @@ donor4:
   type: Donor
 
 minUser:
-  login: minUser
-  email: minUser@example.com
+  login: minUser@example.com
   description: I am Garnett
   salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
   crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
@@ -257,9 +253,9 @@ minUser:
   birthday: <%= 15.years.ago.to_s :db %>  
   role_id: 3
   type: Donor
+  
 admin:
-  login: administrator
-  email: admin@example.com
+  login: admin@example.com
   description: I am all powerful
   salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
   crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
