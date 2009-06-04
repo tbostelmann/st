@@ -33,7 +33,7 @@ class DonorsController < BaseController
       end
       #create_friendship_with_inviter(@user, params)
       flash[:notice] = :email_signup_thanks.l_with_args(:email => @donor.email)
-      redirect_to signup_completed_user_path(@donor)
+      redirect_to signup_completed_user_path(:id => @donor.id)
     else
       render :action => 'new'
     end

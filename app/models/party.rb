@@ -51,6 +51,7 @@ class Party < User
 
   composed_of :requested_match_amount, :class_name => "Money", :mapping => [%w(requested_match_cents cents)], :converter => Proc.new { |value| value.to_money }
 
+
   def self.build_conditions_for_search(search)
     cond = Caboose::EZ::Condition.new
 
@@ -137,4 +138,19 @@ class Party < User
   def matched_amount_cents
     return donations_received.sum(:cents)
   end
+  
+  #
+  # Overload login ==> email
+  #
+  
+  def login=(login)
+    becomes(User).email = login
+    super
+  end
+  
+  # Only allow email manipulation via login accessor
+  def email=(email)
+    raise "email lockdown: To set email attribute call login"
+  end
+  
 end

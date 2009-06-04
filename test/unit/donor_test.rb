@@ -1,6 +1,42 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class DonorTest < ActiveSupport::TestCase
+  
+  test "Donor email is off-limits to direct manipulation" do
+    assert_raise RuntimeError do
+      donor = new_test_donor(:email => "a@b.com")
+    end
+  end
+  
+  # there are a host of other email format checks that for now we'll just leverage
+  # the fact that they are verified in the CE tests (doesn't protect our expectations
+  # from changes in CE code, though)
+  test "Donor login is now email and must follow email formating rules" do
+    donor = new_test_donor(:login => "a@b..com", :login_confirmation => "a@b..com")
+    assert !donor.valid?
+    assert donor.errors.on(:login)
+    assert_equal donor.login, donor.email
+  end
+
+  test "Donor login confirmation is required" do
+    donor = new_test_donor({:login => "a@b.com", :login_confirmation => ""})
+    assert !donor.valid?
+    assert donor.errors.on(:login)
+
+    donor = new_test_donor({:login => "a@b.com", :login_confirmation => "foo@bar.com"})
+    assert !donor.valid?
+    assert donor.errors.on(:login)
+
+    donor = new_test_donor({:login => "a@b.com", :login_confirmation => "a@b.com"})
+    assert donor.valid?
+  end
+    
+  test "Donor login and email are the same" do
+    donor = new_test_donor(:login => "a@b.com", :login_confirmation => "a@b.com")
+    assert donor.valid?
+    assert_equal donor.login, donor.email
+  end
+
   test "get the list of donations_given" do
     donor = users(:donor)
     assert donor.all_donations_given.size == 2
@@ -33,4 +69,17 @@ class DonorTest < ActiveSupport::TestCase
       assert party.class == Saver
     end
   end
+  
+  protected
+  
+  def new_test_donor(options = {})
+    Donor.new({
+      :login => "a@b.com",
+      :login_confirmation => "a@b.com",
+      :password => "foo2thebar",
+      :password_confirmation => "foo2thebar",
+      :birthday => 21.years.ago
+      }.merge(options))
+  end
+
 end
