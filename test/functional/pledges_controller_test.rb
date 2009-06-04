@@ -21,15 +21,15 @@ class PledgesControllerTest < ActionController::TestCase
         :saver_id => saver.id,
         :pledge => { :donation_attributes => pledge_params(saver) },
         :donor => {
-          :login => 'testlogin',
-          :email => "testlogin@example.com",
+          :login => 'testlogin@example.com',
+          :login_confirmation => "testlogin@example.com",
           :password => "password",
           :password_confirmation => "password"} }
 
     assert_template 'create'
     assert_response :success
 
-    donor = Donor.find_by_login('testlogin')
+    donor = Donor.find_by_login('testlogin@example.com')
     assert !donor.nil?
 
     # Use donor to find pledge and assert they're the same
