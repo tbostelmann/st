@@ -51,10 +51,6 @@ class Party < User
 
   composed_of :requested_match_amount, :class_name => "Money", :mapping => [%w(requested_match_cents cents)], :converter => Proc.new { |value| value.to_money }
 
-  # validates_confirmation_of :login
-  # The following was written because we can't figure out why the above doesn't get called
-  validate :confirmation_of_login
-  
 
   def self.build_conditions_for_search(search)
     cond = Caboose::EZ::Condition.new
@@ -144,7 +140,7 @@ class Party < User
   end
   
   #
-  # Overload login and email
+  # Overload login ==> email
   #
   
   def login=(login)
@@ -157,39 +153,4 @@ class Party < User
     raise "email lockdown: To set email attribute call login"
   end
   
-  # Virtual accessors to support our hand-rolled login (as email) confirmation
-  def login_confirmation
-    @login_confirmation
-  end
-  
-  def login_confirmation=(login)
-    @login_confirmation = login
-  end
-  
-  # Examine validation state and manipulate to make sure we can save parties that meet
-  # new requirements of login equaling email - CE user login validations are still flushed,
-  # but we do this copy trick to get rid of them. Because email format is now login
-  # format, email validation errors are now "rebranded" as login validation errors.
-  
-  def validate
-    repl_errs = User.new.errors
-    # Copy all errors except login errors, and any email errors re-key as login errors
-    errors.each do |e, m|
-      case e
-        when "email", "party_login" then repl_errs.add :login, m
-        when "login" then #skip
-        else repl_errs.add e, m
-      end
-    end
-    errors.clear
-    repl_errs.each {|e, m| errors.add(e, m)}
-  end
-  
-  private
-  
-  # Hand-rolled login (as email) confirmation
-  def confirmation_of_login
-    errors.add :party_login, "doesn't match confirmation" unless login == login_confirmation
-  end
-
 end

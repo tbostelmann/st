@@ -11,9 +11,9 @@
           %h3
             =:log_in_to_site.l(:site => AppConfig.community_name)
           - form_tag sessions_path, :class => 'MainForm' do
-            %label{"for"=>"username"}=:username.l
+            %label{"for"=>"username"}=:e_mail_address.l
             = text_field_tag 'login', nil, :size => 35
-            %label{"for"=>"password"}=:password.l
+            %label{"for"=>"password"}="#{:password.l}:"
             = password_field_tag 'password', nil, :size => 35
             %fieldset
               %label{"for"=>"remember_me"}
