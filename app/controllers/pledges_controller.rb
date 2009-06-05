@@ -3,7 +3,7 @@ require 'money'
 class PledgesController < BaseController
   include ActiveMerchant::Billing::Integrations
 
-  protect_from_forgery :except => [:ipn]
+  protect_from_forgery :except => [:notify]
 
   # GET /pledges/new/{:saver_id}
   def new
