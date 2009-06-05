@@ -41,6 +41,12 @@
               %h3= :sign_up.l
               = error_messages_for :donor
               - fields_for :donor do |donor_form|
+                %label{:for => "donor_first_name"}
+                  =:first_name.l
+                = donor_form.text_field :first_name
+                %label{:for => "donor_last_name"}
+                  =:last_name.l
+                = donor_form.text_field :last_name
                 %label{:for => "donor_login"}
                   = :e_mail_address.l
                   %br

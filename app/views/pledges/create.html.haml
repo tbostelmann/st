@@ -3,7 +3,7 @@
     .yui-g
       .yui-u.first
         %h3
-          = @saver.login
+          = @saver.first_name.capitalize
         .centered
           = link_to image_tag( @saver.avatar_photo_url(:medium), :class => 'polaroid'), user_path(@saver)
       .yui-u
@@ -30,7 +30,7 @@
           #donation_line_items
             .donation_line_item
               %label{:for => "saver_donation"}
-                = "Amount you would like to donate to #{@saver.login}:"
+                = "Amount you would like to donate to #{@saver.first_name.capitalize}:"
               = @pledge.line_items[0].amount.format(:html)
               = hidden_field_tag :item_number_1, @saver.id
               = hidden_field_tag :item_name_1, @saver.login
