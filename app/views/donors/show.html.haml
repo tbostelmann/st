@@ -2,22 +2,21 @@
 - @section = @donor.eql?(current_user) ? 'my_profile' : 'donors'
 - @sidebar_left = true
 
-.st-block
+.yui-g
+  .yui-u.first
+    .box
+      = render :partial => 'users/profile_user_info_sidebar', :locals => {:user => @donor}
+
+  .yui-u
+    - if @donor.description
+      #about_me.box
+        %h3
+          =:about_me.l
+        %p
+          = @donor.description
+
+- unless @savers.size == 0
   .yui-g
-    .yui-u.first
-      .box
-        = render :partial => 'users/profile_user_info_sidebar', :locals => {:user => @donor}
-
-    .yui-u
-      - if @donor.description
-        #about_me.box
-          %h3
-            =:about_me.l
-          %p
-            = @donor.description
-
-  - unless @savers.size == 0
-    .yui-g
-    .box.user_list
-      %h3= "Savers you have donated to"
-      = render :partial => "savers/saver", :collection => @savers
+  .box.user_list
+    %h3= "Savers you have donated to"
+    = render :partial => "savers/saver", :collection => @savers

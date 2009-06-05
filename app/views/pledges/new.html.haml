@@ -1,79 +1,78 @@
-.st-block
-  #profile_details.box.hentry
-    .yui-g
-      .yui-u.first
-        %h3
-          = @saver.first_name.capitalize
-        .centered
-          = link_to image_tag( @saver.avatar_photo_url(:medium), :class => 'polaroid'), user_path(@saver)
-      .yui-u
-        %h3
-          Donation
-        - form_for @pledge, :url => { :action => :create }, :html => { :class => "MainForm" } do |f|
-          = hidden_field_tag :saver_id, @saver.id
-          = f.error_messages
-          #donation_line_items
-            - fields_for "pledge[donation_attributes][0]" do |li_form|
-              .donation_line_item
-                %label{:for => "saver_donation"}
-                  = "Amount you would like to donate to #{@saver.first_name.capitalize}:"
-                = li_form.text_field :amount, :size => 7, :value => "50"
-                = li_form.hidden_field :to_user_id, :value => @saver.id
-            - fields_for "pledge[donation_attributes][1]" do |li_form|
-              .donation_line_item
-                %label{:for => "st_donation"}
-                  (Optional) amount you would like to donate to SaveTogether:
-                = li_form.text_field :amount, :size => 7, :value => "5"
-                = li_form.hidden_field :to_user_id, :value => @storg.id
-            - if !current_user
-              %h3
-                = :log_in_to_site.l(:site => AppConfig.community_name)
-                %label{"for"=>"login"}=:e_mail_address.l
-                = text_field_tag 'login', nil, :size => 35
-                %label{"for"=>"password"}=:password.l
-                = password_field_tag 'password', nil, :size => 35
-                %fieldset
-                  %label{"for"=>"remember_me"}
-                    = :remember_me.l
-                    = check_box_tag 'remember_me'
-              %p
-                = submit_tag :log_in.l
-              %h3= :sign_up.l
-              = error_messages_for :donor
-              - fields_for :donor do |donor_form|
-                %label{:for => "donor_first_name"}
-                  =:first_name.l
-                = donor_form.text_field :first_name
-                %label{:for => "donor_last_name"}
-                  =:last_name.l
-                = donor_form.text_field :last_name
-                %label{:for => "donor_login"}
-                  = :e_mail_address.l
-                  %br
-                  %em= :required_your_email_address_will_identify_you_to_save_together.l
-                = donor_form.text_field :login
-
-                %label{:for => "donor_login_confirmation"}
-                  = :re_enter_e_mail_address_to_confirm.l
-                  %br
-                  %em=:required_we_will_send_a_confirmation_e_mail_to_the_address_you_enter.l
-                = donor_form.text_field :login_confirmation
-
-                - if AppConfig.require_captcha_on_signup
-                  .right{:style => 'margin-top:2em;'}= recaptcha_tags
-
-                %label{"for"=>"donor_password"}
-                  = :type_your_password.l
-                = donor_form.password_field :password
-                %label{"for"=>"donor_password_confirmation"}
-                  = :re_type_your_password_to_confirm.l
-                = donor_form.password_field :password_confirmation
-                %label{"for"=>"donor_public_profile"}
-                  =:display_me_as.l
-                  =donor_form.radio_button(:profile_public, true)
-                  =:first_name_choice.l
-                  =donor_form.radio_button(:profile_public, false)
-                  =:anonymous_choice.l
+#profile_details.box.hentry
+  .yui-g
+    .yui-u.first
+      %h3
+        = @saver.first_name.capitalize
+      .centered
+        = link_to image_tag( @saver.avatar_photo_url(:medium), :class => 'polaroid'), user_path(@saver)
+    .yui-u
+      %h3
+        Donation
+      - form_for @pledge, :url => { :action => :create }, :html => { :class => "MainForm" } do |f|
+        = hidden_field_tag :saver_id, @saver.id
+        = f.error_messages
+        #donation_line_items
+          - fields_for "pledge[donation_attributes][0]" do |li_form|
+            .donation_line_item
+              %label{:for => "saver_donation"}
+                = "Amount you would like to donate to #{@saver.first_name.capitalize}:"
+              = li_form.text_field :amount, :size => 7, :value => "50"
+              = li_form.hidden_field :to_user_id, :value => @saver.id
+          - fields_for "pledge[donation_attributes][1]" do |li_form|
+            .donation_line_item
+              %label{:for => "st_donation"}
+                (Optional) amount you would like to donate to SaveTogether:
+              = li_form.text_field :amount, :size => 7, :value => "5"
+              = li_form.hidden_field :to_user_id, :value => @storg.id
+          - if !current_user
+            %h3
+              = :log_in_to_site.l(:site => AppConfig.community_name)
+              %label{"for"=>"login"}=:e_mail_address.l
+              = text_field_tag 'login', nil, :size => 35
+              %label{"for"=>"password"}=:password.l
+              = password_field_tag 'password', nil, :size => 35
+              %fieldset
+                %label{"for"=>"remember_me"}
+                  = :remember_me.l
+                  = check_box_tag 'remember_me'
             %p
-              = submit_tag :continue.l
+              = submit_tag :log_in.l
+            %h3= :sign_up.l
+            = error_messages_for :donor
+            - fields_for :donor do |donor_form|
+              %label{:for => "donor_first_name"}
+                =:first_name.l
+              = donor_form.text_field :first_name
+              %label{:for => "donor_last_name"}
+                =:last_name.l
+              = donor_form.text_field :last_name
+              %label{:for => "donor_login"}
+                = :e_mail_address.l
+                %br
+                %em= :required_your_email_address_will_identify_you_to_save_together.l
+              = donor_form.text_field :login
+
+              %label{:for => "donor_login_confirmation"}
+                = :re_enter_e_mail_address_to_confirm.l
+                %br
+                %em=:required_we_will_send_a_confirmation_e_mail_to_the_address_you_enter.l
+              = donor_form.text_field :login_confirmation
+
+              - if AppConfig.require_captcha_on_signup
+                .right{:style => 'margin-top:2em;'}= recaptcha_tags
+
+              %label{"for"=>"donor_password"}
+                = :type_your_password.l
+              = donor_form.password_field :password
+              %label{"for"=>"donor_password_confirmation"}
+                = :re_type_your_password_to_confirm.l
+              = donor_form.password_field :password_confirmation
+              %label{"for"=>"donor_public_profile"}
+                =:display_me_as.l
+                =donor_form.radio_button(:profile_public, true)
+                =:first_name_choice.l
+                =donor_form.radio_button(:profile_public, false)
+                =:anonymous_choice.l
+          %p
+            = submit_tag :continue.l
 

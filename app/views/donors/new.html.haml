@@ -1,68 +1,67 @@
 - # This is for identifying current tab selection in navbar
 - @section = 'signup'
 
-.st-block
-  .yui-gf
-    .yui-u.first
-      .box
-        %h3
-          =:why_sign_up.l
-        %ul.list.checks
-        - if params[:donation_id]
-          %li
-            = :sign_up_reason_1.l
-        - unless params[:donation_id]
-          %li
-            = :sign_up_reason_2.l
+.yui-gf
+  .yui-u.first
+    .box
+      %h3
+        =:why_sign_up.l
+      %ul.list.checks
+      - if params[:donation_id]
+        %li
+          = :sign_up_reason_1.l
+      - unless params[:donation_id]
+        %li
+          = :sign_up_reason_2.l
 
-    .yui-u
-      .box
-        %h3=:sign_up.l
-        = error_messages_for :donor
-        - form_for :donor, :url => donors_path, :method => :post, :html => {:class => 'MainForm'} do |f|
-          = hidden_field_tag 'donation_id', "#{params[:donation_id]}"
-          %label{"for"=>"donor_first_name"}
-            =:first_name.l
-          = f.text_field :first_name
-          %label{"for"=>"donor_last_name"}
-            =:last_name.l
-          = f.text_field :last_name
-          %label{"for"=>"donor_login"} 
-            =:e_mail_address.l
-            %br
-            %em=:required_your_email_address_will_identify_you_to_save_together.l
-          = f.text_field :login
+  .yui-u
+    .box
+      %h3=:sign_up.l
+      = error_messages_for :donor
+      - form_for :donor, :url => donors_path, :method => :post, :html => {:class => 'MainForm'} do |f|
+        = hidden_field_tag 'donation_id', "#{params[:donation_id]}"
+        %label{"for"=>"donor_first_name"}
+          =:first_name.l
+        = f.text_field :first_name
+        %label{"for"=>"donor_last_name"}
+          =:last_name.l
+        = f.text_field :last_name
+        %label{"for"=>"donor_login"} 
+          =:e_mail_address.l
+          %br
+          %em=:required_your_email_address_will_identify_you_to_save_together.l
+        = f.text_field :login
 
-          %label{"for"=>"donor_login_confirmation"}
-            =:re_enter_e_mail_address_to_confirm.l
-            %br
-            %em=:required_we_will_send_a_confirmation_e_mail_to_the_address_you_enter.l
-          = f.text_field :login_confirmation
+        %label{"for"=>"donor_login_confirmation"}
+          =:re_enter_e_mail_address_to_confirm.l
+          %br
+          %em=:required_we_will_send_a_confirmation_e_mail_to_the_address_you_enter.l
+        = f.text_field :login_confirmation
 
-          - if AppConfig.require_captcha_on_signup
-            .right{:style => 'margin-top:2em;'}= recaptcha_tags
+        - if AppConfig.require_captcha_on_signup
+          .right{:style => 'margin-top:2em;'}= recaptcha_tags
 
-          %label{"for"=>"donor_password"}
-            =:type_your_password.l
-          = f.password_field :password
-          %label{"for"=>"donor_password_confirmation"}
-            =:re_type_your_password_to_confirm.l
-          = f.password_field :password_confirmation
-          %label{"for"=>"public_profile"}
-            =:display_me_as.l
-            =f.radio_button(:profile_public, true)
-            =:first_name_choice.l
-            =f.radio_button(:profile_public, false)
-            =:anonymous_choice.l
-          = hidden_field_tag :inviter_id, params[:inviter_id]
-          = hidden_field_tag :inviter_code, params[:inviter_code]
-          %p= submit_tag :sign_up.l
+        %label{"for"=>"donor_password"}
+          =:type_your_password.l
+        = f.password_field :password
+        %label{"for"=>"donor_password_confirmation"}
+          =:re_type_your_password_to_confirm.l
+        = f.password_field :password_confirmation
+        %label{"for"=>"public_profile"}
+          =:display_me_as.l
+          =f.radio_button(:profile_public, true)
+          =:first_name_choice.l
+          =f.radio_button(:profile_public, false)
+          =:anonymous_choice.l
+        = hidden_field_tag :inviter_id, params[:inviter_id]
+        = hidden_field_tag :inviter_code, params[:inviter_code]
+        %p= submit_tag :sign_up.l
 
-  .yui-g
-    .box.alt
-      %h3=:tips.l
-      %p
-        =:after_signing_up_youll_receive_an_e_mail_confirmation_message.l
-      %p
-        =:click_the_activation_link_in_the_e_mail_to_log_in.l
-      %p= link_to :already_have_an_account.l, "/login"
+.yui-g
+  .box.alt
+    %h3=:tips.l
+    %p
+      =:after_signing_up_youll_receive_an_e_mail_confirmation_message.l
+    %p
+      =:click_the_activation_link_in_the_e_mail_to_log_in.l
+    %p= link_to :already_have_an_account.l, "/login"
