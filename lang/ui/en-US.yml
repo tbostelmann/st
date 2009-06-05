@@ -333,6 +333,8 @@ en:
   first_name_choice: First name
   #en: anonymous_choice: Anonymous
   anonymous_choice: Anonymous
+  #en: continue: Continue
+  continue: Continue
   #en: edit: Edit
   edit: Edit
   #en: edit_account: Edit account
