@@ -24,55 +24,16 @@
                 (Optional) amount you would like to donate to SaveTogether:
               = li_form.text_field :amount, :size => 7, :value => "5"
               = li_form.hidden_field :to_user_id, :value => @storg.id
-          - if !current_user
-            %h3
-              = :log_in_to_site.l(:site => AppConfig.community_name)
-              %label{"for"=>"login"}=:e_mail_address.l
-              = text_field_tag 'login', nil, :size => 35
-              %label{"for"=>"password"}=:password.l
-              = password_field_tag 'password', nil, :size => 35
-              %fieldset
-                %label{"for"=>"remember_me"}
-                  = :remember_me.l
-                  = check_box_tag 'remember_me'
-            %p
-              = submit_tag :log_in.l
-            %h3= :sign_up.l
-            = error_messages_for :donor
-            - fields_for :donor do |donor_form|
-              %label{:for => "donor_first_name"}
-                =:first_name.l
-              = donor_form.text_field :first_name
-              %label{:for => "donor_last_name"}
-                =:last_name.l
-              = donor_form.text_field :last_name
-              %label{:for => "donor_login"}
-                = :e_mail_address.l
-                %br
-                %em= :required_your_email_address_will_identify_you_to_save_together.l
-              = donor_form.text_field :login
-
-              %label{:for => "donor_login_confirmation"}
-                = :re_enter_e_mail_address_to_confirm.l
-                %br
-                %em=:required_we_will_send_a_confirmation_e_mail_to_the_address_you_enter.l
-              = donor_form.text_field :login_confirmation
-
-              - if AppConfig.require_captcha_on_signup
-                .right{:style => 'margin-top:2em;'}= recaptcha_tags
-
-              %label{"for"=>"donor_password"}
-                = :type_your_password.l
-              = donor_form.password_field :password
-              %label{"for"=>"donor_password_confirmation"}
-                = :re_type_your_password_to_confirm.l
-              = donor_form.password_field :password_confirmation
-              %label{"for"=>"donor_public_profile"}
-                =:display_me_as.l
-                =donor_form.radio_button(:profile_public, true)
-                =:first_name_choice.l
-                =donor_form.radio_button(:profile_public, false)
-                =:anonymous_choice.l
+        - if current_user
           %p
-            = submit_tag :continue.l
-
+            =submit_tag :continue.l
+            
+      - unless current_user
+        %h3
+          ="Login?"
+        = render :partial => "shared/login_form"
+        
+        %h3
+          ="Signup?"
+        = error_messages_for :donor
+        = render :partial => "donors/signup_form"
