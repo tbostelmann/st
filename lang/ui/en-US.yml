@@ -327,6 +327,12 @@ en:
   e_mail_address: "E-mail address:"
   #en: re_enter_e_mail_address_to_confirm: "Re-enter e-mail address to confirm:"
   re_enter_e_mail_address_to_confirm: "Re-enter e-mail address to confirm:"
+  #en: display_me_as: "Display me as:"
+  display_me_as: "Display me as:"
+  #en: first_name_choice: First name
+  first_name_choice: First name
+  #en: anonymous_choice: Anonymous
+  anonymous_choice: Anonymous
   #en: edit: Edit
   edit: Edit
   #en: edit_account: Edit account
