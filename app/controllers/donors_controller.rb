@@ -16,6 +16,9 @@ class DonorsController < BaseController
     @savers = @donor.beneficiaries
   end
 
+  def signup_or_login
+  end
+  
   def create
     @donor       = Donor.new(params[:donor])
     @donor.role  = Role[:member]

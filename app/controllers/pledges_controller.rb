@@ -17,13 +17,39 @@ class PledgesController < BaseController
       format.html # new.html.erb
     end
   end
-
-  # POST /pledges/review
+  
+  # POST /pledges/create
   def create
     @saver = Saver.find(params[:saver_id])
     @storg = Organization.find_savetogether_org
     @pledge = Pledge.new(params[:pledge])
+    
+    puts "PledgesController.create - parameter dump:"
+    params.each { |p, v| puts ":#{p} => \"#{v}\"" }
+    
+    if current_user
+      update_pledge(current_user)
+      respond_to do |format|
+        if @pledge.save
+          format.html # create.html.erb
+        else
+          format.html { render :action => "new", :saver_id => params[:saver_id] }
+        end
+      end
+    else
+      redirect_to signup_or_login_path
+    end
+  end
 
+  # POST /pledges/review
+  def create_old
+    @saver = Saver.find(params[:saver_id])
+    @storg = Organization.find_savetogether_org
+    @pledge = Pledge.new(params[:pledge])
+
+    puts "PledgesController.create - parameter dump:"
+    params.each { |p, v| puts ":#{p} => \"#{v}\"" }
+    
     if current_user
       update_pledge(current_user)
       respond_to do |format|

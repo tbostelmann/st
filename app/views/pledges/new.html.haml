@@ -24,16 +24,8 @@
                 (Optional) amount you would like to donate to SaveTogether:
               = li_form.text_field :amount, :size => 7, :value => "5"
               = li_form.hidden_field :to_user_id, :value => @storg.id
-        - if current_user
-          %p
-            =submit_tag :continue.l
-            
-      - unless current_user
-        %h3
-          ="Login?"
-        = render :partial => "shared/login_form"
-        
-        %h3
-          ="Signup?"
-        = error_messages_for :donor
-        = render :partial => "donors/signup_form"
+        %p
+          - if current_user
+            = submit_tag :donate.l
+          - else
+            = submit_tag :continue.l
