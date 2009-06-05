@@ -52,6 +52,8 @@ class Organization < Party
   has_many :fees_paid, :class_name => 'Fee', :foreign_key => :from_user_id
   has_many :fees_received, :class_name => 'Fee', :foreign_key => :to_user_id
 
+  validates_presence_of :full_name
+  
   PAYPAL_LOGIN = 'paypal@savetogether.org'
   SAVETOGETHER_LOGIN = 'st@savetogether.org'
 

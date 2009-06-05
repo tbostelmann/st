@@ -36,6 +36,18 @@ class DonorTest < ActiveSupport::TestCase
     assert donor.valid?
     assert_equal donor.login, donor.email
   end
+  
+  test "Donor must have a first name" do
+    donor = new_test_donor(:first_name => nil)
+    assert !donor.valid?
+    assert donor.errors.on(:first_name)
+  end
+
+  test "Donor must have a last name" do
+    donor = new_test_donor(:last_name => nil)
+    assert !donor.valid?
+    assert donor.errors.on(:last_name)
+  end
 
   test "get the list of donations_given" do
     donor = users(:donor)
@@ -74,6 +86,8 @@ class DonorTest < ActiveSupport::TestCase
   
   def new_test_donor(options = {})
     Donor.new({
+      :first_name => "Newt",
+      :last_name => "Donor",
       :login => "a@b.com",
       :login_confirmation => "a@b.com",
       :password => "foo2thebar",

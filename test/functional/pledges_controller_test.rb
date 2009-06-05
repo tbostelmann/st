@@ -21,7 +21,9 @@ class PledgesControllerTest < ActionController::TestCase
         :saver_id => saver.id,
         :pledge => { :donation_attributes => pledge_params(saver) },
         :donor => {
-          :login => 'testlogin@example.com',
+          :login => "testlogin@example.com",
+          :first_name => "Tess",
+          :last_name => "Loggin",
           :login_confirmation => "testlogin@example.com",
           :password => "password",
           :password_confirmation => "password"} }

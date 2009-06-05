@@ -26,6 +26,8 @@ class CreateInitialModel < ActiveRecord::Migration
     add_column(:users, :requested_match_cents, :integer)
     add_column(:users, :asset_type_id, :integer)
     add_column(:users, :organization_id, :integer)
+    add_column(:users, :first_name, :string)
+    add_column(:users, :last_name, :string)
     add_column(:users, :full_name, :string)
 
     create_table :payment_notifications do |t|
@@ -37,6 +39,8 @@ class CreateInitialModel < ActiveRecord::Migration
   def self.down
     drop_table :payment_notifications
     remove_column(:users, :full_name)
+    remove_column(:users, :last_name)
+    remove_column(:users, :first_name)
     remove_column(:users, :organization_id)
     remove_column(:users, :asset_type_id)
     remove_column(:users, :requested_match_cents)

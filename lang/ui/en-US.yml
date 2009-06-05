@@ -319,6 +319,10 @@ en:
   drag_this_to_your_bookmarks_toolbar: Drag this to your bookmarks toolbar
   #en: e_mail: E-mail
   e_mail: E-mail
+  #en: first_name: "First name:"
+  first_name: "First name:"
+  #en: last_name: "Last name:"
+  last_name: "Last name:"
   #en: e_mail_address: "E-mail address:"
   e_mail_address: "E-mail address:"
   #en: re_enter_e_mail_address_to_confirm: "Re-enter e-mail address to confirm:"

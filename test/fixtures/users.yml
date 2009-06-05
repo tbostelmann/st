@@ -45,6 +45,8 @@
 
 saver:
   login: saver@example.com
+  first_name: Super
+  last_name: Saver1
   description: I am a saver
   salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
   crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
@@ -66,6 +68,8 @@ saver:
   
 saver2:
   login: saver2@example.com
+  first_name: Super
+  last_name: Saver2
   description: I am also a friggin awesome gal
   salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
   crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
@@ -87,6 +91,8 @@ saver2:
   
 saver3:
   login: saver3@example.com
+  first_name: Super
+  last_name: Saver3
   description: I am a friggin awesome guy
   salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
   crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
@@ -108,6 +114,8 @@ saver3:
   
 saver4:
   login: saver4@example.com
+  first_name: Super
+  last_name: Saver4
   description: I am an friggin awesome gal of a certain age
   salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
   crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
@@ -183,6 +191,8 @@ paypal:
 
 donor:
   login: donor@example.com
+  first_name: Duper
+  last_name: Donor1
   description: I am happy to be here. Community rawks!
   salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
   crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
@@ -198,6 +208,8 @@ donor:
   
 donor2:
   login: donor2@example.com
+  first_name: Duper
+  last_name: Donor2
   description: I am happy to be here. Community rawks!
   salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
   crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
@@ -213,6 +225,8 @@ donor2:
   
 donor3:
   login: donor3@example.com
+  first_name: Duper
+  last_name: Donor3
   description: I am happy to be here. Community rawks!
   salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
   crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
@@ -228,6 +242,8 @@ donor3:
   
 donor4:
   login: donor4@example.com
+  first_name: Duper
+  last_name: Donor4
   description: I am happy to be here. Community rawks!
   salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
   crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
@@ -243,6 +259,8 @@ donor4:
 
 minUser:
   login: minUser@example.com
+  first_name: Min
+  last_name: User
   description: I am Garnett
   salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
   crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
@@ -256,6 +274,8 @@ minUser:
   
 admin:
   login: admin@example.com
+  first_name: Ad
+  last_name: Min
   description: I am all powerful
   salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
   crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test

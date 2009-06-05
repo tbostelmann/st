@@ -21,6 +21,12 @@
         = error_messages_for :donor
         - form_for :donor, :url => donors_path, :method => :post, :html => {:class => 'MainForm'} do |f|
           = hidden_field_tag 'donation_id', "#{params[:donation_id]}"
+          %label{"for"=>"donor_first_name"}
+            =:first_name.l
+          = f.text_field :first_name
+          %label{"for"=>"donor_last_name"}
+            =:last_name.l
+          = f.text_field :last_name
           %label{"for"=>"donor_login"} 
             =:e_mail_address.l
             %br

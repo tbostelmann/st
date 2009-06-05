@@ -28,6 +28,8 @@ class CreateConfigurationData < ActiveRecord::Migration
     admin = Donor.create!(
       :login => "tom@savetogether.org",
       :login_confirmation => "tom@savetogether.org",
+      :first_name => "Tom",
+      :last_name => "B",
       :description => "Person with adminstrator role",
       :salt => "7e3041ebc2fc05a40c60028e2c4901a81035d3cd",
       :crypted_password => "00742970dc9e6319f8019fd54864d3ea740f04b1", # test
@@ -50,7 +52,7 @@ class CreateConfigurationData < ActiveRecord::Migration
       :metro_area => seattle,
       :birthday => 30.years.ago,
       :activities_count => 0,
-      :profile_public => 0,
+      :profile_public => false,
       :role => Role[:member])
     stOrg.activate
 
@@ -65,7 +67,7 @@ class CreateConfigurationData < ActiveRecord::Migration
       :metro_area => seattle,
       :birthday => 30.years.ago,
       :activities_count => 0,
-      :profile_public => 0,
+      :profile_public => false,
       :role => Role[:member])
     paypal.activate
   end

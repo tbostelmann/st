@@ -52,4 +52,6 @@ class Donor < Party
   has_many :beneficiaries, :through => :donations_given, :source => :to_user,
            :uniq => true, :conditions => "users.type = 'Saver'"
   
+  validates_presence_of :first_name
+  validates_presence_of :last_name
 end

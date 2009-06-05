@@ -31,6 +31,8 @@ class DonorsControllerTest < ActionController::TestCase
     {
       
       :login => "a@b.com",
+      :first_name => "Min",
+      :last_name => "Donor",
       :login_confirmation => "a@b.com",
       :password => "foo2thebar",
       :password_confirmation => "foo2thebar",
