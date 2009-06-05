@@ -1,6 +1,10 @@
 require 'money'
 
 class PledgesController < BaseController
+  include ActiveMerchant::Billing::Integrations
+
+  protect_from_forgery :except => [:ipn]
+
   # GET /pledges/new/{:saver_id}
   def new
     @saver = Saver.find(params[:saver_id])
