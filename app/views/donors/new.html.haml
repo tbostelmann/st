@@ -17,46 +17,9 @@
   .yui-u
     .box
       %h3=:sign_up.l
-      = error_messages_for :donor
-      - form_for :donor, :url => donors_path, :method => :post, :html => {:class => 'MainForm'} do |f|
-        = hidden_field_tag 'donation_id', "#{params[:donation_id]}"
-        %label{"for"=>"donor_first_name"}
-          =:first_name.l
-        = f.text_field :first_name
-        %label{"for"=>"donor_last_name"}
-          =:last_name.l
-        = f.text_field :last_name
-        %label{"for"=>"donor_login"} 
-          =:e_mail_address.l
-          %br
-          %em=:required_your_email_address_will_identify_you_to_save_together.l
-        = f.text_field :login
-
-        %label{"for"=>"donor_login_confirmation"}
-          =:re_enter_e_mail_address_to_confirm.l
-          %br
-          %em=:required_we_will_send_a_confirmation_e_mail_to_the_address_you_enter.l
-        = f.text_field :login_confirmation
-
-        - if AppConfig.require_captcha_on_signup
-          .right{:style => 'margin-top:2em;'}= recaptcha_tags
-
-        %label{"for"=>"donor_password"}
-          =:type_your_password.l
-        = f.password_field :password
-        %label{"for"=>"donor_password_confirmation"}
-          =:re_type_your_password_to_confirm.l
-        = f.password_field :password_confirmation
-        %label{"for"=>"public_profile"}
-          =:display_me_as.l
-          =f.radio_button(:profile_public, true)
-          =:first_name_choice.l
-          =f.radio_button(:profile_public, false)
-          =:anonymous_choice.l
-        = hidden_field_tag :inviter_id, params[:inviter_id]
-        = hidden_field_tag :inviter_code, params[:inviter_code]
-        %p= submit_tag :sign_up.l
-
+      = error_messages_for :donor        
+      = render :partial => "donors/donor_signup_form"
+      
 .yui-g
   .box.alt
     %h3=:tips.l
