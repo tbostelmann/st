@@ -17,6 +17,7 @@ class DonorsController < BaseController
   end
 
   def signup_or_login
+    @donor = Donor.new
   end
   
   def create

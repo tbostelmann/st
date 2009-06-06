@@ -35,7 +35,7 @@ ActionController::Routing::Routes.draw do |map|
   # See how all your routes lay out with "rake routes"
 
   # Re-route signup to the donors controller - signup is for donors only
-  map.signup '/signup', :controller => 'donors', :action => 'new'
+  map.signup          '/signup',          :controller => 'donors', :action => 'new'
   map.signup_or_login '/signup_or_login', :controller => 'donors', :action => 'signup_or_login'
   
   # map.resources gives us RESTful routes to these models
