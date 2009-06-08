@@ -1,6 +1,6 @@
 class CreateInitialModel < ActiveRecord::Migration
   def self.up
-    create_table :invoices do |t|
+    create_table :invoices, :options => "auto_increment = #{Time.now.to_i}" do |t|
       t.integer :donor_id
       t.string :type
       t.string :notification_email
