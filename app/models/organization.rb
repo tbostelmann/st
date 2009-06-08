@@ -40,6 +40,8 @@
 #  requested_match_cents     :integer(4)
 #  asset_type_id             :integer(4)
 #  organization_id           :integer(4)
+#  first_name                :string(255)
+#  last_name                 :string(255)
 #  full_name                 :string(255)
 #
 

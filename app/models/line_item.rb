@@ -8,7 +8,7 @@
 #  invoice_id   :integer(4)
 #  from_user_id :integer(4)
 #  to_user_id   :integer(4)
-#  status       :string(255)
+#  status       :string(255)     default("Pending")
 #  type         :string(255)
 #  created_at   :datetime
 #  updated_at   :datetime
