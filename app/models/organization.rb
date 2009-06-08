@@ -66,4 +66,8 @@ class Organization < Party
   def self.find_paypal_org
     find_by_login(PAYPAL_LOGIN)
   end
+
+  def to_param
+    self.id.to_s
+  end
 end

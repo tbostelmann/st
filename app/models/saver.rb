@@ -56,5 +56,5 @@ class Saver < Party
 
   validates_presence_of :organization
   validates_presence_of :requested_match_cents
-  validates_presence_of :asset_type  
+  validates_presence_of :asset_type
 end
