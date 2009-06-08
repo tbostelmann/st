@@ -48,7 +48,7 @@ class PledgesControllerTest < ActionController::TestCase
 
     li_count = pledge.line_items.size
 
-    get :notify, {
+    post :notify, {
       :mc_gross => "55.00",
       :invoice => "#{pledge.id}",
       :protection_eligibility => 'Ineligible',

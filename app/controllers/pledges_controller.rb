@@ -122,7 +122,7 @@ class PledgesController < BaseController
   end
 
   def notify
-    pn = PaymentNotification.create(:raw_data => request.query_string)
+    pn = PaymentNotification.create(:raw_data => request.raw_post)
     notification = pn.notification
 
     pledge = Pledge.find(notification.invoice)
