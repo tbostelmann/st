@@ -59,7 +59,7 @@ class DonorTest < ActiveSupport::TestCase
 
     donor2 = users(:donor2)
     assert donor2.all_donations_given.size == 2
-    assert donor2.donations_given.size == 2
+    assert donor2.donations_given.size == 0
     donor.all_donations_given.each do |d|
       assert d.class == Donation
     end

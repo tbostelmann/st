@@ -11,7 +11,7 @@ class SaverTest < ActiveSupport::TestCase
 
     saver2 = users(:saver2)
     assert saver2.all_donations_received.size == 1
-    assert saver2.donations_received.size == 1
+    assert saver2.donations_received.size == 0
     saver2.all_donations_received.each do |d|
       assert d.class == Donation
     end
@@ -29,7 +29,7 @@ class SaverTest < ActiveSupport::TestCase
     assert saver.match_percent > 0
 
     saver2 = users(:saver2)
-    assert saver2.match_percent > 0
+    assert saver2.match_percent == 0
 
     saver3 = users(:saver3)
     assert saver3.match_percent == 0
