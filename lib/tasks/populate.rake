@@ -25,8 +25,8 @@ namespace :db do
 
     org = Organization.create!(
       :full_name => 'Washington CASH',
-      :login => "admin@washingtoncash.org",
-      :login_confirmation => "admin@washingtoncash.org",
+      :login => "wacash@savetogether.org",
+      :login_confirmation => "wacash@savetogether.org",
       :description => "<p>Washington CASH description.</p>",
       :salt => "7e3041ebc2fc05a40c60028e2c4901a81035d3cd",
       :crypted_password => "00742970dc9e6319f8019fd54864d3ea740f04b1", # test
@@ -37,8 +37,8 @@ namespace :db do
       :role => Role[:member])
     org.activate
     saver = Saver.create!(
-      :login => "samantha@washingtoncash.org",
-      :login_confirmation => "samantha@washingtoncash.org",
+      :login => "samantha@savetogether.org",
+      :login_confirmation => "samantha@savetogether.org",
       :first_name => "Samantha",
       :last_name => "Saver",
       :description => "<p>Samantha is saving for a downpayment towards a house. Samantha's dream is to own her own home. She is saving to provide a home for her 2 children. Since completing high school, she has worked for two years as a retail clerk to help afford the tuition.</p>  <p>Last year, Samantha was selected to open a matched savings account with Opportunity Fund, one of the leading microfinance organizations in America. She is saving diligently every month, and attending classes on money management and college readiness.</p><p>I have always been told that I have a gift for making people feel better,' she says. 'I will make the most of the help I am getting from Opportunity Fund, and I intend to give back by caring for people who are facing emergencies'.</p>",
@@ -64,8 +64,8 @@ namespace :db do
 
     org = Organization.create!(
       :full_name => 'EARN',
-      :login => "admin@earn.org",
-      :login_confirmation => "admin@earn.org",
+      :login => "earn@savetogether.org",
+      :login_confirmation => "earn@savetogether.org",
       :description => "<p>EARN description.</p>",
       :salt => "7e3041ebc2fc05a40c60028e2c4901a81035d3cd",
       :crypted_password => "00742970dc9e6319f8019fd54864d3ea740f04b1", # test
@@ -76,8 +76,8 @@ namespace :db do
       :role => Role[:member])
     org.activate
     saver = Saver.create!(
-      :login => "juanita@earn.org",
-      :login_confirmation => "juanita@earn.org",
+      :login => "juanita@savetogether.org",
+      :login_confirmation => "juanita@savetogether.org",
       :first_name => "Juanita",
       :last_name => "Somesavings",
       :description => "<p>Juana's dream is to get a nursing degree and work in an emergency room. She is saving to enroll at the City College of San Francisco School of Nursing. Since completing high school, she has worked for two years as a retail clerk to help afford the tuition.</p>  <p>Last year, Juana was selected to open a matched savings account with Opportunity Fund, one of the leading microfinance organizations in America. She is saving diligently every month, and attending classes on money management and college readiness.</p><p>I have always been told that I have a gift for making people feel better,' she says. 'I will make the most of the help I am getting from Opportunity Fund, and I intend to give back by caring for people who are facing emergencies'.</p>",
@@ -103,8 +103,8 @@ namespace :db do
 
     org = Organization.create!(
       :full_name => 'Opportunity Fund',
-      :login => "admin@opportunityfund.org",
-      :login_confirmation => "admin@opportunityfund.org",
+      :login => "opportunityfund@savetogether.org",
+      :login_confirmation => "opportunityfund@savetogether.org",
       :description => "Opportunity Fund description.</p>",
       :salt => "7e3041ebc2fc05a40c60028e2c4901a81035d3cd",
       :crypted_password => "00742970dc9e6319f8019fd54864d3ea740f04b1", # test
@@ -115,8 +115,8 @@ namespace :db do
       :role => Role[:member])
     org.activate
     saver = Saver.create!(
-      :login => "rosie@opportunityfund.org",
-      :login_confirmation => "rosie@opportunityfund.org",
+      :login => "rosie@savetogether.org",
+      :login_confirmation => "rosie@savetogether.org",
       :first_name => "Rosie",
       :last_name => "Outlook",
       :description => "Rosie is saving to open her own produce stand at the local public market. Since completing high school, she has worked for two years as a retail clerk to help afford the tuition.</p>  <p>Last year, Samantha was selected to open a matched savings account with Opportunity Fund, one of the leading microfinance organizations in America. She is saving diligently every month, and attending classes on money management and college readiness.</p><p>I have always been told that I have a gift for making people feel better,' she says. 'I will make the most of the help I am getting from Opportunity Fund, and I intend to give back by caring for people who are facing emergencies'.</p>",
@@ -142,8 +142,8 @@ namespace :db do
 
     org = Organization.create!(
       :full_name => 'Lawrence Community Works',
-      :login => "admin@lawrencecommunityworks.org",
-      :login_confirmation => "admin@lawrencecommunityworks.org",
+      :login => "lcw@savetogether.org",
+      :login_confirmation => "lcw@savetogether.org",
       :description => "Lawrence Community Works description",
       :salt => "7e3041ebc2fc05a40c60028e2c4901a81035d3cd",
       :crypted_password => "00742970dc9e6319f8019fd54864d3ea740f04b1", # test
@@ -154,8 +154,8 @@ namespace :db do
       :role => Role[:member])
     org.activate
     saver = Saver.create!(
-      :login => "sonja@lawrencecommunityworks.org",
-      :login_confirmation => "sonja@lawrencecommunityworks.org",
+      :login => "sonja@savetogether.org",
+      :login_confirmation => "sonja@savetogether.org",
       :first_name => "Sonja",
       :last_name => "Blinksi",
       :description => "Sonja is saving to open her own crafts stand at the local flea market. Sonja is eager to provide a valuable service to the community. She will leverage her considerable strengths in putting together innovative craft projects. She has been helping elementary school children for the past 10 years in after school arts and crafts programs.",

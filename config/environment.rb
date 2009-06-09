@@ -56,12 +56,12 @@ Rails::Initializer.run do |config|
 end# Include your application configuration below
 require "#{RAILS_ROOT}/vendor/plugins/community_engine/engine_config/boot.rb"
 
+APP_URL = AppConfig.app_url
+
 unless ENV['RAILS_ENV'] == 'production'
-  PAYPAL_ACCOUNT = 'tom@savetogether.org'
   ActiveMerchant::Billing::Base.mode = :test
-else
-  PAYPAL_ACCOUNT = 'tom@savetogether.org'
 end
+PAYPAL_ACCOUNT = AppConfig.paypal_account
 
 email_add = AppConfig.support_email
 ExceptionNotifier.exception_recipients = email_add

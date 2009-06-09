@@ -26,8 +26,8 @@ class CreateConfigurationData < ActiveRecord::Migration
     business = AssetType.create! :asset_name => "Business"
 
     admin = Donor.create!(
-      :login => "tom@savetogether.org",
-      :login_confirmation => "tom@savetogether.org",
+      :login => "admin@savetogether.org",
+      :login_confirmation => "admin@savetogether.org",
       :first_name => "Tom",
       :last_name => "B",
       :description => "Person with adminstrator role",
@@ -43,8 +43,8 @@ class CreateConfigurationData < ActiveRecord::Migration
 
     stOrg = Organization.create!(
       :full_name => 'SaveTogether',
-      :login => "st@savetogether.org",
-      :login_confirmation => "st@savetogether.org",
+      :login => "storg@savetogether.org",
+      :login_confirmation => "storg@savetogether.org",
       :description => "<p>SaveTogether description.</p>",
       :salt => "7e3041ebc2fc05a40c60028e2c4901a81035d3cd",
       :crypted_password => "00742970dc9e6319f8019fd54864d3ea740f04b1", # test
