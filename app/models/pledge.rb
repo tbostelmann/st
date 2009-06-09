@@ -39,6 +39,7 @@ class Pledge < Invoice
       end
 
       line_item.status = notify.status
+      line_item.save!
       index = index + 1
     end
 

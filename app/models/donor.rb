@@ -50,7 +50,7 @@ class Donor < Party
   has_many :pledges
   has_many :all_donations_given, :class_name => 'Donation', :foreign_key => :from_user_id
   has_many :donations_given, :class_name => 'Donation', :foreign_key => :from_user_id,
-           :conditions => "status = '#{LineItem::STATUS_PROCESSED}'"
+           :conditions => "status = '#{LineItem::STATUS_PROCESSED}' OR status = '#{LineItem::STATUS_COMPLETED}'"
   has_many :beneficiaries, :through => :donations_given, :source => :to_user,
            :uniq => true, :conditions => "users.type = 'Saver'"
   

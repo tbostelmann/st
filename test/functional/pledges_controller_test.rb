@@ -46,6 +46,7 @@ class PledgesControllerTest < ActionController::TestCase
     storg = Organization.find_savetogether_org
     donor = users(:donor2)
 
+    completed_donations = donor.donations_given.size
     li_count = pledge.line_items.size
 
     post :notify, {
@@ -101,8 +102,10 @@ class PledgesControllerTest < ActionController::TestCase
     assert_response :success
 
     pledge = Pledge.find(pledge.id)
-
     assert pledge.line_items.size > li_count
+
+    donor = Donor.find(donor.id)
+    assert donor.donations_given.size > completed_donations
   end
 #  test "create action on invalid donation should render 'new' template" do
 #    adc = asset_development_cases(:saverCase)
