@@ -57,7 +57,7 @@ class Organization < Party
   validates_presence_of :full_name
   
   PAYPAL_LOGIN = 'paypal@savetogether.org'
-  SAVETOGETHER_LOGIN = 'st@savetogether.org'
+  SAVETOGETHER_LOGIN = 'storg@savetogether.org'
 
   def self.find_savetogether_org
     find_by_login(SAVETOGETHER_LOGIN)

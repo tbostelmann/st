@@ -157,7 +157,7 @@ earn:
   
 savetogether:
   full_name: SaveTogether
-  login: st@savetogether.org
+  login: storg@savetogether.org
   description: <p>SaveTogether description.</p>
   salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
   crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
