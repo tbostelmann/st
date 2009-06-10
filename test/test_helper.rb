@@ -51,6 +51,12 @@ class ActiveSupport::TestCase
           }    
   end
 
+  def invalid_pledge_params(saver)
+    pparams = pledge_params(saver)
+    pparams["0"][:amount] = "not a number"
+    return pparams
+  end
+
   def test_pledge_no_fees(pledge)
     test_basic_pledge(pledge)
 

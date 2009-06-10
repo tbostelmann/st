@@ -61,8 +61,16 @@ class LineItem < ActiveRecord::Base
   belongs_to :to_user, :class_name => 'User', :foreign_key => :to_user_id
   belongs_to :from_user, :class_name => 'User', :foreign_key => :from_user_id
 
-  composed_of :amount, :class_name => "Money", :mapping => [%w(cents cents)], :converter => Proc.new { |value| value.to_money }
+  composed_of :amount,
+              :class_name => "Money",
+              :mapping => [%w(cents cents)],
+              :converter => Proc.new { |value| value.to_money }
 
   validates_presence_of :status
   validates_presence_of :cents
+  validates_numericality_of :amount, :greater_than => 0
+
+  def amount_before_type_cast
+    amount.to_s
+  end
 end

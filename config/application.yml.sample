@@ -8,3 +8,4 @@ meta_keywords: 'keywords for use in META tags'
 #sections_enabled: ['photos']
 paypal_account: "tom@savetogether.org"
 app_url: "http://localhost:3000"
+paypal_url: "https://www.sandbox.paypal.com/cgi-bin/webscr"

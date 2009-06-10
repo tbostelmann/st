@@ -17,85 +17,38 @@ class PledgesController < BaseController
       format.html # new.html.erb
     end
   end
-  
+
+  def continue
+    @pledge = session[:pledge]
+    @saver = Saver.find(session[:saver_id])
+    @storg = Organization.find_savetogether_org
+    
+    update_pledge_with_donor
+    @pledge.save!
+    session[:pledge] = nil
+    session[:saver_id] = nil
+    render 'create' #post AppConfig.paypal_url, paypal_redirect_params(@pledge)
+  end
+
   # POST /pledges/create
   def create
     @saver = Saver.find(params[:saver_id])
     @storg = Organization.find_savetogether_org
     @pledge = Pledge.new(params[:pledge])
-    
-    puts "PledgesController.create - parameter dump:"
-    params.each { |p, v| puts ":#{p} => \"#{v}\"" }
-    
-    if current_user
-      update_pledge(current_user)
-      respond_to do |format|
-        if @pledge.save
-          format.html # create.html.erb
+
+    respond_to do |format|
+      if @pledge.valid?
+        if current_user
+          update_pledge_with_donor
+          @pledge.save!
+          format.html #{ redirect_to post AppConfig.paypal_url, paypal_redirect_params(@pledge)}
         else
-          format.html { render :action => "new", :saver_id => params[:saver_id] }
+          session[:pledge] = @pledge
+          session[:saver_id] = params[:saver_id]
+          format.html { redirect_to signup_or_login_path }
         end
-      end
-    else
-      redirect_to signup_or_login_path
-    end
-  end
-
-  # POST /pledges/review
-  def create_old
-    @saver = Saver.find(params[:saver_id])
-    @storg = Organization.find_savetogether_org
-    @pledge = Pledge.new(params[:pledge])
-
-    puts "PledgesController.create - parameter dump:"
-    params.each { |p, v| puts ":#{p} => \"#{v}\"" }
-    
-    if current_user
-      update_pledge(current_user)
-      respond_to do |format|
-        if @pledge.save
-          format.html # create.html.erb
-        else
-          format.html { render :action => "new", :saver_id => params[:saver_id] }
-        end
-      end
-    elsif params[:commit] == :log_in.l
-      self.current_user = Donor.authenticate(params[:login], params[:password])
-
-      respond_to do |format|
-        if logged_in?
-          if params[:remember_me] == "1"
-            self.current_user.remember_me
-            cookies[:auth_token] = { :value => self.current_user.remember_token , :expires => self.current_user.remember_token_expires_at }
-          end
-
-          flash[:notice] = :thanks_youre_now_logged_in.l
-          current_user.track_activity(:logged_in)
-
-          update_pledge(current_user)
-        else
-          flash[:notice] = :uh_oh_we_couldnt_log_you_in_with_the_username_and_password_you_entered_try_again.l
-          format.html { render :action => "new", :saver_id => params[:saver_id] }
-        end
-
-        if  @pledge.save
-          format.html # create.html.erb
-        else
-          format.html { render :action => "new", :saver_id => params[:saver_id] }
-        end 
-      end
-    else
-      @user       = Donor.new(params[:donor])
-      @user.role  = Role[:member]
-      @user.birthday = 21.years.ago.to_s :db
-      update_pledge(@user)
-
-      respond_to do |format|
-        if @user.save! && @pledge.save && (!AppConfig.require_captcha_on_signup || verify_recaptcha(@user))
-          format.html # create.html.erb
-        else
-          format.html { render :action => "new", :saver_id => params[:saver_id] }
-        end
+      else
+        format.html { render :action => "new", :saver_id => params[:saver_id] }
       end
     end
   end
@@ -142,14 +95,43 @@ class PledgesController < BaseController
 
 
   def cancel
-    handle_pay_pal_notification(notification)
+    
   end
 
   private
-  def update_pledge(user)
-    @pledge.donor = user
+
+  def update_pledge_with_donor
+    @pledge.donor = current_user
     @pledge.donations.each do |donation|
-      donation.from_user = user
+      donation.from_user = current_user
     end
-  end  
+  end
+
+  def paypal_redirect_params(pledge)
+    redirect_params = {
+      :cancel_return => url_for(:only_path => false, :action => 'cancel'),
+      :bn => "ActiveMerchant",
+      :redirect_cmd => "_cart",
+      :cmd => "_cart",
+      :upload => "1",
+      :notify_url => url_for(:only_path => false, :action => 'notify'),
+      :charset => "utf-8",
+      :return => url_for(:only_path => false, :action => 'done'),
+      :invoice => @pledge.id,
+      :tax => "0.00",
+      :business => AppConfig.paypal_account,
+      :address_override => "0",
+      :shipping => "0.00",
+      :no_note => "1",
+      :no_shipping => "1",
+      :currency_code => "USD"
+    }
+    pledge.line_items.each_with_index do |li, index|
+      redirect_params["item_number_#{index + 1}"] = li.to_user.id
+      redirect_params["item_name_#{index + 1}"] = li.to_user.first_name
+      redirect_params["amount_#{index + 1}"] = li.amount
+    end
+
+    return redirect_params
+  end
 end

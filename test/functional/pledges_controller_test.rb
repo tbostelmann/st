@@ -10,7 +10,7 @@ class PledgesControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "create valid donation with logged in user should render create template" do
+  test "create valid donation using post with logged in user" do
     saver = users(:saver)
     stOrg = Organization.find_savetogether_org
     donor = users(:donor4)
@@ -20,8 +20,8 @@ class PledgesControllerTest < ActionController::TestCase
         :saver_id => saver.id,
         :pledge => { :donation_attributes => pledge_params(saver) }}
 
-    assert_template 'create'
     assert_response :success
+    assert_template 'create'
 
     donor = Donor.find(donor.id)
     assert !donor.nil?
@@ -38,6 +38,32 @@ class PledgesControllerTest < ActionController::TestCase
     d_pledge.id == pledge.id
 
     test_pledge_no_fees(pledge)
+  end
+
+  test "create valid donation as anonymous user" do
+    saver = users(:saver)
+    stOrg = Organization.find_savetogether_org
+
+    post :create, {
+        :saver_id => saver.id,
+        :pledge => { :donation_attributes => pledge_params(saver) }}
+
+    assert_redirected_to :signup_or_login
+
+    pledge = session[:pledge]
+    assert !pledge.nil?
+  end
+
+  test "create invalid donation as anonymous user" do
+    saver = users(:saver)
+    stOrg = Organization.find_savetogether_org
+
+    post :create, {
+        :saver_id => saver.id,
+        :pledge => { :donation_attributes => invalid_pledge_params(saver) }}
+
+    assert_response :success
+    assert_template 'new'
   end
 
   test "complete a pledge using an IPN" do
@@ -107,18 +133,38 @@ class PledgesControllerTest < ActionController::TestCase
     donor = Donor.find(donor.id)
     assert donor.donations_given.size > completed_donations
   end
-#  test "create action on invalid donation should render 'new' template" do
-#    adc = asset_development_cases(:saverCase)
-#    saver = users(:saver)
-#    stOrg = Organization.find_savetogether_org
-#
-#    incomplete_param_list = gimme_some_donation_params
-#    incomplete_param_list.delete(:saver_id)
-#
-#    post :create, :donation => incomplete_param_list
-#
-#    assert_template 'new'
-#    assert_response :success
-#  end
-#
+
+  test "create valid donation with logged in user and pledge in session" do
+    saver = users(:saver)
+    stOrg = Organization.find_savetogether_org
+    donor = users(:donor4)
+    login_as(:donor4)
+
+    pledge = Pledge.new(:donation_attributes => pledge_params(saver))
+    session[:pledge] = pledge
+    session[:saver_id] = saver.id
+
+    get :continue
+
+    assert_response :success
+    assert_template 'create'  
+
+    assert session[:pledge].nil?
+
+    donor = Donor.find(donor.id)
+    assert !donor.nil?
+
+    # Use donor to find pledge and assert they're the same
+    assert !donor.pledges.empty?
+    d_pledge = donor.pledges[0]
+
+    test_pledge_no_fees(d_pledge)
+
+    # Reload pledge and assert it's values
+    pledge = Pledge.find(d_pledge.id)
+    assert !pledge.nil?
+    d_pledge.id == pledge.id
+
+    test_pledge_no_fees(pledge)
+  end
 end

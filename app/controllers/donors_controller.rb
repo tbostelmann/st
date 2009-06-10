@@ -25,19 +25,18 @@ class DonorsController < BaseController
     @donor.role  = Role[:member]
     @donor.birthday = 18.years.ago
 
-    donation_id = params[:donation_id]
     if (!AppConfig.require_captcha_on_signup || verify_recaptcha(@donor)) && @donor.save
-      # If a donation_id is supplied, we add it to the user's donation list
-      unless donation_id.blank?
-        donation = Donation.find(donation_id)
-        if !donation.donor
-          donation.donor = @donor
-          donation.save
-        end
-      end
+      @donor.activate
+      @donor.save
+      self.current_user = Donor.authenticate(@donor.login, params[:donor][:password])
       #create_friendship_with_inviter(@user, params)
       flash[:notice] = :email_signup_thanks.l_with_args(:email => @donor.email)
-      redirect_to signup_completed_user_path(:id => @donor.id)
+
+      if session[:pledge]
+        redirect_to :controller => :pledges, :action => :continue
+      else
+        redirect_to signup_completed_user_path(:id => @donor.id)
+      end
     else
       render :action => 'new'
     end
