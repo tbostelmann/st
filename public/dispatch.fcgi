@@ -18,9 +18,9 @@
 #   # Custom log path, normal GC behavior.
 #   RailsFCGIHandler.process! '/var/log/myapp_fcgi_crash.log'
 #
-ENV['RAILS_ENV'] = 'production'
+#ENV['RAILS_ENV'] = 'production'
 ENV['GEM_PATH'] = '/home/tomboste/ruby/gems:/usr/lib/ruby/gems/1.8'
-#ENV['RAILS_ENV'] = 'development'
+ENV['RAILS_ENV'] = 'development'
 require File.dirname(__FILE__) + "/../config/environment"
 require 'fcgi_handler'
 
