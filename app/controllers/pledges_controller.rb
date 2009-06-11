@@ -83,7 +83,7 @@ class PledgesController < BaseController
       raise "Invoice not found"
     end
 
-    if notification.acknowledge || ENV['RAILS_ENV'] == 'test'
+    if ENV['RAILS_ENV'] == 'test' || notification.acknowledge
       pledge.process_paypal_notification(notification)
       pledge.save!
     else
