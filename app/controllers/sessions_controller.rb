@@ -11,7 +11,7 @@ class SessionsController < BaseController
       if session[:pledge]
         flash[:notice] = :thanks_youre_now_logged_in.l
         current_user.track_activity(:logged_in)
-        redirect_to :controller => :pledge, :action => :continue
+        redirect_to :controller => :pledges, :action => :continue
       else
         redirect_back_or_default(dashboard_user_path(current_user))
         flash[:notice] = :thanks_youre_now_logged_in.l
