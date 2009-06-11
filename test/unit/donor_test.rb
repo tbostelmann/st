@@ -1,7 +1,6 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class DonorTest < ActiveSupport::TestCase
-  
   test "Donor email is off-limits to direct manipulation" do
     assert_raise RuntimeError do
       donor = new_test_donor(:email => "a@b.com")

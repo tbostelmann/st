@@ -25,9 +25,8 @@ class DonorsController < BaseController
     @donor.role  = Role[:member]
     @donor.birthday = 18.years.ago
 
-    if (!AppConfig.require_captcha_on_signup || verify_recaptcha(@donor)) && @donor.save
+    if (!AppConfig.require_captcha_on_signup || verify_recaptcha(@donor)) && @donor.valid?
       @donor.activate
-      @donor.save
       self.current_user = Donor.authenticate(@donor.login, params[:donor][:password])
       #create_friendship_with_inviter(@user, params)
       flash[:notice] = :email_signup_thanks.l_with_args(:email => @donor.email)

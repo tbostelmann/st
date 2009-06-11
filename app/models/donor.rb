@@ -60,4 +60,10 @@ class Donor < Party
   def to_param
     self.id.to_s
   end
+
+  def activate
+    self.activated_at = Time.now.utc
+    self.activation_code = nil
+    save
+  end
 end
