@@ -34,12 +34,13 @@
             = hidden_field_tag :item_number_1, @saver.id
             = hidden_field_tag :item_name_1, @saver.login
             = hidden_field_tag :amount_1, @pledge.line_items[0].amount
-          .donation_line_item
-            %label{:for => "st_donation"}
-              (Optional) amount you would like to donate to SaveTogether:
-            = @pledge.line_items[1].amount.format(:html)
-            = hidden_field_tag :item_number_2, @storg.id
-            = hidden_field_tag :item_name_2, @storg.login
-            = hidden_field_tag :amount_2, @pledge.line_items[1].amount
+          - if @pledge.line_items[1]
+            .donation_line_item
+              %label{:for => "st_donation"}
+                (Optional) amount you would like to donate to SaveTogether:
+              = @pledge.line_items[1].amount.format(:html)
+              = hidden_field_tag :item_number_2, @storg.id
+              = hidden_field_tag :item_name_2, @storg.login
+              = hidden_field_tag :amount_2, @pledge.line_items[1].amount
           %p
             = submit_tag "Continue"

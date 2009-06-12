@@ -8,7 +8,7 @@ class SessionsControllerTest < ActionController::TestCase
     session[:saver_id] = '121212'
     post :create, :login => 'donor@example.com', :password => 'test'
 
-    assert_redirected_to :controller => :pledge, :action => :continue
+    assert_redirected_to :controller => :pledges, :action => :continue
     assert !session[:pledge].nil?
     assert !session[:user].nil?
   end

@@ -16,7 +16,10 @@ class Pledge < Invoice
 
   def donation_attributes=(d_attributes)
     d_attributes.each do |index, attributes|
-      donations.build(attributes)
+      amount = attributes[:amount]
+      unless amount.blank? || amount == "0"
+        donation = donations.build(attributes)
+      end
     end
   end
 

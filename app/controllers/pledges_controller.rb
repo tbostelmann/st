@@ -31,13 +31,13 @@ class PledgesController < BaseController
   end
 
   # POST /pledges/create
-  def create
+  def create  
     @saver = Saver.find(params[:saver_id])
     @storg = Organization.find_savetogether_org
     @pledge = Pledge.new(params[:pledge])
 
     respond_to do |format|
-      if @pledge.valid?
+      if @pledge.valid? && @pledge.donations.size > 0
         if current_user
           update_pledge_with_donor
           @pledge.save!

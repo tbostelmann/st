@@ -10,7 +10,19 @@ class PledgesControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "create valid donation using post with logged in user" do
+  test "create invalid pledge with no donations as anonymous user" do
+    saver = users(:saver)
+    stOrg = Organization.find_savetogether_org
+
+    post :create, {
+        :saver_id => saver.id,
+        :pledge => { :donation_attributes => {} }}
+
+    assert_response :success
+    assert_template 'new'
+  end
+
+  test "create valid pledge using post with logged in user" do
     saver = users(:saver)
     stOrg = Organization.find_savetogether_org
     donor = users(:donor4)
@@ -40,7 +52,7 @@ class PledgesControllerTest < ActionController::TestCase
     test_pledge_no_fees(pledge)
   end
 
-  test "create valid donation as anonymous user" do
+  test "create valid pledge as anonymous user" do
     saver = users(:saver)
     stOrg = Organization.find_savetogether_org
 
@@ -54,12 +66,12 @@ class PledgesControllerTest < ActionController::TestCase
     assert !pledge.nil?
   end
 
-  test "create invalid donation as anonymous user" do
+  test "create invalid pledge as anonymous user" do
     saver = users(:saver)
     stOrg = Organization.find_savetogether_org
 
     post :create, {
-        :saver_id => saver.id,
+        :saver_id => saver.id,  
         :pledge => { :donation_attributes => invalid_pledge_params(saver) }}
 
     assert_response :success
@@ -134,7 +146,7 @@ class PledgesControllerTest < ActionController::TestCase
     assert donor.donations_given.size > completed_donations
   end
 
-  test "create valid donation with logged in user and pledge in session" do
+  test "create valid pledge with logged in user and pledge in session" do
     saver = users(:saver)
     stOrg = Organization.find_savetogether_org
     donor = users(:donor4)
