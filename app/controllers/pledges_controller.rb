@@ -64,14 +64,12 @@ class PledgesController < BaseController
       raise "Invoice is not owned by this user"
     end
 
-    if notification.acknowledge || ENV['RAILS_ENV'] == 'test'
+    if ENV['RAILS_ENV'] == 'test' || notification.acknowledge
       pledge.process_paypal_notification(notification)
       pledge.save!
     else
       # We're assuming that a notification that is not acknowledged will be sent again.
     end
-
-    redirect_to :controller => 'donors', :action => 'show'
   end
 
   def notify
