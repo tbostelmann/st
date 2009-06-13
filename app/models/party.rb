@@ -154,5 +154,8 @@ class Party < User
   def email=(email)
     raise "email lockdown: To set email attribute call login"
   end
-  
+
+  def to_label
+    "#{first_name} (#{type})"
+  end  
 end

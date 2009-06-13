@@ -42,7 +42,7 @@ class CreateConfigurationData < ActiveRecord::Migration
     admin.activate    
 
     stOrg = Organization.create!(
-      :full_name => 'SaveTogether',
+      :first_name => 'SaveTogether',
       :login => "storg@savetogether.org",
       :login_confirmation => "storg@savetogether.org",
       :description => "<p>SaveTogether description.</p>",
@@ -57,7 +57,7 @@ class CreateConfigurationData < ActiveRecord::Migration
     stOrg.activate
 
     paypal = Organization.create!(
-      :full_name => 'Paypal',
+      :first_name => 'Paypal',
       :login => "paypal@savetogether.org",
       :login_confirmation => "paypal@savetogether.org",
       :description => "<p>Paypal description.</p>",
