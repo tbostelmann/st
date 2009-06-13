@@ -21,10 +21,10 @@ namespace :db do
     Home = AssetType.find(:first, :conditions=>{:asset_name => "Home"})
     Business = AssetType.find(:first, :conditions=>{:asset_name => "Business"})
 
-    stOrg = Organization.find(:first, :conditions => {:full_name => 'SaveTogether'})
+    stOrg = Organization.find_savetogether_org
 
     org = Organization.create!(
-      :full_name => 'Washington CASH',
+      :first_name => 'Washington CASH',
       :login => "wacash@savetogether.org",
       :login_confirmation => "wacash@savetogether.org",
       :description => "<p>Washington CASH description.</p>",
@@ -63,7 +63,7 @@ namespace :db do
     saver.save
 
     org = Organization.create!(
-      :full_name => 'EARN',
+      :first_name => 'EARN',
       :login => "earn@savetogether.org",
       :login_confirmation => "earn@savetogether.org",
       :description => "<p>EARN description.</p>",
@@ -102,7 +102,7 @@ namespace :db do
     saver.save
 
     org = Organization.create!(
-      :full_name => 'Opportunity Fund',
+      :first_name => 'Opportunity Fund',
       :login => "opportunityfund@savetogether.org",
       :login_confirmation => "opportunityfund@savetogether.org",
       :description => "Opportunity Fund description.</p>",
@@ -141,7 +141,7 @@ namespace :db do
     saver.save
 
     org = Organization.create!(
-      :full_name => 'Lawrence Community Works',
+      :first_name => 'Lawrence Community Works',
       :login => "lcw@savetogether.org",
       :login_confirmation => "lcw@savetogether.org",
       :description => "Lawrence Community Works description",

@@ -138,7 +138,7 @@ saver4:
   type: Saver
 
 earn:
-  full_name: EARN
+  first_name: EARN
   login: earn@earn.org
   description: <p>EARN description.</p>
   salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
@@ -156,7 +156,7 @@ earn:
   type: Organization
   
 savetogether:
-  full_name: SaveTogether
+  first_name: SaveTogether
   login: storg@savetogether.org
   description: <p>SaveTogether description.</p>
   salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
@@ -174,7 +174,7 @@ savetogether:
   type: Organization
   
 paypal:
-  full_name: Paypal
+  first_name: Paypal
   login: paypal@savetogether.org
   description: <p>paypal description.</p>
   salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd

@@ -28,7 +28,6 @@ class CreateInitialModel < ActiveRecord::Migration
     add_column(:users, :organization_id, :integer)
     add_column(:users, :first_name, :string)
     add_column(:users, :last_name, :string)
-    add_column(:users, :full_name, :string)
 
     create_table :payment_notifications do |t|
       t.text :raw_data
