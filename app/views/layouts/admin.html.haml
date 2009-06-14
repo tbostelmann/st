@@ -9,8 +9,8 @@
       - @meta.each do |key|
         %meta{:name=>key[0], :content=>key[1]}
   
-    = javascript_include_tag :defaults %>
-    = active_scaffold_includes %>
+    = javascript_include_tag :defaults
+    = active_scaffold_includes
 
   %body
     = yield
