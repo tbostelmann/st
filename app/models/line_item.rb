@@ -55,7 +55,9 @@ class LineItem < ActiveRecord::Base
   STATUS_VOIDED = 'Voided'
 
   # A payment has been completed
-  STATUS_COMPLETED = 'Completed'  
+  STATUS_COMPLETED = 'Completed'
+
+  acts_as_reportable  
 
   belongs_to :invoice
   belongs_to :to_user, :class_name => 'User', :foreign_key => :to_user_id
