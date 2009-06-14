@@ -30,7 +30,6 @@ Rails::Initializer.run do |config|
   config.gem "money", :version => '2.1.3'
   config.gem "RedCloth", :version => '4.1.9'
   config.gem "rake", :version => '0.8.4'
-  config.gem "mongrel", :version => '1.1.5'
   config.gem "activemerchant", :lib => "active_merchant", :version => "1.4.2"
   config.gem "populator", :version => "0.2.5"
   config.gem "faker", :version => "0.3.1"
