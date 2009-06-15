@@ -12,7 +12,6 @@ class DonorsController < BaseController
   def show
     @donor = current_user
     @photos = @donor.photos.find(:all, :limit => 5)
-
     @savers = @donor.beneficiaries
   end
 
@@ -34,7 +33,7 @@ class DonorsController < BaseController
       if session[:pledge]
         redirect_to :controller => :pledges, :action => :continue
       else
-        redirect_to signup_completed_user_path(:id => @donor.id)
+        redirect_to welcome_photo_user_path(@donor)
       end
     else
       render :action => 'new'

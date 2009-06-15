@@ -14,7 +14,7 @@ class DonorsControllerTest < ActionController::TestCase
       post :create, :donor => min_donor_props
     end
     donor = Donor.find_by_login(min_donor_props[:login])
-    assert_redirected_to :controller => :users, :action => :signup_completed, :id => donor.id
+    assert_redirected_to welcome_photo_user_path(donor)
     assert_equal flash[:notice], :email_signup_thanks.l_with_args(:email => donor.email)
   end
   
