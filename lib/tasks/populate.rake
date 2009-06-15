@@ -184,7 +184,7 @@ namespace :db do
     Saver.find(:all).each do |saver|
       all_savers << saver.id
     end
-    Donor.populate 100 do |donor|
+    Donor.populate 200 do |donor|
       donor.login = Faker::Internet.email
       donor.first_name = Faker::Name.first_name
       donor.last_name = Faker::Name.last_name
@@ -211,6 +211,7 @@ namespace :db do
           donation.from_user_id = donor.id
           donation.to_user_id = all_savers
           donation.created_at = pledge.created_at
+          donation.invoice_id = pledge.id
           d1 = donation
         end
         Donation.populate 0..1 do |donation2|
@@ -219,6 +220,7 @@ namespace :db do
           donation2.from_user_id = donor.id
           donation2.to_user_id = stOrg.id
           donation2.created_at = pledge.created_at
+          donation2.invoice_id = pledge.id
         end
         #if d1.status == LineItem::STATUS_COMPLETED ||
         #        d1.status == LineItem::STATUS_PROCESSED
@@ -238,11 +240,18 @@ namespace :db do
     Pledge.find(:all).each do |pledge|
       li1 = pledge.donations[0]
       if li1.status == LineItem::STATUS_COMPLETED || li1.status == LineItem::STATUS_PROCESSED
-        Fee.create!(
-                :cents => li1.cents / 100,
-                :status => li1.status,
-                :from_user => stOrg,
-                :to_user => paypal)
+        Fee.populate 1 do |fee|
+          fee.cents = li1.cents / 100
+          fee.status = li1.status
+          fee.from_user_id = stOrg.id
+          fee.to_user_id = paypal.id
+          fee.created_at = li1.created_at + 24.hours
+          fee.invoice_id = pledge.id
+        end
+      pledge.donations.each do |d|
+        d.updated_at = d.created_at + 24.hours
+        d.save!
+      end
       end
     end
 #    [Category, Product, Person].each(&:delete_all)
