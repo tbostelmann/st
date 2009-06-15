@@ -9,7 +9,7 @@
       %h3
         Confirm Donation
       %form{:action => "https://www.sandbox.paypal.com/cgi-bin/webscr", :id => "payment-form", :method => "post", :class => "MainForm"}
-        = hidden_field_tag :cancel_return, "http://www.savetogether.org/"
+        = hidden_field_tag :cancel_return, url_for(:only_path => false, :action => 'cancel')
         = hidden_field_tag :bn, "ActiveMerchant"
         = hidden_field_tag :redirect_cmd, "_cart"
         = hidden_field_tag :cmd, "_cart"

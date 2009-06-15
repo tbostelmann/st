@@ -5,4 +5,4 @@
         = "Thank you for your donation"
     .yui-u
       %h3
-        = link_to "Click here to complete your profile", :controller => 'donors', :action => 'show'
+        = link_to "Click here to complete your profile", welcome_photo_user_path(current_user)
