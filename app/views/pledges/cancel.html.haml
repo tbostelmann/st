@@ -2,4 +2,10 @@
   .yui-g
     .yui-u.first
       %h3
-        = "You have canceled your payment"
+        = "Your transaction as Paypal was canceled."
+      %p
+        = "Please click here to return to the "
+        = link_to "Home Page", home_path
+        = "or click "
+        = link_to "here", savers_path
+        = "to search for other savers."
