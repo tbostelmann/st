@@ -179,6 +179,72 @@ namespace :db do
     saver.avatar = photo
     saver.save
 
+    paypal = Organization.find_paypal_org
+    all_savers = []
+    Saver.find(:all).each do |saver|
+      all_savers << saver.id
+    end
+    Donor.populate 100 do |donor|
+      donor.login = Faker::Internet.email
+      donor.first_name = Faker::Name.first_name
+      donor.last_name = Faker::Name.last_name
+      donor.description = Populator.sentences(2..10)
+      donor.salt = "7e3041ebc2fc05a40c60028e2c4901a81035d3cd"
+      donor.crypted_password = "00742970dc9e6319f8019fd54864d3ea740f04b1"
+      donor.birthday = 80.years.ago..21.years.ago
+      donor.created_at = 30.days.ago..Time.now
+      donor.updated_at = donor.created_at..Time.now
+      donor.activities_count = 0
+      donor.role_id = Role[:member].id
+      donor.activated_at = donor.created_at..donor.updated_at
+      donor.profile_public = 0..1
+      Pledge.populate 1 do |pledge|
+        pledge.donor_id = donor.id
+        pledge.created_at = donor.activated_at..Time.now
+        d1 = nil
+        Donation.populate 1 do |donation|
+          donation.cents = [1000, 1500, 2000, 2500, 3000, 5000, 6000, 7500, 10000]
+          donation.status = [
+                  LineItem::STATUS_DENIED, LineItem::STATUS_FAILED,
+                  LineItem::STATUS_PENDING, LineItem::STATUS_PROCESSED,
+                  LineItem::STATUS_COMPLETED, LineItem::STATUS_VOIDED]
+          donation.from_user_id = donor.id
+          donation.to_user_id = all_savers
+          donation.created_at = pledge.created_at
+          d1 = donation
+        end
+        Donation.populate 0..1 do |donation2|
+          donation2.cents = [100, 150, 200, 250, 300, 500, 600, 750, 1000]
+          donation2.status = d1.status
+          donation2.from_user_id = donor.id
+          donation2.to_user_id = stOrg.id
+          donation2.created_at = pledge.created_at
+        end
+        #if d1.status == LineItem::STATUS_COMPLETED ||
+        #        d1.status == LineItem::STATUS_PROCESSED
+        #  Fee.populate 1 do |fee|
+        #    fee.cents = (d1.cents / 100).to_s
+        #    fee.status = [
+        #          LineItem::STATUS_DENIED, LineItem::STATUS_FAILED,
+        #          LineItem::STATUS_PENDING, LineItem::STATUS_PROCESSED,
+        #          LineItem::STATUS_COMPLETED, LineItem::STATUS_VOIDED]
+        #    fee.from_user_id = stOrg.id
+        #    fee.to_user_id = paypal.id
+        #    fee.created_at = pledge.created_at..Time.now
+        #  end
+        #end
+      end
+    end
+    Pledge.find(:all).each do |pledge|
+      li1 = pledge.donations[0]
+      if li1.status == LineItem::STATUS_COMPLETED || li1.status == LineItem::STATUS_PROCESSED
+        Fee.create!(
+                :cents => li1.cents / 100,
+                :status => li1.status,
+                :from_user => stOrg,
+                :to_user => paypal)
+      end
+    end
 #    [Category, Product, Person].each(&:delete_all)
 #    
 #      category.name = Populator.words(1..3).titleize
