@@ -2,6 +2,11 @@
   = link_to( "&raquo; #{:back_to_all_users.l}", users_path) if params['login'] || params['tag_list']
   - form_tag savers_path, :method => :get , :class => 'MainForm' do
     %p.skinny
-      = render :partial => 'shared/location_chooser', :locals => {:show_goal=>1,:selected_asset_type => @search['asset_type_id'].to_i, :selected_country => @search['country_id'].to_i, :selected_state => @search['state_id'].to_i, :selected_metro_area => @search['metro_area_id'].to_i, :states => @states, :metro_areas => @metro_areas}
+      %span#location_chooser
+        = :Area
 
+        = select_tag(:metro_area_id, '<option></option>' + options_from_collection_for_select(MetroArea.find(:all), "id", "name", @search['metro_area_id'].to_i), {:style => "width:100px"})
+
+        = :Goal
+        = select_tag(:asset_type_id, '<option></option>' + options_from_collection_for_select(AssetType.find(:all), "id", "asset_name", @search['asset_type_id'].to_i))
       %input{"type"=>"submit", "align"=>"right", "value"=>:search.l}
