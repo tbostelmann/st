@@ -1,4 +1,4 @@
-- @meta = { :description => "#{@saver.login}'s profile on #{AppConfig.community_name}.", :keywords => "#{@saver.login}, #{@saver.tags.join(", ") unless @saver.tags.nil?}", :robots => AppConfig.robots_meta_show_content }
+- @meta = { :description => "#{@saver.display_name}'s profile on #{AppConfig.community_name}.", :keywords => "#{@saver.login}, #{@saver.tags.join(", ") unless @saver.tags.nil?}", :robots => AppConfig.robots_meta_show_content }
 - @section = @saver.eql?(current_user) ? 'my_profile' : 'savers'
 - @sidebar_left = true
 

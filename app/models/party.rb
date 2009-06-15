@@ -53,6 +53,13 @@ class Party < User
 
   composed_of :requested_match_amount, :class_name => "Money", :mapping => [%w(requested_match_cents cents)], :converter => Proc.new { |value| value.to_money }
 
+  def display_name
+    if profile_public
+      first_name
+    else
+      'Anonymous'
+    end 
+  end
 
   def self.build_conditions_for_search(search)
     cond = Caboose::EZ::Condition.new

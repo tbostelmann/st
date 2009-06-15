@@ -8,7 +8,7 @@
 
 #profile_details.box.hentry
   %h3
-    = user.login
+    = user.display_name
     = " <small>(#{AppConfig.featured_writer_label})</small>" if user.featured_writer?
 
   .centered

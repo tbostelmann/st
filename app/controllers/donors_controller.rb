@@ -8,7 +8,25 @@ class DonorsController < BaseController
       format.xml  { render :xml => @donor }
     end
   end
-  
+
+  def update_account
+    @user             = current_user
+    @user.attributes  = params[:user]
+
+    if @user.save
+      flash[:notice] = :your_changes_were_saved.l
+      respond_to do |format|
+        format.html {redirect_to donor_path(@user)}
+        format.js
+      end
+    else
+      respond_to do |format|
+        format.html {render :action => 'edit_account'}
+        format.js
+      end
+    end
+  end
+
   def show
     @donor = current_user
     @photos = @donor.photos.find(:all, :limit => 5)
