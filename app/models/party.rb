@@ -61,6 +61,10 @@ class Party < User
     end 
   end
 
+  def to_param
+    self.id.to_s
+  end
+
   def self.build_conditions_for_search(search)
     cond = Caboose::EZ::Condition.new
 

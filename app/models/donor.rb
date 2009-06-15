@@ -57,10 +57,6 @@ class Donor < Party
   validates_presence_of :first_name
   validates_presence_of :last_name
 
-  def to_param
-    self.id.to_s
-  end
-
   def activate
     self.activated_at = Time.now.utc
     self.activation_code = nil

@@ -13,7 +13,7 @@ class SaversController < BaseController
   end
   
   def show
-    @saver     = Saver.find_by_login_slug(params[:id])
+    @saver     = Saver.find(params[:id])
     @photos    = @saver.photos.find(:all, :limit => 5)
   end
 
