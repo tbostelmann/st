@@ -222,19 +222,6 @@ namespace :db do
           donation2.created_at = pledge.created_at
           donation2.invoice_id = pledge.id
         end
-        #if d1.status == LineItem::STATUS_COMPLETED ||
-        #        d1.status == LineItem::STATUS_PROCESSED
-        #  Fee.populate 1 do |fee|
-        #    fee.cents = (d1.cents / 100).to_s
-        #    fee.status = [
-        #          LineItem::STATUS_DENIED, LineItem::STATUS_FAILED,
-        #          LineItem::STATUS_PENDING, LineItem::STATUS_PROCESSED,
-        #          LineItem::STATUS_COMPLETED, LineItem::STATUS_VOIDED]
-        #    fee.from_user_id = stOrg.id
-        #    fee.to_user_id = paypal.id
-        #    fee.created_at = pledge.created_at..Time.now
-        #  end
-        #end
       end
     end
     Pledge.find(:all).each do |pledge|
@@ -254,27 +241,5 @@ namespace :db do
       end
       end
     end
-#    [Category, Product, Person].each(&:delete_all)
-#    
-#      category.name = Populator.words(1..3).titleize
-#      Product.populate 10..100 do |product|
-#        product.category_id = category.id
-#        product.name = Populator.words(1..5).titleize
-#        product.description = Populator.sentences(2..10)
-#        product.price = [4.99, 19.95, 100]
-#        product.created_at = 2.years.ago..Time.now
-#      end
-#    end
-#    
-#    Person.populate 100 do |person|
-#      person.name    = Faker::Name.name
-#      person.company = Faker::Company.name
-#      person.email   = Faker::Internet.email
-#      person.phone   = Faker::PhoneNumber.phone_number
-#      person.street  = Faker::Address.street_address
-#      person.city    = Faker::Address.city
-#      person.state   = Faker::Address.us_state_abbr
-#      person.zip     = Faker::Address.zip_code
-#    end
   end
 end
