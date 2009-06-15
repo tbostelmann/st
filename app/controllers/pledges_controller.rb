@@ -31,7 +31,7 @@ class PledgesController < BaseController
   end
 
   # POST /pledges/create
-  def create  
+  def create
     @saver = Saver.find(params[:saver_id])
     @storg = Organization.find_savetogether_org
     @pledge = Pledge.new(params[:pledge])
