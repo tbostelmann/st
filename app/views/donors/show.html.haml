@@ -12,7 +12,7 @@
       %h3
         =:manage_my.l
       %ul
-        %li=link_to :profile.l, edit_user_path(@donor)
+        %li=link_to :profile.l, edit_donor_path(@donor)
         %li=link_to :account_settings.l, edit_account_user_path(@donor)
         -if current_user.admin?
           %li=link_to :admin_dashboard.l, admin_dashboard_path

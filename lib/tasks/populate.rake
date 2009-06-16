@@ -186,6 +186,7 @@ namespace :db do
     end
     Donor.populate 200 do |donor|
       donor.login = Faker::Internet.email
+      donor.email = donor.login
       donor.first_name = Faker::Name.first_name
       donor.last_name = Faker::Name.last_name
       donor.description = Populator.sentences(2..10)
@@ -240,6 +241,10 @@ namespace :db do
         d.save!
       end
       end
+    end
+    Donor.find(:all).each do |d|
+      d.generate_login_slug
+      d.save!
     end
   end
 end

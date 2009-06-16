@@ -1,0 +1,23 @@
+- form_tag donor_url(@user), :method => 'put', :multipart =>true, :class => 'MainForm' do
+  .box.alt.first_alt
+    %h3=:you_are_editing_your_profile.l
+    = link_to "&raquo; " + :edit_your_account_settings_instead.l, edit_account_user_path(@user)
+  
+  = error_messages_for :user
+
+  %p= submit_tag :save_changes.l  
+  .yui-b
+    #profile_details.box
+      %h3=:profile_photo.l
+      = @user.vendor ? "<div class='right_corner'><div class='community_pro'></div></div>" : ''
+      = image_tag( @user.avatar_photo_url(:medium), :class => "polaroid" )
+      %label
+        =:choose_a_photo_for_your_profile.l
+      = file_field :avatar, :uploaded_data, :size => "20"
+      
+  #yui-main
+    .yui-b
+      .box
+        %h3=:about_me.l
+        = text_area :user, :description, :class => "rich_text_editor", :style => "width:100%"
+        
