@@ -251,6 +251,10 @@ namespace :db do
       donor.role_id = Role[:member].id
       donor.activated_at = donor.created_at..donor.updated_at
       donor.profile_public = 0..1
+      donor.notify_advocacy = 0..1
+      if donor.notify_advocacy
+        donor.zip = Faker::Address.zip_code
+      end 
       Pledge.populate 1 do |pledge|
         pledge.donor_id = donor.id
         pledge.created_at = donor.activated_at..Time.now

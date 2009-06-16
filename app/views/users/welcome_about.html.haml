@@ -26,18 +26,6 @@
       %h3=:about_you.l
       = text_area :user, :description, :rows => 30, :style => 'width:100%', :class => "rich_text_editor"
     
-      %h3=:gender.l
-      %fieldset
-        %label
-          = radio_button :user, :gender, User::MALE
-          =:male.l
-        %label
-          = radio_button :user, :gender, User::FEMALE
-          =:female.l
-        
-      - if @user.vendor?
-        %p= render :partial => 'offerings/chooser'
-    
       %h3=:more_about_you.l
       .yui-g
         .yui-u.first
@@ -50,22 +38,9 @@
             = text_field :user, :zip, :size => 10
             %br
             %br
-            = render :partial => 'shared/location_chooser', :locals => {:selected_country => @user.country_id, :selected_state => @user.state_id, :selected_metro_area => @user.metro_area_id, :states => @states, :metro_areas => @metro_areas}
+            %label{"for"=>"advocacy_boolean"}
+              = check_box :user, :notify_advocacy
+              %em= :advocacy_zip_ask.l
+
         .yui-u
-          .box.alt
-            %h3= :tag_yourself.l
-            = text_field_tag 'tag_list', @user.tag_list, {:autocomplete => "off"}
-            #tag_list_auto_complete.auto_complete/
-            = auto_complete_field 'tag_list', {:url => { :controller => "tags", :action => 'auto_complete_for_tag_name'}, :tokens => [',', ' ']  }
-            %br
-            %small
-              =:comma_separated_keywords_that_describe_you.l
-              %br
-              =:you_could_tag_yourself.l
-              - if @user.vendor?
-                =:custom_friendly_local.l
-              - else
-                = AppConfig.meta_keywords.split(",")[0..3].join(', ')
-
-
-        %p= submit_tag :save_and_continue_to_step_three.l
+          %p= submit_tag :save_and_continue_to_step_three.l

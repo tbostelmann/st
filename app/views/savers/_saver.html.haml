@@ -5,7 +5,7 @@
     %td.adc
       = render :partial => "savers/adc", :object => saver, :locals => { :saver => saver }
     %td
-      %font{:size=>"+1"}= saver.first_name.capitalize
+      %font{:size=>"+1"}= link_to saver.first_name.capitalize, saver_path(saver)
       %br
       - if @search && @search['description']
         = truncate_words_with_highlight user.description, @search['description']

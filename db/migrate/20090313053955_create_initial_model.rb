@@ -30,6 +30,7 @@ class CreateInitialModel < ActiveRecord::Migration
     add_column(:users, :last_name, :string)
     add_column(:users, :web_site_url, :string)
     add_column(:users, :phone_number, :string)
+    add_column(:users, :notify_advocacy, :boolean)
 
     create_table :payment_notifications do |t|
       t.text :raw_data
@@ -53,7 +54,9 @@ class CreateInitialModel < ActiveRecord::Migration
   def self.down
     drop_table :organization_surveys
     drop_table :payment_notifications
-    remove_column(:users, :full_name)
+    remove_column(:users, :notify_advocacy)
+    remove_column(:users, :phone_number)
+    remove_column(:users, :web_site_url)
     remove_column(:users, :last_name)
     remove_column(:users, :first_name)
     remove_column(:users, :organization_id)

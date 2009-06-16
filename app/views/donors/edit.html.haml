@@ -5,7 +5,7 @@
   
   = error_messages_for :user
 
-  %p= submit_tag :save_changes.l  
+  %p= submit_tag :save_changes.l
   .yui-b
     #profile_details.box
       %h3=:profile_photo.l
@@ -14,7 +14,14 @@
       %label
         =:choose_a_photo_for_your_profile.l
       = file_field :avatar, :uploaded_data, :size => "20"
-      
+
+      %label{"for"=>"zip"}
+        = :zip.l
+      = text_field :user, :zip
+      %label{"for"=>"advocacy_boolean"}
+        = check_box :user, :notify_advocacy
+        %em= :advocacy_zip_ask.l
+
   #yui-main
     .yui-b
       .box
