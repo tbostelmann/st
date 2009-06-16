@@ -1,4 +1,4 @@
-- @meta = { :description => "#{@donor.login}'s profile on #{AppConfig.community_name}.", :keywords => "#{@donor.login}, #{@donor.tags.join(", ") unless @donor.tags.nil?}", :robots => AppConfig.robots_meta_show_content }
+- @meta = { :description => "#{@donor.display_name}'s profile on #{AppConfig.community_name}.", :keywords => "#{@donor.login}, #{@donor.tags.join(", ") unless @donor.tags.nil?}", :robots => AppConfig.robots_meta_show_content }
 - @section = @donor.eql?(current_user) ? 'my_profile' : 'donors'
 - @sidebar_left = true
 
@@ -9,13 +9,14 @@
 
   .yui-u
     .box
-      %h3
-        =:manage_my.l
-      %ul
-        %li=link_to :profile.l, edit_donor_path(@donor)
-        %li=link_to :account_settings.l, edit_account_user_path(@donor)
-        -if current_user.admin?
-          %li=link_to :admin_dashboard.l, admin_dashboard_path
+      - if @donor.eql?(current_user)
+        %h3
+          =:manage_my.l
+        %ul
+          %li=link_to :profile.l, edit_donor_path(@donor)
+          %li=link_to :account_settings.l, edit_account_user_path(@donor)
+          -if current_user.admin?
+            %li=link_to :admin_dashboard.l, admin_dashboard_path
   
     - if @donor.description
       #about_me.box

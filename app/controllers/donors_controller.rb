@@ -55,7 +55,10 @@ class DonorsController < BaseController
   end
 
   def show
-    @donor = current_user
+    @donor = Donor.find(params[:id])
+    unless @donor.eql?(current_user) || @donor.profile_public
+      redirect_to home_path
+    end
     @photos = @donor.photos.find(:all, :limit => 5)
     @savers = @donor.beneficiaries
   end

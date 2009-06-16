@@ -28,14 +28,30 @@ class CreateInitialModel < ActiveRecord::Migration
     add_column(:users, :organization_id, :integer)
     add_column(:users, :first_name, :string)
     add_column(:users, :last_name, :string)
+    add_column(:users, :web_site_url, :string)
+    add_column(:users, :phone_number, :string)
 
     create_table :payment_notifications do |t|
       t.text :raw_data
       t.timestamps
     end
+
+    create_table :organization_surveys do |t|
+      t.integer :organization_id
+      t.string :year_founded
+      t.string :annual_operating_expenses
+      t.integer :total_matched_accounts
+      t.string :year_first_accounts_opened
+      t.integer :last_year_number_of_accounts
+      t.integer :number_of_active_accounts
+      t.string :attrition_rate
+      t.string :household_income_eligibility
+      t.timestamps
+    end
   end
 
   def self.down
+    drop_table :organization_surveys
     drop_table :payment_notifications
     remove_column(:users, :full_name)
     remove_column(:users, :last_name)

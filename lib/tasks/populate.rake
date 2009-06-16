@@ -28,6 +28,8 @@ namespace :db do
       :login => "wacash@savetogether.org",
       :login_confirmation => "wacash@savetogether.org",
       :description => "<p>Washington CASH description.</p>",
+      :web_site_url => "http://www.washingtoncash.org/",
+      :phone_number => "555-555-5555",
       :salt => "7e3041ebc2fc05a40c60028e2c4901a81035d3cd",
       :crypted_password => "00742970dc9e6319f8019fd54864d3ea740f04b1", # test
       :state => wa,
@@ -36,6 +38,17 @@ namespace :db do
       :activities_count => 0,
       :role => Role[:member])
     org.activate
+    org_survey = OrganizationSurvey.create!(
+      :organization => org,
+      :year_founded => "1990",
+      :annual_operating_expenses => "100K",
+      :total_matched_accounts => 100,
+      :year_first_accounts_opened => "1990",
+      :last_year_number_of_accounts => 20,
+      :number_of_active_accounts => 20,
+      :attrition_rate => "75%",
+      :household_income_eligibility => "20k"
+    )
     saver = Saver.create!(
       :login => "samantha@savetogether.org",
       :login_confirmation => "samantha@savetogether.org",
@@ -67,6 +80,8 @@ namespace :db do
       :login => "earn@savetogether.org",
       :login_confirmation => "earn@savetogether.org",
       :description => "<p>EARN description.</p>",
+      :web_site_url => "http://www.earn.org/",
+      :phone_number => "555-555-5555",
       :salt => "7e3041ebc2fc05a40c60028e2c4901a81035d3cd",
       :crypted_password => "00742970dc9e6319f8019fd54864d3ea740f04b1", # test
       :state => ca,
@@ -75,6 +90,17 @@ namespace :db do
       :activities_count => 0,
       :role => Role[:member])
     org.activate
+    org_survey = OrganizationSurvey.create!(
+      :organization => org,
+      :year_founded => "1990",
+      :annual_operating_expenses => "100K",
+      :total_matched_accounts => 100,
+      :year_first_accounts_opened => "1990",
+      :last_year_number_of_accounts => 20,
+      :number_of_active_accounts => 20,
+      :attrition_rate => "75%",
+      :household_income_eligibility => "20k"
+    )
     saver = Saver.create!(
       :login => "juanita@savetogether.org",
       :login_confirmation => "juanita@savetogether.org",
@@ -106,6 +132,8 @@ namespace :db do
       :login => "opportunityfund@savetogether.org",
       :login_confirmation => "opportunityfund@savetogether.org",
       :description => "Opportunity Fund description.</p>",
+      :web_site_url => "http://www.opportunityfund.org/",
+      :phone_number => "555-555-5555",
       :salt => "7e3041ebc2fc05a40c60028e2c4901a81035d3cd",
       :crypted_password => "00742970dc9e6319f8019fd54864d3ea740f04b1", # test
       :state => ca,
@@ -114,6 +142,17 @@ namespace :db do
       :activities_count => 0,
       :role => Role[:member])
     org.activate
+    org_survey = OrganizationSurvey.create!(
+      :organization => org,
+      :year_founded => "1990",
+      :annual_operating_expenses => "100K",
+      :total_matched_accounts => 100,
+      :year_first_accounts_opened => "1990",
+      :last_year_number_of_accounts => 20,
+      :number_of_active_accounts => 20,
+      :attrition_rate => "75%",
+      :household_income_eligibility => "20k"
+    )
     saver = Saver.create!(
       :login => "rosie@savetogether.org",
       :login_confirmation => "rosie@savetogether.org",
@@ -145,6 +184,8 @@ namespace :db do
       :login => "lcw@savetogether.org",
       :login_confirmation => "lcw@savetogether.org",
       :description => "Lawrence Community Works description",
+      :web_site_url => "http://www.lcworks.org/",
+      :phone_number => "555-555-5555",
       :salt => "7e3041ebc2fc05a40c60028e2c4901a81035d3cd",
       :crypted_password => "00742970dc9e6319f8019fd54864d3ea740f04b1", # test
       :state => ma,
@@ -153,6 +194,17 @@ namespace :db do
       :activities_count => 0,
       :role => Role[:member])
     org.activate
+    org_survey = OrganizationSurvey.create!(
+      :organization => org,
+      :year_founded => "1990",
+      :annual_operating_expenses => "100K",
+      :total_matched_accounts => 100,
+      :year_first_accounts_opened => "1990",
+      :last_year_number_of_accounts => 20,
+      :number_of_active_accounts => 20,
+      :attrition_rate => "75%",
+      :household_income_eligibility => "20k"
+    )
     saver = Saver.create!(
       :login => "sonja@savetogether.org",
       :login_confirmation => "sonja@savetogether.org",

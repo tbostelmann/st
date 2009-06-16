@@ -15,3 +15,9 @@
         = render :partial => "savers/adc", :object => @saver, :locals => { :saver => @saver }
         %p
           = @saver.description
+
+- unless @donors.size == 0
+  .yui-g
+  .box.user_list
+    %h3= "People who have donated to this Saver"
+    = render :partial => "donors/donor", :collection => @donors

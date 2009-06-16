@@ -42,11 +42,11 @@
 #  organization_id           :integer(4)
 #  first_name                :string(255)
 #  last_name                 :string(255)
-#  full_name                 :string(255)
 #
 
 class Organization < Party
-  
+  has_one :organization_survey
+  has_many :savers
   has_many :all_donations_received, :class_name => 'Donation', :foreign_key => :to_user_id
   has_many :donations_received, :class_name => 'Donation', :foreign_key => :to_user_id,
            :conditions => "status = '#{LineItem::STATUS_PROCESSED}' OR status = '#{LineItem::STATUS_PENDING}'"

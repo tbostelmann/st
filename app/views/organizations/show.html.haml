@@ -1,0 +1,49 @@
+- @meta = { :description => "#{@user.display_name}'s profile on #{AppConfig.community_name}.", :keywords => "#{@user.display_name}, #{@user.tags.join(", ") unless @user.tags.nil?}", :robots => AppConfig.robots_meta_show_content }
+- @section = @user.eql?(current_user) ? 'my_profile' : 'savers'
+- @sidebar_left = true
+
+.yui-g
+  .yui-u.first
+    .box
+      = render :partial => 'users/profile_user_info_sidebar', :object => @user, :locals => {:user => @user}
+
+  .yui-u
+    #about_me.box
+      %h3
+        ="About Us:"
+      %p
+        = @user.description
+    - if @user.organization_survey
+      #about_me.box
+        %h3
+          ="Org Info:"
+        %p
+          = render :partial => "organizations/organization_survey", :object => @user.organization_survey, :locals => { :organization_survey => @user.organization_survey }
+    #about_me.box
+      %h3
+        ="For more information:"
+      %p
+        %table.more_info
+          - if @user.web_site_url
+            %tr
+              %td.label
+                Web Site:
+              %td
+                = link_to @user.web_site_url
+          %tr
+            %td.label
+              Email Contact:
+            %td
+              = @user.email
+          - if @user.phone_number
+            %tr
+              %td
+                Phone Number:
+              %td
+                = @user.phone_number
+
+- unless @savers.size == 0
+  .yui-g
+  .box.user_list
+    %h3= "Savers"
+    = render :partial => "savers/saver", :collection => @savers

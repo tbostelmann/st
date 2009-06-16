@@ -1,0 +1,27 @@
+- if donor.profile_public  
+  .hentry.yui-gf.row{"class"=>"#{donor.vendor ? 'community_pro' : ''} #{donor.featured_writer ? 'featured_writer' : ''}"}
+    .vcard.author
+      .yui-u.first.centered
+        = link_to image_tag( donor.avatar_photo_url(:thumb), :class => "polaroid" ), donor_path(donor)
+      .yui-g
+        .yui-u.first
+          %h2= link_to donor.display_name, donor_path(donor)
+
+          %ul
+            - if donor.metro_area
+              %li.geo= :from2.l + " #{donor.location}<br/>"
+            %li.update
+              %abbr.published{:title=>"#{donor.created_at}"}
+                =:joined.l + " #{time_ago_in_words donor.created_at}"
+
+          = "<p>" + donor.tags[0...6].collect{|t| link_to( t.name, tag_url(t), :class => "tag") if t }.join(" ") + "</p>" unless donor.tags.empty?
+
+        .yui-u{"style"=>"overflow:hidden"}
+          - if @search && @search['description']
+            = truncate_words_with_highlight donor.description, @search['description']
+          - else
+            = truncate_words donor.description, 18, '...'
+
+          - if current_user && current_user.admin?
+            %br
+            = link_to( :assume_id.l, assume_user_path(donor) )

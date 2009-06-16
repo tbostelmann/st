@@ -1,6 +1,11 @@
 %table.asset_case
   %tr
     %td.label
+      Org:
+    %td
+      = link_to saver.organization.display_name, organization_path(saver.organization)
+  %tr
+    %td.label
       Goal:
     %td
       = saver.asset_type.asset_name

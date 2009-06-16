@@ -42,6 +42,7 @@ ActionController::Routing::Routes.draw do |map|
   # Run rake routes to see the list (these will be the first listed)
   map.resources :savers
   map.resources :donors
+  map.resources :organizations
   
 #  map.resources  :pledges
   map.new          '/pledges/new/:saver_id', :controller => 'pledges', :action => 'new'

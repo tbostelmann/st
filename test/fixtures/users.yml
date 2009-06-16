@@ -42,7 +42,6 @@
 #  organization_id           :integer(4)
 #  first_name                :string(255)
 #  last_name                 :string(255)
-#  full_name                 :string(255)
 #
 
 saver:
@@ -141,6 +140,8 @@ earn:
   first_name: EARN
   login: earn@earn.org
   description: <p>EARN description.</p>
+  phone_number: 555-555-5555
+  web_site_url: www.earn.org
   salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
   crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
   created_at: <%= 5.days.ago.to_s :db %>
