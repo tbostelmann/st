@@ -56,4 +56,34 @@ class Saver < Party
   validates_presence_of :organization
   validates_presence_of :requested_match_cents
   validates_presence_of :asset_type
+
+  def match_percent
+    balance = matched_amount_cents
+    if balance > 0
+      return balance.to_f / requested_match_cents.to_f
+    else
+      return 0
+    end
+  end
+
+  def match_amount_left
+    return Money.us_dollar(match_amount_left_cents)
+  end
+
+  def matched_amount
+    return Money.us_dollar(matched_amount_cents)
+  end
+
+  def match_amount_left_cents
+    aleft = requested_match_cents - matched_amount_cents
+    if aleft < 0
+      return 0
+    else
+      aleft
+    end
+  end
+
+  def matched_amount_cents
+    return donations_received.sum(:cents)
+  end   
 end

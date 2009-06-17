@@ -126,31 +126,6 @@ class Party < User
     return cond, search, metro_areas, states, asset_types
   end
 
-  def match_percent
-    balance = matched_amount_cents
-    if balance > 0
-      return balance.to_f / requested_match_cents.to_f
-    else
-      return 0
-    end
-  end
-
-  def match_amount_left
-    return Money.us_dollar(match_amount_left_cents)
-  end
-
-  def matched_amount
-    return Money.us_dollar(matched_amount_cents)
-  end
-
-  def match_amount_left_cents
-    return requested_match_cents - matched_amount_cents
-  end
-
-  def matched_amount_cents
-    return donations_received.sum(:cents)
-  end
-  
   #
   # Overload login ==> email
   #
