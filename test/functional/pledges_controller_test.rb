@@ -3,86 +3,162 @@ require File.dirname(__FILE__) + '/../test_helper'
 class PledgesControllerTest < ActionController::TestCase
   include AuthenticatedTestHelper
 
+  test "go to savetogether ask page not logged in" do
+    pledge = invoices(:pledge)
+    session[:pledge_id] = pledge.id
+
+    get :savetogether_ask
+
+    assert_redirected_to signup_or_login_path
+  end
+
+  test "go to savetogether ask page logged in" do
+    login_as(:donor4)
+    pledge = invoices(:pledge)
+    session[:pledge_id] = pledge.id
+
+    get :savetogether_ask
+    assert_response :success
+    assert_template :savetogether_ask
+  end
+
+  test "add savetogether donation" do
+    login_as(:donor4)
+    pledge = invoices(:pledge)
+    session[:pledge_id] = pledge.id
+
+    post :add_savetogether_to_pledge, {:donation => {
+            :to_user_id => Organization.find_savetogether_org.id,
+            :cents => "125"}}
+
+    assert_response :success
+    assert_template 'show'
+
+    assert session[:pledge_id].nil?
+    
+    pledge = Pledge.find(pledge.id)
+    d = pledge.find_donation_with_to_user_id(Organization.find_savetogether_org.id)
+    assert !d.nil?
+    assert d.cents.to_s == "125"
+  end
+
+  test "add donation to pledge" do
+    pledge = invoices(:pledge)
+    session[:pledge_id] = pledge.id
+    donation = pledge.donations[0]
+    c = donation.cents
+    c = c + 10000
+
+    post :add_to_pledge, {:donation => {
+            :to_user_id => donation.to_user.id,
+            :cents => c.to_s}}
+
+    assert_response :success
+    assert_template 'edit'
+
+    pledge = Pledge.find(session[:pledge_id])
+    d = pledge.find_donation_with_to_user_id(donation.to_user_id)
+    assert !d.nil?
+    assert d.cents != donation.cents
+    assert d.cents == c
+  end
+
+  test "remove donation from pledge" do
+    pledge = invoices(:pledge)
+    session[:pledge_id] = pledge.id
+    donation = pledge.donations[0]
+
+    post :remove_from_pledge, {:donation => {
+            :to_user_id => donation.to_user.id}}
+
+    assert_response :success
+    assert_template 'edit'
+
+    pledge = Pledge.find(session[:pledge_id])
+    d = pledge.find_donation_with_to_user_id(donation.to_user_id)
+    assert d.nil?
+  end
+
   test "get cancel" do
     get :cancel
     assert_response :success
     assert_template :cancel
   end
   
-  test "get new" do
-    saver = users(:saver)
-    get :new, {:saver_id => saver.id}
-    assert_template 'new'
-    assert_response :success
-  end
+  #test "get new" do
+  #  saver = users(:saver)
+  #  get :new, {:saver_id => saver.id}
+  #  assert_template 'new'
+  #  assert_response :success
+  #end
+  #
+  #test "create invalid pledge with no donations as anonymous user" do
+  #  saver = users(:saver)
+  #  stOrg = Organization.find_savetogether_org
+  #
+  #  post :create, {
+  #      :saver_id => saver.id,
+  #      :pledge => { :donation_attributes => {} }}
+  #
+  #  assert_response :success
+  #  assert_template 'new'
+  #end
+  #
+  #test "create valid pledge using post with logged in user" do
+  #  saver = users(:saver)
+  #  stOrg = Organization.find_savetogether_org
+  #  donor = users(:donor4)
+  #  login_as(:donor4)
+  #
+  #  post :create, {
+  #      :saver_id => saver.id,
+  #      :pledge => { :donation_attributes => pledge_params(saver) }}
+  #
+  #  assert_response :success
+  #  assert_template 'create'
+  #
+  #  donor = Donor.find(donor.id)
+  #  assert !donor.nil?
+  #
+  #  # Use donor to find pledge and assert they're the same
+  #  assert !donor.pledges.empty?
+  #  d_pledge = donor.pledges[0]
+  #
+  #  test_pledge_no_fees(d_pledge)
+  #
+  #  # Reload pledge and assert it's values
+  #  pledge = Pledge.find(d_pledge.id)
+  #  assert !pledge.nil?
+  #  d_pledge.id == pledge.id
+  #
+  #  test_pledge_no_fees(pledge)
+  #end
 
-  test "create invalid pledge with no donations as anonymous user" do
-    saver = users(:saver)
-    stOrg = Organization.find_savetogether_org
+  #test "create valid pledge as anonymous user" do
+  #  saver = users(:saver)
+  #  stOrg = Organization.find_savetogether_org
+  #
+  #  post :create, {
+  #      :saver_id => saver.id,
+  #      :pledge => { :donation_attributes => pledge_params(saver) }}
+  #
+  #  assert_redirected_to :signup_or_login
+  #
+  #  pledge = session[:pledge]
+  #  assert !pledge.nil?
+  #end
 
-    post :create, {
-        :saver_id => saver.id,
-        :pledge => { :donation_attributes => {} }}
-
-    assert_response :success
-    assert_template 'new'
-  end
-
-  test "create valid pledge using post with logged in user" do
-    saver = users(:saver)
-    stOrg = Organization.find_savetogether_org
-    donor = users(:donor4)
-    login_as(:donor4)
-
-    post :create, {
-        :saver_id => saver.id,
-        :pledge => { :donation_attributes => pledge_params(saver) }}
-
-    assert_response :success
-    assert_template 'create'
-
-    donor = Donor.find(donor.id)
-    assert !donor.nil?
-
-    # Use donor to find pledge and assert they're the same
-    assert !donor.pledges.empty?
-    d_pledge = donor.pledges[0]
-
-    test_pledge_no_fees(d_pledge)
-
-    # Reload pledge and assert it's values
-    pledge = Pledge.find(d_pledge.id)
-    assert !pledge.nil?
-    d_pledge.id == pledge.id
-
-    test_pledge_no_fees(pledge)
-  end
-
-  test "create valid pledge as anonymous user" do
-    saver = users(:saver)
-    stOrg = Organization.find_savetogether_org
-
-    post :create, {
-        :saver_id => saver.id,
-        :pledge => { :donation_attributes => pledge_params(saver) }}
-
-    assert_redirected_to :signup_or_login
-
-    pledge = session[:pledge]
-    assert !pledge.nil?
-  end
-
-  test "create invalid pledge as anonymous user" do
-    saver = users(:saver)
-    stOrg = Organization.find_savetogether_org
-
-    post :create, {
-        :saver_id => saver.id,  
-        :pledge => { :donation_attributes => invalid_pledge_params(saver) }}
-
-    assert_response :success
-    assert_template 'new'
-  end
+  #test "create invalid pledge as anonymous user" do
+  #  saver = users(:saver)
+  #  stOrg = Organization.find_savetogether_org
+  #
+  #  post :create, {
+  #      :saver_id => saver.id,
+  #      :pledge => { :donation_attributes => invalid_pledge_params(saver) }}
+  #
+  #  assert_response :success
+  #  assert_template 'new'
+  #end
 
   test "complete a pledge using an IPN" do
     pledge = invoices(:pledge2)
@@ -222,37 +298,37 @@ class PledgesControllerTest < ActionController::TestCase
     assert donor.donations_given.size > completed_donations
   end
 
-  test "create valid pledge with logged in user and pledge in session" do
-    saver = users(:saver)
-    stOrg = Organization.find_savetogether_org
-    donor = users(:donor4)
-    login_as(:donor4)
-
-    pledge = Pledge.new(:donation_attributes => pledge_params(saver))
-    session[:pledge] = pledge
-    session[:saver_id] = saver.id
-
-    get :continue
-
-    assert_response :success
-    assert_template 'create'  
-
-    assert session[:pledge].nil?
-
-    donor = Donor.find(donor.id)
-    assert !donor.nil?
-
-    # Use donor to find pledge and assert they're the same
-    assert !donor.pledges.empty?
-    d_pledge = donor.pledges[0]
-
-    test_pledge_no_fees(d_pledge)
-
-    # Reload pledge and assert it's values
-    pledge = Pledge.find(d_pledge.id)
-    assert !pledge.nil?
-    d_pledge.id == pledge.id
-
-    test_pledge_no_fees(pledge)
-  end
+  #test "create valid pledge with logged in user and pledge in session" do
+  #  saver = users(:saver)
+  #  stOrg = Organization.find_savetogether_org
+  #  donor = users(:donor4)
+  #  login_as(:donor4)
+  #
+  #  pledge = Pledge.new(:donation_attributes => pledge_params(saver))
+  #  session[:pledge_id] = pledge.id
+  #  session[:saver_id] = saver.id
+  #
+  #  get :continue
+  #
+  #  assert_response :success
+  #  assert_template 'create'
+  #
+  #  assert session[:pledge_id].nil?
+  #
+  #  donor = Donor.find(donor.id)
+  #  assert !donor.nil?
+  #
+  #  # Use donor to find pledge and assert they're the same
+  #  assert !donor.pledges.empty?
+  #  d_pledge = donor.pledges[0]
+  #
+  #  test_pledge_no_fees(d_pledge)
+  #
+  #  # Reload pledge and assert it's values
+  #  pledge = Pledge.find(d_pledge.id)
+  #  assert !pledge.nil?
+  #  d_pledge.id == pledge.id
+  #
+  #  test_pledge_no_fees(pledge)
+  #end
 end

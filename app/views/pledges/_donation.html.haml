@@ -1,0 +1,22 @@
+%tr
+  %td.photo
+    = image_tag( donation.to_user.avatar_photo_url(:thumb), :class => "polaroid" )
+  %td
+    = donation.to_user.display_name.capitalize
+    %br
+    = donation.to_user.asset_type
+    %br
+    = MetroArea.find(donation.to_user.metro_area_id).name
+  %td
+    - form_for donation, :url => { :controller => :pledges, :action => :update_donation_amount } do |f|
+      = f.select :cents, select_pledge_amounts_cents_values
+      = f.hidden_field :to_user_id
+      %br
+      %br
+      = f.submit :update.l
+  %td
+    - form_for donation, :url => { :controller => :pledges, :action => :remove_from_pledge } do |f|
+      = f.hidden_field :to_user_id
+      %br
+      %br
+      = f.submit :remove.l

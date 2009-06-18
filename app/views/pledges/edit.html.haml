@@ -1,0 +1,21 @@
+#profile_details.box.hentry
+  .yui-g
+    - if @saver
+      %h3
+        = @saver.first_name.capitalize
+      .centered
+        = link_to image_tag( @saver.avatar_photo_url(:medium), :class => 'polaroid'), user_path(@saver)
+    %h3
+      = :edit_pledge_label.l
+      #donation_line_items
+        %table.savers{:width => "100%"}
+          - @pledge.donations.each do |donation|
+            = render :partial => 'pledges/donation', :locals => {:donation => donation}
+          %tr
+            %td
+            %td
+            %td
+              = "Total = #{@pledge.total_amount_for_donations.format(:html)}"
+            %td
+              - form_for :pledge, :url => { :controller => :pledges, :action => :savetogether_ask } do |f|
+                = f.submit :continue.l

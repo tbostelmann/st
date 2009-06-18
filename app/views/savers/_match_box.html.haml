@@ -1,0 +1,34 @@
+.alt
+  %table
+    %tr
+      %td
+        %table
+          %tr
+            %td
+              = :match_request.l
+            %td
+              = saver.requested_match_amount.format(:no_cents)
+          %tr
+            %td
+              = :match_needed.l
+            %td
+              = saver.match_amount_left.format(:no_cents)
+          %tr
+            %td
+              = :matched_so_far.l
+            %td
+              = saver.matched_amount.format(:no_cents)
+          %tr
+            %td{:colspan => "2"}
+              = custom_progress_bar("progbar#{saver.id}", saver.match_percent, :show_text=>true, :bar_images=>['progress_bar/percentImage_back1.png','progress_bar/percentImage_back2.png','progress_bar/percentImage_back3.png','progress_bar/percentImage_back4.png'], :width=>120, :height=>10)
+
+      %td{:align => "center"}
+        - if saver.match_amount_left_cents > 0
+          - form_for :donation, :url => { :controller => :pledges, :action => :add_to_pledge } do |f|
+            = f.select :cents, select_pledge_amounts_cents_values
+            = f.hidden_field :to_user_id, :value => saver.id
+            %br
+            %br
+            = submit_tag :donate.l
+        - else
+          = :already_funded.l

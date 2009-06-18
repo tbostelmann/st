@@ -78,8 +78,8 @@ class DonorsController < BaseController
       #create_friendship_with_inviter(@user, params)
       flash[:notice] = :email_signup_thanks.l_with_args(:email => @donor.email)
 
-      if session[:pledge]
-        redirect_to :controller => :pledges, :action => :continue
+      if session[:pledge_id]
+        redirect_to :controller => :pledges, :action => :savetogether_ask
       else
         redirect_to welcome_photo_user_path(@donor)
       end

@@ -1,0 +1,20 @@
+#profile_details.box.hentry
+  .yui-g
+    %h3
+      = "Will you consider giving to SaveTogether?"
+      #donation_line_items
+        %table.savers{:width => "100%"}
+          %tr
+            %td.photo
+              = image_tag( @storg.avatar_photo_url(:thumb), :class => "polaroid" )
+            %td
+              = @storg.display_name.capitalize
+            %td
+              - form_for @donation, :url => { :controller => :pledges, :action => :add_savetogether_to_pledge } do |f|
+                = f.select :cents, select_savetogether_amounts_cents_values
+                = f.hidden_field :to_user_id
+                %br
+                %br
+                = f.submit 'add'
+        %hr
+          = link_to "No thanks just continue..", :controller => :pledges, :action => :show

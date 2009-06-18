@@ -1,0 +1,11 @@
+%tr
+  %td.photo
+    = image_tag( donation.to_user.avatar_photo_url(:thumb), :class => "polaroid" )
+  %td
+    = donation.to_user.display_name.capitalize
+    %br
+    = donation.to_user.asset_type
+    %br
+    = MetroArea.find(donation.to_user.metro_area_id).name
+  %td
+    = donation.amount.format(:html)

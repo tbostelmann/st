@@ -52,7 +52,7 @@ class CreateConfigurationData < ActiveRecord::Migration
       :metro_area => seattle,
       :birthday => 30.years.ago,
       :activities_count => 0,
-      :profile_public => false,
+      :profile_public => true,
       :role => Role[:member])
     stOrg.activate
 
@@ -67,7 +67,7 @@ class CreateConfigurationData < ActiveRecord::Migration
       :metro_area => seattle,
       :birthday => 30.years.ago,
       :activities_count => 0,
-      :profile_public => false,
+      :profile_public => true,
       :role => Role[:member])
     paypal.activate
   end

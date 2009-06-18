@@ -8,10 +8,10 @@ class SessionsController < BaseController
         cookies[:auth_token] = { :value => self.current_user.remember_token , :expires => self.current_user.remember_token_expires_at }
       end
 
-      if session[:pledge]
+      if session[:pledge_id]
         flash[:notice] = :thanks_youre_now_logged_in.l
         current_user.track_activity(:logged_in)
-        redirect_to :controller => :pledges, :action => :continue
+        redirect_to :controller => :pledges, :action => :savetogether_ask
       else
         redirect_back_or_default(dashboard_user_path(current_user))
         flash[:notice] = :thanks_youre_now_logged_in.l

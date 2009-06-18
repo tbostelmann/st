@@ -6,15 +6,16 @@
   .yui-u.first
     .box
       = render :partial => 'users/profile_user_info_sidebar', :object => @saver, :locals => {:user => @saver}
+    #about_saver.box
+      %h3
+        = :about_saver.l
+      = @saver.description
 
   .yui-u
-    - if @saver.description
-      #about_me.box
-        %h3
-          =:about_me.l
-        = render :partial => "savers/adc", :object => @saver, :locals => { :saver => @saver }
-        %p
-          = @saver.description
+    = render :partial => "savers/match_box", :object => @saver, :locals => { :saver => @saver }
+    #about_saver.box
+      %h3
+        =:about_saver.l
 
 - unless @donors.size == 0
   .yui-g

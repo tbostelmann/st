@@ -1,6 +1,7 @@
 require 'money'
 
 class PledgesController < BaseController
+  include ApplicationHelper
   include ActiveMerchant::Billing::Integrations
 
   protect_from_forgery :except => [:notify]
@@ -18,41 +19,98 @@ class PledgesController < BaseController
     end
   end
 
-  def continue
-    @pledge = session[:pledge]
-    @saver = Saver.find(session[:saver_id])
-    @storg = Organization.find_savetogether_org
+  def add_to_pledge
+    add_donation_to_pledge
     
-    update_pledge_with_donor
-    @pledge.save!
-    session[:pledge] = nil
-    session[:saver_id] = nil
-    render 'create' #post AppConfig.paypal_url, paypal_redirect_params(@pledge)
+    edit
   end
 
-  # POST /pledges/create
-  def create
-    @saver = Saver.find(params[:saver_id])
-    @storg = Organization.find_savetogether_org
-    @pledge = Pledge.new(params[:pledge])
+  def add_savetogether_to_pledge
+    add_donation_to_pledge
 
-    respond_to do |format|
-      if @pledge.valid? && @pledge.donations.size > 0
-        if current_user
-          update_pledge_with_donor
-          @pledge.save!
-          format.html #{ redirect_to post AppConfig.paypal_url, paypal_redirect_params(@pledge)}
-        else
-          session[:pledge] = @pledge
-          session[:saver_id] = params[:saver_id]
-          format.html { redirect_to signup_or_login_path }
-        end
-      else
-        format.html { render :action => "new", :saver_id => params[:saver_id] }
-      end
+    show
+  end
+
+  def update_donation_amount
+    @pledge = find_pledge
+    donation = @pledge.find_donation_with_to_user_id(params[:donation][:to_user_id])
+    donation.cents = params[:donation][:cents]
+    donation.save!
+
+    edit
+  end
+
+  def remove_from_pledge
+    @pledge = find_pledge
+    donation = Donation.new(params[:donation])
+    @pledge.remove_donation_with_to_user_id(params[:donation][:to_user_id])
+    @pledge.save!
+
+    edit
+  end
+
+  def edit
+    @pledge = find_pledge
+
+    render 'edit'
+  end
+
+  def show
+    @pledge = find_pledge
+    @user = current_user
+    @pledge.set_donor_id(@user.id)
+    @pledge.save
+    @pledge = find_pledge
+    session[:pledge_id] = nil
+
+    render 'show'
+  end
+
+  def savetogether_ask
+    if current_user.nil?
+      redirect_to signup_or_login_path
+    else
+      @pledge = find_pledge
+      @storg = Organization.find_savetogether_org
+      @donation = Donation.new(:from_user_id => current_user.id, :to_user_id => @storg.id)
     end
   end
 
+  #def continue
+  #  @pledge = find_pledge
+  #  @saver = Saver.find(session[:saver_id])
+  #  @storg = Organization.find_savetogether_org
+  #
+  #  update_pledge_with_donor
+  #  @pledge.save!
+  #  session[:pledge_id] = nil
+  #  session[:saver_id] = nil
+  #  render 'create' #post AppConfig.paypal_url, paypal_redirect_params(@pledge)
+  #end
+  #
+  ## POST /pledges/create
+  #def create
+  #  @saver = Saver.find(params[:saver_id])
+  #  @storg = Organization.find_savetogether_org
+  #  @pledge = Pledge.new(params[:pledge])
+  #
+  #  respond_to do |format|
+  #    if @pledge.valid? && @pledge.donations.size > 0
+  #      if current_user
+  #        update_pledge_with_donor
+  #        @pledge.save!
+  #        format.html #{ redirect_to post AppConfig.paypal_url, paypal_redirect_params(@pledge)}
+  #      else
+  #        session[:pledge] = @pledge
+  #        session[:saver_id] = params[:saver_id]
+  #        format.html { redirect_to signup_or_login_path }
+  #      end
+  #    else
+  #      format.html { render :action => "new", :saver_id => params[:saver_id] }
+  #    end
+  #  end
+  #end
+  #
   def done
     pn = PaymentNotification.create(:raw_data => request.query_string)
     notification = pn.notification
@@ -97,6 +155,14 @@ class PledgesController < BaseController
   end
 
   private
+
+  def add_donation_to_pledge
+    @pledge = find_pledge
+    donation = Donation.new(params[:donation])
+    @pledge.add_donation(donation)
+    @pledge.save!
+    @pledge = find_pledge
+  end
 
   def update_pledge_with_donor
     @pledge.donor = current_user

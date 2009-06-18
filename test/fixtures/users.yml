@@ -148,7 +148,7 @@ earn:
   activated_at: <%= 5.days.ago.to_s :db %>
   activation_code:
   state: 2
-  metro_area: 1
+  metro_area: sanfrancisco
   profile_public: true
   login_slug: earn_login
   birthday: <%= 15.years.ago.to_s :db %>
@@ -166,7 +166,7 @@ savetogether:
   activated_at: <%= 5.days.ago.to_s :db %>
   activation_code:
   state: 2
-  metro_area: 1
+  metro_area: seattle
   profile_public: false
   login_slug: savetogether
   birthday: <%= 15.years.ago.to_s :db %>
@@ -184,7 +184,7 @@ paypal:
   activated_at: <%= 5.days.ago.to_s :db %>
   activation_code:
   state: 2
-  metro_area: 1
+  metro_area: seattle
   profile_public: false
   login_slug: paypal
   birthday: <%= 15.years.ago.to_s :db %>

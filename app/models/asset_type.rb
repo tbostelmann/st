@@ -11,4 +11,8 @@
 
 class AssetType < ActiveRecord::Base
   has_many :savers
+
+  def to_s
+    asset_name
+  end
 end

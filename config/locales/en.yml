@@ -2,8 +2,15 @@
 # See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  hello: Hello world
   zip: Zip Code
   advocacy_zip_ask: Click here if you would like to add your name, county and state to a growing list of supporters of federal and state asset building policy opportunities.
   advocacy_boolean: Advocacate?
   already_funded: (Fully Funded)
+  about_saver: About the Saver
+  match_request: Request
+  matched_so_far: Matched
+  match_needed: "Needed:"
+
+# Edit pledge
+  edit_pledge_label: "My Pledge:"
+  remove: Remove

@@ -28,17 +28,17 @@ class DonorsControllerTest < ActionController::TestCase
 
   test "Successful donor creation with pledge in session" do
     saver = users(:saver)
-    session[:pledge] = Pledge.new
+    session[:pledge_id] = invoices(:pledge).id
     session[:saver_id] = saver.id
 
     assert_difference Donor, :count, 1 do
       post :create, :donor => min_donor_props
     end
     donor = Donor.find_by_login(min_donor_props[:login])
-    assert_redirected_to :controller => :pledges, :action => :continue
+    assert_redirected_to :controller => :pledges, :action => :savetogether_ask
     assert_equal flash[:notice], :email_signup_thanks.l_with_args(:email => donor.email)
 
-    assert !session[:pledge].nil?
+    assert !session[:pledge_id].nil?
     assert !session[:saver_id].nil?
 
     assert !session[:user].nil?
@@ -48,7 +48,7 @@ class DonorsControllerTest < ActionController::TestCase
 
   test "Unsuccessful donor creation with pledge in session" do
     saver = users(:saver)
-    session[:pledge] = Pledge.new
+    session[:pledge_id] = invoices(:pledge).id
     session[:saver_id] = saver.id
 
     assert_difference Donor, :count, 0 do
@@ -57,7 +57,7 @@ class DonorsControllerTest < ActionController::TestCase
     assert_template 'new'
     assert_response :success
 
-    assert !session[:pledge].nil?
+    assert !session[:pledge_id].nil?
     assert !session[:saver_id].nil?
   end
 

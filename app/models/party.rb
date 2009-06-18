@@ -128,8 +128,7 @@ class Party < User
 
   #
   # Overload login ==> email
-  #
-  
+  # 
   def login=(login)
     becomes(User).email = login
     super

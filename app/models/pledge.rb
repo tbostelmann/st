@@ -14,6 +14,46 @@
 class Pledge < Invoice
   belongs_to :donor 
 
+  def add_donation(donation)
+    remove_donation_with_to_user_id(donation.to_user_id)
+    donation.invoice = self
+    donations << donation
+  end
+
+  def remove_donation_with_to_user_id(to_user_id)
+    donations.each do |d|
+      if d.to_user_id == to_user_id.to_i
+        donations.delete(d)
+      end
+    end
+  end
+
+  def find_donation_with_to_user_id(to_user_id)
+    donations.each do |d|
+      if d.to_user_id == to_user_id.to_i
+        return d
+      end
+    end
+    return nil
+  end
+
+  def total_amount_for_donations
+    total = Money.new(0)
+    donations.each do |d|
+      total = total + d.amount
+    end
+    return total
+  end
+
+  def set_donor_id(id)
+    self.donor_id = id
+    donations.each do |d|
+      d.from_user_id = id
+      d.save
+    end
+    save
+  end
+
   def donation_attributes=(d_attributes)
     d_attributes.each do |index, attributes|
       amount = attributes[:amount]

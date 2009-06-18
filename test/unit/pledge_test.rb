@@ -2,6 +2,44 @@ require File.dirname(__FILE__) + '/../test_helper'
 require 'money'
 
 class PledgeTest < ActiveSupport::TestCase
+  test "find donation with same to_user_id" do
+    pledge = invoices(:pledge)
+    donation = pledge.donations[0]
+    d = pledge.find_donation_with_to_user_id(donation.to_user_id)
+    assert d.to_user_id == donation.to_user_id    
+  end
+
+  test "add donation to pledge" do
+    pledge = invoices(:pledge)
+    donation = pledge.donations[0]
+    donation.amount = "500.00"
+    pledge.add_donation(donation)
+    d = pledge.find_donation_with_to_user_id(donation.to_user_id)
+    assert d.amount = donation.amount
+  end
+
+  test "remove donation from pledge" do
+    pledge = invoices(:pledge)
+    donation = pledge.donations[0]
+    pledge.remove_donation_with_to_user_id(donation.to_user_id)
+    assert !pledge.find_donation_with_to_user_id(donation.to_user_id)
+  end
+
+  test "get total amount of donations from pledge" do
+    saver = users(:saver)
+    donor = users(:donor)
+    pledge = Pledge.new(:donor => donor)
+    amount = "10.00"
+    donation = Donation.new(:invoice => pledge, :from_user => donor,
+                            :to_user => saver, :amount => amount)
+    pledge.donations << donation
+    pledge.save!
+    pledge = Pledge.find(pledge.id)
+
+    ftotal = pledge.total_amount_for_donations.to_s.to_f
+    assert pledge.total_amount_for_donations.to_s.to_f == amount.to_f
+  end
+
   test "create initial, pending pledge" do
     donor = users(:donor4)
     saver = users(:saver4)
