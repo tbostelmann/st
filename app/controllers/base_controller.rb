@@ -1,6 +1,6 @@
 class BaseController < ApplicationController
   def site_index
-    @fsaver = [Saver.find(:first)]
+    @savers = Saver.find(:all)
     respond_to do |format|
       format.html { get_additional_homepage_data }
     end

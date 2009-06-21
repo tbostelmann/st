@@ -1,0 +1,10 @@
+- @savers.each_with_index do |saver, i|
+  - if i == (@savers.size - 1).to_i
+    .saver.right.no-border
+  - elsif i == (@savers.size - 2).to_i
+    .saver.no-border
+  - elsif i == 0 || i.odd?
+    .saver
+  - else
+    .saver.right
+      = render(:partial => "savers/half_line_saver", :collection => @savers)

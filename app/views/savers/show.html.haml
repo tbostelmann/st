@@ -1,24 +1,48 @@
-- @meta = { :description => "#{@saver.display_name}'s profile on #{AppConfig.community_name}.", :keywords => "#{@saver.login}, #{@saver.tags.join(", ") unless @saver.tags.nil?}", :robots => AppConfig.robots_meta_show_content }
-- @section = @saver.eql?(current_user) ? 'my_profile' : 'savers'
-- @sidebar_left = true
+- @meta = { :description => "#{@saver.display_name}'s profile on #{AppConfig.community_name}.", :keywords => "#{@saver.display_name}, #{@saver.tags.join(", ") unless @saver.tags.nil?}", :robots => AppConfig.robots_meta_show_content }
 
-.yui-g
-  .yui-u.first
+.content
+  .photo
+    %h1= @saver.display_name
+
+    - if @saver.avatar
+      = image_tag( @saver.avatar_photo_url(:medium), :class => 'polaroid')
+    - else
+      = image_tag( user.avatar_photo_url(:medium), :class => "polaroid" )
+
+  .about-saver
     .box
-      = render :partial => 'users/profile_user_info_sidebar', :object => @saver, :locals => {:user => @saver}
-    #about_saver.box
-      %h3
-        = :about_saver.l
+      .box-bottom
+        .small-column
+          %p
+            = :match_request.l
+            %span= @saver.requested_match_amount.format(:no_cents)
+          %p
+            = :match_needed.l
+            %span= @saver.match_amount_left.format(:no_cents)
+          %p
+            = :matched_so_far.l
+            %span= @saver.matched_amount.format(:no_cents)
+        = custom_progress_bar("progbar#{@saver.id}", @saver.match_percent, :show_text=>true, :bar_images=>['progress_bar/percentImage_back1.png','progress_bar/percentImage_back2.png','progress_bar/percentImage_back3.png','progress_bar/percentImage_back4.png'], :width=>120, :height=>10)
+        - if @saver.match_amount_left_cents > 0
+          - form_for :donation, :class => 'match-now', :url => { :controller => :pledges, :action => :add_to_pledge } do |f|
+            = f.select :cents, select_pledge_amounts_cents_values
+            = f.hidden_field :to_user_id, :value => @saver.id
+            = image_submit_tag 'match.gif', :class => 'match-now'
+        - else
+          = :already_funded.l
+      .relax='&nbsp;'
+    %h2= :about_saver.l
+    %p.no-margin
       = @saver.description
 
-  .yui-u
-    = render :partial => "savers/match_box", :object => @saver, :locals => { :saver => @saver }
-    #about_saver.box
-      %h3
-        =:about_saver.l
+  .relax='&nbsp;'
+  %h2
+    = image_tag 'titles/people-who-have-contributed-to-this-saver.gif'
 
-- unless @donors.size == 0
-  .yui-g
-  .box.user_list
-    %h3= "People who have donated to this Saver"
-    = render :partial => "donors/donor", :collection => @donors
+  .pagination= paginating_links @donors, :params => params if @donors.page_count > 1
+
+  = render(:partial => "donors/donor", :collection => @donors)
+
+  %br.clear
+  .pagination= paginating_links @donors, :params => params if @donors.page_count > 1
+

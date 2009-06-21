@@ -1,15 +1,17 @@
 - # This is for identifying current tab selection in navbar
-- @section = (params[:metro_area_id] ? 'metro_area' : 'savers')
+- @section = 'match'
 
-/ Savers list and controls
-.yui-g
+.content
+  = image_tag 'temp/image-sub.jpg'
+
   = render :partial => 'users/search_options'
-.yui-g.box
-  %h3=:site_savers.l :site => AppConfig.community_name
+
+  %h2
+    = :site_savers.l :site => AppConfig.community_name
 
   .pagination= paginating_links @savers, :params => params if @savers.page_count > 1
 
-  = render :partial => "savers/saver", :collection => @savers
+  = render(:partial => "savers/saver", :collection => @savers)
 
   %br.clear
   .pagination= paginating_links @savers, :params => params if @savers.page_count > 1

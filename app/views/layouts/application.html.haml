@@ -1,53 +1,79 @@
 !!!
 %html
   %head
-    %link{:rel=>"shortcut icon", :href=>"/favicon.ico"}
-    %meta{"http-equiv"=>"Content-Type", :content=>"text/html;charset=utf-8"}
-
-    %title= page_title
+    %meta{:content => "text/html; charset=ISO-8859-1"}
     - if @meta
       - @meta.each do |key|
-        %meta{:name=>key[0], :content=>key[1]}
-  
-    = render :partial => "shared/scripts_and_styles"
+        %meta{:name=> key[0], :content => key[1]}
+
+    %title= page_title
+
+    = stylesheet_link_tag 'main', :media => 'screen'
+    = stylesheet_link_tag 'widget02', :media => 'all'
     - if @rss_title && @rss_url
       = auto_discovery_link_tag(:rss, @rss_url, {:title => @rss_title})
-    = stylesheet_link_tag 'screen.css'
-    = progress_bar_includes
+    = javascript_include_tag 'menu12'
 
   %body
-    #doc.yui-t7
-      #hd
-        = render :partial => "shared/header"
-            
-      #bd
-        .st-block
-          = render :partial => "shared/messages"
+    #page
+      .header
+        - form_tag sessions_path do
+          .header-form
+            .column
+              %label{"for"=>"username"}=:e_mail_address.l
+              = text_field_tag('login', nil, :size => 35)
+            .column
+              = link_to(:forgot_your_password.l, forgot_password_url)
+              = password_field_tag('password', nil,:size => 35)
+            = submit_tag(:log_in.l,{:class => 'button'})
+            .relax= '&nbsp;'
+            %div{:align => 'right'}
+              = link_to('http://www.addthis.com/bookmark.php?v=250', :onmouseover => "return addthis_open(this, '', '[URL]', '[TITLE]')", :onmouseout => 'addthis_close()', :onclick => 'return addthis_sendto()')
+              = javascript_include_tag 'addthis_widget'
 
-          = @content_for_layout
-                            
-      #ft
-        -if show_footer_content?    
-          .yui-gc#footer_content
-            = image_tag 'spinner.gif', :plugin => 'community_engine'
-            =:loading_recent_content.l       
+        = link_to (image_tag 'logotype.jpg', :alt => 'SaveTogether'), home_path
 
-          %script{:type=>"text/javascript"}
-            = remote_function(:update => "footer_content", :url => { :controller => 'base', :action => 'footer_content' })
+      .menu
+        .menu-left
+          .menu-right
+            .text-box
+              %p
+                = 'Impact: 24 Savers Matched!'
+            %ul
+              %li
+                = link_to 'HOME', home_path
+                = image_tag 'separator.gif'
+              %li
+                = link_to 'MATCH', savers_path
+                = image_tag 'separator.gif'
+              %li
+                = link_to 'HOW IT WORKS', about_path
+                = image_tag 'separator.gif'
+              %li
+                = link_to 'SIGN-UP', signup_path
+                = image_tag 'separator.gif'
+              %li
+                = link_to 'DO MORE', faq_path
+                = image_tag 'separator.gif'
 
-      #CommunityFooter
+      = @content_for_layout
+
+      .footer
+        = image_tag 'footer.gif'
         %ul
           %li
-            %a{:href=>"/", :title=>"#{AppConfig.community_name} " + :home.l}= :home.l
-          - if !logged_in?
-            %li
-              = link_to :log_in.l , login_path 
-          - else
-            %li
-              = link_to :log_out.l , logout_path
-
+            = link_to 'HOME', home_path
+            = image_tag 'separator.gif'
           %li
-            = link_to  :about.l, about_path
+            = link_to 'MATCH', savers_path
+            = image_tag 'separator.gif'
           %li
-            = link_to  :faq.l, faq_path
-
+            = link_to 'HOW IT WORKS', about_path
+            = image_tag 'separator.gif'
+          %li
+            = link_to 'SIGN-UP', signup_path
+            = image_tag 'separator.gif'
+          %li
+            = link_to 'DO MORE', faq_path
+            = image_tag 'separator.gif'
+    = render(:partial => 'layouts/widget')

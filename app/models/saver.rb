@@ -49,6 +49,8 @@ class Saver < Party
   has_many :all_donations_received, :class_name => 'Donation', :foreign_key => :to_user_id
   has_many :donations_received, :class_name => 'Donation', :foreign_key => :to_user_id,
            :conditions => "status = '#{LineItem::STATUS_PROCESSED}' OR status = '#{LineItem::STATUS_COMPLETED}'"
+  has_many :donors, :through => :donations_received, :source => :from_user,
+           :uniq => true, :conditions => "users.profile_public = 1"
   
   validates_presence_of :first_name
   validates_presence_of :last_name

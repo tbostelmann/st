@@ -15,10 +15,11 @@ class SaversController < BaseController
   def show
     @saver     = Saver.find(params[:id])
     @photos    = @saver.photos.find(:all, :limit => 5)
-    @donors = []
-    @saver.donations_received.each do |d|
-      @donors << d.from_user
-    end
+    @donors = @saver.donors.find(:all, :page => {:current => params[:page], :size => 20})
+    #@donors = []
+    #@saver.donations_received.each do |d|
+    #  @donors << d.from_user
+    #end
   end
 
 end
