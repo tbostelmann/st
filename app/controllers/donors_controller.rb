@@ -60,7 +60,7 @@ class DonorsController < BaseController
       redirect_to home_path
     end
     @photos = @donor.photos.find(:all, :limit => 5)
-    @savers = @donor.beneficiaries
+    @savers = @donor.beneficiaries.find(:all, :page => {:current => params[:page], :size => 20})
   end
 
   def signup_or_login

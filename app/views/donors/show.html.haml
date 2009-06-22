@@ -1,32 +1,35 @@
-- @meta = { :description => "#{@donor.display_name}'s profile on #{AppConfig.community_name}.", :keywords => "#{@donor.login}, #{@donor.tags.join(", ") unless @donor.tags.nil?}", :robots => AppConfig.robots_meta_show_content }
-- @section = @donor.eql?(current_user) ? 'my_profile' : 'donors'
-- @sidebar_left = true
+- @meta = { :description => "#{@donor.display_name}'s profile on #{AppConfig.community_name}.", :keywords => "#{@donor.display_name}, #{@donor.tags.join(", ") unless @donor.tags.nil?}", :robots => AppConfig.robots_meta_show_content }
 
-.yui-g
-  .yui-u.first
-    .box
-      = render :partial => 'users/profile_user_info_sidebar', :locals => {:user => @donor}
+.content
+  .photo
+    %h1= @donor.display_name
 
-  .yui-u
-    .box
-      - if @donor.eql?(current_user)
-        %h3
-          =:manage_my.l
-        %ul
-          %li=link_to :profile.l, edit_donor_path(@donor)
-          %li=link_to :account_settings.l, edit_account_user_path(@donor)
-          -if current_user.admin?
-            %li=link_to :admin_dashboard.l, admin_dashboard_path
-  
-    - if @donor.description
-      #about_me.box
-        %h3
-          =:about_me.l
-        %p
-          = @donor.description
+    - if @donor.avatar
+      = image_tag( @donor.avatar_photo_url(:medium), :class => 'polaroid')
+    - else
+      = image_tag( @donor.avatar_photo_url(:medium), :class => "polaroid" )
 
-- unless @savers.size == 0
-  .yui-g
-  .box.user_list
-    %h3= "Savers you have donated to"
-    = render :partial => "savers/saver", :collection => @savers
+  .about-saver
+    - if @donor.eql?(current_user)
+      %h3
+        =:manage_my.l
+      %ul
+        %li=link_to :profile.l, edit_donor_path(@donor)
+        %li=link_to :account_settings.l, edit_account_user_path(@donor)
+        -if current_user.admin?
+          %li=link_to :admin_dashboard.l, admin_dashboard_path
+
+    %h2= :about_me.l
+    %p.no-margin
+      = @donor.description
+
+  .relax='&nbsp;'
+  %h2
+    = image_tag 'titles/people-who-have-contributed-to-this-saver.gif'
+
+  .pagination= paginating_links @savers, :params => params if @savers.page_count > 1
+
+  = render(:partial => "donors/donor", :collection => @savers)
+
+  %br.clear
+  .pagination= paginating_links @savers, :params => params if @savers.page_count > 1
