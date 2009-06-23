@@ -20,7 +20,6 @@
     %br
     %p.small-text= truncate_words(saver.description, 20, '...')
 
-  = link_to image_tag( saver.avatar_photo_url(:thumb), :border => "0" ), saver_path(saver)
-  %br
-  %br
-  = saver.display_name
+  %a{:class => 'with-img', :href => "#{saver_path(saver)}"}
+    =image_tag(saver.avatar_photo_url(:thumb))
+    %span=saver.display_name.upcase
