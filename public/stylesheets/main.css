@@ -263,6 +263,23 @@ LABEL {cursor: pointer;}
 	float: left;
 }
 .content P.no-margin {margin-top: 0;}
+
+/*Progress Bars*/
+.progress-bar {
+  width: 66%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.progress-bar TR {
+  height: 7px;
+}
+.progress-pct {
+  background-color: #82a540;
+}
+.remainder-pct {
+  background-color: #f3f2e7;
+}
+
 /*Footer*/
 .footer {
      float: left;

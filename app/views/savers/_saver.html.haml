@@ -1,14 +1,20 @@
 %div{:class => "saver #{(saver_counter.odd? ? 'right' : '')} #{((@savers.size - 3) < saver_counter ? 'no-border' : '')}"}
   .info
     %p.large-text= "#{saver.matched_amount.format(:no_cents)} (#{saver.requested_match_amount.format(:no_cents)} requested)"
-    = custom_progress_bar("progbar#{saver.id}", saver.match_percent, :show_text=>true, :bar_images=>['progress_bar/percentImage_back1.png','progress_bar/percentImage_back2.png','progress_bar/percentImage_back3.png','progress_bar/percentImage_back4.png'], :width=>120, :height=>10)
+    %table.progress-bar
+      %tbody
+        %tr
+          %td{:class => "progress-pct", :width => "#{(saver.match_percent)*100}%"}
+          %td{:class => "remainder-pct", :width => "#{(1.0 - saver.match_percent)*100}%"}
     .relax='&nbsp;'
-    %br
     - if saver.match_amount_left_cents > 0
       - form_for :donation, :url => { :controller => :pledges, :action => :add_to_pledge } do |f|
-        = f.select :cents, select_pledge_amounts_cents_values
-        = image_submit_tag 'buttons/match.gif', :alt => 'Match'
-        = f.hidden_field :to_user_id, :value => saver.id
+        = image_submit_tag 'buttons/match.gif', :alt => 'Match', :class => 'match'
+        %p{:class => 'large-text', :width => '50%'}
+          = :amount_raised.l :amount => "#{(saver.match_percent*100).round}%"
+          = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'
+          = f.select :cents, select_pledge_amounts_cents_values
+          = f.hidden_field :to_user_id, :value => saver.id
     - else
       = :already_funded.l
     %br

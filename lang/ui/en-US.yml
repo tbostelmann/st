@@ -83,6 +83,8 @@ en:
   all_users_tagged: All users tagged {{tag_name}}
   #en: already_have_an_account: Already have an account?
   already_have_an_account: Already have an account?
+  #en: amount_raised: "{{amount}} raised"
+  amount_raised: "{{amount}} raised"
   #en: an_error_occurred: An error occurred
   an_error_occurred: An error occurred
   #en: are_you_sure: Are you sure?
