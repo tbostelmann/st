@@ -9,10 +9,8 @@
     %title= page_title
 
     = stylesheet_link_tag 'main', :media => 'screen'
-    = stylesheet_link_tag 'widget02', :media => 'all'
     - if @rss_title && @rss_url
       = auto_discovery_link_tag(:rss, @rss_url, {:title => @rss_title})
-    = javascript_include_tag 'menu12'
 
   %body
     #page
@@ -25,12 +23,14 @@
             .column
               = link_to(:forgot_your_password.l, forgot_password_url)
               = password_field_tag('password', nil,:size => 35)
-            = submit_tag(:log_in.l,{:class => 'button'})
+            = submit_tag("", {:class => 'button'})
             .relax= '&nbsp;'
             %div{:align => 'right'}
-              = link_to('http://www.addthis.com/bookmark.php?v=250', :onmouseover => "return addthis_open(this, '', '[URL]', '[TITLE]')", :onmouseout => 'addthis_close()', :onclick => 'return addthis_sendto()')
-              = javascript_include_tag 'addthis_widget'
-
+              / AddThis Button BEGIN
+              %a{:href => "http://www.addthis.com/bookmark.php?v=250", :onmouseover => "return addthis_open(this, '', '[URL]', '[TITLE]')", :onmouseout => "addthis_close()", :onclick => "return addthis_sendto()"}
+                %br
+                %img{:src => "http://s7.addthis.com/static/btn/lg-share-en.gif", :width => "125", :height => "16", :alt => "Bookmark and Share", :style => "border:0"}
+              / AddThis Button END
         = link_to (image_tag 'logotype.jpg', :alt => 'SaveTogether'), home_path
 
       .menu
@@ -76,4 +76,6 @@
           %li
             = link_to 'DO MORE', faq_path
             = image_tag 'separator.gif'
-    = render(:partial => 'layouts/widget')
+
+      / AddThis Javascript
+      =javascript_include_tag "http://s7.addthis.com/js/250/addthis_widget.js?pub=xa-4a3bc7960a2abaa3"
