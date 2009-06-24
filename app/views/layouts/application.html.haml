@@ -31,7 +31,14 @@
                 %br
                 %img{:src => "http://s7.addthis.com/static/btn/lg-share-en.gif", :width => "125", :height => "16", :alt => "Bookmark and Share", :style => "border:0"}
               / AddThis Button END
-        = link_to (image_tag 'logotype.jpg', :alt => 'SaveTogether'), home_path
+
+        -# The following was the only way I could figure out how to do this:
+        -#   = link_to ((image_tag 'logotype.jpg', :alt => 'SaveTogether'), home_path)
+        -# which should work, but doesn't (fails trying to parse path as a :symbol)
+        -# Online examples claim that should work, but I couldn't get it to, and the
+        -# below does and by virtue of image_path, is still protected from path fragility.
+        %a{:href => "#{home_path}"}
+          %img{:src => "#{image_path('logotype.jpg')}", :alt => 'SaveTogether'}
 
       .menu
         .menu-left
