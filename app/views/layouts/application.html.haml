@@ -57,12 +57,20 @@
                 = link_to 'HOW IT WORKS', about_path
                 = image_tag 'separator.gif'
               %li
-                = link_to 'SIGN-UP', signup_path
-                = image_tag 'separator.gif'
-              %li
                 = link_to 'DO MORE', faq_path
                 = image_tag 'separator.gif'
-
+              - if current_user
+                %li
+                  = link_to 'MY PROFILE', donor_path(current_user)
+                  = image_tag 'separator.gif'
+                %li
+                  = link_to 'SIGN OUT', logout_path
+                  = image_tag 'separator.gif'
+              -else
+                %li
+                  = link_to 'SIGN-UP', signup_path
+                  = image_tag 'separator.gif'
+                
       = @content_for_layout
 
       .footer
@@ -80,11 +88,19 @@
             = link_to 'HOW IT WORKS', about_path
             = image_tag 'separator.gif'
           %li
-            = link_to 'SIGN-UP', signup_path
-            = image_tag 'separator.gif'
-          %li
             = link_to 'DO MORE', faq_path
             = image_tag 'separator.gif'
+          - if current_user
+            %li
+              = link_to 'MY PROFILE', donor_path(current_user)
+              = image_tag 'separator.gif'
+            %li
+              = link_to 'SIGN OUT', logout_path
+              = image_tag 'separator.gif'
+          -else
+            %li
+              = link_to 'SIGN-UP', signup_path
+              = image_tag 'separator.gif'
 
       / AddThis Javascript
       =javascript_include_tag "http://s7.addthis.com/js/250/addthis_widget.js?pub=xa-4a3bc7960a2abaa3"
