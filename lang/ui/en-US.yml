@@ -427,6 +427,10 @@ en:
   featured_posts: Featured posts
   #en: features: Features
   features: Features
+  #en: feedback_email_address: tom@savetogether.com
+  feedback_email_address: tom@savetogether.com
+  #en: feedback_email_subject: SaveTogether Feedback
+  feedback_email_subject: SaveTogether Feedback
   #en: feel_free_to_embed_images_or_videos: Feel free to embed images or videos.
   feel_free_to_embed_images_or_videos: Feel free to embed images or videos.
   #en: female: Female
