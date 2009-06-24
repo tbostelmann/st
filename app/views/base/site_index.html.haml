@@ -3,7 +3,9 @@
 - @section = 'home'
 
 .content
-  = image_tag 'image.jpg'
+  = image_tag 'image.jpg', :usemap => "#banner_map"
+  %map{:name => "banner_map"}
+    %area{:shape => "rect", :coords =>"668,78,811,118", :href => "#{savers_path}"}
 
   %h2
     = image_tag('featured-savers.gif', {:alt => 'Featured Savers'})
