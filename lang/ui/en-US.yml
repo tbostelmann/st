@@ -261,8 +261,8 @@ en:
   custom_friendly_local: custom, friendly, local
   #en: dashboard: Dashboard
   dashboard: Dashboard
-  #en: dashboard_friends: Once you start adding friends, you'll be able to track their activity on {{site}} here
-  dashboard_friends: Once you start adding friends, you'll be able to track their activity on {{site}} here
+  #en: dashboard_friends: "Once you start adding friends, you'll be able to track their activity on {{site}} here"
+  dashboard_friends: "Once you start adding friends, you'll be able to track their activity on {{site}} here"
   #en: date: Date
   date_title: Date
   #en: date_created: Date Created
@@ -305,6 +305,8 @@ en:
   description: Description
   #en: destroy: Destroy
   destroy: Destroy
+  #en: do_more: Do more
+  do_more: Do more
   #en: donate: Donate
   donate: Donate
   #en: dont_have_an_account: Don't have an account?
@@ -525,6 +527,8 @@ en:
   hours_ago: hours ago
   #en: how_do_i_do_that: How do I do that?
   how_do_i_do_that: How do I do that?
+  #en: how_it_works: How it works
+  how_it_works: How it works
   #en: html: HTML
   html: HTML
   #en: image: Image
@@ -553,8 +557,8 @@ en:
   invite_your_friends_to_join: Invite Your Friends To Join!
   #en: invited_friends: invited some friends to join!
   invited_friends: invited some friends to join!
-  #en: is_great_check_it_out_youll_love_it: is great, check it out you'll love it!
-  is_great_check_it_out_youll_love_it: is great, check it out you'll love it!
+  #en: is_great_check_it_out_youll_love_it: "is great, check it out you'll love it!"
+  is_great_check_it_out_youll_love_it: "is great, check it out you'll love it!"
   #en: items: Items
   items: Items
   #en: joined: joined
@@ -629,6 +633,8 @@ en:
   manage_my: "Manage my:"
   #en: manage_posts: Manage Posts
   manage_posts: Manage Posts
+  #en: match: Match
+  match: Match
   #en: medium: Medium
   medium: Medium
   #en: megabyte_upload_limit: megabyte upload limit
@@ -733,8 +739,8 @@ en:
   next: next
   #en: next_page: Next page
   next_page: Next page
-  #en: no_comments_found: Sorry, we couldn't find any comments for that {{type}}
-  no_comments_found: Sorry, we couldn't find any comments for that {{type}}
+  #en: no_comments_found: "Sorry, we couldn't find any comments for that {{type}}"
+  no_comments_found: "Sorry, we couldn't find any comments for that {{type}}"
   #en: no_images_uploaded_yet: No images uploaded yet.
   no_images_uploaded_yet: No images uploaded yet.
   #en: no_messages: no messages
@@ -827,8 +833,8 @@ en:
   post_a_new_topic: Post a new topic
   #en: post_an_event: Post an event
   post_an_event: Post an event
-  #en: post_created_for_category: Your '{{category}}' post was successfully created.
-  post_created_for_category: Your '{{category}}' post was successfully created.
+  #en: post_created_for_category: "Your '{{category}}' post was successfully created."
+  post_created_for_category: "Your '{{category}}' post was successfully created."
   #en: post_comments: Post Comments
   post_comments: Post Comments
   #en: postal_code: "Postal code:"
@@ -951,8 +957,8 @@ en:
   save_reply: Save reply
   #en: says: says
   says: says
-  #en: sb_post_was_deleted: Post '{{title}}' was deleted.
-  sb_post_was_deleted: Post '{{title}}' was deleted.
+  #en: sb_post_was_deleted: "Post '{{title}}' was deleted."
+  sb_post_was_deleted: "Post '{{title}}' was deleted."
   #en: scrapbook: Scrapbook
   scrapbook: Scrapbook
   #en: search: Search
@@ -1001,6 +1007,8 @@ en:
   showing_metro_area_details: Showing Metro Area Details
   #en: showing_users: Showing users
   showing_users: Showing users
+  #en: sign_out: Sign out
+  sign_out: Sign out
   #en: sign_up: Sign Up!
   sign_up: Sign Up!
   #en: sign_up_for_an_account: Sign up for an account.
