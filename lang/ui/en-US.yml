@@ -247,6 +247,8 @@ en:
   contests: Contests
   #en: contest_entries: Contest Entries
   contest_entries: Contest Entries
+  #en: continue_to_paypal: Continue to PayPal
+  continue_to_paypal: Continue to PayPal
   #en: country: Country
   country: Country
   #en: create: Create
