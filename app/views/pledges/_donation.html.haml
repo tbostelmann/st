@@ -9,7 +9,7 @@
     = MetroArea.find(donation.to_user.metro_area_id).name
   %td{:class => "text12", :valign => "middle", :align => "left"}
     = donation.to_user.asset_type
-  - form_for donation, :url => { :controller => :pledges, :action => :update_donation_amount } do |f|
+  - form_for donation, :url => { :controller => :pledges, :action => :modify_pledge } do |f|
     %td{:class => "text12", :valign => "middle", :align => "left"}
       = f.select :cents, select_pledge_amounts_cents_values
       = f.hidden_field :to_user_id
@@ -17,10 +17,6 @@
       %br
     %td{:class => "text12", :valign => "middle", :align => "left"}
       = f.submit :update.l
-      -# form_for donation, :url => { :controller => :pledges, :action => :remove_from_pledge } do |f|
-      -# = f.hidden_field :to_user_id
-      -# %br
-      -# %br
       = f.submit :remove.l
 -# Spacer Row
 %tr{:valign => "top", :align => "left"}

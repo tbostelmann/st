@@ -48,6 +48,17 @@ class PledgesController < BaseController
 
     edit
   end
+  
+  def modify_pledge
+      case params[:commit]
+        when :update.l
+          update_donation_amount
+          return
+        when :remove.l
+          remove_from_pledge
+          return
+      end
+  end
 
   def edit
     @pledge = find_pledge
