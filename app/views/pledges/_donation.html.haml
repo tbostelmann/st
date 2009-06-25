@@ -13,11 +13,12 @@
     %td{:class => "text12", :valign => "middle", :align => "left"}
       = f.select :cents, select_pledge_amounts_cents_values
       = f.hidden_field :to_user_id
-      %br
-      %br
-    %td{:class => "text12", :valign => "middle", :align => "left"}
+    %td{:class => "text12", :valign => "middle", :align => "center"}
       = f.submit :update.l
       = f.submit :remove.l
+      -# These are a problem - for some reason they cause Rails to insist there is a view with the action
+      -# = image_submit_tag "#{image_path('icons/update.gif')}", :value => :update.l, :name => "commit"
+      -# = image_submit_tag "#{image_path('icons/delete.gif')}", :value => :delete.l, :name => "commit"
 -# Spacer Row
 %tr{:valign => "top", :align => "left"}
   %td{:height => "2", :valign => "middle", :background => "#{image_path('bg/dotted_line.gif')}", :style => "background-repeat: repeat-x;", :colspan => "6"}
