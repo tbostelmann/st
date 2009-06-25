@@ -326,3 +326,8 @@ LABEL {cursor: pointer;}
 	font-weight: bold;
 	line-height: 130%;
 }
+.pledge-total {
+	color: #FF0000;
+	font-weight: bold;
+}
+
