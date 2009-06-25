@@ -23,6 +23,8 @@ en:
   account_activation_error: Account activation failed. Your account may already be active. Try logging in or e-mail {{email}} for help.
   #en: account_settings: Account settings
   account_settings: Account settings
+  #en: action: Action
+  action: Action
   #en: actions: Actions
   actions: Actions
   #en: activate: Activate
@@ -83,6 +85,8 @@ en:
   all_users_tagged: All users tagged {{tag_name}}
   #en: already_have_an_account: Already have an account?
   already_have_an_account: Already have an account?
+  #en: amount: Amount
+  amount: Amount
   #en: amount_raised: "{{amount}} raised"
   amount_raised: "{{amount}} raised"
   #en: an_error_occurred: An error occurred
@@ -179,6 +183,8 @@ en:
   choose_a_photo_to_upload: "Choose a photo to upload:"
   #en: choose_your_location: Choose your location
   choose_your_location: Choose your location
+  #en: city: City
+  city: City
   #en: click_here: click here
   click_here: click here
   #en: click_here_to_enter_this_contest: "Click here to enter this contest!"
@@ -507,6 +513,8 @@ en:
   go_to_your_clippings_page_to_get_started: Go to your clippings page to get started.
   #en: go_to_your_profile: Go to your profile
   go_to_your_profile: Go to your profile
+  #en: goal_description: Goal Description
+  goal_description: Goal Description
   #en: have_an_account: "Have an account? "
   have_an_account: "Have an account? "
   #en: have_something_to_contribute: Have something to contribute?
@@ -793,6 +801,8 @@ en:
   permanently_delete_this_event: Permanently delete this event?
   #en: permanently_delete_this_post: Permanently delete this post?
   permanently_delete_this_post: Permanently delete this post?
+  #en: photo: Photo
+  photo: Photo
   #en: photo_comments: Photo Comments
   photo_comments: Photo Comments
   #en: photo_message: Your profile photo represents you on {{site}}. You can change it later.
@@ -943,6 +953,8 @@ en:
   save: Save
   #en: saver: Saver
   saver: Saver
+  #en: saver_name: Saver Name
+  saver_name: Saver Name
   #en: savers: Savers
   savers: Savers
   #en: save_and_continue_to_step_three: Save, and continue to step three
