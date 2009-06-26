@@ -5,9 +5,10 @@ en:
 # Show Saver
   already_funded: (Fully Funded)
   about_saver: About the Saver
-  match_request: Request
-  matched_so_far: Matched
-  match_needed: Needed
+  match_request: "I'm Saving"
+  matched_so_far: Match Committed
+  match_needed: Match Still Needed
+  match_goal: To Invest In
 
 # Edit pledge
   edit_pledge_label: "My Pledge:"
@@ -16,3 +17,5 @@ en:
   advocacy_zip_ask: Click here if you would like to add your name, county and state to a growing list of supporters of federal and state asset building policy opportunities.
   advocacy_boolean: Advocacate?
 
+# Pledge Invoice
+  program: Program
