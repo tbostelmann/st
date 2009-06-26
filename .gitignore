@@ -27,6 +27,7 @@ public/javascripts/*packaged*
 public/photos/*
 public/stylesheets/cached/
 public/stylesheets/*packaged*
+public/system/*
 rspec_out/
 test/performance/**/*result*/
 test/performance/**/*.log
