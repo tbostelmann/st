@@ -204,10 +204,14 @@ LABEL {cursor: pointer;}
 }
 .with-img:HOVER {text-decoration: none;}
 .with-img IMG {
-  padding: 15px 15px 15px 15px;
+  padding: 15px;
   border-style: dotted;
   border-color: #a9b270;
   border-width: 1px;
+}
+.with-img.plus IMG {
+  padding-top:    35px;
+  padding-bottom: 35px;
 }
 .with-img SPAN {
 	display: block;

@@ -1,13 +1,17 @@
 - @meta = { :description => "#{@saver.display_name}'s profile on #{AppConfig.community_name}.", :keywords => "#{@saver.display_name}, #{@saver.tags.join(", ") unless @saver.tags.nil?}", :robots => AppConfig.robots_meta_show_content }
 
 .content
+
+  = image_tag "#{image_path('temp/image-sub.jpg')}"
+
   .photo
     %h1= @saver.display_name
 
-    - if @saver.avatar
-      = image_tag( @saver.avatar_photo_url(:medium), :class => 'polaroid')
-    - else
-      = image_tag( user.avatar_photo_url(:medium), :class => "polaroid" )
+    .with-img.plus
+      - if @saver.avatar
+        = image_tag( @saver.avatar_photo_url(:medium), :class => 'polaroid')
+      - else
+        = image_tag( user.avatar_photo_url(:medium), :class => "polaroid" )
 
   .about-saver
     .box
@@ -30,8 +34,8 @@
             = image_submit_tag 'match.gif', :class => 'match-now'
         - else
           = :already_funded.l
-      .relax='&nbsp;'
-    %h2= :about_saver.l
+    .relax='&nbsp;'
+    %h3= :about_saver.l
     %p.no-margin
       = @saver.description
 
