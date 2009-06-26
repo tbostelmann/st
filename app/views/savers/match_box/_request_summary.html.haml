@@ -1,22 +1,21 @@
-%table{:width => "100%", :cellpadding => "0"}
+%table{:width => "100%", :cellpadding => "2"}
   %tr
     %td
-      %p
-        ="#{:match_request.l}:"
+      ="#{:match_request.l}:"
     %td{:align => "right"}
-      %p
-        %span= saver.requested_match_amount.format(:no_cents)
+      %span.request-values= saver.requested_match_amount.format(:no_cents)
   %tr
     %td
-      %p
-        ="#{:match_needed.l}:"
+      ="#{:match_goal.l}:"
     %td{:align => "right"}
-      %p
-        %span= saver.match_amount_left.format(:no_cents)
+      %span.request-values= saver.asset_type
   %tr
     %td
-      %p
-        ="#{:matched_so_far.l}:"
+      ="#{:matched_so_far.l}:"
     %td{:align => "right"}
-      %p
-        %span= saver.matched_amount.format(:no_cents)
+      %span.request-values= saver.matched_amount.format(:no_cents)
+  %tr
+    %td
+      ="#{:match_needed.l}:"
+    %td{:align => "right"}
+      %span.request-values= saver.match_amount_left.format(:no_cents)

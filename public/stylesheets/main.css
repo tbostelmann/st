@@ -249,6 +249,9 @@ LABEL {cursor: pointer;}
 	width: 386px;
 	background: #fbfbf7 url("../images/bg/box-top.gif") no-repeat left top;
 }
+.box.wide {
+  width: 425px;
+}
 .box-bottom {
 	float: left;
 	width: 100%;
@@ -292,6 +295,9 @@ LABEL {cursor: pointer;}
 }
 .remainder-pct {
   background-color: #f3f2e7;
+}
+.request-values {
+  color: #4f8306;
 }
 
 /*Footer*/

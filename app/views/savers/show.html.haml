@@ -14,12 +14,12 @@
         = image_tag( user.avatar_photo_url(:medium), :class => "polaroid" )
 
   .about-saver
-    .box
+    .box.wide
       .box-bottom
         .small-column
-          %table{:width => "355", :cellspacing => "0", :cellpadding => "10", :border => "0", :align => "center"}
+          %table{:width => "400", :cellspacing => "0", :cellpadding => "10", :border => "0", :align => "center"}
             %tr
-              %td{:width => "140"}
+              %td{:width => "200"}
                 = render(:partial => "savers/match_box/request_summary", :locals => {:saver => @saver})
                 
               %td
@@ -29,6 +29,7 @@
     %h3= :about_saver.l
     %p.no-margin
       = @saver.description
+    %h3= "Sponsoring Organization: #{@saver.organization.first_name}"
 
   .relax='&nbsp;'
   %h2

@@ -7,8 +7,8 @@
     %td{:colspan => "2", :align => "center"}
       = :amount_raised.l :amount => "#{(saver.match_percent*100).round}%"
   - if saver.match_amount_left_cents > 0
-    %tr
-      - form_for :donation, :url => { :controller => :pledges, :action => :add_to_pledge } do |f|
+    - form_for :donation, :url => { :controller => :pledges, :action => :add_to_pledge } do |f|
+      %tr
         %td{:width => "50%", :align => "right"}
           = f.select :cents, select_pledge_amounts_cents_values
           = f.hidden_field :to_user_id, :value => saver.id
