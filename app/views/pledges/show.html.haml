@@ -1,42 +1,23 @@
-#profile_details.box.hentry
-  .yui-g
-    %h3
-      = "Confirm Donation"
-      #donation_line_items
-        %table.savers{:width => "100%"}
-          - @pledge.donations.each do |donation|
-            = render :partial => 'pledges/paypal_donation', :locals => {:donation => donation}
-          %tr
-            %td
-            %td
-              = "Total = #{@pledge.total_amount_for_donations.format(:html)}"
-            %td
-              %form{:action => "https://www.sandbox.paypal.com/cgi-bin/webscr", :id => "payment-form", :method => "post", :class => "MainForm"}
-                = hidden_field_tag :cancel_return, url_for(:only_path => false, :action => 'cancel')
-                = hidden_field_tag :bn, "ActiveMerchant"
-                = hidden_field_tag :redirect_cmd, "_cart"
-                = hidden_field_tag :cmd, "_cart"
-                = hidden_field_tag :upload, "1"
-                = hidden_field_tag :notify_url, url_for(:only_path => false, :action => 'notify')
-                = hidden_field_tag :charset, "utf-8"
-                = hidden_field_tag :return, url_for(:only_path => false, :action => 'done')
-                = hidden_field_tag :invoice, @pledge.id
-
-                = hidden_field_tag :tax, "0.00"
-                = hidden_field_tag :business, "tom@savetogether.org"
-                = hidden_field_tag :address_override, "0"
-                = hidden_field_tag :shipping, "0.00"
-                = hidden_field_tag :no_note, "1"
-                = hidden_field_tag :no_shipping, "1"
-                = hidden_field_tag :currency_code, "USD"
-
-                - if current_user.profile_public
-                  = hidden_field_tag :first_name, current_user.first_name
-                  = hidden_field_tag :last_name, current_user.last_name
-
-                - @pledge.donations.each_with_index do |d, i|
-                  = hidden_field_tag "item_number_#{(i + 1)}", d.to_user_id
-                  = hidden_field_tag "item_name_#{i + 1}", d.to_user.display_name
-                  = hidden_field_tag "amount_#{i + 1}", d.amount
-                %p
-                  = submit_tag "Continue to Paypal"
+.content
+  %br/
+  %p
+    -# = image_tag "titles/cart.gif" Replace the following with new title when available
+    %h2= "Confirm Donation"
+    %br/
+    %br/
+  %table{:width => "96%", :cellspacing => "0", :cellpadding => "5", :border => "0", :align => "center"}
+    -# Invoice Headings Row
+    = render :partial => 'pledges/invoice/headings_row'
+    
+    -# Spacer Row
+    = render :partial => 'pledges/invoice/top_spacer_row'
+    
+    -# Donations Table
+    - @pledge.donations.each do |donation|
+      = render :partial => 'pledges/donation', :locals => {:donation => donation}
+      
+    -# Footer row - Controls and Total
+    = render :partial => 'pledges/invoice/summary_row_to_pp.html.haml'
+    
+    -# Final spacer row
+    = render :partial => 'pledges/invoice/bottom_spacer_row'

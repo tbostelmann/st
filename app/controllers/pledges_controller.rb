@@ -48,6 +48,14 @@ class PledgesController < BaseController
 
     edit
   end
+  
+  def modify_pledge
+    # This technique works for image_submit_tags with names of "update" and "delete".
+    # An update click will queue "update.x" and "update.y" params
+    # A delete click will queue "delete.x" and "delete.y" params
+    update_donation_amount if params['update.x']
+    remove_from_pledge if params['delete.x']
+  end
 
   def edit
     @pledge = find_pledge

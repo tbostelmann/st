@@ -9,7 +9,7 @@
     .relax='&nbsp;'
     - if saver.match_amount_left_cents > 0
       - form_for :donation, :url => { :controller => :pledges, :action => :add_to_pledge } do |f|
-        = image_submit_tag 'buttons/match.gif', :alt => 'Match', :class => 'match'
+        = image_submit_tag "#{image_path('buttons/match.gif')}", :alt => 'Match', :class => 'match'
         %p{:class => 'large-text', :width => '50%'}
           = :amount_raised.l :amount => "#{(saver.match_percent*100).round}%"
           = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'

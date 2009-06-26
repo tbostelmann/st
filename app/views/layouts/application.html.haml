@@ -46,45 +46,19 @@
             .text-box
               %p
                 = 'Impact: 24 Savers Matched!'
-            %ul
-              %li
-                = link_to 'HOME', home_path
-                = image_tag 'separator.gif'
-              %li
-                = link_to 'MATCH', savers_path
-                = image_tag 'separator.gif'
-              %li
-                = link_to 'HOW IT WORKS', about_path
-                = image_tag 'separator.gif'
-              %li
-                = link_to 'SIGN-UP', signup_path
-                = image_tag 'separator.gif'
-              %li
-                = link_to 'DO MORE', faq_path
-                = image_tag 'separator.gif'
-
+                
+            / Top Nav Bar
+            = render :partial => "shared/navbar_common"
+                
       = @content_for_layout
 
       .footer
         = image_tag 'footer.gif'
         %a{:class => 'feedback', :href => "mailto:#{:feedback_email_address.l}?Subject=#{:feedback_email_subject.l}"}
           %img{:alt => 'Feedback Icon', :src => "#{image_path('icons/feedback.gif')}"}
-        %ul
-          %li
-            = link_to 'HOME', home_path
-            = image_tag 'separator.gif'
-          %li
-            = link_to 'MATCH', savers_path
-            = image_tag 'separator.gif'
-          %li
-            = link_to 'HOW IT WORKS', about_path
-            = image_tag 'separator.gif'
-          %li
-            = link_to 'SIGN-UP', signup_path
-            = image_tag 'separator.gif'
-          %li
-            = link_to 'DO MORE', faq_path
-            = image_tag 'separator.gif'
+          
+        / Bottom Nav Bar
+        = render :partial => "shared/navbar_common"
 
       / AddThis Javascript
       =javascript_include_tag "http://s7.addthis.com/js/250/addthis_widget.js?pub=xa-4a3bc7960a2abaa3"

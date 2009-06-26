@@ -1,0 +1,37 @@
+%tr
+  %td{:valign => "top", :align => "center", :colspan => "3"}
+  %td{:valign => "top", :align => "center"}
+    %form{:action => "https://www.sandbox.paypal.com/cgi-bin/webscr", :id => "payment-form", :method => "post", :class => "MainForm"}
+      = hidden_field_tag :cancel_return, url_for(:only_path => false, :action => 'cancel')
+      = hidden_field_tag :bn, "ActiveMerchant"
+      = hidden_field_tag :redirect_cmd, "_cart"
+      = hidden_field_tag :cmd, "_cart"
+      = hidden_field_tag :upload, "1"
+      = hidden_field_tag :notify_url, url_for(:only_path => false, :action => 'notify')
+      = hidden_field_tag :charset, "utf-8"
+      = hidden_field_tag :return, url_for(:only_path => false, :action => 'done')
+      = hidden_field_tag :invoice, @pledge.id
+
+      = hidden_field_tag :tax, "0.00"
+      = hidden_field_tag :business, "tom@savetogether.org"
+      = hidden_field_tag :address_override, "0"
+      = hidden_field_tag :shipping, "0.00"
+      = hidden_field_tag :no_note, "1"
+      = hidden_field_tag :no_shipping, "1"
+      = hidden_field_tag :currency_code, "USD"
+
+      - if current_user.profile_public
+        = hidden_field_tag :first_name, current_user.first_name
+        = hidden_field_tag :last_name, current_user.last_name
+
+      - @pledge.donations.each_with_index do |d, i|
+        = hidden_field_tag "item_number_#{(i + 1)}", d.to_user_id
+        = hidden_field_tag "item_name_#{i + 1}", d.to_user.display_name
+        = hidden_field_tag "amount_#{i + 1}", d.amount
+
+      = image_submit_tag "https://www.paypalobjects.com/WEBSCR-580-20090616-1/en_US/i/btn/btn_xpressCheckout.gif", :alt => :continue_to_paypal.l
+          
+  %td{:valign => "middle", :align => "left", "colspan" => "2"}
+    %span.pledge-total
+      = "Total=#{@pledge.total_amount_for_donations.format(:html)}"
+  
