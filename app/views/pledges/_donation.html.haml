@@ -6,7 +6,7 @@
     %span.text12GreenBold
       = donation.to_user.display_name.capitalize
   %td{:class => "text12", :valign => "middle", :align => "left"}
-    = donation.to_user.organization.first_name
+    = donation.to_user.organization.first_name if donation.to_user.organization
   %td{:class => "text12", :valign => "middle", :align => "left"}
     = donation.to_user.asset_type
   - form_for donation, :url => { :controller => :pledges, :action => :modify_pledge } do |f|
