@@ -280,6 +280,10 @@ LABEL {cursor: pointer;}
   margin-top: 10px;
   margin-bottom: 10px;
 }
+.progress-bar.profile {
+  width: 100%;
+  margin: 0px;
+}
 .progress-bar TR {
   height: 7px;
 }

@@ -1,0 +1,5 @@
+%table{:class => "#{style}"}
+  %tbody
+    %tr
+      %td{:class => "progress-pct", :width => "#{(saver.match_percent)*100}%"}
+      %td{:class => "remainder-pct", :width => "#{(1.0 - saver.match_percent)*100}%"}

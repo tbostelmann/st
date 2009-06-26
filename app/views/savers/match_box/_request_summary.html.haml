@@ -1,0 +1,22 @@
+%table{:width => "100%", :cellpadding => "0"}
+  %tr
+    %td
+      %p
+        ="#{:match_request.l}:"
+    %td{:align => "right"}
+      %p
+        %span= saver.requested_match_amount.format(:no_cents)
+  %tr
+    %td
+      %p
+        ="#{:match_needed.l}:"
+    %td{:align => "right"}
+      %p
+        %span= saver.match_amount_left.format(:no_cents)
+  %tr
+    %td
+      %p
+        ="#{:matched_so_far.l}:"
+    %td{:align => "right"}
+      %p
+        %span= saver.matched_amount.format(:no_cents)

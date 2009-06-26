@@ -7,7 +7,7 @@ en:
   about_saver: About the Saver
   match_request: Request
   matched_so_far: Matched
-  match_needed: "Needed:"
+  match_needed: Needed
 
 # Edit pledge
   edit_pledge_label: "My Pledge:"
