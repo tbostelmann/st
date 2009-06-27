@@ -879,6 +879,8 @@ en:
   profile_privacy: Profile Privacy
   #en: profile_views: profile views
   profile_views: profile views
+  #en: program: Program
+  program: Program
   #en: pros: Pros
   pros: Pros
   #en: pros_skilled_in: Pros skilled in
@@ -1281,6 +1283,8 @@ en:
   we_need_you: We need you
   #en: welcome_message: Welcome! {{login_link}} or {{signup_link}}
   welcome_message: Welcome! {{login_link}} or {{signup_link}}
+  #en: welcome_to_our_beta_site: "Welcome to our Beta Site"
+  welcome_to_our_beta_site: "Welcome to our Beta Site"
   #en: what_are_tags: 'What are "Tags"?'
   what_are_tags: 'What are "Tags"?'
   #en: what_is_popular: What's Popular
