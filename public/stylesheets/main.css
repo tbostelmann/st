@@ -340,6 +340,13 @@ LABEL {cursor: pointer;}
 	font-weight: bold;
 	line-height: 130%;
 }
+.text12GreenTitle {
+	font-size: 16px;
+	color: #5B930D;
+	margin-top: 0;
+	font-weight: bold;
+	line-height: 130%;
+}
 .pledge-total {
 	color: #FF0000;
 	font-weight: bold;
