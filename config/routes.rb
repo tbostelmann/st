@@ -38,6 +38,10 @@ ActionController::Routing::Routes.draw do |map|
   map.signup          '/signup',          :controller => 'donors', :action => 'new'
   map.signup_or_login '/signup_or_login', :controller => 'donors', :action => 'signup_or_login'
   
+  # New base actions
+  map.how_it_works    '/how_it_works',    :controller => 'base',   :action => 'how_it_works'
+  map.do_more         '/do_more',         :controller => 'base',   :action => 'do_more'
+  
   # map.resources gives us RESTful routes to these models
   # Run rake routes to see the list (these will be the first listed)
   map.resources :savers
