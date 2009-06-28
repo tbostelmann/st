@@ -1,12 +1,4 @@
-.box
-  .yui-g
-    .yui-u.first
-      %h3
-        Sign Up
-      = render :partial => "donors/signup_form"
-    
-    .yui-u
-      %h3
-        Or Log In
-      = render :partial => "shared/login_form"
-      = render :partial => 'shared/login_sidebar'
+.content
+  = image_tag "#{image_path('temp/image-sub-signup.jpg')}"
+  = render :partial => 'donors/signup'
+  = render :partial => 'sessions/login', :locals => {:title => :or_log_in.l}
