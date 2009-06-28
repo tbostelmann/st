@@ -1,0 +1,25 @@
+-# This is the code that renders both the header and footer navbars:
+%ul
+  %li
+    = link_to :home.l.upcase, home_path
+    = image_tag 'separator.gif'
+  %li
+    = link_to :match.l.upcase, savers_path
+    = image_tag 'separator.gif'
+  %li
+    = link_to :how_it_works.l.upcase, how_it_works_path
+    = image_tag 'separator.gif'
+  %li
+    = link_to :do_more.l.upcase, do_more_path
+    = image_tag 'separator.gif'
+  - if current_user
+    %li
+      = link_to :my_profile.l.upcase, donor_path(current_user)
+      = image_tag 'separator.gif'
+    %li
+      = link_to :sign_out.l.upcase, logout_path
+      = image_tag 'separator.gif'
+  -else
+    %li
+      = link_to :sign_up.l.upcase, signup_path
+      = image_tag 'separator.gif'

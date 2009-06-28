@@ -7,6 +7,8 @@ en:
   about_me: About Me
   #en: about_site: About {{site}}
   about_site: About {{site}}
+  #en: about_us: About Us
+  about_us: About Us
   #en: about_you: About You
   about_you: About You
   #en: accept: Accept
@@ -217,6 +219,8 @@ en:
   clippings_let_you_to_save_cool_images_from_around_the_web: Clippings let you to save cool images from around the Web.
   #en: close_this_message: Close this message
   close_this_message: Close this message
+  #en: contact_us: Contact Us
+  contact_us: Contact Us
   #en: comma_separated: (comma separated)
   comma_separated: (comma separated)
   #en: comma_separated_keywords_that_describe_you: Comma-separated keywords that describe you.

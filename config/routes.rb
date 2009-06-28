@@ -41,7 +41,8 @@ ActionController::Routing::Routes.draw do |map|
   # New base actions
   map.how_it_works    '/how_it_works',    :controller => 'base',   :action => 'how_it_works'
   map.do_more         '/do_more',         :controller => 'base',   :action => 'do_more'
-  
+  map.contact_us      '/contact_us',      :controller => 'base',   :action => 'contact_us' 
+  map.about_us        '/about_us',        :controller => 'base',   :action => 'about_us'
   # map.resources gives us RESTful routes to these models
   # Run rake routes to see the list (these will be the first listed)
   map.resources :savers

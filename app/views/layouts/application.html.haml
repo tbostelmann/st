@@ -43,7 +43,7 @@
               %p
                 = :welcome_to_our_beta_site.l
                 
-            = render :partial => "shared/navbar_common"
+            = render :partial => "shared/navbar_header"
 
       / Page begins
       = @content_for_layout
@@ -54,7 +54,7 @@
           %img{:alt => 'Feedback Icon', :src => "#{image_path('icons/feedback.gif')}"}
           
         / Bottom Nav Bar
-        = render :partial => "shared/navbar_common"
+        = render :partial => "shared/navbar_footer"
 
       / Javascript for AddThis
       =javascript_include_tag "http://s7.addthis.com/js/250/addthis_widget.js?pub=xa-4a3bc7960a2abaa3"
