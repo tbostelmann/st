@@ -1,21 +1,21 @@
 - form_tag sessions_path, :class => 'MainForm' do
   %tr
-    %td{:class => "text12", :width => "20%", :height => "36"}
+    %td{:class => "text12", :width => col1_width, :height => "36"}
       %label{"for"=>"username"}=:e_mail_address.l
-    %td{:class => "text12", :width => "80%", :height => "36"}
+    %td{:class => "text12", :width => col2_width, :height => "36"}
       = text_field_tag 'login', nil, :size => 35
 
   %tr
-    %td{:class => "text12", :width => "20%", :height => "36"}
+    %td{:class => "text12", :width => col1_width, :height => "36"}
       %label{"for"=>"password"}="#{:password.l}:"
-    %td{:class => "text12", :width => "80%", :height => "36"}
+    %td{:class => "text12", :width => col2_width, :height => "36"}
       = password_field_tag 'password', nil, :size => 35
 
   %tr
-    %td{:class => "text12", :width => "20%", :height => "36"}
+    %td{:class => "text12", :width => col1_width, :height => "36"}
       %label{"for"=>"remember_me"}
         ="#{:remember_me.l}:"
-    %td{:class => "text12", :width => "80%", :height => "36"}
+    %td{:class => "text12", :width => col2_width, :height => "36"}
       = check_box_tag 'remember_me'
       
   %tr
