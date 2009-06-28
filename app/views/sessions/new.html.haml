@@ -1,12 +1,26 @@
-- # This is for identifying current tab selection in navbar
-- @section = 'login'
+.content
+  = image_tag "#{image_path('temp/image-sub-signup.jpg')}"
+  %p
+  %table{:width => "97%", :cellspacing => "0", :cellpadding => "5", :border => "0", :align => "center"}
+    %tr
+      / Login form
+      %td{:valign => "top"}
+        %table{:width => "100%", :cellspacing => "0", :cellpadding => "0", :border => "0"}
+          %tr
+            %td{:class => "text12", :valign => "top", :height => "36", :colspan => "2"}
+              %span.text12GreenTitle
+                =:log_in_to_site.l(:site => AppConfig.community_name)
+             
+          = render :partial => "shared/login_form"
+      
+      / Help text
+      %td{:width => "48%", :valign => "top"}
+        %table{:width => "100%", :cellspacing => "0", :cellpadding => "0", :border => "0"}
+          %tr
+            %td
+              = render :partial => 'shared/login_sidebar'
 
-.yui-gf
-  -unless AppConfig.closed_beta_mode
-    .yui-u.first.sidebar
-      = render :partial => 'shared/login_sidebar'
-    .yui-u.main_column
-      .box
-        %h3
-          =:log_in_to_site.l(:site => AppConfig.community_name)
-        = render :partial => "shared/login_form"
+          / Errors
+          %tr
+            %td{:class => "text12", :valign => "top", :height => "36", :colspan => "2"}
+              = error_messages_for :session 
