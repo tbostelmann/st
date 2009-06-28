@@ -1,30 +1,33 @@
-- # This is for identifying current tab selection in navbar
-- @section = 'signup'
-
-.yui-gf
-  .yui-u.first
-    .box
-      %h3
-        =:why_sign_up.l
-      %ul.list.checks
-      - if params[:donation_id]
-        %li
-          = :sign_up_reason_1.l
-      - unless params[:donation_id]
-        %li
-          = :sign_up_reason_2.l
-
-  .yui-u
-    .box
-      %h3=:sign_up.l
-      = error_messages_for :donor        
-      = render :partial => "donors/signup_form"
+.content
+  = image_tag "#{image_path('temp/image-sub-signup.jpg')}", :usemap => "#banner_map"
+  %p
+  %table{:width => "97%", :cellspacing => "0", :cellpadding => "5", :border => "0", :align => "center"}
+    %tr
+      / Signup form
+      %td{:valign => "top"}
+        %table{:width => "100%", :cellspacing => "0", :cellpadding => "0", :border => "0"}
+          %tr
+            %td{:class => "text12", :valign => "top", :height => "36"}
+              %span.text12GreenTitle
+                =:sign_up.l
+            %td{:class => "text12", :valign => "top", :height => "36"}
+             
+          = render :partial => "donors/signup_form"
       
-.yui-g
-  .box.alt
-    %h3=:tips.l
-    %p
-      =:after_signing_up_youll_receive_an_e_mail_confirmation_message.l
-    %p
-      =:click_the_activation_link_in_the_e_mail_to_log_in.l
-    %p= link_to :already_have_an_account.l, "/login"
+      / Help text
+      %td{:width => "48%", :valign => "top"}
+        %table{:width => "100%", :cellspacing => "0", :cellpadding => "0", :border => "0"}
+          %tr
+            %td
+              %span.text12GreenTitle
+                =:tips.l
+              %p
+                %span.text12
+                  =:after_signing_up_youll_receive_an_e_mail_confirmation_message.l
+                  =:click_the_activation_link_in_the_e_mail_to_log_in.l
+                  = link_to :already_have_an_account.l, "/login"
+
+          / Errors
+          %tr
+            %td{:class => "text12", :valign => "top", :height => "36", :colspan => "2"}
+              = error_messages_for :donor 

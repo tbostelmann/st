@@ -347,6 +347,7 @@ LABEL {cursor: pointer;}
 	font-weight: bold;
 	line-height: 130%;
 }
+/* Misc */
 .pledge-total {
 	color: #FF0000;
 	font-weight: bold;
@@ -359,4 +360,13 @@ LABEL {cursor: pointer;}
   border-style: dotted;
   border-color: #a9b270;
   border-width: 1px;
+}
+/* Form errors */
+.errorExplanation H2 {
+  font-size: 14px;
+	color: #DC1C03;
+}
+.errorExplanation P {
+  font-size: 12px;
+  color: #4D4A43;
 }
