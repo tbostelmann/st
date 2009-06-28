@@ -351,4 +351,12 @@ LABEL {cursor: pointer;}
 	color: #FF0000;
 	font-weight: bold;
 }
-
+.thumbnail {
+  float: left;
+  padding: 15px;
+  margin-top: 5px;
+  margin-right: 10px;
+  border-style: dotted;
+  border-color: #a9b270;
+  border-width: 1px;
+}
