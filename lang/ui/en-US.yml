@@ -783,6 +783,8 @@ en:
   optional_keywords_describing_this_post_separated_by_commas: optional keywords describing this post, separated by commas
   #en: or: or
   or: or
+  #en: or_log_in: Or Log In
+  or_log_in: Or Log In
   #en: page: page
   page: page
   #en: pages: "Pages:"
