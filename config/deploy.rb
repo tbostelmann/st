@@ -72,4 +72,8 @@ namespace :deploy do
   task :restart, :roles => :app do
     run "touch #{current_release}/tmp/restart.txt"
   end
+
+  task :copy_config, :roles => :app do
+    run "cp #{deploy_to}/shared/config/application.yml #{deploy_to}/current/config/"
+  end
 end
