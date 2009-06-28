@@ -26,10 +26,12 @@
                 = render(:partial => "savers/match_box/control", :locals => {:saver => @saver})
                 
     .relax='&nbsp;'
-    %h3= :about_saver.l
+    %h3= :about_user.l :user_name => @saver.display_name
     %p.no-margin
       = @saver.description
-    %h3= "Sponsoring Organization: #{@saver.organization.first_name}"
+    %h3
+      = "Sponsoring Organization: "
+      = link_to @saver.organization.first_name, organization_path(@saver.organization)
 
   .relax='&nbsp;'
   %h2
