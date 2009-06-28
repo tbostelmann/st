@@ -1,49 +1,45 @@
-- @meta = { :description => "#{@user.display_name}'s profile on #{AppConfig.community_name}.", :keywords => "#{@user.display_name}, #{@user.tags.join(", ") unless @user.tags.nil?}", :robots => AppConfig.robots_meta_show_content }
-- @section = @user.eql?(current_user) ? 'my_profile' : 'savers'
-- @sidebar_left = true
+- @meta = { :description => "#{@org.display_name}'s profile on #{AppConfig.community_name}.", :keywords => "#{@org.display_name}, #{@org.tags.join(", ") unless @org.tags.nil?}", :robots => AppConfig.robots_meta_show_content }
 
-.yui-g
-  .yui-u.first
-    .box
-      = render :partial => 'users/profile_user_info_sidebar', :object => @user, :locals => {:user => @user}
+.content
 
-  .yui-u
-    #about_me.box
-      %h3
-        ="About Us:"
-      %p
-        = @user.description
-    - if @user.organization_survey
-      #about_me.box
-        %h3
-          ="Org Info:"
-        %p
-          = render :partial => "organizations/organization_survey", :object => @user.organization_survey, :locals => { :organization_survey => @user.organization_survey }
-    #about_me.box
-      %h3
-        ="For more information:"
-      %p
-        %table.more_info
-          - if @user.web_site_url
-            %tr
-              %td.label
-                Web Site:
-              %td
-                = link_to @user.web_site_url
-          %tr
-            %td.label
-              Email Contact:
-            %td
-              = @user.email
-          - if @user.phone_number
-            %tr
-              %td
-                Phone Number:
-              %td
-                = @user.phone_number
+  .photo
+    %h1= @org.display_name
 
-- unless @savers.size == 0
-  .yui-g
-  .box.user_list
-    %h3= "Savers"
-    = render :partial => "savers/saver", :collection => @savers
+    .with-img.plus
+      - if @org.avatar
+        = image_tag( @org.avatar_photo_url(:medium), :class => 'polaroid')
+      - else
+        = image_tag( @org.avatar_photo_url(:medium), :class => "polaroid" )
+
+  .about-saver
+    .box.wide
+      .box-bottom
+        %h3= :about_user.l :user_name => @org.display_name
+        %p.no-margin
+          = @org.description
+
+        .relax='&nbsp;'
+
+      - if @org.organization_survey
+        .box-bottom
+          %h3
+            ="Organization information:"
+          %p
+          = render :partial => "organizations/survey", :object => @org.organization_survey, :locals => { :organization_survey => @org.organization_survey }
+
+        .box-bottom
+          %h3
+            ="Contact information:"
+          %p
+            = render :partial => "organizations/contact_info", :object => @org.organization_survey, :locals => { :organization_survey => @org.organization_survey }
+
+  .relax='&nbsp;'
+  %h2
+    = image_tag 'titles/people-who-have-contributed-to-this-saver.gif'
+
+  .pagination= paginating_links @savers, :params => params if @savers.page_count > 1
+
+  = render(:partial => "savers/saver", :collection => @savers)
+
+  %br.clear
+  .pagination= paginating_links @savers, :params => params if @savers.page_count > 1

@@ -45,8 +45,8 @@ class OrganizationsController < BaseController
   end
 
   def show
-    @user = Organization.find(params[:id])
-    @photos = @user.photos.find(:all, :limit => 5)
-    @savers = @user.savers
+    @org = Organization.find(params[:id])
+    @photos = @org.photos.find(:all, :limit => 5)
+    @savers = @org.savers.find(:all, :page => {:current => params[:page], :size => 20})
   end
 end

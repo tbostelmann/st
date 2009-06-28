@@ -5,6 +5,8 @@ en:
   about: About
   #en: about_me: About Me
   about_me: About Me
+  #en: About the Saver
+  about_user: About {{user_name}}
   #en: about_site: About {{site}}
   about_site: About {{site}}
   #en: about_us: About Us
@@ -85,6 +87,8 @@ en:
   all_tags: All tags
   #en: all_users_tagged: All users tagged {{tag_name}}
   all_users_tagged: All users tagged {{tag_name}}
+  #en: already_funded: (Fully Funded)
+  already_funded: (Fully Funded)
   #en: already_have_an_account: Already have an account?
   already_have_an_account: Already have an account?
   #en: amount: Amount
@@ -361,6 +365,8 @@ en:
   edit_event: Edit event
   #en: edit_forum: Edit forum
   edit_forum: Edit forum
+  #en: edit_pledge_label: "My Pledge:"
+  edit_pledge_label: "My Pledge:"
   #en: edit_post: Edit post
   edit_post: Edit post
   #en: edit_profile: Edit profile
@@ -649,6 +655,14 @@ en:
   manage_posts: Manage Posts
   #en: match: Match
   match: Match
+  #en: match_goal: To Invest In
+  match_goal: To Invest In
+  #en: match_needed: Match Still Needed
+  match_needed: Match Still Needed
+  #en: match_request: "I'm Saving"
+  match_request: "I'm Saving"
+  #en: matched_so_far: Match Committed
+  matched_so_far: Match Committed
   #en: medium: Medium
   medium: Medium
   #en: megabyte_upload_limit: megabyte upload limit
@@ -787,6 +801,8 @@ en:
   optional_keywords_describing_this_post_separated_by_commas: optional keywords describing this post, separated by commas
   #en: or: or
   or: or
+  #en: or_log_in: Or Log In
+  or_log_in: Or Log In
   #en: page: page
   page: page
   #en: pages: "Pages:"
@@ -919,6 +935,8 @@ en:
   remember_me: Remember me
   #en: remember_you_can_always_change_this_later: Remember, you can always change this later.
   remember_you_can_always_change_this_later: Remember, you can always change this later.
+  #en: remove: Remove
+  remove: Remove
   #en: remove_moderator: Remove moderator
   remove_moderator: Remove moderator
   #en: remove_this_friend: Remove this friend

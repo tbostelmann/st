@@ -72,6 +72,20 @@ class LineItem < ActiveRecord::Base
   validates_presence_of :cents
   validates_numericality_of :amount, :greater_than => 0
 
+  def to_user_organization_display_name
+    if to_user.organization
+      to_user.organization.display_name
+    end  
+  end
+
+  def to_user_display_name
+    to_user.display_name
+  end
+
+  def from_user_display_name
+    from_user.display_name
+  end
+
   def amount_before_type_cast
     amount.to_s
   end
