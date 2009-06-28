@@ -1,5 +1,5 @@
 .content
-  = image_tag "#{image_path('temp/image-sub-signup.jpg')}", :usemap => "#banner_map"
+  = image_tag "#{image_path('temp/image-sub-signup.jpg')}"
   %p
   %table{:width => "97%", :cellspacing => "0", :cellpadding => "5", :border => "0", :align => "center"}
     %tr
@@ -7,10 +7,9 @@
       %td{:valign => "top"}
         %table{:width => "100%", :cellspacing => "0", :cellpadding => "0", :border => "0"}
           %tr
-            %td{:class => "text12", :valign => "top", :height => "36"}
+            %td{:class => "text12", :valign => "top", :height => "36", :colspan => "2"}
               %span.text12GreenTitle
                 =:sign_up.l
-            %td{:class => "text12", :valign => "top", :height => "36"}
              
           = render :partial => "donors/signup_form"
       
