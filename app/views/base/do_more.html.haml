@@ -1,44 +1,11 @@
 .content.single-column
-  = image_tag "#{image_path('temp/image-sub-signup.jpg')}", :usemap => "#banner_map"
   %h2
-    Do More
+    = "Do More"
   %table{:width =>"96%", :cellspacing => "0", :callpadding => "0", :border => "0", :align => "center"}
     %tr
       %td{:valign => "top", :align =>"left"}
-        %span.text12GreenTitle
-          Spread the word about SaveTogether – make this opportunity available to others!
+        = render :partial => 'users/invite'
         %p
-          %span.text12GreenBold
-            Invite Your Friends to Visit Us
-          %span.text12
-            %br/
-            Enter up to 10 of your friend’s email addresses here. You can use our suggested message or you can write your own.
-            %br/
-            Textbox for addresses
-            %br
-            Textbox with default msg here.  
+        = render :partial => 'users/web20'
         %p
-          %span.text12GreenBold
-            Find Us on Your Networks.  Share information about us there.  
-          %span.text12
-            %br
-            %br
-            Twitter
-            %br
-            %br
-            Facebook
-            %br
-            %br 
-            LinkedIn
-        %p
-          %span.text12GreenBold
-            Use Your Voice
-          %span.text12
-            %br/
-            SaveTogether works with partner organizations to advocate for federal and state policy.
-            %br
-            %br
-            Click
-            %a{:href=>"http://www.cfed.org/act.m?edit=0&parentid=&siteid=5&id=2821"} here
-            to learn more.
-            %br
+        = render :partial => 'users/partner_links'
