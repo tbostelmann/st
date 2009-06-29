@@ -20,14 +20,14 @@
                     =:manage_my.l
             %tr
               %td
-                =link_to :profile.l, edit_donor_path(@donor)
+                =link_to "&raquo; #{:profile.l}", edit_donor_path(@donor)
             %tr
               %td
-                =link_to :account_settings.l, edit_account_user_path(@donor)
+                =link_to "&raquo; #{:account_settings.l}", edit_account_user_path(@donor)
             -if current_user.admin?
               %tr
                 %td
-                  =link_to :admin_dashboard.l, admin_dashboard_path
+                  =link_to "&raquo; #{:admin_dashboard.l}", admin_dashboard_path
 
     .relax='&nbsp;'
     %h3= :about_me.l
