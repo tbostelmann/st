@@ -6,10 +6,7 @@
     %h1= @donor.display_name
 
     .with-img.plus
-      - if @donor.avatar
-        = image_tag( @donor.avatar_photo_url(:medium), :class => 'polaroid')
-      - else
-        = image_tag( @donor.avatar_photo_url(:medium), :class => "polaroid" )
+      = image_tag( @donor.avatar_photo_url(:medium), :class => 'polaroid')
 
   .about-saver
     .box.wide
