@@ -13,7 +13,7 @@ class SessionsController < BaseController
         current_user.track_activity(:logged_in)
         redirect_to :controller => :pledges, :action => :savetogether_ask
       else
-        redirect_back_or_default(dashboard_user_path(current_user))
+        redirect_back_or_default(donor_path(current_user))
         flash[:notice] = :thanks_youre_now_logged_in.l
         current_user.track_activity(:logged_in)
       end

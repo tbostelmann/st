@@ -2,6 +2,14 @@ require File.dirname(__FILE__) + '/../test_helper'
 
 class SessionsControllerTest < ActionController::TestCase
   include AuthenticatedTestHelper
+  
+  test "simple login" do
+    donor = users(:donor)
+    post :create, :login => donor.login, :password => 'test'
+    
+    assert_response :redirect
+    assert_redirected_to :controller => :donors, :action => donor.id
+  end
 
   test "valid login with pledge in session" do
     session[:pledge_id] = invoices(:pledge).id
@@ -21,4 +29,5 @@ class SessionsControllerTest < ActionController::TestCase
     assert_template :new
     assert !session[:pledge_id].nil?
   end
+  
 end
