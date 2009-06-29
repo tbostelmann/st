@@ -4,9 +4,14 @@
     = image_tag( donation.to_user.avatar_photo_url(:thumb) )
   %td{:class => "text12", :valign => "middle", :align => "left"}
     %span.text12GreenBold
-      = donation.to_user.display_name.capitalize
+      -# Only show a Saver name if it's a User. Only User's have Organizations (for now)
+      = donation.to_user.display_name.capitalize if donation.to_user.organization
   %td{:class => "text12", :valign => "middle", :align => "left"}
-    = donation.to_user.organization.first_name if donation.to_user.organization
+    -# Show User's organization if it's a user, otherwise show the organization itself (typically ST)
+    - if donation.to_user.organization
+      = donation.to_user.organization.display_name
+    - else
+      = donation.to_user.display_name
   %td{:class => "text12", :valign => "middle", :align => "left"}
     = donation.to_user.asset_type
   - form_for donation, :url => { :controller => :pledges, :action => :modify_pledge } do |f|
