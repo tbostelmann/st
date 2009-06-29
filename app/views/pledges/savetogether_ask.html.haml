@@ -1,25 +1,46 @@
 .content
-  %br/
-  %p
-    %h2= "(Optional) Amount you would like to donate to SaveTogether: "
+  %h2
+    = "Optional) Amount you would like to donate to SaveTogether:"
+  %h3
+    = "SaveTogether is a small organization with big ambitions.  We want to create a world where everyone has an opportunity to save and invest in their own future, and saving incentives are available to all.  To make this happen, we need your help.  Your donation will help us reach more people who deserve this chance.  We thank you for your support."
     %br/
     %br/
   %table{:width => "96%", :cellspacing => "0", :cellpadding => "5", :border => "0", :align => "center"}
-    %tr
-      %td.photo
-        = image_tag( @storg.avatar_photo_url(:medium), :class => "polaroid" )
-      %td
-        = "SaveTogether is a small organization with big ambitions.  We want to create a world where everyone has an opportunity to save and invest in their own future, and saving incentives are available to all.  To make this happen, we need your help.  Your donation will help us reach more people who deserve this chance.  We thank you for your support."
-    %tr
-      %td
-      %td{:align => 'right'}
-        %br
-        - form_for @donation, :url => { :controller => :pledges, :action => :add_savetogether_to_pledge } do |f|
+    -# Invoice Headings Row
+    = render :partial => 'pledges/invoice/headings_row'
+
+    -# Spacer Row
+    = render :partial => 'pledges/invoice/top_spacer_row'
+
+    - form_for @donation, :url => { :controller => :pledges, :action => :add_savetogether_to_pledge } do |f|
+      -# SaveTogether Donation
+      %tr
+        %td{:valign => "middle", :align => "left"}
+          = image_tag( @storg.avatar_photo_url(:thumb), :class => "polaroid" )
+        %td
+        %td{:class => "text12", :valign => "middle", :align => "left"}
+          = @storg.display_name
+        %td{:class => "text12", :valign => "middle", :align => "left"}
+          = "Building Savings. Transforming Lives."
+        %td{:class => "text12", :valign => "middle", :align => "left"}
           = f.select :cents, select_savetogether_amounts_cents_values
           = f.hidden_field :to_user_id
-          %br
-          %br
-          = f.submit 'add'
-          %br
-          %br
-          = link_to "No thanks just continue..", :controller => :pledges, :action => :show
+        %td{:class => "text12", :valign => "middle", :align => "center"}
+
+      -# Spacer Row
+      %tr{:valign => "top", :align => "left"}
+        %td{:height => "2", :valign => "middle", :background => "#{image_path('bg/dotted_line.gif')}", :style => "background-repeat: repeat-x;", :colspan => "6"}
+          %span{:style => "background-repeat: repeat-x;"}
+            %img{:height => "2", :width => "2", :src => "#{image_path('icons/spacer.gif')}"}
+
+      -# Footer row - Controls and Total
+      %tr
+        %td{:valign => "top", :align => "center"}
+        %td{:valign => "top", :align => "right", :colspan => "2"}
+          = f.submit 'Add'
+        %td{:valign => "top", :align => "center"}
+          = link_to "No thanks", :controller => :pledges, :action => :show
+        %td{:valign => "middle", :align => "left", "colspan" => "2"}
+
+    -# Final spacer row
+    = render :partial => 'pledges/invoice/bottom_spacer_row'
