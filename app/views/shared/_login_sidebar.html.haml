@@ -2,13 +2,14 @@
   %td
     %span.text12GreenTitle
       =:help.l
-    %p
-      %span.text12
-        =:dont_have_an_account.l
-        %br/
-        = link_to "&raquo; " + :click_here_to_sign_up.l, "/signup"
+    - if standalone
+      %p
+        %span.text12
+          =:dont_have_an_account.l
+          %br/
+          = link_to "&raquo; #{:click_here_to_sign_up.l}", "/signup"
     %p
       %span.text12
         =:forgot_your_password.l
         %br/
-        = link_to "&raquo; " + :click_here_to_retrieve_it.l, forgot_password_url
+        = link_to "&raquo;  #{:click_here_to_retrieve_it.l}", forgot_password_url

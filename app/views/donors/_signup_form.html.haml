@@ -5,21 +5,21 @@
       %label{"for"=>"donor_first_name"}
         =:first_name.l
     %td{:class => "text12", :width => "72%", :height => "36"}
-      = f.text_field :first_name
+      = f.text_field :first_name, :size => 35
 
   %tr
     %td{:class => "text12", :width => "28%", :height => "36"}
       %label{"for"=>"donor_last_name"}
         =:last_name.l
     %td{:class => "text12", :width => "72%", :height => "36"}
-      = f.text_field :last_name
+      = f.text_field :last_name, :size => 35
 
   %tr
     %td{:class => "text12", :width => "28%", :height => "36"}
       %label{"for"=>"donor_login"} 
         =:e_mail_address.l
     %td{:class => "text12", :width => "72%", :height => "36"}     
-      = f.text_field :login
+      = f.text_field :login, :size => 35
 
   %tr
     %td{:class => "text12", :colspan => "2", :height => "36"} 
@@ -30,7 +30,7 @@
       %label{"for"=>"donor_login_confirmation"}
         =:re_enter_e_mail_address_to_confirm.l
     %td{:class => "text12", :width => "72%", :height => "36"}     
-      = f.text_field :login_confirmation
+      = f.text_field :login_confirmation, :size => 35
 
   %tr
     %td{:class => "text12", :colspan => "2", :height => "36"} 
@@ -41,14 +41,14 @@
       %label{"for"=>"donor_password"}
         =:type_your_password.l
     %td{:class => "text12", :width => "72%", :height => "36"}     
-      = f.password_field :password
+      = f.password_field :password, :size => 35
 
   %tr
     %td{:class => "text12", :width => "28%", :height => "36"}
       %label{"for"=>"donor_password_confirmation"}
         =:re_type_your_password_to_confirm.l
     %td{:class => "text12", :width => "72%", :height => "36"}     
-      = f.password_field :password_confirmation
+      = f.password_field :password_confirmation, :size => 35
 
   %tr
     %td{:class => "text12", :colspan => "2", :height => "36"} 
