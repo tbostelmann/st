@@ -8,7 +8,7 @@
     %br/
   %table{:width => "96%", :cellspacing => "0", :cellpadding => "5", :border => "0", :align => "center"}
     -# Invoice Headings Row
-    = render :partial => 'pledges/invoice/headings_row'
+    = render :partial => 'pledges/invoice/headings_row', :locals => {:photo_col_name => "", :item_col_name => "", :program_col_name => "", :description_col_name => "", :amount_col_name => "", :action_col_name => ""}
 
     -# Spacer Row
     = render :partial => 'pledges/invoice/top_spacer_row'
