@@ -1,10 +1,14 @@
-#profile_details.box.hentry
-  .yui-g
-    .yui-u.first
-      %h3
-        = "Thank you for your donation!"
-    .yui-u
-      %h3
-        = link_to "Click here to complete your profile", welcome_photo_user_path(current_user)
-      %p
-        = "By completing the donor profile, you can join the SaveTogether community and post photos and tell everyone why you made your donation."
+.content.single-column
+  %h2
+    = "Thank you for your donation!"
+  %table{:width =>"96%", :cellspacing => "0", :callpadding => "0", :border => "0", :align => "center"}
+    %tr
+      %td{:valign => "top", :align =>"left"}
+        = render :partial => 'users/partner_links'
+        %p
+        = render :partial => 'users/invite'
+        %p
+        = render :partial => 'users/web20'
+        - if current_user && (current_user.description.empty? || !current_user.avatar)
+          %p
+          = link_to "Click here to complete your profile", welcome_photo_user_path(current_user)
