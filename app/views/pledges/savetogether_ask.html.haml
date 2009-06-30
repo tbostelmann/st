@@ -2,8 +2,8 @@
   %p
     %span.text12
       = "SaveTogether is a small organization with big ambitions.  We want to create a world where everyone has an opportunity to save and invest in their own future, and saving incentives are available to all.  To make this happen, we need your help.  Your donation will help us reach more people who deserve this chance.  We thank you for your support."
-  %h2
-    = "Donate to SaveTogether"
+  %p
+    = image_tag "#{image_path('titles/donate.gif')}"
     %br/
     %br/
   %table{:width => "96%", :cellspacing => "0", :cellpadding => "5", :border => "0", :align => "center"}
@@ -38,9 +38,9 @@
       %tr
         %td{:valign => "top", :align => "center"}
         %td{:valign => "top", :align => "right", :colspan => "2"}
-          = f.submit 'Add'
+          = image_submit_tag "#{image_path('buttons/add.gif')}", :alt => :add.l, :name => "commit", :value => "Add", :id => "donation_submit"
         %td{:valign => "top", :align => "center"}
-          = link_to "No thanks", :controller => :pledges, :action => :show
+          =link_to((image_tag "#{image_path('buttons/nothanks.gif')}", :alt => :no_thanks.l), :controller => :pledges, :action => :show)
         %td{:valign => "middle", :align => "left", "colspan" => "2"}
 
     -# Final spacer row

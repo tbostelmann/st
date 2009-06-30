@@ -45,6 +45,8 @@ en:
   ad_was_successfully_created: Ad was successfully created.
   #en: ad_was_successfully_updated: Ad was successfully updated.
   ad_was_successfully_updated: Ad was successfully updated.
+  #en: add: Add
+  add: Add
   #en: add_a_photo: Add a photo
   add_a_photo: Add a photo
   #en: add_a_poll: Add a poll
@@ -779,6 +781,8 @@ en:
   no_recent_activity: No recent activity
   #en: no_tags: No tags
   no_tags: No tags
+  #en: no_thanks: No thanks
+  no_thanks: No thanks
   #en: notify_email_updates: Notify of community news
   notify_email_updates: Notify of community news
   #en: notify_of_comments: Notify of comments
