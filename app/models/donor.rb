@@ -45,7 +45,7 @@
 #
 
 class Donor < Party
-
+  has_one :donor_survey
   has_many :pledges
   has_many :all_donations_given, :class_name => 'Donation', :foreign_key => :from_user_id
   has_many :donations_given, :class_name => 'Donation', :foreign_key => :from_user_id,

@@ -1,11 +1,25 @@
-%span.text12GreenBold
+%span.text12GreenTitle
   Use Your Voice
 %span.text12
   %br/
-  SaveTogether works with partner organizations to advocate for federal and state policy.
+  %span.text12GreenBold
+    = "Your donation is essential but, to make this kind of opportunity available to others, your voice is also critical!"
   %br
+    - form_for @donor_survey do |f|
+      = f.hidden_field :donor_id
+      = f.check_box :add_me_to_cfed_petition
+      = "Tell policymakers that I support making opportunities like this one available to million of families!"
+      %br
+      = "[summary of petition]"
+      %br
+      = "[link to full text of petition]"
+      %br
+      = f.submit :submit
   %br
-  Click
-  %a{:href=>"http://www.cfed.org/act.m?edit=0&parentid=&siteid=5&id=2821"} here
-  to learn more.
+  %span.text12GreenBold
+    = "Click"
+  %span.text12GreenTitle
+    %a{:href=>"http://www.cfed.org/act.m?edit=0&parentid=&siteid=5&id=2821"} here
+  %span.text12GreenBold
+    = "to learn more about current policy proposals and what else you can do to help families achieve their dreams."
   %br

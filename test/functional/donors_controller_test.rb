@@ -1,4 +1,4 @@
-require 'test_helper'
+require File.dirname(__FILE__) + '/../test_helper'
 
 class DonorsControllerTest < ActionController::TestCase
   include AuthenticatedTestHelper
