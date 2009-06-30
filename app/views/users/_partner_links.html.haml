@@ -2,20 +2,21 @@
   Use Your Voice
 %span.text12
   %br/
-  %span.text12GreenBold
-    = "Your donation is essential but, to make this kind of opportunity available to others, your voice is also critical!"
-  %br
-    - form_for @donor_survey, :url => {:controller => :donor_surveys, :action => :update, :id => @donor_survey.id} do |f|
-      = f.hidden_field :donor_id
-      = f.check_box :add_me_to_cfed_petition
-      = "Tell policymakers that I support making opportunities like this one available to million of families!"
-      %br
-      = "[summary of petition]"
-      %br
-      = "[link to full text of petition]"
-      %br
-      = f.submit :submit
-  %br
+  - if @donor_survey
+    %span.text12GreenBold
+      = "Your donation is essential but, to make this kind of opportunity available to others, your voice is also critical!"
+    %br
+      - form_for @donor_survey, :url => {:controller => :donor_surveys, :action => :update, :id => @donor_survey.id} do |f|
+        = f.hidden_field :donor_id
+        = f.check_box :add_me_to_cfed_petition
+        = "Tell policymakers that I support making opportunities like this one available to million of families!"
+        %br
+        = "[summary of petition]"
+        %br
+        = "[link to full text of petition]"
+        %br
+        = f.submit :submit
+    %br
   %span.text12GreenBold
     = "Click"
   %span.text12GreenTitle
