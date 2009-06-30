@@ -4,8 +4,8 @@
 .content
   = render :partial => 'users/search_options'
 
-  %h2
-    = :site_savers.l :site => AppConfig.community_name
+  %p
+    = image_tag "#{image_path('titles/savers.gif')}"
 
   .pagination= paginating_links @savers, :params => params if @savers.page_count > 1
 
