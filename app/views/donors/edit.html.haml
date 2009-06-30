@@ -1,30 +1,38 @@
-- form_tag donor_url(@user), :method => 'put', :multipart =>true, :class => 'MainForm' do
-  .box.alt.first_alt
-    %h3=:you_are_editing_your_profile.l
-    = link_to "&raquo; " + :edit_your_account_settings_instead.l, edit_account_user_path(@user)
-  
-  = error_messages_for :user
+.content
+  - form_tag donor_url(@user), :method => 'put', :multipart =>true, :class => 'MainForm' do
 
-  %p= submit_tag :save_changes.l
-  .yui-b
-    #profile_details.box
-      %h3=:profile_photo.l
-      = @user.vendor ? "<div class='right_corner'><div class='community_pro'></div></div>" : ''
-      = image_tag( @user.avatar_photo_url(:medium), :class => "polaroid" )
-      %label
-        =:choose_a_photo_for_your_profile.l
-      = file_field :avatar, :uploaded_data, :size => "20"
+    = error_messages_for :user
 
-      %label{"for"=>"zip"}
-        = :zip.l
-      = text_field :user, :zip
-      %label{"for"=>"advocacy_boolean"}
-        = check_box :user, :notify_advocacy
-        %em= :advocacy_zip_ask.l
+    .photo
+      %h1=:profile_photo.l
 
-  #yui-main
-    .yui-b
-      .box
-        %h3=:about_me.l
+      .with-img.plus
+        = image_tag( @user.avatar_photo_url(:medium), :class => "polaroid" )
+
+      %table{:width => "100%", :cellspacing => "0", :cellpadding => "0", :border => "0"}
+        %tr
+          %td{:class => "text12", :valign => "bottom", :height => "36"}
+            %span.text12GreenTitle
+              =:choose_a_photo_for_your_profile.l
+        %tr
+          %td{:class => "text12", :width => "72%", :height => "36"}
+            = file_field :avatar, :uploaded_data, :size => "35"
+
+    .about-saver
+      .box.wide
+        .box-bottom
+          %table{:width => "100%", :cellpadding => "2"}
+            %tr
+              %td
+                %span.text12GreenTitle
+                  =:you_are_editing_your_profile.l
+            %tr
+              %td
+                = link_to "&raquo; #{:edit_your_account_settings_instead.l}", edit_account_user_path(@user)
+
+      .relax='&nbsp;'
+      %h3= :about_me.l
+      %p.no-margin
         = text_area :user, :description, :class => "rich_text_editor", :style => "width:100%"
         
+      %p= submit_tag :save_changes.l

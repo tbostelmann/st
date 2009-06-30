@@ -1,31 +1,42 @@
 - @meta = { :description => "#{@donor.display_name}'s profile on #{AppConfig.community_name}.", :keywords => "#{@donor.display_name}, #{@donor.tags.join(", ") unless @donor.tags.nil?}", :robots => AppConfig.robots_meta_show_content }
 
 .content
+
   .photo
     %h1= @donor.display_name
 
-    - if @donor.avatar
+    .with-img.plus
       = image_tag( @donor.avatar_photo_url(:medium), :class => 'polaroid')
-    - else
-      = image_tag( @donor.avatar_photo_url(:medium), :class => "polaroid" )
 
   .about-saver
-    - if @donor.eql?(current_user)
-      %h3
-        =:manage_my.l
-      %ul
-        %li=link_to :profile.l, edit_donor_path(@donor)
-        %li=link_to :account_settings.l, edit_account_user_path(@donor)
-        -if current_user.admin?
-          %li=link_to :admin_dashboard.l, admin_dashboard_path
+    .box.wide
+      .box-bottom
+        .small-column
+          %table{:width => "100%", :cellpadding => "2"}
+            - if @donor.eql?(current_user)
+              %tr
+                %td
+                  %span.text12GreenTitle
+                    =:manage_my.l
+            %tr
+              %td
+                =link_to "&raquo; #{:profile.l}", edit_donor_path(@donor)
+            %tr
+              %td
+                =link_to "&raquo; #{:account_settings.l}", edit_account_user_path(@donor)
+            -if current_user.admin?
+              %tr
+                %td
+                  =link_to "&raquo; #{:admin_dashboard.l}", admin_dashboard_path
 
-    %h2= :about_me.l
+    .relax='&nbsp;'
+    %h3= :about_me.l
     %p.no-margin
       = @donor.description
 
   .relax='&nbsp;'
   %h2
-    = image_tag 'titles/people-who-have-contributed-to-this-saver.gif'
+    = "Savers You have Contributed to"
 
   .pagination= paginating_links @savers, :params => params if @savers.page_count > 1
 
