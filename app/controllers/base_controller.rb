@@ -5,4 +5,10 @@ class BaseController < ApplicationController
       format.html { get_additional_homepage_data }
     end
   end
+
+  def do_more
+    if current_user
+      @donor_survey = current_user.donor_survey
+    end
+  end
 end
