@@ -24,7 +24,7 @@
             %tr
               %td
                 =link_to "&raquo; #{:account_settings.l}", edit_account_user_path(@donor)
-            -if current_user.admin?
+            - if current_user && current_user.admin?
               %tr
                 %td
                   =link_to "&raquo; #{:admin_dashboard.l}", admin_dashboard_path
@@ -40,7 +40,7 @@
 
   .pagination= paginating_links @savers, :params => params if @savers.page_count > 1
 
-  = render(:partial => "donors/donor", :collection => @savers)
+  = render(:partial => "savers/saver", :collection => @savers)
 
   %br.clear
   .pagination= paginating_links @savers, :params => params if @savers.page_count > 1
