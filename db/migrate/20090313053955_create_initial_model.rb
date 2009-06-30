@@ -49,9 +49,15 @@ class CreateInitialModel < ActiveRecord::Migration
       t.string :household_income_eligibility
       t.timestamps
     end
+
+    create_table :donor_surveys do |t|
+      t.integer :donor_id
+      t.boolean :add_me_to_cfed_petition
+    end
   end
 
   def self.down
+    drop_table :donor_surveys
     drop_table :organization_surveys
     drop_table :payment_notifications
     remove_column(:users, :notify_advocacy)

@@ -8,8 +8,6 @@
     %p
       =:remember_you_can_always_change_this_later.l
     %p
-      = link_to "&raquo; "+  :skip_this_step.l, welcome_invite_user_path(@user)
-      %br
       = link_to "&raquo; " + :go_to_your_profile.l, user_path(@user)
 
   - if @user.avatar_photo_url

@@ -48,6 +48,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :savers
   map.resources :donors
   map.resources :organizations
+  map.resources :donor_surveys
   
 #  map.resources  :pledges
   map.new          '/pledges/new/:saver_id', :controller => 'pledges', :action => 'new'

@@ -9,6 +9,6 @@
         = render :partial => 'users/invite'
         %p
         = render :partial => 'users/web20'
-        - if current_user && (current_user.description.empty? || !current_user.avatar)
+        - if current_user && (current_user.description || !current_user.avatar)
           %p
-          = link_to "Click here to complete your profile", welcome_photo_user_path(current_user)
+          = link_to "Click here to complete your profile", edit_donor_path(current_user)
