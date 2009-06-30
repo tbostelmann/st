@@ -69,7 +69,6 @@ class PledgesController < BaseController
     @pledge.set_donor_id(@user.id)
     @pledge.save
     @pledge = find_pledge
-    session[:pledge_id] = nil
 
     render 'show'
   end
@@ -120,6 +119,7 @@ class PledgesController < BaseController
   #end
   #
   def done
+    session[:pledge_id] = nil
     pn = PaymentNotification.create(:raw_data => request.query_string)
     notification = pn.notification
 

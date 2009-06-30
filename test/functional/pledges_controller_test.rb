@@ -34,8 +34,6 @@ class PledgesControllerTest < ActionController::TestCase
     assert_response :success
     assert_template 'show'
 
-    assert session[:pledge_id].nil?
-    
     pledge = Pledge.find(pledge.id)
     d = pledge.find_donation_with_to_user_id(Organization.find_savetogether_org.id)
     assert !d.nil?
