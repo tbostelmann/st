@@ -1,24 +1,33 @@
 class DonorSurveysController < BaseController
-  def update
+  def new
     @user = current_user
     unless @user.donor_survey
-      @user.donor_survey = DonorSurvey.create(params[:donor_survey])
-    else
-      @user.donor_survey.attributes = params[:donor_survey]
+      @user.donor_survey = DonorSurvey.create(:donor => @user)
     end
-    @user.save
 
+    @donor_survey = DonorSurvey.find(@user.donor_survey.id)
+    render :edit
+  end
+
+  def update
+    @user = current_user
+
+    @user.donor_survey.attributes = params[:donor_survey]
+    @user.donor_survey.save
+
+    @user = Donor.find(@user.id)
     @donor_survey = @user.donor_survey
 
-    render :action => :edit
+    render :edit
   end
 
   def edit
-    @donor_survey = current_user.donor_survey
+    @user = current_user
+    @donor_survey = @user.donor_survey
     unless @donor_survey
-      @donor_survey = DonorSurvey.new(
-              :donor_id => current_user.id,
-              :add_me_to_cfed_petition => false)
+      @donor_survey = DonorSurvey.create(
+              :donor => current_user)
+      @user.donor_survey = @donor_survey
     end
   end
 end

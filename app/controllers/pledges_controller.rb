@@ -137,7 +137,7 @@ class PledgesController < BaseController
       # We're assuming that a notification that is not acknowledged will be sent again.
     end
 
-    redirect_to :controller => :donor_surveys, :action => :edit, :id => current_user.id
+    redirect_to :controller => :donor_surveys, :action => :new
   end
 
   def notify

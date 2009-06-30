@@ -306,7 +306,7 @@ class PledgesControllerTest < ActionController::TestCase
       :auth => 'ZYTlDZ4v57sLTuL7WyZ6m2yqSuVYbjpLtndecieoKRVQMBLnqoLGzVeW0fLuVGIo2x3RJtPa-bB-i7--'
     }
 
-    assert_redirected_to :controller => :donor_surveys, :action => :edit
+    assert_redirected_to :controller => :donor_surveys, :action => :new
 
     pledge = Pledge.find(pledge.id)
     assert pledge.line_items.size > li_count

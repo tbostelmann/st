@@ -52,7 +52,7 @@ class CreateInitialModel < ActiveRecord::Migration
 
     create_table :donor_surveys do |t|
       t.integer :donor_id
-      t.boolean :add_me_to_cfed_petition
+      t.boolean :add_me_to_cfed_petition, :default => false
     end
   end
 

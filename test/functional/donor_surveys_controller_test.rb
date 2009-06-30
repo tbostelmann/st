@@ -4,13 +4,14 @@ class DonorSurveysControllerTest < ActionController::TestCase
   include AuthenticatedTestHelper
 
   test "Update donor survey content" do
-    login_as(:donor4)
-    donor = users(:donor4)
-    assert donor.donor_survey.nil?
+    login_as(:donor)
+    donor = users(:donor)
+    ds = donor.donor_survey
+    assert !ds.nil?
+    assert !ds.add_me_to_cfed_petition
 
     post :update, {:donor_survey => {
-            :donor_id => donor.id.to_s,
-            :add_me_to_cfed_petition => "1"}}
+            :add_me_to_cfed_petition => true}}
 
     assert_template :edit
 
