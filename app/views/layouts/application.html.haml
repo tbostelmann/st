@@ -17,13 +17,23 @@
       .header
         - form_tag sessions_path do
           .header-form
-            .column
-              %label{"for"=>"username"}=:e_mail_address.l
-              = text_field_tag('login', nil, :size => 35)
-            .column
-              = link_to(:forgot_your_password.l, forgot_password_url)
-              = password_field_tag('password', nil,:size => 35)
-            = submit_tag("", {:class => 'button'})
+            -if current_user
+              %div{:align => "right", :class => "sign-out"}
+                %span.text12GreenBold
+                  = "#{:signed_in_as.l}:"
+                %span.text12
+                  =current_user.login
+                %span
+                  = "&nbsp;"
+                  = link_to :sign_out.l, logout_path
+            -else
+              .column
+                %label{"for"=>"username"}=:e_mail_address.l
+                = text_field_tag('login', nil, :size => 35)
+              .column
+                = link_to(:forgot_your_password.l, forgot_password_url)
+                = password_field_tag('password', nil,:size => 35)
+              = submit_tag("", {:class => 'button'})
             .relax= '&nbsp;'
             %div{:align => 'right'}
               / AddThis Button BEGIN

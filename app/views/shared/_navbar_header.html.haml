@@ -16,9 +16,6 @@
     %li
       = link_to :my_profile.l.upcase, donor_path(current_user)
       = image_tag 'separator.gif'
-    %li
-      = link_to :sign_out.l.upcase, logout_path
-      = image_tag 'separator.gif'
   -else
     %li
       = link_to :sign_up.l.upcase, signup_path

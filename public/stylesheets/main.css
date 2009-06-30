@@ -59,6 +59,10 @@ LABEL {cursor: pointer;}
 	color: #8cb146;
 }
 .header-form LABEL {font-weight: bold;}
+.header-form .sign-out A {
+  font-size: 12px;
+  font-weight: bold;
+}
 .button {
 	float: right;
 	width: 26px;

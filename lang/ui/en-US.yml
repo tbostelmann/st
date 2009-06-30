@@ -1061,6 +1061,8 @@ en:
   sign_up_reason_1: Thank you for making your donation! Please create a profile so you can track the progress of your saver.
   #en: sign_up_reason_2: Some reason to sign up
   sign_up_reason_2: Take action to fight poverty!  Sign up now to join a community dedicated to making savings and investing part of the solution.
+  #en: signed_in_as: Signed in as
+  signed_in_as: Signed in as
   #en: singular_posts: "{{count}} post"
   singular_posts: "{{count}} post"
   #en: site_members: "{{site}} members"
