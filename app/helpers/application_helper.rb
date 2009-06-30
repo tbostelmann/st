@@ -15,9 +15,16 @@ module ApplicationHelper
   end
 
   def select_savetogether_amounts_cents_values
-    factors = [0.15, 0.2, 0.25, 0.3, 0.4, 0.5]
+    factors = [0.1, 0.15, 0.2, 0.25, 0.3, 0.4, 0.5]
     opts = []
-    ctotal = find_pledge.total_amount_for_donations.cents
+    ctotal = 0
+    storg_id = Organization.find_savetogether_org.id
+    find_pledge.donations.each do |d|
+      unless d.to_user_id == storg_id
+        ctotal = ctotal + d.cents
+      end  
+    end  
+
     factors.each_with_index do |f, i|
       camount = ctotal.to_f * f
       percent = f * 100.to_f

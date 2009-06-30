@@ -76,6 +76,8 @@ class PledgesController < BaseController
   def savetogether_ask
     if current_user.nil?
       redirect_to signup_or_login_path
+    elsif find_pledge.find_donation_with_to_user_id(Organization.find_savetogether_org.id)
+      show
     else
       @pledge = find_pledge
       @storg = Organization.find_savetogether_org
