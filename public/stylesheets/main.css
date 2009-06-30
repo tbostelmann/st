@@ -363,8 +363,10 @@ LABEL {cursor: pointer;}
 }
 /* Form errors */
 .errorExplanation H2 {
-  font-size: 14px;
+  font-size: 12px;
 	color: #DC1C03;
+	margin-top: 0px;
+	margin-bottom: 0px;
 }
 .errorExplanation P {
   font-size: 12px;
