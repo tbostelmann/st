@@ -10,6 +10,15 @@
             %span.text12GreenTitle
               ="#{title}"
         
+        
+        -if flash[:notice]
+          / Login Error
+          %tr
+            %td{:class => "text12", :valign => "top", :colspan => "2"}
+              .errorExplanation
+                %h2
+                  =flash[:notice]
+              
         - col1 = standalone ? "20%" : "28%"
         - col2 = standalone ? "80%" : "72%"
         = render :partial => "shared/login_form", :locals => {:col1_width => col1, :col2_width => col2}
