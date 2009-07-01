@@ -65,4 +65,10 @@
         = render :partial => "shared/navbar_footer"
 
       / Javascript for AddThis
-      =javascript_include_tag "http://s7.addthis.com/js/250/addthis_widget.js?pub=xa-4a3bc7960a2abaa3"
+      %script{:type => "text/javascript"}
+        var addthis_pub = 'dylanhiggins';
+      %script{:type => "text/javascript"}
+        var addthis_options = 'email, facebook, twitter, linkedin, myspace, technorati, wordpress, stumbleupon, favorites, more';
+      %script{:type => "text/javascript"}
+        var addthis_brand = 'SaveTogether';
+      =javascript_include_tag "http://s7.addthis.com/js/250/addthis_widget.js?pub=dylanhiggins"
