@@ -8,7 +8,7 @@ class SessionsControllerTest < ActionController::TestCase
     post :create, :login => donor.login, :password => 'test'
     
     assert_response :redirect
-    assert_redirected_to :controller => :donors, :action => donor.id
+    assert_redirected_to home_path
   end
 
   test "valid login with pledge in session" do
