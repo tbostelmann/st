@@ -6,17 +6,17 @@ class DonorSurveysControllerTest < ActionController::TestCase
   test "Update donor survey content" do
     login_as(:donor)
     donor = users(:donor)
-    ds = donor.donor_survey
-    assert !ds.nil?
-    assert !ds.add_me_to_cfed_petition
+    assert donor.donor_survey.nil?
 
     post :update, {:donor_survey => {
-            :add_me_to_cfed_petition => true}}
+            :donor_id => donor.id,
+            :first_name => "Test",
+            :last_name => "TestLastName",
+            :zip_code => "55406"}}
 
     assert_template :edit
 
     donor = Donor.find(donor.id)
     assert !donor.donor_survey.nil?
-    assert donor.donor_survey.add_me_to_cfed_petition
   end
 end
