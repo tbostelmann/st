@@ -305,6 +305,7 @@ class PledgesControllerTest < ActionController::TestCase
     }
 
     assert_redirected_to :controller => :donor_surveys, :action => :new
+    assert_not_nil assigns['pledge']
 
     pledge = Pledge.find(pledge.id)
     assert pledge.line_items.size > li_count
@@ -312,38 +313,4 @@ class PledgesControllerTest < ActionController::TestCase
     donor = Donor.find(donor.id)
     assert donor.donations_given.size > completed_donations
   end
-
-  #test "create valid pledge with logged in user and pledge in session" do
-  #  saver = users(:saver)
-  #  stOrg = Organization.find_savetogether_org
-  #  donor = users(:donor4)
-  #  login_as(:donor4)
-  #
-  #  pledge = Pledge.new(:donation_attributes => pledge_params(saver))
-  #  session[:pledge_id] = pledge.id
-  #  session[:saver_id] = saver.id
-  #
-  #  get :continue
-  #
-  #  assert_response :success
-  #  assert_template 'create'
-  #
-  #  assert session[:pledge_id].nil?
-  #
-  #  donor = Donor.find(donor.id)
-  #  assert !donor.nil?
-  #
-  #  # Use donor to find pledge and assert they're the same
-  #  assert !donor.pledges.empty?
-  #  d_pledge = donor.pledges[0]
-  #
-  #  test_pledge_no_fees(d_pledge)
-  #
-  #  # Reload pledge and assert it's values
-  #  pledge = Pledge.find(d_pledge.id)
-  #  assert !pledge.nil?
-  #  d_pledge.id == pledge.id
-  #
-  #  test_pledge_no_fees(pledge)
-  #end
 end

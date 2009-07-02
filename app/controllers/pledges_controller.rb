@@ -125,16 +125,16 @@ class PledgesController < BaseController
     pn = PaymentNotification.create(:raw_data => request.query_string)
     notification = pn.notification
 
-    pledge = Pledge.find(notification.invoice)
-    if pledge.nil?
+    @pledge = Pledge.find(notification.invoice)
+    if @pledge.nil?
       raise "Invoice not found"
-    elsif pledge.donor.id != current_user.id
+    elsif @pledge.donor.id != current_user.id
       raise "Invoice is not owned by this user"
     end
 
     if ENV['RAILS_ENV'] == 'test' || notification.acknowledge
-      pledge.process_paypal_notification(notification)
-      pledge.save!
+      @pledge.process_paypal_notification(notification)
+      @pledge.save!
     else
       # We're assuming that a notification that is not acknowledged will be sent again.
     end

@@ -1,6 +1,7 @@
 .content.single-column
-  %h2
-    = "Thank you for your donation!"
+  - if @pledge
+    %h2
+      = "Thank you for your donation!"
   %table{:width =>"96%", :cellspacing => "0", :callpadding => "0", :border => "0", :align => "center"}
     %tr
       %td{:valign => "top", :align =>"left"}
