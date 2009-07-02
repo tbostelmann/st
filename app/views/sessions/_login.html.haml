@@ -1,15 +1,13 @@
 -# Reusable login
 %p
-  %div{:style => "padding:5px 0px 0px 30px"}
+  .two-column-layout
 
     / Login form
-    %div{:style => "float: left; width: 450px;"}
+    .tcl-column
 
-      - col1 = standalone ? "20%" : "28%"
-      - col2 = standalone ? "80%" : "72%"
-      = render :partial => "sessions/login_form", :locals => {:col1_width => col1, :col2_width => col2, :title => title}
+      = render :partial => "sessions/login_form", :locals => {:title => title}
 
     / Help text
-    %div{:style => "float: left;"}
+    .tcl-column
 
       = render :partial => 'sessions/login_sidebar', :locals => {:standalone => standalone}

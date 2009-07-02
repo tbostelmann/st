@@ -1,13 +1,13 @@
 -# Reusable Signup
 %p
-  .two-column-form
+  .two-column-layout
 
     / Signup form
-    .tcf-column
+    .tcl-column
 
       = render :partial => "donors/signup_form"
     
     / Help text
-    .tcf-column
+    .tcl-column
 
       = render :partial => "donors/signup_sidebar", :locals => {:standalone => standalone}
