@@ -1,13 +1,13 @@
 -# Reusable Signup
 %p
-  %div{:style => "padding:5px 0px 0px 30px"}
+  .two-column-form
 
     / Signup form
-    %div{:style => "float: left; width: 450px;"}
+    .tcf-column
 
       = render :partial => "donors/signup_form"
     
     / Help text
-    %div{:style => "float: left;"}
+    .tcf-column
 
       = render :partial => "donors/signup_sidebar", :locals => {:standalone => standalone}

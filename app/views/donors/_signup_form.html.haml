@@ -6,24 +6,24 @@
   - form_for :donor, :url => donors_path, :method => :post, :html => {:class => 'MainForm'} do |f|
     = hidden_field_tag 'donation_id', "#{params[:donation_id]}"
     %tr
-      %td{:class => "text12", :width => "28%", :height => "36"}
+      %td{:class => "text12", :width => "32%", :height => "36"}
         %label{"for"=>"donor_first_name"}
           =:first_name.l
-      %td{:class => "text12", :width => "72%", :height => "36"}
+      %td{:class => "text12", :width => "68%", :height => "36"}
         = f.text_field :first_name, :size => 35
 
     %tr
-      %td{:class => "text12", :width => "28%", :height => "36"}
+      %td{:class => "text12", :width => "32%", :height => "36"}
         %label{"for"=>"donor_last_name"}
           =:last_name.l
-      %td{:class => "text12", :width => "72%", :height => "36"}
+      %td{:class => "text12", :width => "68%", :height => "36"}
         = f.text_field :last_name, :size => 35
 
     %tr
-      %td{:class => "text12", :width => "28%", :height => "36"}
+      %td{:class => "text12", :width => "32%", :height => "36"}
         %label{"for"=>"donor_login"} 
           =:e_mail_address.l
-      %td{:class => "text12", :width => "72%", :height => "36"}     
+      %td{:class => "text12", :width => "68%", :height => "36"}     
         = f.text_field :login, :size => 35
 
     %tr
@@ -31,10 +31,10 @@
         %em=:required_your_email_address_will_identify_you_to_save_together.l
 
     %tr
-      %td{:class => "text12", :width => "28%", :height => "36"}
+      %td{:class => "text12", :width => "32%", :height => "36"}
         %label{"for"=>"donor_login_confirmation"}
           =:re_enter_e_mail_address_to_confirm.l
-      %td{:class => "text12", :width => "72%", :height => "36"}     
+      %td{:class => "text12", :width => "68%", :height => "36"}     
         = f.text_field :login_confirmation, :size => 35
 
     %tr
@@ -42,17 +42,17 @@
         %em=:required_we_will_send_a_confirmation_e_mail_to_the_address_you_enter.l
 
     %tr
-      %td{:class => "text12", :width => "28%", :height => "36"}
+      %td{:class => "text12", :width => "32%", :height => "36"}
         %label{"for"=>"donor_password"}
           =:type_your_password.l
-      %td{:class => "text12", :width => "72%", :height => "36"}     
+      %td{:class => "text12", :width => "68%", :height => "36"}     
         = f.password_field :password, :size => 35
 
     %tr
-      %td{:class => "text12", :width => "28%", :height => "36"}
+      %td{:class => "text12", :width => "32%", :height => "36"}
         %label{"for"=>"donor_password_confirmation"}
           =:re_type_your_password_to_confirm.l
-      %td{:class => "text12", :width => "72%", :height => "36"}     
+      %td{:class => "text12", :width => "68%", :height => "36"}     
         = f.password_field :password_confirmation, :size => 35
 
     %tr

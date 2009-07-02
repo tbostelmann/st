@@ -281,6 +281,14 @@ LABEL {cursor: pointer;}
 }
 .content P.no-margin {margin-top: 0;}
 
+.content .two-column-form {
+  padding: 5px 15px 0px 15px;
+}
+.content .two-column-form .tcf-column {
+  float: left;
+  width: 375px;
+  padding: 0px 30px 0px 30px;
+}
 /*Progress Bars*/
 .progress-bar {
   width: 66%;
