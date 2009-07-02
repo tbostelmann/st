@@ -145,7 +145,7 @@ LABEL {cursor: pointer;}
 }
 .search-options-header {
     width: 900px;
-    margin: 10px 10px 10px 200px;
+    text-align: center;
 }
 .search-options  UL {
 	padding: 0;
@@ -163,8 +163,8 @@ LABEL {cursor: pointer;}
 	font-weight: bold;
 	margin: 0 12px;
 }
-.search-options UL LI IMG {
-	top: 5px;
+.search-options .search-button {
+	top: 6px;
 	position: relative;
 }
 .pagination {

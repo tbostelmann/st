@@ -10,5 +10,5 @@
           = :Goal
           = select_tag(:asset_type_id, '<option></option>' + options_from_collection_for_select(AssetType.find(:all), "id", "asset_name", @search['asset_type_id'].to_i))
         %li
-          =image_submit_tag "#{image_path('buttons/search.gif')}", :alt => :Search
+          =image_submit_tag "#{image_path('buttons/search.gif')}", :alt => :Search, :class => "search-button"
           
