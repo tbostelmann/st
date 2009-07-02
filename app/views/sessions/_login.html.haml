@@ -1,36 +1,13 @@
 -# Reusable login
 %p
-%table{:width => "97%", :cellspacing => "0", :cellpadding => "5", :border => "0", :align => "center"}
-  %tr
-    / Login form
-    %td{:valign => "top"}
-      %table{:width => "100%", :cellspacing => "0", :cellpadding => "0", :border => "0"}
-        %tr
-          %td{:class => "text12", :valign => "top", :height => "36", :colspan => "2"}
-            %span.text12GreenTitle
-              ="#{title}"
-        
-        
-        -if flash[:notice]
-          / Login Error
-          %tr
-            %td{:class => "text12", :valign => "top", :colspan => "2"}
-              .errorExplanation
-                %h2
-                  =flash[:notice]
-              
-        - col1 = standalone ? "20%" : "28%"
-        - col2 = standalone ? "80%" : "72%"
-        = render :partial => "shared/login_form", :locals => {:col1_width => col1, :col2_width => col2}
-    
-    / Help text
-    %td{:width => "48%", :valign => "top"}
-      %table{:width => "100%", :cellspacing => "0", :cellpadding => "0", :border => "0"}
-        %tr
-          %td
-            = render :partial => 'shared/login_sidebar', :locals => {:standalone => standalone}
+  .two-column-layout
 
-        / Errors
-        %tr
-          %td{:class => "text12", :valign => "top", :height => "36", :colspan => "2"}
-            = error_messages_for :session 
+    / Login form
+    .tcl-column
+
+      = render :partial => "sessions/login_form", :locals => {:title => title}
+
+    / Help text
+    .tcl-column
+
+      = render :partial => 'sessions/login_sidebar', :locals => {:standalone => standalone}

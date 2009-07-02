@@ -1,0 +1,39 @@
+%table{:width => "100%", :cellspacing => "0", :cellpadding => "0", :border => "0"}
+  %tr
+    %td{:class => "text12", :valign => "top", :height => "36", :colspan => "2"}
+      %span.text12GreenTitle
+        ="#{title}"
+  
+  
+  -if flash[:notice]
+    / Login Error
+    %tr
+      %td{:class => "text12", :valign => "top", :colspan => "2"}
+        .errorExplanation
+          %h2
+            =flash[:notice]
+
+  - form_tag sessions_path, :class => 'MainForm' do
+    %tr
+      %td{:class => "text12", :width => "28%", :height => "36"}
+        %label{"for"=>"username"}=:e_mail_address.l
+      %td{:class => "text12", :width => "72%", :height => "36"}
+        = text_field_tag 'login', nil, :size => 35
+
+    %tr
+      %td{:class => "text12", :width => "28%", :height => "36"}
+        %label{"for"=>"password"}="#{:password.l}:"
+      %td{:class => "text12", :width => "72%", :height => "36"}
+        = password_field_tag 'password', nil, :size => 35
+
+    %tr
+      %td{:class => "text12", :width => "28%", :height => "36"}
+        %label{"for"=>"remember_me"}
+          ="#{:remember_me.l}:"
+      %td{:class => "text12", :width => "72%", :height => "36"}
+        = check_box_tag 'remember_me'
+      
+    %tr
+      %td
+      %td
+        = image_submit_tag "#{image_path('buttons/login.gif')}", :alt => :log_in.l
