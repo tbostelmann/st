@@ -610,7 +610,7 @@ en:
   #en: loading_recent_content: Loading recent content...
   loading_recent_content: Loading recent content...
   #en: location: Location
-  location: Location
+  location: location
   #en: log_in: Log in
   log_in: Log in
   #en: log_in_to_create_a_new_topic: Log in to create a new topic
@@ -667,6 +667,8 @@ en:
   match_needed: Match Still Needed
   #en: match_request: "I'm Saving"
   match_request: "I'm Saving"
+  #en: matched_savings_program: Matched Savings Program
+  matched_savings_program: Matched Savings Program
   #en: matched_so_far: Match Committed
   matched_so_far: Match Committed
   #en: medium: Medium

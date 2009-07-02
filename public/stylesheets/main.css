@@ -240,6 +240,9 @@ LABEL {cursor: pointer;}
 	color: #5b930d;
 	margin: 15px 15px 0;
 }
+.content .about-saver A {
+  color: #4F8306;
+}
 .photo {
 	width: 320px;
 	float: left;

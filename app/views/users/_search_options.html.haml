@@ -4,10 +4,11 @@
     .search-options
       %ul
         %li
-          = :Area
+          = :Location
           = select_tag(:metro_area_id, '<option></option>' + options_from_collection_for_select(MetroArea.find(:all), "id", "name", @search['metro_area_id'].to_i), {:style => "width:100px"})
         %li
           = :Goal
           = select_tag(:asset_type_id, '<option></option>' + options_from_collection_for_select(AssetType.find(:all), "id", "asset_name", @search['asset_type_id'].to_i))
         %li
-          %input{"type"=>"submit", "align"=>"right", "value"=>:search.l}
+          =image_submit_tag "#{image_path('buttons/search.gif')}", :alt => :Search
+          
