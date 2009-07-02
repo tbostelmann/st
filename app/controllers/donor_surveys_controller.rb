@@ -1,11 +1,16 @@
 class DonorSurveysController < BaseController
   def new
-    @user = current_user
-    unless @user.donor_survey
-      @user.donor_survey = DonorSurvey.create(:donor => @user)
+    if current_user
+      if current_user.donor_survey
+        @donor_survey = current_user.donor_survey
+      else
+        @donor_survey = DonorSurvey.create(:donor_id => current_user.id)
+        current_user.donor_survey = @donor_survey
+      end
+    else
+      @donor_survey = DonorSurvey.new
     end
 
-    @donor_survey = DonorSurvey.find(@user.donor_survey.id)
     render :edit
   end
 
