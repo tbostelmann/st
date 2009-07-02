@@ -21,17 +21,11 @@
         .relax='&nbsp;'
 
       - if @org.organization_survey
-        .box-bottom
-          %h3
-            ="Organization information:"
-          %p
-          = render :partial => "organizations/survey", :object => @org.organization_survey, :locals => { :organization_survey => @org.organization_survey }
+        %h3="Organization information:"
+        = render :partial => "organizations/survey", :object => @org.organization_survey, :locals => { :organization_survey => @org.organization_survey }
 
-        .box-bottom
-          %h3
-            ="Contact information:"
-          %p
-            = render :partial => "organizations/contact_info", :object => @org.organization_survey, :locals => { :organization_survey => @org.organization_survey }
+        %h3="Contact information:"
+        = render :partial => "organizations/contact_info", :object => @org.organization_survey, :locals => { :organization_survey => @org.organization_survey }
 
   .relax='&nbsp;'
   %h2
