@@ -1,13 +1,13 @@
 -# Reusable Signup
 %p
-%table{:width => "97%", :cellspacing => "0", :cellpadding => "5", :border => "0", :align => "center"}
-  %tr
+  %div{:style => "padding:5px 0px 0px 30px"}
+
     / Signup form
-    %td{:valign => "top"}
+    %div{:style => "float: left; width: 450px;"}
 
       = render :partial => "donors/signup_form"
     
     / Help text
-    %td{:width => "48%", :valign => "top"}
+    %div{:style => "float: left;"}
 
       = render :partial => "donors/signup_sidebar", :locals => {:standalone => standalone}

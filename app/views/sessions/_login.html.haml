@@ -1,15 +1,15 @@
 -# Reusable login
 %p
-%table{:width => "97%", :cellspacing => "0", :cellpadding => "5", :border => "0", :align => "center"}
-  %tr
+  %div{:style => "padding:5px 0px 0px 30px"}
+
     / Login form
-    %td{:valign => "top"}
-            
+    %div{:style => "float: left; width: 450px;"}
+
       - col1 = standalone ? "20%" : "28%"
       - col2 = standalone ? "80%" : "72%"
       = render :partial => "sessions/login_form", :locals => {:col1_width => col1, :col2_width => col2, :title => title}
-    
+
     / Help text
-    %td{:width => "48%", :valign => "top"}
+    %div{:style => "float: left;"}
 
       = render :partial => 'sessions/login_sidebar', :locals => {:standalone => standalone}
