@@ -1,3 +1,16 @@
 .content
-  = render :partial => 'donors/signup', :locals => {:standalone => false}
-  = render :partial => 'sessions/login', :locals => {:standalone => false, :title => :or_log_in.l}
+
+  .two-column-layout
+    
+    / Signup form
+    .tcl-column
+
+      = render :partial => "donors/signup_form"
+      = render :partial => "donors/signup_sidebar", :locals => {:standalone => false}
+
+    / Login form
+    .tcl-column
+
+      = render :partial => "sessions/login_form", :locals => {:title => :or_log_in.l}
+      = render :partial => 'sessions/login_sidebar', :locals => {:standalone => false}
+

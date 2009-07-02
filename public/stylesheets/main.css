@@ -282,6 +282,7 @@ LABEL {cursor: pointer;}
 .content P.no-margin {margin-top: 0;}
 
 .content .two-column-layout {
+  width: 900px;
   padding: 5px 15px 0px 15px;
 }
 .content .two-column-layout .tcl-column {
