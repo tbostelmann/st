@@ -91,8 +91,8 @@ en:
   all_tags: All tags
   #en: all_users_tagged: All users tagged {{tag_name}}
   all_users_tagged: All users tagged {{tag_name}}
-  #en: already_funded: (Fully Funded)
-  already_funded: (Fully Funded)
+  #en: already_funded: Fully Funded
+  already_funded: Fully Funded
   #en: already_have_an_account: Already have an account?
   already_have_an_account: Already have an account?
   #en: amount: Amount
@@ -329,6 +329,8 @@ en:
   do_more: Do more
   #en: donate: Donate
   donate: Donate
+  #en: donation_amount: ${{amount}}
+  donation_amount: ${{amount}}
   #en: dont_have_an_account: Don't have an account?
   dont_have_an_account: Don't have an account?
   #en: dont_wait_its: Don't wait! It's
@@ -451,6 +453,8 @@ en:
   featured_posts: Featured posts
   #en: features: Features
   features: Features
+  #en: feedback: Feedback
+  feedback: Feedback
   #en: feedback_email_address: tom@savetogether.com
   feedback_email_address: tom@savetogether.com
   #en: feedback_email_subject: SaveTogether Feedback
@@ -608,7 +612,7 @@ en:
   #en: loading_recent_content: Loading recent content...
   loading_recent_content: Loading recent content...
   #en: location: Location
-  location: Location
+  location: location
   #en: log_in: Log in
   log_in: Log in
   #en: log_in_to_create_a_new_topic: Log in to create a new topic
@@ -665,6 +669,8 @@ en:
   match_needed: Match Still Needed
   #en: match_request: "I'm Saving"
   match_request: "I'm Saving"
+  #en: matched_savings_program: Matched Savings Program
+  matched_savings_program: Matched Savings Program
   #en: matched_so_far: Match Committed
   matched_so_far: Match Committed
   #en: medium: Medium

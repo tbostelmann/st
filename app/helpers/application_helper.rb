@@ -8,10 +8,14 @@ module ApplicationHelper
     pledge = Pledge.find(session[:pledge_id])
   end
 
-  def select_pledge_amounts_cents_values
-    [["$25", 2500], ["$50", 5000], ["$75", 7500], ["$100", 10000],
-     ["$125", 12500], ["$150", 15000], ["$175", 17500], ["$200", 20000],
-     ["$225", 22500], ["$250", 25000], ["$275", 27500], ["$300", 30000]]
+  def select_pledge_amounts_cents_values(max=30000)
+    pledge_amounts = Array.new
+    2500.step(max, 2500) do |amt|
+      # Map amount string (in dollars) to amount integer (in cents)
+      pledge_amounts << [(:donation_amount.l :amount => amt/100), amt]
+    end
+    pledge_amounts << [(:donation_amount.l :amount => max/100), max] if pledge_amounts.last[1] < max
+    pledge_amounts
   end
 
   def select_savetogether_amounts_cents_values
