@@ -64,7 +64,7 @@ class DonorTest < ActiveSupport::TestCase
     end
 
     donor3 = users(:donor3)
-    assert donor3.all_donations_given.size == 2
+    assert donor3.all_donations_given.size == 3
     assert donor3.donations_given.size == 0
     donor.all_donations_given.each do |d|
       assert d.class == Donation

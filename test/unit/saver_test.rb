@@ -17,7 +17,7 @@ class SaverTest < ActiveSupport::TestCase
     end
 
     saver3 = users(:saver3)
-    assert saver3.all_donations_received.size == 1
+    assert saver3.all_donations_received.size == 2
     assert saver3.donations_received.size == 0
     saver3.all_donations_received.each do |d|
       assert d.class == Donation

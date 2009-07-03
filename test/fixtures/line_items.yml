@@ -72,3 +72,11 @@ fee2:
   to_user: paypal
   status: Processed
   type: Fee
+
+donation7:
+  cents: 5000
+  invoice: pledge4
+  to_user: saver3
+  from_user: donor3
+  status: Pending
+  type: Donation

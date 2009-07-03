@@ -19,10 +19,19 @@ class PledgesController < BaseController
     end
   end
 
+  def render_show_or_edit
+    @pledge = find_pledge
+    if @pledge.find_donation_with_to_user_id(Organization.find_savetogether_org.id)
+      show
+    else
+      edit
+    end
+  end
+
   def add_to_pledge
     add_donation_to_pledge
-    
-    edit
+
+    render_show_or_edit
   end
 
   def add_savetogether_to_pledge
@@ -37,7 +46,7 @@ class PledgesController < BaseController
     donation.cents = params[:donation][:cents]
     donation.save!
 
-    edit
+    render_show_or_edit
   end
 
   def remove_from_pledge
@@ -46,7 +55,7 @@ class PledgesController < BaseController
     @pledge.remove_donation_with_to_user_id(params[:donation][:to_user_id])
     @pledge.save!
 
-    edit
+    render_show_or_edit
   end
   
   def modify_pledge
@@ -65,10 +74,12 @@ class PledgesController < BaseController
 
   def show
     @pledge = find_pledge
-    @user = current_user
-    @pledge.set_donor_id(@user.id)
-    @pledge.save
-    @pledge = find_pledge
+    if current_user
+      @user = current_user
+      @pledge.set_donor_id(@user.id)
+      @pledge.save
+      @pledge = find_pledge
+    end 
 
     render 'show'
   end
@@ -85,41 +96,6 @@ class PledgesController < BaseController
     end
   end
 
-  #def continue
-  #  @pledge = find_pledge
-  #  @saver = Saver.find(session[:saver_id])
-  #  @storg = Organization.find_savetogether_org
-  #
-  #  update_pledge_with_donor
-  #  @pledge.save!
-  #  session[:pledge_id] = nil
-  #  session[:saver_id] = nil
-  #  render 'create' #post AppConfig.paypal_url, paypal_redirect_params(@pledge)
-  #end
-  #
-  ## POST /pledges/create
-  #def create
-  #  @saver = Saver.find(params[:saver_id])
-  #  @storg = Organization.find_savetogether_org
-  #  @pledge = Pledge.new(params[:pledge])
-  #
-  #  respond_to do |format|
-  #    if @pledge.valid? && @pledge.donations.size > 0
-  #      if current_user
-  #        update_pledge_with_donor
-  #        @pledge.save!
-  #        format.html #{ redirect_to post AppConfig.paypal_url, paypal_redirect_params(@pledge)}
-  #      else
-  #        session[:pledge] = @pledge
-  #        session[:saver_id] = params[:saver_id]
-  #        format.html { redirect_to signup_or_login_path }
-  #      end
-  #    else
-  #      format.html { render :action => "new", :saver_id => params[:saver_id] }
-  #    end
-  #  end
-  #end
-  #
   def done
     session[:pledge_id] = nil
     pn = PaymentNotification.create(:raw_data => request.query_string)
