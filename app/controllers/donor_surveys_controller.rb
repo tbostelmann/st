@@ -1,6 +1,6 @@
 class DonorSurveysController < BaseController
   def new
-    unless session[:donor_survey] || (current_user && current_user.donor_survey)
+    unless current_user && current_user.donor_survey
       @donor_survey = DonorSurvey.new
 
       if current_user
@@ -14,9 +14,7 @@ class DonorSurveysController < BaseController
   def update
     donor_survey = DonorSurvey.new(params[:donor_survey])
 
-    if donor_survey.save
-      session[:donor_survey] = donor_survey
-    else
+    unless donor_survey.save
       @donor_survey = donor_survey
     end
 
