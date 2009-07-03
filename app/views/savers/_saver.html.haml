@@ -17,7 +17,8 @@
           = f.select :cents, select_pledge_amounts_cents_values(saver.match_amount_left_cents)
           = f.hidden_field :to_user_id, :value => saver.id
     - else
-      = :already_funded.l
+      %span.text12GreenBold
+        = :already_funded.l
     %p= truncate_words(saver.description, 20, '...')
 
   %a{:class => 'with-img', :href => "#{saver_path(saver)}"}
