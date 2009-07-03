@@ -13,8 +13,8 @@
         = image_submit_tag "#{image_path('buttons/match.gif')}", :alt => 'Match', :class => 'match'
         %p{:class => 'large-text', :width => '50%'}
           = :amount_raised.l :amount => "#{(saver.match_percent*100).round}%"
-          = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'
-          = f.select :cents, select_pledge_amounts_cents_values
+          = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'
+          = f.select :cents, select_pledge_amounts_cents_values(saver.match_amount_left_cents)
           = f.hidden_field :to_user_id, :value => saver.id
     - else
       = :already_funded.l

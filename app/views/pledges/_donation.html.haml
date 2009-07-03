@@ -19,7 +19,7 @@
       - if donation.to_user == Organization.find_savetogether_org
         = f.select :cents, select_savetogether_amounts_cents_values
       - else
-        = f.select :cents, select_pledge_amounts_cents_values
+        = f.select :cents, select_pledge_amounts_cents_values(donation.to_user.match_amount_left_cents)
       = f.hidden_field :to_user_id
     %td{:class => "text12", :valign => "middle", :align => "center"}
       = image_submit_tag "#{image_path('icons/update.gif')}", :name => "update", :alt => :update.l
