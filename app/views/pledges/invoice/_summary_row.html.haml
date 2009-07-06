@@ -8,3 +8,5 @@
   %td{:valign => "middle", :align => "left", "colspan" => "2"}
     %span.pledge-total
       = "Total=#{@pledge.total_amount_for_donations.format(:html)}"
+    %span
+      ="*"
