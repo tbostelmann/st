@@ -1,15 +1,15 @@
 %tr
   %td{:valign => "top", :align => "center", :colspan => "3"}
   %td{:valign => "top", :align => "center"}
-    %form{:action => "https://www.sandbox.paypal.com/cgi-bin/webscr", :id => "payment-form", :method => "post", :class => "MainForm"}
+    %form{:action => AppConfig.paypal_url.to_s, :id => "payment-form", :method => "post", :class => "MainForm"}
       = hidden_field_tag :cancel_return, url_for(:only_path => false, :action => 'cancel')
       = hidden_field_tag :bn, "ActiveMerchant"
       = hidden_field_tag :redirect_cmd, "_cart"
       = hidden_field_tag :cmd, "_cart"
       = hidden_field_tag :upload, "1"
-      = hidden_field_tag :notify_url, url_for(:only_path => false, :action => 'notify')
+      = hidden_field_tag :notify_url, url_for(:only_path => false, :action => 'notify', :protocol => AppConfig.paypal_return_protocol.to_s)
       = hidden_field_tag :charset, "utf-8"
-      = hidden_field_tag :return, url_for(:only_path => false, :action => 'done')
+      = hidden_field_tag :return, url_for(:only_path => false, :action => 'done', :protocol => AppConfig.paypal_return_protocol.to_s)
       = hidden_field_tag :invoice, @pledge.id
 
       = hidden_field_tag :tax, "0.00"
