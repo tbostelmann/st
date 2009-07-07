@@ -12,7 +12,13 @@
             to take a five-question survey that will help us improve this service.
         %p
           %span.text12
-            If you have any other questions or just want to contact us, send an email
-            %a{:href => "mailto:info@savetogether.org?Subject=Contact SaveTogether"}
+            -# This curious construction allows for an anchored phrase, at the end of a
+            -# sentence, ended with a period, with no whitespace. The period has to follow
+            -# on the last line to escape the anchor tag, and it's escaped with a backslash.
+            -# The < removes whitespace surrounding the contents of the anchor tag, the >
+            -# removes whitespace surrounding the anchor tag itself, and finally &nbsp; ensures
+            -# there is whitespace *at the front* of the anchor. Phew. \ + > + < + &nbsp; Yikes.
+            If you have any other questions or just want to contact us, send an email to&nbsp;
+            %a{:href => "mailto:info@savetogether.org?Subject=Contact SaveTogether"}><
               info@savetogether.org
             \.
