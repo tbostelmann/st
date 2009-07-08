@@ -813,6 +813,8 @@ en:
   one_minute_ago: one minute ago
   #en: optional: optional
   optional: optional
+  #en: optional_donation_for_savetogether: (Optional) Amount you would like to donate to SaveTogether
+  optional_donation_for_savetogether: (Optional) Amount you would like to donate to SaveTogether
   #en: optional_keywords_describing_this_post_separated_by_commas: optional keywords describing this post, separated by commas
   optional_keywords_describing_this_post_separated_by_commas: optional keywords describing this post, separated by commas
   #en: or: or
