@@ -60,6 +60,11 @@
         = render :partial => 'users/invite'
         %p
         = render :partial => 'users/web20'
-        - if current_user && (!current_user.description || !current_user.avatar)
-          %p
-          = link_to "Click here to create / update your profile", edit_donor_path(current_user)
+        
+        %br
+        %br
+        %div{:style => "float: left; width: 100%"}
+          - if current_user && (!current_user.description || !current_user.avatar)
+            %br
+            %span.text12GreenBold
+              = link_to "Click here to create / update your profile", edit_donor_path(current_user)
