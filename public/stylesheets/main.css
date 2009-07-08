@@ -243,6 +243,14 @@ LABEL {cursor: pointer;}
 .content .about-saver A {
   color: #4F8306;
 }
+.content .about-us A {
+  color: #4F8306;
+  font-size: 12px;
+  margin-top: 0;
+  font-weight: bold;
+  line-height: 130%;
+}
+
 .photo {
 	width: 320px;
 	float: left;

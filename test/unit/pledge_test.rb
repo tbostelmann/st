@@ -116,4 +116,13 @@ class PledgeTest < ActiveSupport::TestCase
     paypal = Organization.find(paypal.id)
     assert paypal.fees_received.size > fnum_paypal
   end
+  
+  test "suggested donations calculate correctly" do
+    test_percent = 0.17
+    test_cents   = 500
+    expected_result = Money.new(test_cents.to_f * test_percent)
+    donation = Donation.suggest_percentage_of(1, 2, test_percent, Money.new(test_cents))
+    assert_equal donation.cents, expected_result.cents
+  end
+  
 end

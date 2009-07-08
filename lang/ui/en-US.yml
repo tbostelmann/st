@@ -331,6 +331,8 @@ en:
   donate: Donate
   #en: donation_amount: ${{amount}}
   donation_amount: ${{amount}}
+  #en: donation_amount_to_st: "{{amount}} ({{percent}}%%)"
+  donation_amount_to_st: "{{amount}} ({{percent}}%)"
   #en: dont_have_an_account: Don't have an account?
   dont_have_an_account: Don't have an account?
   #en: dont_wait_its: Don't wait! It's
