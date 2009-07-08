@@ -33,7 +33,7 @@ module ApplicationHelper
       camount = ctotal.to_f * f
       percent = f * 100.to_f
       amount = Money.new(camount.to_i)
-      opts << ["#{amount.format(:html)} (#{percent}%)", camount.to_i]
+      opts << [:donation_amount_to_st.l(:amount => amount.format(:html), :percent => percent), camount.to_i]
     end
     return opts
   end
