@@ -70,7 +70,12 @@ class LineItem < ActiveRecord::Base
 
   validates_presence_of :status
   validates_presence_of :cents
+
+  # The following validations enforce the following business rules:
+  # - Donations to Savers > 0
+  # - Donations to SaveTogether >= 0 (a $0 to SaveTogether is a flag the donor was presented with the ask)
   validates_numericality_of :amount, :greater_than_or_equal_to => 0
+  validates_numericality_of :amount, :greater_than => 0, :unless => Proc.new {|item| item.to_user.id == Organization.find_savetogether_org.id}
 
   def to_user_organization_display_name
     if to_user.organization
