@@ -231,6 +231,7 @@ class PledgesControllerTest < ActionController::TestCase
 
     assert_redirected_to :controller => :donor_surveys, :action => :new
     assert_not_nil assigns['pledge']
+    assert flash[:thank_you_for_pledge]
 
     pledge = Pledge.find(pledge.id)
     assert pledge.line_items.size > li_count

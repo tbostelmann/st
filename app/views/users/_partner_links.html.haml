@@ -2,43 +2,42 @@
   Use Your Voice
 %span.text12
   %br/
-  - if @donor_survey
-    - form_for @donor_survey, :url => {:controller => :donor_surveys, :action => :update, :id => @donor_survey.id} do |f|
-      = error_messages_for :donor_survey
-      = f.hidden_field :donor_id
-      = "Tell policymakers that I support making opportunities like this one available to others!"
-      %br
-      %table{:width => "100%", :cellspacing => "0", :cellpadding => "5", :border => "0", :align => "left"}
-        %tr
-          %td{:align => 'right', :width => "15%"}
-            %span.text12GreenBold= :first_name.l
-          %td{:align => 'left'}
-            - if current_user
-              = f.text_field :first_name, {:value => current_user.first_name}
-            - else
-              = f.text_field :first_name
-          %td
-        %tr
-          %td{:align => 'right', :width => "15%"}
-            %span.text12GreenBold= :last_name.l
-          %td{:align => 'left'}
-            - if current_user
-              = f.text_field :last_name, {:value => current_user.last_name}
-            - else
-              = f.text_field :last_name
-          %td
-        %tr
-          %td{:align => 'right', :width => "15%"}
-            %span.text12GreenBold= :zippostal_code.l
-          %td{:align => 'left'}
-            = f.text_field :zip_code, :size => 10
-          %td
-        %tr
-          %td{:align => 'right', :width => "15%"}
-            = f.submit :submit
-          %td{:colspan => 2}
-  - else
-    = "Thank you for helping us tell policy makes to make this available to others!"
+  - form_for @donor_survey, :url => {:controller => :donor_surveys, :action => :update, :id => @donor_survey.id} do |f|
+    = error_messages_for :donor_survey
+    = f.hidden_field :donor_id
+    = "Tell policymakers that I support making opportunities like this one available to others!"
+    %br
+    %table{:width => "100%", :cellspacing => "0", :cellpadding => "5", :border => "0", :align => "left"}
+      %tr
+        %td{:align => 'right', :width => "15%"}
+          %span.text12GreenBold= :first_name.l
+        %td{:align => 'left'}
+          - if current_user
+            = f.text_field :first_name, {:value => current_user.first_name}
+          - else
+            = f.text_field :first_name
+        %td
+      %tr
+        %td{:align => 'right', :width => "15%"}
+          %span.text12GreenBold= :last_name.l
+        %td{:align => 'left'}
+          - if current_user
+            = f.text_field :last_name, {:value => current_user.last_name}
+          - else
+            = f.text_field :last_name
+        %td
+      %tr
+        %td{:align => 'right', :width => "15%"}
+          %span.text12GreenBold= :zippostal_code.l
+        %td{:align => 'left'}
+          = f.text_field :zip_code, :size => 10
+        %td
+      %tr
+        %td{:align => 'right', :width => "15%"}
+          = f.submit :submit
+        %td{:colspan => 2}
+  - if flash[:thankyou]
+    = "Thank you for helping us tell policymakers to make this opportunity available to others!"
   %br
   = "Learn more about "
   %a{:href=>"http://www.cfed.org/act.m?edit=0&parentid=&siteid=5&id=2821"}= "how my name will be used"

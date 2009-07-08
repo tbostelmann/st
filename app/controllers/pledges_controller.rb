@@ -115,6 +115,7 @@ class PledgesController < BaseController
       # We're assuming that a notification that is not acknowledged will be sent again.
     end
 
+    flash[:thank_you_for_pledge] = true
     redirect_to :controller => :donor_surveys, :action => :new
   end
 

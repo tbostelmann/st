@@ -1,23 +1,27 @@
 class DonorSurveysController < BaseController
   def new
-    unless current_user && current_user.donor_survey
+    flash.keep(:thank_you_for_pledge)
+    if current_user
+      @donor_survey = DonorSurvey.new(
+              :donor_id => current_user.id,
+              :first_name => current_user.first_name,
+              :last_name => current_user.last_name)
+    else
       @donor_survey = DonorSurvey.new
-
-      if current_user
-        @donor_survey.donor = current_user
-      end
     end
 
-    render :edit
+    render :new
   end
 
-  def update
-    donor_survey = DonorSurvey.new(params[:donor_survey])
+  def create
+    flash.keep(:thank_you_for_pledge)
+    @donor_survey = DonorSurvey.new(params[:donor_survey])
 
-    unless donor_survey.save
-      @donor_survey = donor_survey
+    if @donor_survey.save
+      flash[:thank_you_for_donor_survey] = true
+      render :create
+    else
+      render :new
     end
-
-    render :edit
   end
 end
