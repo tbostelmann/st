@@ -793,6 +793,8 @@ en:
   no_tags: No tags
   #en: no_thanks: No thanks
   no_thanks: No thanks
+  #en: none: None
+  none: None
   #en: notify_email_updates: Notify of community news
   notify_email_updates: Notify of community news
   #en: notify_of_comments: Notify of comments

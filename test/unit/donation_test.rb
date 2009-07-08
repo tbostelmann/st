@@ -26,4 +26,41 @@ class DonationTest < ActiveSupport::TestCase
 #    @anon_donation.donation_status = nil
 #    assert !@anon_donation.valid?
 #  end
+
+  def setup
+    @donor = users(:donor)
+    @saver = users(:saver)
+    @storg = users(:savetogether)
+  end
+
+  test "Donation to saver may be greater than zero" do
+    donation = Donation.new(:from_user_id => @donor.id, :to_user_id => @saver.id, :cents => "#{100}")
+    assert donation.valid?
+  end
+  
+  test "Donation to saver may not be zero" do
+    donation = Donation.new(:from_user_id => @donor.id, :to_user_id => @saver.id, :cents => "#{0}")
+    assert !donation.valid?
+  end
+  
+  test "Donation to saver may not be less than zero" do
+    donation = Donation.new(:from_user_id => @donor.id, :to_user_id => @saver.id, :cents => "#{-100}")
+    assert !donation.valid?
+  end
+  
+  test "Donation to SaveTogether may be greater than zero" do
+    donation = Donation.new(:from_user_id => @donor.id, :to_user_id => @storg.id, :cents => "#{100}")
+    assert donation.valid?
+  end
+  
+  test "Donation to SaveTogether may be zero" do
+    donation = Donation.new(:from_user_id => @donor.id, :to_user_id => @storg.id, :cents => "#{0}")
+    assert donation.valid?
+  end
+  
+  test "Donation to SaveTogether may not be less than zero" do
+    donation = Donation.new(:from_user_id => @donor.id, :to_user_id => @storg.id, :cents => "#{-100}")
+    assert !donation.valid?
+  end
+  
 end

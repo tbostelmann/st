@@ -70,7 +70,7 @@ class LineItem < ActiveRecord::Base
 
   validates_presence_of :status
   validates_presence_of :cents
-  validates_numericality_of :amount, :greater_than => 0
+  validates_numericality_of :amount, :greater_than_or_equal_to => 0
 
   def to_user_organization_display_name
     if to_user.organization
