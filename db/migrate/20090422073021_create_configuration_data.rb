@@ -13,7 +13,8 @@ class CreateConfigurationData < ActiveRecord::Migration
 
     sanfran = MetroArea.create!(:name => 'San Francisco', :state => ca, :country => us)
     seattle = MetroArea.create!(:name => 'Seattle', :state => wa, :country => us)
-    lawrence = MetroArea.create!(:name => 'Lawrence', :state => ma, :country => us)
+    spokane = MetroArea.create!(:name => 'Spokane', :state => wa, :country => us)
+    allston = MetroArea.create!(:name => 'Allston', :state => ma, :country => us)
     sanjose = MetroArea.create!(:name => 'San Jose', :state => ca, :country => us)
 
     sanfran = MetroArea.find(:first, :conditions => {:name => 'San Francisco'})

@@ -32,3 +32,4 @@ rspec_out/
 test/performance/**/*result*/
 test/performance/**/*.log
 tmp/*
+nohup.out
