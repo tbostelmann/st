@@ -955,6 +955,8 @@ en:
   remember_you_can_always_change_this_later: Remember, you can always change this later.
   #en: remove: Remove
   remove: Remove
+  #en: remove_saver_question: Remove Saver?
+  remove_saver_question: Remove Saver?
   #en: remove_moderator: Remove moderator
   remove_moderator: Remove moderator
   #en: remove_this_friend: Remove this friend
