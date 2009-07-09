@@ -20,7 +20,7 @@ module ApplicationHelper
 
   def select_savetogether_amounts_cents_values
     factors = [0.1, 0.15, 0.2, 0.25, 0.3, 0.4, 0.5]
-    opts = [[:none.l, 0]]
+    opts = [["$0", 0]]
     total_cents = 0
     st_ask_cents = 0
     storg_id = Organization.find_savetogether_org.id
