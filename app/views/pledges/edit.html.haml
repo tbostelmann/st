@@ -6,14 +6,14 @@
     %br/
   %table{:width => "96%", :cellspacing => "0", :cellpadding => "5", :border => "0", :align => "center"}
     -# Invoice Headings Row
-    = render :partial => 'pledges/invoice/headings_row', :locals => {:photo_col_name => :photo.l, :item_col_name => :saver_name.l, :program_col_name => :program.l, :description_col_name => :goal_description.l, :amount_col_name => :amount.l, :action_col_name => :action.l}
+    = render :partial => 'pledges/invoice/headings_row', :locals => {:photo_col_name => :photo.l, :item_col_name => :saver_name.l, :program_col_name => :program.l, :description_col_name => :goal_description.l, :amount_col_name => :amount.l, :action_col_name => :remove_saver_question.l}
     
     -# Spacer Row
     = render :partial => 'pledges/invoice/top_spacer_row'
     
     -# Donations Table
     - @pledge.donations.each do |donation|
-      = render :partial => 'pledges/donation', :locals => {:donation => donation}
+      = render :partial => 'pledges/donation/donation', :locals => {:donation => donation}
       
     -# Footer row - Controls and Total
     = render :partial => 'pledges/invoice/summary_row.html.haml'

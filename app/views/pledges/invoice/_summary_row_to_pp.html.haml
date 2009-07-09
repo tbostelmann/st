@@ -26,7 +26,7 @@
         = hidden_field_tag :first_name, current_user.first_name
         = hidden_field_tag :last_name, current_user.last_name
 
-      - @pledge.donations.each_with_index do |d, i|
+      - @pledge.billable_donations.each_with_index do |d, i|
         = hidden_field_tag "item_number_#{(i + 1)}", d.to_user_id
         = hidden_field_tag "item_name_#{i + 1}", d.to_user.display_name
         = hidden_field_tag "amount_#{i + 1}", d.amount

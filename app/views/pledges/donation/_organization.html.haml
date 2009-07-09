@@ -1,0 +1,5 @@
+-# Show User's organization if it's a user, otherwise show the organization itself (typically ST)
+- if to_user.organization
+  = to_user.organization.display_name
+- else
+  = to_user.display_name

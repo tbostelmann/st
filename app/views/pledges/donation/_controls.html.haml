@@ -1,0 +1,3 @@
+- if to_user != Organization.find_savetogether_org
+  = hidden_field_tag :to_user_id, to_user.id
+  = image_submit_tag "#{image_path('icons/delete.gif')}", :alt => :remove.l

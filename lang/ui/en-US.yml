@@ -793,6 +793,8 @@ en:
   no_tags: No tags
   #en: no_thanks: No thanks
   no_thanks: No thanks
+  #en: none: None
+  none: None
   #en: notify_email_updates: Notify of community news
   notify_email_updates: Notify of community news
   #en: notify_of_comments: Notify of comments
@@ -811,6 +813,8 @@ en:
   one_minute_ago: one minute ago
   #en: optional: optional
   optional: optional
+  #en: optional_donation_for_savetogether: (Optional) Amount you would like to donate to SaveTogether
+  optional_donation_for_savetogether: (Optional) Amount you would like to donate to SaveTogether
   #en: optional_keywords_describing_this_post_separated_by_commas: optional keywords describing this post, separated by commas
   optional_keywords_describing_this_post_separated_by_commas: optional keywords describing this post, separated by commas
   #en: or: or
@@ -951,6 +955,8 @@ en:
   remember_you_can_always_change_this_later: Remember, you can always change this later.
   #en: remove: Remove
   remove: Remove
+  #en: remove_saver_question: Remove Saver?
+  remove_saver_question: Remove Saver?
   #en: remove_moderator: Remove moderator
   remove_moderator: Remove moderator
   #en: remove_this_friend: Remove this friend
