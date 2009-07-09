@@ -12,7 +12,7 @@
     = render :partial => 'pledges/invoice/top_spacer_row'
     
     -# Donations Table
-    - @pledge.donations.each do |donation|
+    - @pledge.donations_sorted_for_display.each do |donation|
       = render :partial => 'pledges/donation/donation', :locals => {:donation => donation}
       
     -# Footer row - Controls and Total

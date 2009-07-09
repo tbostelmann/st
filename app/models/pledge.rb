@@ -36,6 +36,22 @@ class Pledge < Invoice
     end
     return nil
   end
+  
+  # Sort donations so that ST ask is alway at end of list
+  def donations_sorted_for_display
+    storg_id = Organization.find_savetogether_org.id
+    donations.sort {|this, that|
+      if this.to_user_id == storg_id
+        1
+      elsif that.to_user_id == storg_id
+        -1
+      elsif this.id && that.id
+        this.id <=> that.id
+      else
+        0
+      end
+      }
+  end
 
   def total_amount_for_donations
     total = Money.new(0)
