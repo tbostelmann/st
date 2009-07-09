@@ -66,8 +66,7 @@ class PledgesControllerTest < ActionController::TestCase
     session[:pledge_id] = pledge.id
     donation = pledge.donations[0]
 
-    post :remove_from_pledge, {:donation => {
-            :to_user_id => donation.to_user.id}}
+    post :remove_from_pledge, {:to_user_id => donation.to_user.id}
 
     assert_response :success
     assert_template 'show'
@@ -77,24 +76,6 @@ class PledgesControllerTest < ActionController::TestCase
     assert d.nil?
   end  
   
-  def TODO_add_this_test # "modify pledge by remove request" do
-    pledge = invoices(:pledge)
-    session[:pledge_id] = pledge.id
-    donation = pledge.donations[0]
-    
-    # test should fail as written until a 'commit' param is added
-    # to params containing :remove.l
-    # Current test is failing because an erb is expected for modify_pledge.
-    # TODO figure out how to instruct that this action isn't bound to a view
-    post :modify_pledge, {:donation => {:to_user_id => donation.to_user.id}}
-    assert_response :success
-    assert_template 'edit'
-    
-    pledge = Pledge.find(session[:pledge_id])
-    d = pledge.find_donation_with_to_user_id(donation.to_user_id)
-    assert d.nil?
-  end
-
   test "get cancel" do
     get :cancel
     assert_response :success

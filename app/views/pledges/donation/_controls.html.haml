@@ -1,3 +1,3 @@
-= image_submit_tag "#{image_path('icons/update.gif')}", :name => "update", :alt => :update.l
 - if to_user != Organization.find_savetogether_org
-  = image_submit_tag "#{image_path('icons/delete.gif')}", :name => "delete", :alt => :remove.l
+  = hidden_field_tag :to_user_id, to_user.id
+  = image_submit_tag "#{image_path('icons/delete.gif')}", :alt => :remove.l

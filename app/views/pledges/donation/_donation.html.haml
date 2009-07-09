@@ -19,12 +19,13 @@
     = render :partial => 'pledges/donation/goal_description', :locals => {:to_user => donation.to_user}
 
   -# Donation amounts controls
-  - form_for donation, :url => { :controller => :pledges, :action => :modify_pledge } do |f|
+  - form_for donation, :url => { :controller => :pledges, :action => :update_donation_amount } do |f|
     %td{:class => "text12", :valign => "middle", :align => "left"}
       = render :partial => 'pledges/donation/amount', :locals => {:to_user => donation.to_user, :form => f}
 
-    -# Update and optional Delete controls
-    %td{:class => "text12", :valign => "middle", :align => "left"}
+  -# Update and optional Delete controls
+  %td{:class => "text12", :valign => "middle", :align => "center"}
+    - form_for donation, :url => { :controller => :pledges, :action => :remove_from_pledge } do |f|
       = render :partial => 'pledges/donation/controls', :locals => {:to_user => donation.to_user}
 
 -# Spacer Row

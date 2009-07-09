@@ -51,21 +51,12 @@ class PledgesController < BaseController
 
   def remove_from_pledge
     @pledge = find_pledge
-    donation = Donation.new(params[:donation])
-    @pledge.remove_donation_with_to_user_id(params[:donation][:to_user_id])
+    @pledge.remove_donation_with_to_user_id(params[:to_user_id])
     @pledge.save!
 
     render_show_or_edit
   end
   
-  def modify_pledge
-    # This technique works for image_submit_tags with names of "update" and "delete".
-    # An update click will queue "update.x" and "update.y" params
-    # A delete click will queue "delete.x" and "delete.y" params
-    update_donation_amount if params['update.x']
-    remove_from_pledge if params['delete.x']
-  end
-
   def edit
     @pledge = find_pledge
 
