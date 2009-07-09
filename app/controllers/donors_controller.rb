@@ -81,7 +81,7 @@ class DonorsController < BaseController
       if session[:pledge_id]
         redirect_to :controller => :pledges, :action => :savetogether_ask
       else
-        redirect_to welcome_photo_user_path(@donor)
+        redirect_to donor_path(@donor)
       end
     else
       render :action => 'new'
