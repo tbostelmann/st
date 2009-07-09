@@ -14,7 +14,7 @@ module ApplicationHelper
       # Map amount string (in dollars) to amount integer (in cents)
       pledge_amounts << [(:donation_amount.l :amount => amt/100), amt]
     end
-    pledge_amounts << [(:donation_amount.l :amount => max/100), max] if pledge_amounts.last[1] < max
+    pledge_amounts << [(:donation_amount.l :amount => max/100), max] if (pledge_amounts.empty? || pledge_amounts.last[1] < max)
     pledge_amounts
   end
 
