@@ -140,7 +140,7 @@ class PledgeTest < ActiveSupport::TestCase
     pledge.add_donation Donation.suggest_percentage_of(donor.id, saver3.id, 100.0, Money.new(100))
     pledge.add_donation Donation.suggest_percentage_of(donor.id, saver4.id, 100.0, Money.new(100))
 
-    pledge.donations.each_with_index {|d, i| p "sorted donations test: before: d[#{i}]: id:#{d.id}, to_user_id:#{d.to_user_id}"}
+    # pledge.donations.each_with_index {|d, i| p "sorted donations test: before: d[#{i}]: id:#{d.id}, to_user_id:#{d.to_user_id}"}
 
     assert pledge.donations_sorted_for_display.last.to_user_id == storg.id
     # pledge.donations_sorted_for_display.each_with_index {|d, i| p "sorted donations test: after, before save: d[#{i}]: id:#{d.id}, to_user_id:#{d.to_user_id}"}
