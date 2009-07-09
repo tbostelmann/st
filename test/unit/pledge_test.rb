@@ -125,4 +125,31 @@ class PledgeTest < ActiveSupport::TestCase
     assert_equal donation.cents, expected_result.cents
   end
   
+  test "donations sorted for display result in ST donation at end" do
+    donor  = users(:donor)
+    saver1 = users(:saver)
+    saver2 = users(:saver2)
+    saver3 = users(:saver3)
+    saver4 = users(:saver4)
+    storg  = users(:savetogether)
+    
+    pledge = Pledge.new
+    pledge.add_donation Donation.suggest_percentage_of(donor.id, storg.id,  100.0, Money.new(100))
+    pledge.add_donation Donation.suggest_percentage_of(donor.id, saver1.id, 100.0, Money.new(100))
+    pledge.add_donation Donation.suggest_percentage_of(donor.id, saver2.id, 100.0, Money.new(100))
+    pledge.add_donation Donation.suggest_percentage_of(donor.id, saver3.id, 100.0, Money.new(100))
+    pledge.add_donation Donation.suggest_percentage_of(donor.id, saver4.id, 100.0, Money.new(100))
+
+    pledge.donations.each_with_index {|d, i| p "sorted donations test: before: d[#{i}]: id:#{d.id}, to_user_id:#{d.to_user_id}"}
+
+    assert pledge.donations_sorted_for_display.last.to_user_id == storg.id
+    # pledge.donations_sorted_for_display.each_with_index {|d, i| p "sorted donations test: after, before save: d[#{i}]: id:#{d.id}, to_user_id:#{d.to_user_id}"}
+
+    # Not required, but required for reasonable sorting of non-ST donations
+    pledge.save!
+
+    assert pledge.donations_sorted_for_display.last.to_user_id == storg.id
+    # pledge.donations_sorted_for_display.each_with_index {|d, i| p "sorted donations test: after, after save: d[#{i}]: id:#{d.id}, to_user_id:#{d.to_user_id}"}
+  end
+  
 end

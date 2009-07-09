@@ -1,0 +1,34 @@
+-# Saver Data
+%tr
+
+  -# Saver photo or Organization logo
+  %td{:valign => "middle", :align => "left"}
+    = image_tag( donation.to_user.avatar_photo_url(:thumb) )
+
+  -# Saver name (Organization ignored)
+  %td{:class => "text12", :valign => "middle", :align => "left"}
+    %span.text12GreenBold
+      = render :partial => 'pledges/donation/saver_name', :locals => {:to_user => donation.to_user}
+
+  -# Sponsoring Organization name (or SaveTogether, if ST donation)
+  %td{:class => "text12", :valign => "middle", :align => "left"}
+    = render :partial => 'pledges/donation/organization', :locals => {:to_user => donation.to_user}
+
+  -# Goal Description (or donation description, if ST donation)
+  %td{:class => "text12", :valign => "middle", :align => "left"}
+    = render :partial => 'pledges/donation/goal_description', :locals => {:to_user => donation.to_user}
+
+  -# Donation amounts controls
+  - form_for donation, :url => { :controller => :pledges, :action => :modify_pledge } do |f|
+    %td{:class => "text12", :valign => "middle", :align => "left"}
+      = render :partial => 'pledges/donation/amount', :locals => {:to_user => donation.to_user, :form => f}
+
+    -# Update and optional Delete controls
+    %td{:class => "text12", :valign => "middle", :align => "left"}
+      = render :partial => 'pledges/donation/controls', :locals => {:to_user => donation.to_user}
+
+-# Spacer Row
+%tr{:valign => "top", :align => "left"}
+  %td{:height => "2", :valign => "middle", :background => "#{image_path('bg/dotted_line.gif')}", :style => "background-repeat: repeat-x;", :colspan => "6"}
+    %span{:style => "background-repeat: repeat-x;"}
+      %img{:height => "2", :width => "2", :src => "#{image_path('icons/spacer.gif')}"}

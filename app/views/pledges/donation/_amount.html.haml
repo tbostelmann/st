@@ -1,0 +1,5 @@
+- if to_user == Organization.find_savetogether_org
+  = form.select :cents, select_savetogether_amounts_cents_values
+- else
+  = form.select :cents, select_pledge_amounts_cents_values(to_user.match_amount_left_cents)
+= form.hidden_field :to_user_id

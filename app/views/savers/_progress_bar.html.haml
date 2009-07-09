@@ -1,5 +1,9 @@
 %table{:class => "#{style}"}
   %tbody
     %tr
-      %td{:class => "progress-pct", :width => "#{(saver.match_percent)*100}%"}
-      %td{:class => "remainder-pct", :width => "#{(1.0 - saver.match_percent)*100}%"}
+      - progress = [(saver.match_percent * 100).round, 100].min
+      - remainder = 100 - progress
+      - if (progress != 0)
+        %td{:class => "progress-pct", :width => "#{progress}%", :colspan => "#{progress == 100 ? 2 : 1}"}
+      - if (remainder != 0)
+        %td{:class => "remainder-pct", :width => "#{remainder}%", :colspan => "#{remainder == 100 ? 2 : 1}"}

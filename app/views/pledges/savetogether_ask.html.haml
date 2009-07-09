@@ -22,7 +22,7 @@
         %td{:class => "text12", :valign => "middle", :align => "left"}
           = @storg.display_name
         %td{:class => "text12", :valign => "middle", :align => "left"}
-          = "(Optional) Amount you would like to donate to SaveTogether:"
+          = "#{:optional_donation_for_savetogether.l}"
         %td{:class => "text12", :valign => "middle", :align => "left"}
           = f.select :cents, select_savetogether_amounts_cents_values
           = f.hidden_field :to_user_id
@@ -36,12 +36,9 @@
 
       -# Footer row - Controls and Total
       %tr
-        %td{:valign => "top", :align => "center"}
-        %td{:valign => "top", :align => "right", :colspan => "2"}
-        %td{:valign => "top", :align => "center"}
-          =link_to((image_tag "#{image_path('buttons/nothanks.gif')}", :alt => :no_thanks.l), :controller => :pledges, :action => :show)
+        %td{:colspan => "4"}
         %td{:valign => "middle", :align => "left", "colspan" => "2"}
-          = image_submit_tag "#{image_path('buttons/add.gif')}", :alt => :add.l, :name => "commit", :value => "Add", :id => "donation_submit"
+          = image_submit_tag "#{image_path('buttons/continue.gif')}", :alt => :continue.l, :name => "commit", :value => "Continue", :id => "donation_submit"
 
     -# Final spacer row
     = render :partial => 'pledges/invoice/bottom_spacer_row'

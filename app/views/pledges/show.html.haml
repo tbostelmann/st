@@ -12,8 +12,8 @@
     = render :partial => 'pledges/invoice/top_spacer_row'
     
     -# Donations Table
-    - @pledge.donations.each do |donation|
-      = render :partial => 'pledges/donation', :locals => {:donation => donation}
+    - @pledge.donations_sorted_for_display.each do |donation|
+      = render :partial => 'pledges/donation/donation', :locals => {:donation => donation}
       
     -# Footer row - Controls and Total
     = render :partial => 'pledges/invoice/summary_row_to_pp.html.haml'
