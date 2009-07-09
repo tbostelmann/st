@@ -52,6 +52,11 @@ class Pledge < Invoice
       end
       }
   end
+  
+  # Filter out any $0 donations
+  def billable_donations
+    donations_sorted_for_display.reject{|d| d.amount.zero?}
+  end
 
   def total_amount_for_donations
     total = Money.new(0)
@@ -104,7 +109,7 @@ class Pledge < Invoice
 
     # Verify that the reported number of LineItems matches Invoice's Donation size
     reported_size = index - 1   # Remove trailing increase of index
-    unless reported_size == self.donations.size
+    unless reported_size == self.billable_donations.size
       raise "Reported LineItem count does not match Invoice Donation count"
     end
 
