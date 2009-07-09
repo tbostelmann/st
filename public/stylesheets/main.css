@@ -223,6 +223,7 @@ LABEL {cursor: pointer;}
 }
 .info IMG {margin: 15px 0;}
 .match {float: right;}
+.match.inside-element {margin-right: 3px;}
 .info .match IMG {margin: 0;}
 .saver.right {float: right;}
 .content H1 {
