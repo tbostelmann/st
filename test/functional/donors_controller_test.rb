@@ -27,6 +27,16 @@ class DonorsControllerTest < ActionController::TestCase
     assert_equal "[SaveTogether] Your SaveTogether account has been activated!", @emails[0].subject
   end
   
+  test "Donor does not receive registration email if configuration turned off" do
+    donor_setting_restore = SaveTogether::Notifications.donors
+    SaveTogether::Notifications.donors = false
+    
+    post :create, :donor => min_donor_props
+    assert_equal 0, @emails.size
+    
+    SaveTogether::Notifications.donors = donor_setting_restore
+  end
+  
   test "Unsuccessful donor creation renders the new template" do
     assert_difference Donor, :count, 0 do
       post :create, :donor => min_donor_props(:login => nil)

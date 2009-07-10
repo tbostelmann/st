@@ -26,3 +26,8 @@ config.log_level = :warn
 
 # Enable threaded mode
 # config.threadsafe!
+
+# ST-specific configuration entries
+config.notifications.donors        = true
+config.notifications.savers        = false
+config.notifications.organizations = false

@@ -17,3 +17,8 @@ config.action_controller.perform_caching             = false
 config.action_mailer.raise_delivery_errors = false
 
 ActionMailer::Base.delivery_method = :sendmail
+
+# ST-specific configuration entries (see config/savetogether.rb, boot.rb)
+config.notifications.donors        = true
+config.notifications.savers        = false
+config.notifications.organizations = false
