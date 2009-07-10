@@ -3,6 +3,12 @@ require File.dirname(__FILE__) + '/../test_helper'
 class PledgesControllerTest < ActionController::TestCase
   include AuthenticatedTestHelper
 
+  def setup
+    # allows you to inspect email notifications 
+    @emails = ActionMailer::Base.deliveries
+    @emails.clear
+  end
+  
   test "go to savetogether ask page not logged in" do
     pledge = invoices(:pledge)
     session[:pledge_id] = pledge.id
@@ -219,5 +225,8 @@ class PledgesControllerTest < ActionController::TestCase
 
     donor = Donor.find(donor.id)
     assert donor.donations_given.size > completed_donations
+    
+    assert_equal 1, @emails.size
+    assert_equal "[SaveTogether] Thank you for your donation!", @emails[0].subject
   end
 end
