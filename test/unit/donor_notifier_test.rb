@@ -29,4 +29,13 @@ class DonorNotifierTest < ActiveSupport::TestCase
     assert_match /Hi #{@donor.first_name},/, notification.body
   end
   
+  test "Reset password email is templated" do
+    notification = UserNotifier.create_reset_password(@donor)
+    
+    assert_equal "[SaveTogether] SaveTogether Account information", notification.subject
+    assert_equal @donor.login, notification.to[0]
+    assert_match /Hi #{@donor.first_name},/, notification.body
+    assert_match /Your new password is:/, notification.body
+  end
+  
 end
