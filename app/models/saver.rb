@@ -87,5 +87,12 @@ class Saver < Party
 
   def matched_amount_cents
     return donations_received.sum(:cents)
-  end   
+  end
+  
+  def self.featured_savers(truncate_count=4)
+    savers = self.find(:all)
+    last = [savers.size, [truncate_count, 1].max].min - 1
+    savers.sort_by{rand}[0..last]
+  end
+  
 end
