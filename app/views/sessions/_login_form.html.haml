@@ -5,13 +5,21 @@
         ="#{title}"
   
   
-  -if flash[:notice]
+  -if flash[:error]
     / Login Error
     %tr
       %td{:class => "text12", :valign => "top", :colspan => "2"}
         .errorExplanation
           %h2
-            =flash[:notice]
+            =flash[:error]
+
+  -elsif flash[:info]
+    / Information
+    %tr
+      %td{:class => "text12", :valign => "top", :colspan => "2"}
+        .errorExplanation
+          %h2
+            =flash[:info]
 
   - form_tag sessions_path, :class => 'MainForm' do
     %tr
