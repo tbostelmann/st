@@ -4,14 +4,18 @@
       %span.text12GreenTitle
         ="#{title}"
   
-  
-  -if flash[:notice]
-    / Login Error
+  -# We have three possible sources of additional information.
+  -# The checks below are stack-ranked:
+  -show_msg = flash[:error]
+  -show_msg = flash[:info] unless show_msg
+  -show_msg = params[:msg] unless show_msg
+  -if show_msg
+    / Information
     %tr
       %td{:class => "text12", :valign => "top", :colspan => "2"}
         .errorExplanation
           %h2
-            =flash[:notice]
+            =show_msg
 
   - form_tag sessions_path, :class => 'MainForm' do
     %tr

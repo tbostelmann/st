@@ -28,3 +28,8 @@ config.log_level = :warn
 # config.threadsafe!
 
 ActionMailer::Base.delivery_method = :sendmail
+
+# ST-specific configuration entries
+config.notifications.donors        = true
+config.notifications.savers        = false
+config.notifications.organizations = false

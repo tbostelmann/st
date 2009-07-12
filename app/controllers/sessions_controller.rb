@@ -12,16 +12,16 @@ class SessionsController < BaseController
       end
 
       if session[:pledge_id]
-        flash[:notice] = :thanks_youre_now_logged_in.l
+        flash[:info] = :thanks_youre_now_logged_in.l
         current_user.track_activity(:logged_in)
         redirect_to :controller => :pledges, :action => :savetogether_ask
       else
         redirect_back_or_default(donor_path(current_user))
-        flash[:notice] = :thanks_youre_now_logged_in.l
+        flash[:info] = :thanks_youre_now_logged_in.l
         current_user.track_activity(:logged_in)
       end
     else
-      flash[:notice] = :uh_oh_we_couldnt_log_you_in_with_the_username_and_password_you_entered_try_again.l
+      flash[:error] = :uh_oh_we_couldnt_log_you_in_with_the_username_and_password_you_entered_try_again.l
       redirect_to teaser_path and return if AppConfig.closed_beta_mode        
       render :action => 'new'
     end
