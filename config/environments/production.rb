@@ -26,3 +26,5 @@ config.log_level = :warn
 
 # Enable threaded mode
 # config.threadsafe!
+
+ActionMailer::Base.delivery_method = :sendmail
