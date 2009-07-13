@@ -285,6 +285,7 @@ LABEL {cursor: pointer;}
 }
 .content P.no-margin {margin-top: 0;}
 
+/* Common Layout */
 .content .two-column-layout {
   width: 900px;
   padding: 5px 15px 0px 15px;
@@ -307,6 +308,17 @@ LABEL {cursor: pointer;}
   width: 48%;
   padding-left: 18px;
   padding-right: 0px;
+}
+.content .block {
+  padding-top: 10px;
+  padding-bottom: 5px;
+  border-top-style: dotted;
+  border-top-color: #a9b270;
+  border-top-width: 1px;
+}
+.content .block.no-border {
+  padding-bottom: 5px;
+  border-style: none;
 }
 /*Progress Bars*/
 .progress-bar {
@@ -408,17 +420,6 @@ LABEL {cursor: pointer;}
 	font-size: 26px;
 	color: #5b930d;
 	margin-top: 0px;
-}
-.content .about-us .block {
-  padding-top: 10px;
-  padding-bottom: 5px;
-  border-top-style: dotted;
-  border-top-color: #a9b270;
-  border-top-width: 1px;
-}
-.content .about-us .block.no-border {
-  padding-bottom: 5px;
-  border-style: none;
 }
 .content .about-us .thumbnail {
   float: left;
