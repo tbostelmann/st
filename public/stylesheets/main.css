@@ -289,19 +289,23 @@ LABEL {cursor: pointer;}
   width: 900px;
   padding: 5px 15px 0px 15px;
 }
+.content .two-column-layout.wide {
+  width: 900px;
+  padding: 5px 0px 0px 0px;
+}
 .content .two-column-layout .tcl-column {
   float: left;
   width: 375px;
   padding: 0px 30px 0px 30px;
 }
 .content .two-column-layout .tcl-column.left {
-  width: 47%;
+  width: 48%;
   padding-left: 0px;
-  padding-right: 10px;
+  padding-right: 18px;
 }
 .content .two-column-layout .tcl-column.right {
-  width: 47%;
-  padding-left: 10px;
+  width: 48%;
+  padding-left: 18px;
   padding-right: 0px;
 }
 /*Progress Bars*/
@@ -438,7 +442,20 @@ LABEL {cursor: pointer;}
 	margin-top: 0;
 	margin-bottom: 10px;
 	font-weight: bold;
-	line-height: 100%;
+	line-height: 120%;
+}
+.content .about-us H4.sub {
+	font-size: 11px;
+	margin-top: 0px;
+	margin-bottom: 10px;
+	font-weight: normal;
+}
+.content .about-us H4.sub.first {
+	padding-top: 8px;
+}
+.content .about-us H4.sub EM {
+  font-style: normal;
+	font-weight: bold;
 }
 .content .about-us P {
 	font-size: 12px;
@@ -449,9 +466,13 @@ LABEL {cursor: pointer;}
 	line-height: 130%;
 }
 .content .about-us UL {
+  margin: 10px 0px 10px 0px;
   padding: 0px 0px 10px 0px;
 	color: #5b930d;
   list-style: none;
+}
+.content .about-us UL.last {
+  padding-bottom: 15px;
 }
 .content .about-us LI {
   float: left;
@@ -463,6 +484,9 @@ LABEL {cursor: pointer;}
 }
 .content .about-us UL.condensed {
   padding-bottom:5px;
+}
+.content .about-us UL.condensed.last {
+  padding-bottom:15px;
 }
 .content .about-us .condensed LI {
   padding-right: 15px;
