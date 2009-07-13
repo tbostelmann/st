@@ -1,5 +1,6 @@
 namespace :import do
-  desc "Import specified data into database"
+  # rake import:organizations ./test/files/import/OrgProfiles.csv
+  desc "command: rake import:organizations <csv_file> - Import specified data into database"
   task :organizations => :environment do
     require 'action_controller'
     require 'action_controller/test_process.rb'
@@ -46,6 +47,8 @@ namespace :import do
     end
   end
 
+  # rake import:savers ./test/files/import/SaverProfiles.csv
+  desc "command: rake import:savers <csv_file> - Import specified data into database"
   task :savers => :environment do
     require 'action_controller'
     require 'action_controller/test_process.rb'
