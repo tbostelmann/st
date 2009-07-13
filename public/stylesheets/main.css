@@ -404,15 +404,17 @@ LABEL {cursor: pointer;}
 	font-size: 26px;
 	color: #5b930d;
 	margin-top: 0px;
-	/*padding-bottom: 5px;*/
 }
 .content .about-us .block {
-  /*width: 100%; */
   padding-top: 10px;
   padding-bottom: 5px;
   border-top-style: dotted;
   border-top-color: #a9b270;
   border-top-width: 1px;
+}
+.content .about-us .block.no-border {
+  padding-bottom: 5px;
+  border-style: none;
 }
 .content .about-us .thumbnail {
   float: left;
@@ -426,8 +428,7 @@ LABEL {cursor: pointer;}
 .content .about-us H3 {
 	font-size: 16px;
 	color: #EC911E;
-	margin-top: 8px;
-	margin-bottom: 5px;
+	margin: 8px 0px 5px 0px;
 	font-weight: normal;
 	line-height: 100%;
 }
@@ -448,15 +449,23 @@ LABEL {cursor: pointer;}
 	line-height: 130%;
 }
 .content .about-us UL {
+  padding: 0px 0px 10px 0px;
+	color: #5b930d;
   list-style: none;
 }
 .content .about-us LI {
   float: left;
-  position: relative;
+  font-size: 10px;
 }
 .content .about-us LI .sep {
   padding-left:5px;
   padding-right:5px;
+}
+.content .about-us UL.condensed {
+  padding-bottom:5px;
+}
+.content .about-us .condensed LI {
+  padding-right: 15px;
 }
 .content .about-us A {
   color: #4F8306;
