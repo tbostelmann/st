@@ -444,6 +444,16 @@ LABEL {cursor: pointer;}
 	font-weight: bold;
 	line-height: 120%;
 }
+.content .about-us A {
+  color: #4F8306;
+}
+.content .about-us H4 A {
+  padding-right: 3px;
+  margin-right:6px;
+  border-right-style: solid;
+  border-right-color: #a9b270;
+  border-right-width: 1px;
+}
 .content .about-us H4.sub {
 	font-size: 11px;
 	margin-top: 0px;
@@ -456,6 +466,11 @@ LABEL {cursor: pointer;}
 .content .about-us H4.sub EM {
   font-style: normal;
 	font-weight: bold;
+	padding-right: 3px;
+	margin-right:6px;
+  border-right-style: solid;
+  border-right-color: #a9b270;
+  border-right-width: 1px;
 }
 .content .about-us P {
 	font-size: 12px;
@@ -477,10 +492,15 @@ LABEL {cursor: pointer;}
 .content .about-us LI {
   float: left;
   font-size: 10px;
-}
-.content .about-us LI .sep {
   padding-left:5px;
   padding-right:5px;
+  border-left-style: solid;
+  border-left-color: #a9b270;
+  border-left-width: 1px;
+}
+.content .about-us LI.first {
+  padding-left:0px;
+  border:none;
 }
 .content .about-us UL.condensed {
   padding-bottom:5px;
@@ -489,8 +509,7 @@ LABEL {cursor: pointer;}
   padding-bottom:15px;
 }
 .content .about-us .condensed LI {
+  padding-left: 0px;
   padding-right: 15px;
-}
-.content .about-us A {
-  color: #4F8306;
+  border: none;
 }
