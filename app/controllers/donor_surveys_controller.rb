@@ -1,5 +1,8 @@
 class DonorSurveysController < BaseController
   def new
+    if (params[:thank_you_for_pledge])
+      flash[:thank_you_for_pledge] = true
+    end
     flash.keep(:thank_you_for_pledge)
     if current_user
       @donor_survey = DonorSurvey.new(
