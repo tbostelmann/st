@@ -416,11 +416,6 @@ LABEL {cursor: pointer;}
   color: #4D4A43;
 }
 /* About Us */
-.content .about-us H2 {
-	font-size: 26px;
-	color: #5b930d;
-	margin-top: 0px;
-}
 .content .about-us .thumbnail {
   float: left;
   padding: 15px 10px 15px 10px;
