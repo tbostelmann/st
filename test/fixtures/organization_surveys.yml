@@ -25,7 +25,4 @@ os1:
     annual_operating_expenses: 100K
     total_matched_accounts: 100
     year_first_accounts_opened: 1990
-    last_year_number_of_accounts: 20
     number_of_active_accounts: 20
-    attrition_rate: 75%
-    household_income_eligibility: 20k

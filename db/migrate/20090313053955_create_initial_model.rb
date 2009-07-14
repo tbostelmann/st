@@ -43,10 +43,7 @@ class CreateInitialModel < ActiveRecord::Migration
       t.string :annual_operating_expenses
       t.integer :total_matched_accounts
       t.string :year_first_accounts_opened
-      t.integer :last_year_number_of_accounts
       t.integer :number_of_active_accounts
-      t.string :attrition_rate
-      t.string :household_income_eligibility
       t.timestamps
     end
 
