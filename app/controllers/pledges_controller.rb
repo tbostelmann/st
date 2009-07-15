@@ -106,9 +106,9 @@ class PledgesController < BaseController
       # We're assuming that a notification that is not acknowledged will be sent again.
     end
 
+    UserNotifier.deliver_donation_thanks_notification(current_user)
     flash[:thank_you_for_pledge] = true
-    UserNotifier.deliver_donation_thanks_notification(current_user) 
-    redirect_to :controller => :donor_surveys, :action => :new
+    redirect_to :controller => :donor_surveys, :action => :new, :thank_you_for_pledge => true
   end
 
   def notify
