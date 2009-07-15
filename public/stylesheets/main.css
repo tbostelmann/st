@@ -351,6 +351,9 @@ LABEL {cursor: pointer;}
 .content .block H3 + P {
   margin-top: 12px;
 }
+.content .block A {
+  color: #4F8306;
+}
 .content .block UL {
 	font-size: 12px;
 	color: #4d4a43;
@@ -504,12 +507,9 @@ LABEL {cursor: pointer;}
 	margin-top: 0;
 	margin-bottom: 10px;
 }
-.content .about-us A {
-  color: #4F8306;
-}
 .content .about-us H4 A {
   padding-right: 3px;
-  margin-right:6px;
+  margin-right: 6px;
   border-right-style: solid;
   border-right-color: #a9b270;
   border-right-width: 1px;
