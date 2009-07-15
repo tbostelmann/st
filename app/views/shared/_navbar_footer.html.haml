@@ -1,18 +1,6 @@
 -# This is the code that renders both the header and footer navbars:
 %ul
   %li
-    = link_to :home.l.upcase, home_path
-    = image_tag 'separator.gif'
-  %li
-    = link_to :match.l.upcase, savers_path
-    = image_tag 'separator.gif'
-  %li
-    = link_to :how_it_works.l.upcase, how_it_works_path
-    = image_tag 'separator.gif'
-  %li
-    = link_to :do_more.l.upcase, new_donor_survey_path
-    = image_tag 'separator.gif'
-  %li
     = link_to :about_us.l.upcase, about_us_path
     = image_tag 'separator.gif'
   %li
@@ -21,7 +9,12 @@
   %li
     = link_to :feedback.l.upcase, feedback_path
     = image_tag 'separator.gif'
-  - unless current_user
-    %li
-      = link_to :sign_up.l.upcase, signup_path
-      = image_tag 'separator.gif'
+  %li
+    = link_to :blog.l.upcase, "http://blog.savetogether.org"
+    = image_tag 'separator.gif'
+  %li
+    = link_to :terms_of_use.l.upcase, terms_of_use_path
+    = image_tag 'separator.gif'
+  %li
+    = link_to :privacy_policy.l.upcase, privacy_policy_path
+    = image_tag 'separator.gif'

@@ -20,4 +20,22 @@ class ApplicationController < ActionController::Base
 #    super unless EXCEPTIONS_NOT_LOGGED.include?(exc.class.name)
 #  end
 
+
+  # --------------------------------------------------------------------------
+  # create a customized rescue_action_in_public style handler 
+
+  PRODUCTION_LIKE_ENVIRONMENTS = [ 'production', 'demo' ]
+
+  def rescue_action ( exception )
+    if PRODUCTION_LIKE_ENVIRONMENTS.include?(RAILS_ENV)
+      # show only a pretty error page
+      render :template => "common/general_error.html.erb" and return false
+    else
+      # show the normal stacktrace to aid in debugging
+      super exception 
+    end
+    return false
+  end
+  # --------------------------------------------------------------------------
+
 end
