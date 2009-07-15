@@ -74,3 +74,10 @@
       %script{:type => "text/javascript"}
         var addthis_brand = 'SaveTogether';
       =javascript_include_tag "http://s7.addthis.com/js/250/addthis_widget.js?pub=dylanhiggins"
+  :javascript
+    var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+    document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    try {
+      var pageTracker = _gat._getTracker("UA-4735277-4");
+      pageTracker._trackPageview();
+    } catch(err) {}

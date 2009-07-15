@@ -3,3 +3,14 @@
 # To ban all spiders from the entire site uncomment the next two lines:
 # User-Agent: *
 # Disallow: /
+User-Agent: *
+Allow: /
+
+Disallow: /css/
+Disallow: /images/
+Disallow: /javascripts/
+Disallow: /savers/
+Disallow: /donors/
+Disallow: /organizations/
+
+Sitemap: http://www.savetogether.org/sitemap.xml
