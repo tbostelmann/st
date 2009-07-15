@@ -5,7 +5,15 @@
   - else
     %p
       = image_tag "#{image_path('titles/domore.gif')}"
-  %table{:width =>"96%", :cellspacing => "0", :callpadding => "0", :border => "0", :align => "center"}
+  %table{:width =>"96%", :cellspacing => "10", :callpadding => "0", :border => "0", :align => "center"}
+    %tr
+      %td{:valign => "top", :align =>"left"}
+        %div{:style => "float: left; width: 100%"}
+          - if current_user && (!current_user.description || !current_user.avatar)
+            %br
+            %span.text12GreenBold
+              = link_to "(Click here to create / update your profile)", edit_donor_path(current_user)
+
     %tr
       %td{:valign => "top", :align =>"left"}
         %span.text12GreenTitle
@@ -60,11 +68,4 @@
         = render :partial => 'users/invite'
         %p
         = render :partial => 'users/web20'
-        
-        %br
-        %br
-        %div{:style => "float: left; width: 100%"}
-          - if current_user && (!current_user.description || !current_user.avatar)
-            %br
-            %span.text12GreenBold
-              = link_to "Click here to create / update your profile", edit_donor_path(current_user)
+       
