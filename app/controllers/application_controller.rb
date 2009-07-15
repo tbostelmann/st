@@ -36,6 +36,24 @@ class ApplicationController < ActionController::Base
     end
     return false
   end
+
   # --------------------------------------------------------------------------
+  # overide the base action to add logging set handy vars
+  def process(request, response, method = :perform_action, *arguments)
+    @method_name="#{request.symbolized_path_parameters[:controller].capitalize}.#{request.symbolized_path_parameters[:action]}"
+    @request_guid = ActiveSupport::SecureRandom.base64(32)
+    logger.prefix = @request_guid
+    super
+  end
+
+  def perform_action
+    logger.debug{"start: #{@method_name}"}
+    logger.debug{"session: #{session.inspect}"}
+    super
+    logger.debug{"end: #{@method_name}"}
+  end
+  # --------------------------------------------------------------------------
+
+
 
 end
