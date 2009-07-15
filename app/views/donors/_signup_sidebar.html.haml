@@ -6,8 +6,9 @@
       %p
         %span.text12
           =:after_signing_up_youll_receive_an_e_mail_confirmation_message.l
-          =:click_the_activation_link_in_the_e_mail_to_log_in.l
-          - if standalone
+      - if standalone
+        %p
+          %span.text12
             = link_to :already_have_an_account.l, "/login"
 
   / Errors

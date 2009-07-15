@@ -78,7 +78,7 @@ en:
   #en: advertise_on: Advertise on
   advertise_on: Advertise on
   #en: after_signing_up_youll_receive_an_e_mail_confirmation_message: After signing up, you'll receive an e-mail confirmation message.
-  after_signing_up_youll_receive_an_e_mail_confirmation_message: After signing up, you'll receive an e-mail confirmation message.
+  after_signing_up_youll_receive_an_e_mail_confirmation_message: "After signing up, you'll receive an e-mail confirmation message with a link to your profile where you can upload a photo and tell the SaveTogether community more about yourself."
   #en: all_clippings_tagged: All clippings tagged {{tag_name}}
   all_clippings_tagged: All clippings tagged {{tag_name}}
   #en: all_comments: All comments
