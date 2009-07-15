@@ -28,8 +28,7 @@
         = render :partial => "organizations/contact_info", :object => @org.organization_survey, :locals => { :organization_survey => @org.organization_survey }
 
   .relax='&nbsp;'
-  %h2
-    = image_tag 'titles/people-who-have-contributed-to-this-saver.gif'
+  =image_tag "#{image_path('titles/savers_supported_by_this_organization.gif')}", :alt => 'SaveTogether'
 
   .pagination= paginating_links @savers, :params => params if @savers.page_count > 1
 
