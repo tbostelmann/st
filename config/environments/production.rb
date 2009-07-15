@@ -9,8 +9,15 @@ config.action_controller.consider_all_requests_local = false
 config.action_controller.perform_caching             = true
 config.action_view.cache_template_loading            = true
 
+
+# DEBUG
+# Log error messages when you accidentally call methods on nil.
+config.whiny_nils = true
+
+# DEBUG
 # See everything in the log (default is :info)
-config.log_level = :warn
+# config.log_level = :warn
+config.log_level = :debug
 
 # Use a different logger for distributed setups
 # config.logger = SyslogLogger.new
