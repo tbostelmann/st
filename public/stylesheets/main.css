@@ -347,35 +347,46 @@ LABEL {cursor: pointer;}
 	font-weight: bold;
 	line-height: 120%;
 }
+/* Paragraph space above *only* when following H3 headings */
+.content .block H3 + P {
+  margin-top: 12px;
+}
 .content .block UL {
+	font-size: 12px;
+	color: #4d4a43;
+}
+.content .block UL.horiz {
   margin: 10px 0px 10px 0px;
   padding: 0px 0px 10px 0px;
 	color: #5b930d;
   list-style: none;
 }
-.content .block UL.last {
+.content .block UL.horiz.last {
   padding-bottom: 15px;
 }
-.content .block LI {
+.content .block .horiz LI {
   float: left;
   font-size: 10px;
-  padding-left:5px;
-  padding-right:5px;
+  padding-left: 0px;
+  padding-right: 5px;
+}
+
+/* This applies to all siblings of an LI, i.e. the 2nd thru N LIs in a list */
+/* neat - it allows us to make the first LI different, which in this case   */
+/* allows flush padding and no left border - see the LI def above           */
+.content .block .horiz LI + LI {
+  padding-left: 5px;
   border-left-style: solid;
   border-left-color: #a9b270;
   border-left-width: 1px;
 }
-.content .block LI.first {
-  padding-left:0px;
-  border:none;
-}
 .content .block UL.condensed {
-  padding-bottom:5px;
+  padding-bottom: 5px;
 }
 .content .block UL.condensed.last {
-  padding-bottom:15px;
+  padding-bottom: 15px;
 }
-.content .block .condensed LI {
+.content .block .condensed.horiz LI {
   padding-left: 0px;
   padding-right: 15px;
   border: none;
@@ -406,11 +417,11 @@ LABEL {cursor: pointer;}
 
 /*Footer*/
 .footer {
-     float: left;
-     width: 100%;
-	 font-family: Arial, Helvetica, sans-serif;
-	 padding-bottom: 20px;
-	 text-align: center;
+  float: left;
+  width: 100%;
+	font-family: Arial, Helvetica, sans-serif;
+	padding-bottom: 20px;
+	text-align: center;
 }
 .footer UL {
 	padding: 0;
