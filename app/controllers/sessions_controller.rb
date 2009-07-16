@@ -2,6 +2,11 @@
 class SessionsController < BaseController
   def create
 
+    # TODO this should be rethought in light of the big comment below AND the fact
+    # that we now have pages that are restricted by login - like profile edit. In that
+    # case we want to redirect after to the user's requested page (the profile) but
+    # can't with this logic, and too late to fix for 1.0
+    
     store_current_location
 
     self.current_user = User.authenticate(params[:login], params[:password])

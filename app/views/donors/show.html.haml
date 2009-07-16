@@ -36,7 +36,7 @@
 
   .relax='&nbsp;'
   %h2
-    = "Savers You have Contributed to"
+    =image_tag "#{image_path('titles/savers_you_have_contributed_to.gif')}", :alt => :savers_you_have_contributed_to.l
 
   .pagination= paginating_links @savers, :params => params if @savers.page_count > 1
 
