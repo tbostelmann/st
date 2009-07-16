@@ -6,6 +6,7 @@ meta_description: 'A description of your community for use in META tags.'
 meta_keywords: 'keywords for use in META tags'
 #sections_enabled: ['photos', 'posts', 'clippings', 'contests', 'categories', 'events']
 #sections_enabled: ['photos']
+exception_notification_email: "youremailaddress@example.com"
 paypal_account: "tom@savetogether.org"
 app_url: "http://localhost:3000"
 paypal_url: "https://www.sandbox.paypal.com/cgi-bin/webscr"
