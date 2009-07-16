@@ -1,5 +1,8 @@
 class CreateConfigurationData < ActiveRecord::Migration
   def self.up
+    require 'action_controller'
+    require 'action_controller/test_process.rb'
+
     Country.destroy_all
     State.destroy_all
     MetroArea.destroy_all
@@ -44,6 +47,13 @@ class CreateConfigurationData < ActiveRecord::Migration
       :profile_public => true,
       :role => Role[:member])
     stOrg.activate
+    photo = Photo.new(
+            :name => "SaveTogether Logo",
+            :uploaded_data => ActionController::TestUploadedFile.new("#{RAILS_ROOT}/test/files/SaveTogetherLogoLeaf.jpg", "image/jpg"),
+            :user => stOrg)
+    photo.save
+    stOrg.avatar = photo
+    stOrg.save
 
     paypal = Organization.create!(
       :first_name => 'Paypal',
