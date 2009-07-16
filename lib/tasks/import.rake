@@ -70,8 +70,8 @@ namespace :import do
           metro_area = MetroArea.create!(:name => saver_data['metro_area'], :state => state, :country => us)
         end
         saver = Saver.create!(
-          :login => login,
-          :login_confirmation => login,
+          :login => saver_data['login'],
+          :login_confirmation => saver_data['login'],
           :first_name => saver_data['first_name'],
           :last_name => saver_data['last_name'],
           :description => saver_data['description'].gsub(/\n/, "<br>"),
