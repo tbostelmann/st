@@ -2,6 +2,7 @@
 # Likewise, all the methods added will be available for all controllers.
 
 class ApplicationController < ActionController::Base
+  include ExceptionNotifiable
   helper :all # include all helpers, all the time
   filter_parameter_logging :password #prevent logging of password param
   # See ActionController::RequestForgeryProtection for details
@@ -34,6 +35,17 @@ class ApplicationController < ActionController::Base
       # show the normal stacktrace to aid in debugging
       super exception 
     end
+
+    deliverer = self.class.exception_data
+    data = case deliverer
+      when nil then {}
+      when Symbol then send(deliverer)
+      when Proc then deliverer.call(self)
+    end
+
+    ExceptionNotifier.deliver_exception_notification(exception, self,
+      request, data)
+
     return false
   end
 
