@@ -30,6 +30,7 @@ namespace :import do
         org.activate
         org_survey = OrganizationSurvey.create!(
           :organization => org,
+          :contact_email => org_data['contact_email'],
           :year_founded => org_data['year_founded'],
           :annual_operating_expenses => org_data['annual_operating_expenses'],
           :total_matched_accounts => org_data['total_matched_accounts'],

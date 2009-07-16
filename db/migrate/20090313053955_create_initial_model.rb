@@ -39,6 +39,7 @@ class CreateInitialModel < ActiveRecord::Migration
 
     create_table :organization_surveys do |t|
       t.integer :organization_id
+      t.string :contact_email
       t.string :year_founded
       t.string :annual_operating_expenses
       t.integer :total_matched_accounts

@@ -21,6 +21,7 @@
 
 os1:
     organization: earn
+    contact_email: sfearn@savetogether.org
     year_founded: 1990
     annual_operating_expenses: 100K
     total_matched_accounts: 100
