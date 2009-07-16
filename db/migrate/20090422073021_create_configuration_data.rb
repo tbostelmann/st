@@ -12,32 +12,22 @@ class CreateConfigurationData < ActiveRecord::Migration
     ma = State.create!(:name => "MA")
 
     sanfran = MetroArea.create!(:name => 'San Francisco', :state => ca, :country => us)
-    seattle = MetroArea.create!(:name => 'Seattle', :state => wa, :country => us)
     spokane = MetroArea.create!(:name => 'Spokane', :state => wa, :country => us)
-    allston = MetroArea.create!(:name => 'Allston', :state => ma, :country => us)
-    sanjose = MetroArea.create!(:name => 'San Jose', :state => ca, :country => us)
-
-    sanfran = MetroArea.find(:first, :conditions => {:name => 'San Francisco'})
-    seattle = MetroArea.find(:first, :conditions => {:name => 'Seattle'})
-    lawrence = MetroArea.find(:first, :conditions => {:name => 'Lawrence'})
-    sanjose = MetroArea.find(:first, :conditions => {:name => 'San Jose'})
+    boston = MetroArea.create!(:name => 'Boston', :state => ma, :country => us)
 
     education = AssetType.create! :asset_name => "Education"
     home = AssetType.create! :asset_name => "Home"
     business = AssetType.create! :asset_name => "Business"
 
     admin = Donor.create!(
-      :login => "admin@savetogether.org",
-      :login_confirmation => "admin@savetogether.org",
-      :first_name => "Tom",
-      :last_name => "B",
+      :login => "administrator@savetogether.org",
+      :login_confirmation => "administrator@savetogether.org",
+      :first_name => "Administrator",
+      :last_name => "SaveTogether",
       :description => "Person with adminstrator role",
       :salt => "7e3041ebc2fc05a40c60028e2c4901a81035d3cd",
       :crypted_password => "00742970dc9e6319f8019fd54864d3ea740f04b1", # test
-      :state => wa,
-      :metro_area => seattle,
       :birthday => 30.years.ago,
-      :gender => "M",
       :activities_count => 0,
       :role => Role[:admin])
     admin.activate    
@@ -49,8 +39,6 @@ class CreateConfigurationData < ActiveRecord::Migration
       :description => "<p>SaveTogether description.</p>",
       :salt => "7e3041ebc2fc05a40c60028e2c4901a81035d3cd",
       :crypted_password => "00742970dc9e6319f8019fd54864d3ea740f04b1", # test
-      :state => wa,
-      :metro_area => seattle,
       :birthday => 30.years.ago,
       :activities_count => 0,
       :profile_public => true,
@@ -64,8 +52,6 @@ class CreateConfigurationData < ActiveRecord::Migration
       :description => "<p>Paypal description.</p>",
       :salt => "7e3041ebc2fc05a40c60028e2c4901a81035d3cd",
       :crypted_password => "00742970dc9e6319f8019fd54864d3ea740f04b1", # test
-      :state => wa,
-      :metro_area => seattle,
       :birthday => 30.years.ago,
       :activities_count => 0,
       :profile_public => true,
