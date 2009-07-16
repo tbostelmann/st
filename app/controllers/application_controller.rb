@@ -28,14 +28,6 @@ class ApplicationController < ActionController::Base
   PRODUCTION_LIKE_ENVIRONMENTS = [ 'production', 'demo' ]
 
   def rescue_action ( exception )
-    if PRODUCTION_LIKE_ENVIRONMENTS.include?(RAILS_ENV)
-      # show only a pretty error page
-      render :template => "common/general_error.html.erb" and return false
-    else
-      # show the normal stacktrace to aid in debugging
-      super exception 
-    end
-
     deliverer = self.class.exception_data
     data = case deliverer
       when nil then {}
@@ -45,6 +37,14 @@ class ApplicationController < ActionController::Base
 
     ExceptionNotifier.deliver_exception_notification(exception, self,
       request, data)
+
+    if PRODUCTION_LIKE_ENVIRONMENTS.include?(RAILS_ENV)
+      # show only a pretty error page
+      render :template => "common/general_error.html.erb" and return false
+    else
+      # show the normal stacktrace to aid in debugging
+      super exception 
+    end
 
     return false
   end
