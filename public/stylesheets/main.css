@@ -344,6 +344,9 @@ LABEL {cursor: pointer;}
 	color: #000;
 	font-size: 11px;
 }
+.content .block H2.error-page {
+	color: #EC911E;  
+}
 .content .block H3 {
 	font-size: 16px;
 	color: #EC911E;
