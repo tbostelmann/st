@@ -63,6 +63,18 @@ LABEL {cursor: pointer;}
   font-size: 12px;
   font-weight: bold;
 }
+.header-form .link-bar {
+  text-align: right;
+  margin-top: 10px;
+}
+.header-form .link-bar .anchor-right {
+  float: right;
+  margin-left: 15px;
+}
+.header-form .link-bar A {
+  font-size: 12px;
+  font-weight: bold;
+}
 .button {
 	float: right;
 	width: 26px;
