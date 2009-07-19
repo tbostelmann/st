@@ -1,4 +1,6 @@
-%div{:class => "saver #{(saver_counter.odd? ? 'right' : '')} #{((@savers.size - 3) < saver_counter ? 'no-border' : '')}"}
+- last = @savers.size - 1
+- next_last = last - 1
+%div{:class => "saver #{'right' if saver_counter.odd?} #{'no-border' if saver_counter.even? && saver_counter >= next_last || saver_counter.odd? && saver_counter == last}"}
   .info
     -# Match Info
     %p.large-text= "#{saver.matched_amount.format(:no_cents)} (#{saver.requested_match_amount.format(:no_cents)} requested)"
