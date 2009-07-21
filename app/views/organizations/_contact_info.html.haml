@@ -4,7 +4,10 @@
       %td.label
         = "Web Site:"
       %td{:align => "right"}
-        %span.request-values= link_to @org.web_site_url
+        %span.request-values
+          -# Apparently have to handcraft the anchor - using link_to *always* discovers the org
+          -# and builds a relative link to the organization, even tho' the url property is specified
+          %a{:href => "http://#{@org.web_site_url}"}=@org.web_site_url
   %tr
     %td.label
       ="Email Contact:"
