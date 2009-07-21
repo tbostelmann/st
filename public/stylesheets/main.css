@@ -522,7 +522,8 @@ LABEL {cursor: pointer;}
 	margin-top: 0;
 	margin-bottom: 10px;
 }
-.content .about-us H4 A {
+.content .about-us H4 EM {
+  font-style: normal;
   padding-right: 3px;
   margin-right: 6px;
   border-right-style: solid;
