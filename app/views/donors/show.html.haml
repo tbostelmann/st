@@ -10,24 +10,20 @@
 
   .about-saver
     .box.wide
-      .box-bottom
-        .small-column
-          %table{:width => "100%", :cellpadding => "2"}
-            - if @donor.eql?(current_user)
+      - if @donor.eql?(current_user)
+        .box-bottom
+          .small-column
+            %table{:width => "100%", :cellpadding => "2"}
               %tr
                 %td
                   %span.text12GreenTitle
                     =:manage_my.l
-            %tr
-              %td
-                =link_to "&raquo; #{:profile.l}", edit_donor_path(@donor)
-            %tr
-              %td
-                =link_to "&raquo; #{:account_settings.l}", edit_account_user_path(@donor)
-            - if current_user && current_user.admin?
               %tr
                 %td
-                  =link_to "&raquo; #{:admin_dashboard.l}", admin_dashboard_path
+                  =link_to "&raquo; #{:profile.l}", edit_donor_path(@donor)
+              %tr
+                %td
+                  =link_to "&raquo; #{:account_settings.l}", edit_account_user_path(@donor)
 
     .relax='&nbsp;'
     %h3= :about_me.l
