@@ -15,9 +15,11 @@ class Pledge < Invoice
   belongs_to :donor 
 
   def add_donation(donation)
-    remove_donation_with_to_user_id(donation.to_user_id)
-    donation.invoice = self
-    donations << donation
+    unless donation == nil
+      remove_donation_with_to_user_id(donation.to_user_id)
+      donation.invoice = self
+      donations << donation
+    end
   end
 
   def remove_donation_with_to_user_id(to_user_id)

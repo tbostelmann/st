@@ -139,10 +139,12 @@ class PledgesController < BaseController
 
   def add_donation_to_pledge
     @pledge = find_pledge
-    donation = Donation.new(params[:donation])
-    @pledge.add_donation(donation)
-    @pledge.save!
-    @pledge = find_pledge
+    if params[:donation]
+      donation = Donation.new(params[:donation])
+      @pledge.add_donation(donation)
+      @pledge.save!
+      @pledge = find_pledge
+    end
   end
 
   def update_pledge_with_donor

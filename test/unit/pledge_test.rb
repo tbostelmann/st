@@ -17,6 +17,13 @@ class PledgeTest < ActiveSupport::TestCase
     d = pledge.find_donation_with_to_user_id(donation.to_user_id)
     assert d.amount = donation.amount
   end
+  
+  test "cannot add nil donation to pledge" do
+    pledge = invoices(:pledge)
+    assert_nothing_raised(NoMethodError) {
+      pledge.add_donation(nil)
+    }
+  end
 
   test "remove donation from pledge" do
     pledge = invoices(:pledge)

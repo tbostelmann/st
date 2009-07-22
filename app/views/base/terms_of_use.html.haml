@@ -1,5 +1,7 @@
 .content.single-column
   .block.no-border
+    .backlink
+      =link_to "&laquo; #{:back.l}", url_for(:back)
     %h3
       TERMS AND CONDITIONS OF USE (Last Updated July 14, 2009)
     %h4
@@ -105,4 +107,6 @@
       We reserve the right to change these Terms of Use, and other information available on the Website, without notice, and all such modifications shall automatically become part of these Terms of Use and shall be effective once posted by SaveTogerther on the Website. These conditions set out the entire agreement between SaveTogether and you relating to your use of the Program and the Website.
     %p
       © 2009 SaveTogether. All rights reserved.  
-
+    .backlink
+      =link_to "&laquo; #{:back.l}", url_for(:back)
+    
