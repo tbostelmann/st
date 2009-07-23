@@ -184,6 +184,7 @@ LABEL {cursor: pointer;}
 }
 .featured-savers {
   margin-top: 12px;
+  width: 100%;
 }
 .featured-savers .heading {
   float:left;
@@ -191,7 +192,7 @@ LABEL {cursor: pointer;}
 .featured-savers .link {
   padding-top: 14px;
 }
-.featured-savers .link A:VISITED {
+.featured-savers .link A, .featured-savers .link A:VISITED {
   color: #a9b270;
 }
 .saver {
