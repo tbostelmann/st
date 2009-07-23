@@ -1,0 +1,15 @@
+%table
+  %tr
+    %td
+      Picture
+    %td
+      Saver
+    %td
+      Program
+    %td
+      Number of Donations
+    %td
+      Totaling
+  
+    - grouped_donations.keys.sort{|p1, p2| p1.first_name <=> p2.first_name}.each do |party|
+      = render :partial => "pledges/contributions/beneficiaries/donation", :locals => {:party => party, :number_donations => grouped_donations[party].size, :donations_total => grouped_donations[party].collect(&:cents).sum}

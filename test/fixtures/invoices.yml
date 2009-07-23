@@ -26,3 +26,20 @@ pledge3:
 pledge4:
     type: Pledge
     donor: donor3
+
+first_generous_pledge:
+  type: Pledge
+  donor: generous_donor
+
+second_generous_pledge:
+  type: Pledge
+  donor: generous_donor
+
+third_generous_pledge:
+  type: Pledge
+  donor: generous_donor
+
+fourth_generous_pledge:
+  type: Pledge
+  donor: generous_donor
+  

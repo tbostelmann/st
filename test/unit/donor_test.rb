@@ -81,6 +81,27 @@ class DonorTest < ActiveSupport::TestCase
     end
   end
   
+  test "donors can summarize donation history" do
+    donor = users(:generous_donor)
+    donations_grouped_by_beneficiaries = donor.donations_grouped_by_beneficiaries
+
+    test_groups = donor.donations_given.find(:all).group_by{ |donation| donation.to_user }
+    
+    assert_equal test_groups.size, donations_grouped_by_beneficiaries.size,
+      "Expected number of beneficiaries differs from test groups"
+
+    test_groups.keys.each do |bene|
+      assert_equal test_groups[bene].size, donations_grouped_by_beneficiaries[bene].size,
+        "Expected number of donations for a beneficiary differs from test group"
+    end
+    
+    test_groups.keys.each do |bene|
+      assert_equal test_groups[bene].collect(&:cents).sum, donations_grouped_by_beneficiaries[bene].collect(&:cents).sum,
+        "Expected sum of donations for a beneficiary differs from test group"
+    end
+    
+  end
+  
   protected
   
   def new_test_donor(options = {})

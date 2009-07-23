@@ -80,3 +80,117 @@ donation7:
   from_user: donor3
   status: Pending
   type: Donation
+
+generous_donation_1:
+  cents: 5000
+  invoice: generous_pledge_1
+  to_user: deserving_saver_1
+  from_user: generous_donor
+  status: Processed
+  type: Donation
+
+generous_donation_2:
+  cents: 2500
+  invoice: generous_pledge_1
+  to_user: deserving_saver_2
+  from_user: generous_donor
+  status: Processed
+  type: Donation
+
+generous_donation_3:
+  cents: 7500
+  invoice: generous_pledge_1
+  to_user: savetogether
+  from_user: generous_donor
+  status: Processed
+  type: Donation
+
+generous_donation_4:
+  cents: 5000
+  invoice: generous_pledge_2
+  to_user: deserving_saver_2
+  from_user: generous_donor
+  status: Processed
+  type: Donation
+
+generous_donation_5:
+  cents: 2500
+  invoice: generous_pledge_2
+  to_user: deserving_saver_3
+  from_user: generous_donor
+  status: Processed
+  type: Donation
+
+generous_donation_6:
+  cents: 2500
+  invoice: generous_pledge_2
+  to_user: deserving_saver_4
+  from_user: generous_donor
+  status: Processed
+  type: Donation
+
+generous_donation_7:
+  cents: 6000
+  invoice: generous_pledge_2
+  to_user: savetogether
+  from_user: generous_donor
+  status: Processed
+  type: Donation
+
+generous_donation_8:
+  cents: 6500
+  invoice: generous_pledge_3
+  to_user: deserving_saver_4
+  from_user: generous_donor
+  status: Processed
+  type: Donation
+
+generous_donation_9:
+  cents: 3000
+  invoice: generous_pledge_3
+  to_user: deserving_saver_5
+  from_user: generous_donor
+  status: Processed
+  type: Donation
+
+generous_donation_10:
+  cents: 2500
+  invoice: generous_pledge_4
+  to_user: deserving_saver_4
+  from_user: generous_donor
+  status: Processed
+  type: Donation
+
+generous_donation_11:
+  cents: 3500
+  invoice: generous_pledge_4
+  to_user: deserving_saver_5
+  from_user: generous_donor
+  status: Processed
+  type: Donation
+
+generous_donation_12:
+  cents: 5000
+  invoice: generous_pledge_4
+  to_user: deserving_saver_6
+  from_user: generous_donor
+  status: Processed
+  type: Donation
+
+generous_donation_13:
+  cents: 6500
+  invoice: generous_pledge_4
+  to_user: deserving_saver_7
+  from_user: generous_donor
+  status: Processed
+  type: Donation
+
+generous_donation_14:
+  cents: 6000
+  invoice: generous_pledge_4
+  to_user: savetogether
+  from_user: generous_donor
+  status: Processed
+  type: Donation
+
+  

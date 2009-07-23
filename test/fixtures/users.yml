@@ -182,6 +182,31 @@ saver6:
   requested_match_cents: 400000
   type: Saver
 
+<% for i in 1..7 %>
+deserving_saver_<%= i %>:
+  login: deserving<%= i %>@example.com
+  first_name: Deserving_<%= i %>
+  last_name: Saver
+  description: Compelling story that speaks to generous donors
+  salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
+  crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
+  created_at: <%= 5.days.ago.to_s :db %>
+  activated_at: <%= 5.days.ago.to_s :db %>
+  activation_code:
+  state: california
+  metro_area: sanfrancisco
+  profile_public: true
+  login_slug: deserving<%= i %>_example_com
+  birthday: <%= 40.years.ago.to_s :db %>
+  gender: F
+  activities_count: 0
+  role_id: 3
+  asset_type: home
+  organization: earn
+  requested_match_cents: 400000
+  type: Saver
+<% end %>
+
 earn:
   first_name: EARN
   login: earn@earn.org
@@ -321,6 +346,23 @@ minUser:
   role_id: 3
   type: Donor
   
+generous_donor:
+  login: gennydonor@example.com
+  first_name: Genny
+  last_name: Donor
+  description: "I love SaveTogether and want to give to as many in need as possible, and several I want to give to multiple times"
+  salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
+  crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
+  created_at: <%= 1.days.ago.to_s :db %>
+  activated_at: <%= 30.minutes.ago.to_s :db %>
+  activation_code:
+  sb_posts_count: 2
+  sb_last_seen_at: <%= 5.minutes.ago.to_s :db %>
+  login_slug: gennydonor_example_com
+  birthday: <%= 15.years.ago.to_s :db %>
+  role_id: 3
+  type: Donor
+
 admin:
   login: admin@example.com
   first_name: Ad

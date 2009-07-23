@@ -8,25 +8,25 @@
   -# Saver name (Organization ignored)
   %td{:class => "text12", :valign => "middle", :align => "left"}
     %span.text12GreenBold
-      = render :partial => 'pledges/donation/saver_name', :locals => {:to_user => donation.to_user}
+      = render :partial => 'pledges/invoice/donation/saver_name', :locals => {:to_user => donation.to_user}
 
   -# Sponsoring Organization name (or SaveTogether, if ST donation)
   %td{:class => "text12", :valign => "middle", :align => "left"}
-    = render :partial => 'pledges/donation/organization', :locals => {:to_user => donation.to_user}
+    = render :partial => 'pledges/invoice/donation/organization', :locals => {:to_user => donation.to_user}
 
   -# Goal Description (or donation description, if ST donation)
   %td{:class => "text12", :valign => "middle", :align => "left"}
-    = render :partial => 'pledges/donation/goal_description', :locals => {:to_user => donation.to_user}
+    = render :partial => 'pledges/invoice/donation/goal_description', :locals => {:to_user => donation.to_user}
 
   -# Donation amounts controls
   - form_for donation, :url => { :controller => :pledges, :action => :update_donation_amount } do |f|
     %td{:class => "text12", :valign => "middle", :align => "left"}
-      = render :partial => 'pledges/donation/amount', :locals => {:to_user => donation.to_user, :form => f}
+      = render :partial => 'pledges/invoice/donation/amount', :locals => {:to_user => donation.to_user, :form => f}
 
   -# Update and optional Delete controls
   %td{:class => "text12", :valign => "middle", :align => "center"}
     - form_for donation, :url => { :controller => :pledges, :action => :remove_from_pledge } do |f|
-      = render :partial => 'pledges/donation/controls', :locals => {:to_user => donation.to_user}
+      = render :partial => 'pledges/invoice/donation/controls', :locals => {:to_user => donation.to_user}
 
 -# Spacer Row
 %tr{:valign => "top", :align => "left"}

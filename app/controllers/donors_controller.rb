@@ -65,8 +65,7 @@ class DonorsController < BaseController
     unless @donor.eql?(current_user) || @donor.profile_public
       redirect_to home_path
     end
-    @photos = @donor.photos.find(:all, :limit => 5)
-    @savers = @donor.beneficiaries.find(:all, :page => {:current => params[:page], :size => 20})
+    @grouped_donations = @donor.donations_grouped_by_beneficiaries
   end
 
   def signup_or_login

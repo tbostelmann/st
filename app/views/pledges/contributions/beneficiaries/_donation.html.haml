@@ -1,0 +1,12 @@
+%tr
+  %td
+    =image_tag party.avatar_photo_url(:thumb)
+  %td
+    =party.display_name
+  %td
+    =party.organization.display_name unless party.organization == nil
+  %td
+    =number_donations
+  %td
+    =donations_total
+
