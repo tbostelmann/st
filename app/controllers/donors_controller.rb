@@ -1,5 +1,9 @@
 class DonorsController < BaseController
-  
+
+  def index
+    @donors = Donor.find_all_by_anonymous(false)
+  end
+
   def new
     @donor = Donor.new
 

@@ -79,6 +79,12 @@ class DonorsControllerTest < ActionController::TestCase
     assert !session[:pledge_id].nil?
     assert !session[:saver_id].nil?
   end
+  
+  test "Donors can be indexed" do
+    get :index
+    assert_template 'index'
+    assert_response :success
+  end
 
   protected
   

@@ -1,0 +1,24 @@
+%table{:width => "96%", :cellspacing => "0", :cellpadding => "5", :border => "0", :align => "center"}
+
+  -# Headings
+  %tr
+    %td{:class => "large-text", :height => "36", :width => "15%", :bgcolor => "#f8faf5"}
+      %p.large-text
+        Photo
+    %td{:class => "large-text", :height => "36", :width => "15%", :bgcolor => "#f8faf5"}
+      %p.large-text
+        Donor Name
+    %td{:class => "large-text", :height => "36", :width => "55%", :bgcolor => "#f8faf5"}
+      %p.large-text
+        About Donor
+    %td{:class => "large-text", :height => "36", :width => "15%", :bgcolor => "#f8faf5", :align => "center"}
+      %p.large-text
+        Most Recent Donation
+
+  -# Spacer
+  %tr
+    %td{:valign => "middle", :align => "left", :colspan => "4"}
+      %span{:style => "background-repeat: repeat-x;"}
+        %img{:height => "2", :width => "2", :src => "#{image_path('icons/spacer.gif')}"}
+
+  =render :partial => "donors/community/donor", :collection => donors
