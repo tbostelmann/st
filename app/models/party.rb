@@ -53,10 +53,10 @@ class Party < User
   composed_of :requested_match_amount, :class_name => "Money", :mapping => [%w(requested_match_cents cents)], :converter => Proc.new { |value| value.to_money }
 
   def display_name
-    if profile_public
-      first_name
-    else
+    if anonymous
       'Anonymous'
+    else
+      first_name
     end 
   end
 
@@ -76,6 +76,21 @@ class Party < User
     end
   end
 
+  # Virtual functions for dealing with anonymity
+  def anonymous
+    !self.profile_public
+  end
+  
+  def anonymous=(is_anonymous)
+    self.profile_public = !is_anonymous
+  end
+  
+  # Virtual finder for anonymity
+  def self.find_all_by_anonymous(is_anonymous)
+    # Avoid administrators - posssible with current integration against CE
+    find_all_by_profile_public(!is_anonymous).collect!{|p| p if p.member?}.compact
+  end
+  
   def self.build_conditions_for_search(search)
     cond = Caboose::EZ::Condition.new
 
