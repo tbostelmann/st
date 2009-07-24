@@ -148,6 +148,19 @@ class DonorTest < ActiveSupport::TestCase
     
   end
   
+  test "donors can discover most recent donation to a saver" do
+    
+    dquery = query_donor_for_most_recent_donation(users(:generous_donor))
+    dapi = users(:generous_donor).most_recent_donation
+    
+    assert_equal dquery, dapi, "Most recent donation unexpectedly is no longer 'most recent'"
+  end
+
+  test "donors without any donations have no recent donation, by definition" do
+    dapi = users(:donor_with_no_donations).most_recent_donation
+    assert_nil dapi
+  end
+  
   protected
   
   def new_test_donor(options = {})
@@ -167,6 +180,14 @@ class DonorTest < ActiveSupport::TestCase
     @orig_all_donors_count       = Donor.find(:all).size
     @orig_public_donors_count    = Donor.find_all_by_anonymous(false).size
     @orig_anonymous_donors_count = Donor.find_all_by_anonymous(true).size
+  end
+  
+  def query_donor_for_most_recent_donation(donor)
+    donor.donations_given.find(
+        :first,
+        :order => "created_at desc",
+        :joins => "join users on to_user_id = users.id",
+        :conditions => "users.type = 'Saver'")
   end
 
 end

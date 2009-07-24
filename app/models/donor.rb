@@ -50,8 +50,10 @@ class Donor < Party
   has_many :all_donations_given, :class_name => 'Donation', :foreign_key => :from_user_id
   has_many :donations_given, :class_name => 'Donation', :foreign_key => :from_user_id,
            :conditions => "status = '#{LineItem::STATUS_PROCESSED}' OR status = '#{LineItem::STATUS_COMPLETED}'"
-  has_many :beneficiaries, :through => :donations_given, :source => :to_user,
-           :uniq => true, :conditions => "users.type = 'Saver'"
+  has_many :beneficiaries, :through => :donations_given,
+           :source => :to_user,
+           :conditions => "users.type = 'Saver'",
+           :uniq => true
   
   validates_presence_of :first_name
   validates_presence_of :last_name
@@ -75,6 +77,14 @@ class Donor < Party
     find_all_by_profile_public(!is_anonymous).collect!{|p| p if p.member?}.compact
   end
   
+  def most_recent_donation
+    donations_given.find(
+        :first,
+        :order => "created_at desc",
+        :joins => "join users on to_user_id = users.id",
+        :conditions => "users.type = 'Saver'")
+  end
+    
   def activate
     self.activated_at = Time.now.utc
     self.activation_code = nil
