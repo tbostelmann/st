@@ -263,10 +263,20 @@ paypal:
   role_id: 3
   type: Organization
 
+<% for i in 1..4 %>
+<% if i == 1 %>
 donor:
   login: donor@example.com
-  first_name: Duper
-  last_name: Donor1
+  email: donor@example.com
+  login_slug: donor_example_com
+<% else %>
+donor<%= i %>:
+  login: donor<%= i %>@example.com
+  email: donor<%= i %>@example.com
+  login_slug: donor<%= i %>_example_com
+<% end %>
+  first_name: Super
+  last_name: Donor<%= i %>
   description: I am happy to be here. Community rawks!
   salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
   crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
@@ -275,59 +285,27 @@ donor:
   activation_code: 
   sb_posts_count: 2
   sb_last_seen_at: <%= 5.minutes.ago.to_s :db %>
-  login_slug: donor
   birthday: <%= 15.years.ago.to_s :db %>  
   role_id: 3
   type: Donor
-  
-donor2:
-  login: donor2@example.com
-  first_name: Duper
-  last_name: Donor2
-  description: I am happy to be here. Community rawks!
+<% end %>
+
+anonymous_donor:
+  login: anonymous_donor@example.com
+  email: anonymous_donor@example.com
+  first_name: Anonymous
+  last_name: Donor
+  description: It's none of your business
+  profile_public: false
   salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
   crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
   created_at: <%= 1.days.ago.to_s :db %>
-  activated_at: <%= 30.minutes.ago.to_s :db %>
-  activation_code:
+  activated_at: <%= 30.minutes.ago.to_s :db %>  
+  activation_code: 
   sb_posts_count: 2
   sb_last_seen_at: <%= 5.minutes.ago.to_s :db %>
-  login_slug: donor2
-  birthday: <%= 15.years.ago.to_s :db %>
-  role_id: 3
-  type: Donor
-  
-donor3:
-  login: donor3@example.com
-  first_name: Duper
-  last_name: Donor3
-  description: I am happy to be here. Community rawks!
-  salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
-  crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
-  created_at: <%= 1.days.ago.to_s :db %>
-  activated_at: <%= 30.minutes.ago.to_s :db %>
-  activation_code:
-  sb_posts_count: 2
-  sb_last_seen_at: <%= 5.minutes.ago.to_s :db %>
-  login_slug: donor3
-  birthday: <%= 15.years.ago.to_s :db %>
-  role_id: 3
-  type: Donor
-  
-donor4:
-  login: donor4@example.com
-  first_name: Duper
-  last_name: Donor4
-  description: I am happy to be here. Community rawks!
-  salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
-  crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
-  created_at: <%= 1.days.ago.to_s :db %>
-  activated_at: <%= 30.minutes.ago.to_s :db %>
-  activation_code:
-  sb_posts_count: 2
-  sb_last_seen_at: <%= 5.minutes.ago.to_s :db %>
-  login_slug: donor4
-  birthday: <%= 15.years.ago.to_s :db %>
+  login_slug: anonymous_donor_example_com
+  birthday: <%= 15.years.ago.to_s :db %>  
   role_id: 3
   type: Donor
 

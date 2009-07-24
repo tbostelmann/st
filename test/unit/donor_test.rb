@@ -70,6 +70,52 @@ class DonorTest < ActiveSupport::TestCase
       assert d.class == Donation
     end
   end
+  
+  test "donors can register as anonymous" do
+    
+    count_donor_space
+    
+    new_test_donor(:first_name => "Anonymous", :anonymous => true).save!
+
+    assert_equal @orig_all_donors_count + 1, Donor.find(:all).size,
+      "Total number of donors didn't increase as expected with addition of anonymous donor"
+    assert_equal @orig_public_donors_count, Donor.find_all_by_anonymous(false).size,
+      "Total number of public donors increased unexpectedly with addition of anonymous donor"
+    assert_equal @orig_anonymous_donors_count + 1, Donor.find_all_by_anonymous(true).size,
+      "Total number of anonymous donors didn't increase as expected with addition of anonymous donor"
+  end
+  
+  test "public donors can update their profile to become anonymous" do
+    
+    count_donor_space
+    
+    public_donor = Donor.find_by_profile_public(true)
+    public_donor.anonymous = true
+    public_donor.save!
+    
+    assert_equal @orig_all_donors_count, Donor.find(:all).size,
+      "Total number of donors increased unexpectedly with update of public donor to anonymous"
+    assert_equal @orig_public_donors_count - 1, Donor.find_all_by_anonymous(false).size,
+      "Total number of public donors remained stable unexpectedly with update of public donor to anonymous"
+    assert_equal @orig_anonymous_donors_count + 1, Donor.find_all_by_anonymous(true).size,
+      "Total number of anonymous donors didn't increase as expected with update of public donor to anonymous"
+  end
+  
+  test "anonymous donors can update their profiles to become public" do
+    
+    count_donor_space
+    
+    anonymous_donor = Donor.find_by_profile_public(false)
+    anonymous_donor.anonymous = false
+    anonymous_donor.save!
+    
+    assert_equal @orig_all_donors_count, Donor.find(:all).size,
+      "Total number of donors increased unexpectedly with update of public donor to anonymous"
+    assert_equal @orig_public_donors_count + 1, Donor.find_all_by_anonymous(false).size,
+      "Total number of public donors didn't increase as expected with update of anonymous donor to public"
+    assert_equal @orig_anonymous_donors_count - 1, Donor.find_all_by_anonymous(true).size,
+      "Total number of anonymous donors remained stable unexpectedly with update of anonymous donor to public"
+  end
 
   test "get a list of savers that the donor has given to" do
     donor = users(:donor)
@@ -114,6 +160,12 @@ class DonorTest < ActiveSupport::TestCase
       :password_confirmation => "foo2thebar",
       :birthday => 21.years.ago
       }.merge(options))
+  end
+  
+  def count_donor_space
+    @orig_all_donors_count       = Donor.find(:all).size
+    @orig_public_donors_count    = Donor.find_all_by_anonymous(false).size
+    @orig_anonymous_donors_count = Donor.find_all_by_anonymous(true).size
   end
 
 end

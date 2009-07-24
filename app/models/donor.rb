@@ -60,6 +60,20 @@ class Donor < Party
     donations_given.find(:all).group_by{ |d| d.to_user }
   end
   
+  # Virtual functions for dealing with anonymity
+  def anonymous
+    !self.profile_public
+  end
+  
+  def anonymous=(is_anonymous)
+    self.profile_public = !is_anonymous
+  end
+  
+  # Virtual finder for anonymity
+  def self.find_all_by_anonymous(is_anonymous)
+    find_all_by_profile_public(!is_anonymous)
+  end
+  
   def activate
     self.activated_at = Time.now.utc
     self.activation_code = nil
