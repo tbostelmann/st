@@ -7,9 +7,10 @@
   %td{:class => "text12", :valign => "middle", :align => "left"}
     = truncate_words(donor.description, 50, "...")
   %td{:class => "text12", :valign => "middle", :align => "center"}
-    - most_recent_saver = donor.most_recent_donation.to_user
-    - if most_recent_saver
-      = link_to((image_tag most_recent_saver.avatar_photo_url(:thumb), :alt => most_recent_saver.display_name), saver_path(most_recent_saver))
+    - most_recent_donation = donor.most_recent_donation
+    - if most_recent_donation
+      - recipient = most_recent_donation.to_user
+      = link_to((image_tag recipient.avatar_photo_url(:thumb), :alt => recipient.display_name), saver_path(recipient))
 
 -# Spacer Row
 %tr{:valign => "top", :align => "left"}
