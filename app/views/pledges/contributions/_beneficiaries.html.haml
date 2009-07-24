@@ -4,23 +4,23 @@
   %tr
     %td{:class => "large-text", :height => "36", :width => "111", :bgcolor => "#f8faf5"}
       %p.large-text
-        Photo
+        =:photo.l
     %td{:class => "large-text", :height => "36", :width => "141", :bgcolor => "#f8faf5"}
       %p.large-text
-        Saver Name
+        =:saver_name.l
     %td{:class => "large-text", :height => "36", :width => "292", :bgcolor => "#f8faf5"}
       %p.large-text
-        Program
+        =:program.l
     %td{:class => "large-text", :height => "36", :width => "292", :bgcolor => "#f8faf5"}
       %p.large-text
-        Goal Description
+        =:goal_description.l
     - if show_totals
       %td{:class => "large-text", :height => "36", :width => "124", :bgcolor => "#f8faf5", :align => "center"}
         %p.large-text
-          Number of Donations
+          =:number_of_donations.l
       %td{:class => "large-text", :height => "36", :width => "83", :bgcolor => "#f8faf5", :align => "center"}
         %p.large-text
-          Total
+          =:total.l
 
   -# Spacer
   %tr
@@ -42,7 +42,7 @@
       %td{:valign => "top", :colspan => "3"}
       %td{:valign => "middle", :align => "right"}
         %span.pledge-total
-          Totals:
+          ="#{:totals.l}:"
       %td{:valign => "middle", :align => "center"}
         %span.pledge-total
           = donations_list.size

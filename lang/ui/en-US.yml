@@ -3,6 +3,8 @@ en:
   a_few_seconds_ago:  a few seconds ago
   #en: about: About
   about: About
+  #en: about_donor: About Donor
+  about_donor: About Donor
   #en: about_me: About Me
   about_me: About Me
   #en: About the Saver
@@ -245,6 +247,8 @@ en:
   comments: Comments
   #en: comments_rss: Comments RSS
   comments_rss: Comments RSS
+  #en: community: Community
+  community: Community
   #en: community_tagline: CommunityEngine Rocks!
   community_tagline: CommunityEngine Rocks!
   #en: compose: Compose
@@ -333,6 +337,8 @@ en:
   donation_amount: ${{amount}}
   #en: donation_amount_to_st: "{{amount}} ({{percent}}%%)"
   donation_amount_to_st: "{{amount}} ({{percent}}%)"
+  #en: donor_name: Donor Name
+  donor_name: Donor Name
   #en: dont_have_an_account: Don't have an account?
   dont_have_an_account: Don't have an account?
   #en: dont_wait_its: Don't wait! It's
@@ -717,6 +723,8 @@ en:
   more_about_you: More about you
   #en: most_active_1_month: Most active (1 month)
   most_active_1_month: Most active (1 month)
+  #en: most_recent_donation: Most Recent Donation
+  most_recent_donation: Most Recent Donation
   #en: my_details: My Details
   my_details: My Details
   #en: my_friends: My Friends
@@ -801,6 +809,8 @@ en:
   notify_of_comments: Notify of comments
   #en: notify_of_friend_requests: Notify of friend requests
   notify_of_friend_requests: Notify of friend requests
+  #en: number_of_donations: Number of Donations
+  number_of_donations: Number of Donations
   #en: offering_was_successfully_created: Offering was successfully created.
   offering_was_successfully_created: Offering was successfully created.
   #en: on_commentable: On
@@ -1222,9 +1232,13 @@ en:
   #en: topics: Topics
   topics: Topics
   #en: topic_deleted: Topic '{{topic}}' was deleted.
-  topic_deleted: Topic '{{topic}}' was deleted.
+  topic_deleted: "Topic '{{topic}}' was deleted."
   #en: topic_locked: Topic locked
   topic_locked: Topic locked
+  #en: total: Total
+  total: Total
+  #en: totals: Totals
+  totals: Totals
   #en: total_users: Total users
   total_users: Total users
   #en: total_votes: Total votes
