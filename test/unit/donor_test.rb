@@ -158,7 +158,8 @@ class DonorTest < ActiveSupport::TestCase
       :login_confirmation => "a@b.com",
       :password => "foo2thebar",
       :password_confirmation => "foo2thebar",
-      :birthday => 21.years.ago
+      :birthday => 21.years.ago,
+      :role => Role[:member]
       }.merge(options))
   end
   

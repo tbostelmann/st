@@ -71,7 +71,8 @@ class Donor < Party
   
   # Virtual finder for anonymity
   def self.find_all_by_anonymous(is_anonymous)
-    find_all_by_profile_public(!is_anonymous)
+    # Avoid administrators - posssible with current integration against CE
+    find_all_by_profile_public(!is_anonymous).collect!{|p| p if p.member?}.compact
   end
   
   def activate
