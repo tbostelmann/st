@@ -1,4 +1,6 @@
 %table{:width => "96%", :cellspacing => "0", :cellpadding => "5", :border => "0", :align => "center"}
+
+  -# Headings
   %tr
     %td{:class => "large-text", :height => "36", :width => "111", :bgcolor => "#f8faf5"}
       %p.large-text
@@ -19,13 +21,32 @@
       %td{:class => "large-text", :height => "36", :width => "83", :bgcolor => "#f8faf5", :align => "center"}
         %p.large-text
           Total
+
+  -# Spacer
   %tr
-    %td{:valign => "middle", :align => "left", "colspan" => "6"}
+    %td{:valign => "middle", :align => "left", :colspan => "6"}
       %span{:style => "background-repeat: repeat-x;"}
         %img{:height => "2", :width => "2", :src => "#{image_path('icons/spacer.gif')}"}
   
-    - grouped_donations.keys.sort{|p1, p2| p1.first_name <=> p2.first_name}.each do |party|
-      - locals = { :party => party, :show_totals => show_totals }
-      - if show_totals
-        - locals.merge!({:number_donations => grouped_donations[party].size, :donations_total => grouped_donations[party].collect(&:cents).sum})
-      = render :partial => "pledges/contributions/beneficiaries/donation", :locals => locals
+  -# The beneficiaries (savers and possibly ST)
+  - grouped_donations.keys.sort{|p1, p2| p1.first_name <=> p2.first_name}.each do |party|
+    - locals = { :party => party, :show_totals => show_totals }
+    - if show_totals
+      - locals.merge!({:number_donations => grouped_donations[party].size, :donations_total => grouped_donations[party].collect(&:cents).sum})
+    = render :partial => "pledges/contributions/beneficiaries/donation", :locals => locals
+  
+  -# Grand total row
+  - if show_totals
+    %tr
+      %td{:valign => "top", :colspan => "4"}
+      %td{:valign => "middle", :align => "right", :colspan => "2"}
+        %span.pledge-total
+          = "Total=#{Money.new(grouped_donations.values.flatten.collect(&:cents).sum).format(:html)}"
+
+    -# Bottom spacer row
+    %tr
+      %td{:height => "7", :valign => "top", :align => "left", :colspan => "4"}
+        %span{:style => "background-repeat: repeat-x;"}
+          %img{:height => "2", :width => "2", :src => "#{image_path('icons/spacer.gif')}"}
+      %td{:height => "7", :valign => "top", :align => "left", :background => "#{image_path('bg/dotted_line.gif')}", :style => "background-repeat: repeat-x;", :colspan => "2"}
+  
