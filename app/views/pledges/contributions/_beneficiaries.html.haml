@@ -37,16 +37,23 @@
   
   -# Grand total row
   - if show_totals
+    - donations_list = grouped_donations.values.flatten
     %tr
-      %td{:valign => "top", :colspan => "4"}
-      %td{:valign => "middle", :align => "right", :colspan => "2"}
+      %td{:valign => "top", :colspan => "3"}
+      %td{:valign => "middle", :align => "right"}
         %span.pledge-total
-          = "Total=#{Money.new(grouped_donations.values.flatten.collect(&:cents).sum).format(:html)}"
+          Totals:
+      %td{:valign => "middle", :align => "center"}
+        %span.pledge-total
+          = donations_list.size
+      %td{:valign => "middle", :align => "center", :colspan => "3"}
+        %span.pledge-total
+          = Money.new(donations_list.collect(&:cents).sum).format(:html)
 
     -# Bottom spacer row
     %tr
-      %td{:height => "7", :valign => "top", :align => "left", :colspan => "4"}
+      %td{:height => "7", :valign => "top", :align => "left", :colspan => "3"}
         %span{:style => "background-repeat: repeat-x;"}
           %img{:height => "2", :width => "2", :src => "#{image_path('icons/spacer.gif')}"}
-      %td{:height => "7", :valign => "top", :align => "left", :background => "#{image_path('bg/dotted_line.gif')}", :style => "background-repeat: repeat-x;", :colspan => "2"}
+      %td{:height => "7", :valign => "top", :align => "left", :background => "#{image_path('bg/dotted_line.gif')}", :style => "background-repeat: repeat-x;", :colspan => "3"}
   
