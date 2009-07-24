@@ -29,7 +29,7 @@
         %img{:height => "2", :width => "2", :src => "#{image_path('icons/spacer.gif')}"}
   
   -# The beneficiaries (savers and possibly ST)
-  - grouped_donations.keys.sort{|p1, p2| p1.first_name <=> p2.first_name}.each do |party|
+  - grouped_donations.keys.sort.each do |party|
     - locals = { :party => party, :show_totals => show_totals }
     - if show_totals
       - locals.merge!({:number_donations => grouped_donations[party].size, :donations_total => grouped_donations[party].collect(&:cents).sum})

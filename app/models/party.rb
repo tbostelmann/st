@@ -63,6 +63,18 @@ class Party < User
   def to_param
     self.id.to_s
   end
+  
+  # Default sorting - Organizations sort below Donors and Savers
+  # otherwise just sort by first names
+  def <=>(other)
+    if self.instance_of?(Organization) && !other.instance_of?(Organization)
+      1
+    elsif !self.instance_of?(Organization) && other.instance_of?(Organization)
+      -1
+    else
+      self.first_name <=> other.first_name
+    end
+  end
 
   def self.build_conditions_for_search(search)
     cond = Caboose::EZ::Condition.new
