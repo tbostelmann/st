@@ -56,11 +56,6 @@ class Donor < Party
   validates_presence_of :first_name
   validates_presence_of :last_name
 
-  # donations_by_saver = generous_donor.donations_given.find(:all).group_by{ |donation| donation.to_user }
-  # donations_by_saver.keys.sort{|s1, s2| s1.first_name <=> s2.first_name}.each do |saver|
-  #  p "Saver #{saver.first_name}: #{donations_by_saver[saver].size} donations totaling: #{donations_by_saver[saver].collect(&:cents).sum} cents"
-  # end
-
   def donations_grouped_by_beneficiaries
     donations_given.find(:all).group_by{ |d| d.to_user }
   end
