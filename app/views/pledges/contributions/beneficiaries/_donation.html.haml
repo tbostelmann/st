@@ -1,12 +1,26 @@
 %tr
-  %td
-    =image_tag party.avatar_photo_url(:thumb)
-  %td
-    =party.display_name
-  %td
-    =party.organization.display_name unless party.organization == nil
-  %td
-    =number_donations
-  %td
-    =donations_total
+  %td{:valign => "middle", :align => "left"}
+    = image_tag party.avatar_photo_url(:thumb)
+  %td{:class => "text12", :valign => "middle", :align => "left"}
+    %span.text12GreenBold
+      = party.display_name.capitalize if party.organization
+  %td{:class => "text12", :valign => "middle", :align => "left"}
+    - if party.organization
+      = party.organization.display_name
+    - else
+      = party.display_name
+  %td{:class => "text12", :valign => "middle", :align => "left"}
+    - if party == Organization.find_savetogether_org
+      = :optional_donation_for_savetogether.l
+    -else
+      = party.asset_type
+  %td{:class => "text12", :valign => "middle", :align => "center"}
+    = number_donations
+  %td{:class => "text12", :valign => "middle", :align => "center"}
+    = Money.new(donations_total).format(:html)
 
+-# Spacer Row
+%tr{:valign => "top", :align => "left"}
+  %td{:height => "2", :valign => "middle", :background => "#{image_path('bg/dotted_line.gif')}", :style => "background-repeat: repeat-x;", :colspan => "6"}
+    %span{:style => "background-repeat: repeat-x;"}
+      %img{:height => "2", :width => "2", :src => "#{image_path('icons/spacer.gif')}"}
