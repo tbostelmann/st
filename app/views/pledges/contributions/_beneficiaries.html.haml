@@ -1,4 +1,4 @@
-%table
+%table{:width => "96%", :cellspacing => "0", :cellpadding => "5", :border => "0", :align => "center"}
   %tr
     %td{:class => "large-text", :height => "36", :width => "111", :bgcolor => "#f8faf5"}
       %p.large-text
@@ -12,16 +12,20 @@
     %td{:class => "large-text", :height => "36", :width => "292", :bgcolor => "#f8faf5"}
       %p.large-text
         Goal Description
-    %td{:class => "large-text", :height => "36", :width => "124", :bgcolor => "#f8faf5", :align => "center"}
-      %p.large-text
-        Number of Donations
-    %td{:class => "large-text", :height => "36", :width => "83", :bgcolor => "#f8faf5", :align => "center"}
-      %p.large-text
-        Total
+    - if show_totals
+      %td{:class => "large-text", :height => "36", :width => "124", :bgcolor => "#f8faf5", :align => "center"}
+        %p.large-text
+          Number of Donations
+      %td{:class => "large-text", :height => "36", :width => "83", :bgcolor => "#f8faf5", :align => "center"}
+        %p.large-text
+          Total
   %tr
     %td{:valign => "middle", :align => "left", "colspan" => "6"}
       %span{:style => "background-repeat: repeat-x;"}
         %img{:height => "2", :width => "2", :src => "#{image_path('icons/spacer.gif')}"}
   
     - grouped_donations.keys.sort{|p1, p2| p1.first_name <=> p2.first_name}.each do |party|
-      = render :partial => "pledges/contributions/beneficiaries/donation", :locals => {:party => party, :number_donations => grouped_donations[party].size, :donations_total => grouped_donations[party].collect(&:cents).sum}
+      - locals = { :party => party, :show_totals => show_totals }
+      - if show_totals
+        - locals.merge!({:number_donations => grouped_donations[party].size, :donations_total => grouped_donations[party].collect(&:cents).sum})
+      = render :partial => "pledges/contributions/beneficiaries/donation", :locals => locals
