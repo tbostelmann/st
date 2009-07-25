@@ -7,9 +7,10 @@
   %p
     = image_tag "#{image_path('titles/savers.gif')}"
 
-  .pagination= paginating_links @savers, :params => params if @savers.page_count > 1
+  %div{:class => "pagination", :style => "margin-top:15px;"}
+    = paginating_links @savers, :params => params if @savers.page_count > 1
 
   = render(:partial => "savers/saver", :collection => @savers)
 
-  %br.clear
-  .pagination= paginating_links @savers, :params => params if @savers.page_count > 1
+  %div{:class => "pagination", :style => "float:left; margin-top:24px;"}
+    = paginating_links @savers, :params => params if @savers.page_count > 1

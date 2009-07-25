@@ -2,4 +2,11 @@
   %h2
     Donor Community
   
-  = render :partial => "donors/community", :locals => {:donors => @donors} 
+  %div{:class => "pagination", :style => "margin-bottom:15px;"}
+    - if @donors.page_count > 1
+      = paginating_links @donors, :params => params
+  
+  = render :partial => "donors/community", :locals => {:donors => @donors}
+  
+  .pagination= paginating_links @donors, :params => params if @donors.page_count > 1
+  

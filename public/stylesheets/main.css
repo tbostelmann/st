@@ -182,6 +182,18 @@ LABEL {cursor: pointer;}
 .pagination {
     width: 900px;
 }
+.pagination .pagination_info {
+	font-size: 14px;
+	color: #4d4a43;
+}
+.pagination A {
+	font-size: 14px;
+	font-weight: bold;
+	color: #a9b270;
+}
+.pagination A.active {
+  color: #4F8306;
+}
 .featured-savers {
   margin-top: 12px;
   width: 100%;

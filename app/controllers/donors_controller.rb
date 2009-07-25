@@ -1,7 +1,12 @@
 class DonorsController < BaseController
 
   def index
-    @donors = Donor.find_all_by_anonymous(false)
+    # Use this one instead of find_all_by_anonymous because that one haven't figured
+    # out how to integrate the :page stuff (it's avoiding Roles != Member)
+    @donors = Donor.find_all_by_profile_public(true,
+                :order => "first_name asc",
+                :page => {:current => params[:page], :size => 20}
+                )
   end
 
   def new
