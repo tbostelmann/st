@@ -33,7 +33,7 @@
                 %label{"for"=>"username"}=:e_mail_address.l
                 = text_field_tag('login', nil, :size => 35)
               .column
-                = link_to(:forgot_your_password.l, forgot_password_url)
+                = link_to :forgot_your_password.l, forgot_password_url, :tabindex => "0"
                 = password_field_tag('password', nil,:size => 35)
               = submit_tag("", {:class => 'button'})
           .relax= '&nbsp;'
