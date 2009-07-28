@@ -3,7 +3,7 @@
     = link_to((image_tag donor.avatar_photo_url(:thumb), :alt => donor.display_name), donor_path(donor))
   %td{:class => "text12", :valign => "middle", :align => "left"}
     %span.text12GreenBold
-      = donor.display_name.capitalize
+      = link_to donor.display_name.capitalize, donor_path(donor)
   %td{:class => "text12", :valign => "middle", :align => "left"}
     = truncate_words(donor.description, 50, "...")
   %td{:class => "text12", :valign => "middle", :align => "center"}

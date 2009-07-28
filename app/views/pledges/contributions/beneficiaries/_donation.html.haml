@@ -1,12 +1,12 @@
 %tr
+  - bene_path = party.eql?(Organization.find_savetogether_org) ? organization_path(party) : saver_path(party)
   %td{:valign => "middle", :align => "left"}
-    = link_to((image_tag party.avatar_photo_url(:thumb), :alt => party.display_name),                |
-      party.eql?(Organization.find_savetogether_org) ? organization_path(party) : saver_path(party)) |
+    = link_to((image_tag party.avatar_photo_url(:thumb), :alt => party.display_name), bene_path)
   %td{:class => "text12", :valign => "middle", :align => "left"}
     %span.text12GreenBold
-      = party.display_name.capitalize if party.organization
+      = link_to(party.display_name.capitalize, bene_path) unless party.organization == nil
   %td{:class => "text12", :valign => "middle", :align => "left"}
-    - if party.organization
+    - unless party.organization == nil
       = party.organization.display_name
     - else
       = party.display_name
