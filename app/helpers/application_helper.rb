@@ -44,6 +44,13 @@ module ApplicationHelper
         
     return opts
   end
+  
+  # If many more String methods show up, they should probably be moved
+  # to a plugin that adds the methods to the String class. Seems overkill
+  # for this one method.
+  def possessivize(s)
+    s + (s[-1,1] == 's' ? "'" : "'s")
+  end
 
 private
   def savetogether_donation_menu_entry(cents, percent)

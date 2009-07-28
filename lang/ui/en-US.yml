@@ -541,6 +541,8 @@ en:
   go_to_your_clippings_page_to_get_started: Go to your clippings page to get started.
   #en: go_to_your_profile: Go to your profile
   go_to_your_profile: Go to your profile
+  #en: goal: Goal
+  goal: Goal
   #en: goal_description: Goal Description
   goal_description: Goal Description
   #en: have_an_account: "Have an account? "
@@ -675,6 +677,8 @@ en:
   match_goal: To Invest In
   #en: match_needed: Match Still Needed
   match_needed: Match Still Needed
+  #en: match_progress: "{{balance}} ({{request}} match requested)"
+  match_progress: "{{balance}} ({{request}} match requested)"
   #en: match_request: "I'm Saving"
   match_request: "I'm Saving"
   #en: matched_savings_program: Matched Savings Program
@@ -953,6 +957,8 @@ en:
   recent_posts: Recent Posts
   #en: recommended_posts: Recommended Posts
   recommended_posts: Recommended Posts
+  #en: region: Region
+  region: Region
   #en: related_clippings_all_members: Related Clippings (all members)
   related_clippings_all_members: Related Clippings (all members)
   #en: related_photos_all_members: Related Photos (all members)
@@ -1015,6 +1021,8 @@ en:
   saver_name: Saver Name
   #en: savers: Savers
   savers: Savers
+  #en: savers_story: "{{saver}} STORY &hellip;"
+  savers_story: "{{saver}} STORY &hellip;"
   #en: savers_you_have_contributed_to: Savers You Have Contributed To
   savers_you_have_contributed_to: Savers You Have Contributed To
   #en: save_and_continue_to_step_three: Save, and continue to step three

@@ -2,8 +2,27 @@
 - next_last = last - 1
 %div{:class => "saver #{'right' if saver_counter.odd?} #{'no-border' if saver_counter.even? && saver_counter >= next_last || saver_counter.odd? && saver_counter == last}"}
   .info
+    -# Goal & Region
+    
+    %table{:border => "0", :width => "100%", :style => "margin-top:5px;"}
+      %tr
+        %td{:width => "25%", :align => "left"}
+          %p.large-text
+            ="#{:goal.l}:"
+        %td
+          %p.large-text
+            =saver.asset_type
+      %tr
+        %td{:align => "left"}
+          %p.large-text
+            ="#{:region.l}:"
+        %td
+          %p.large-text
+            =saver.metro_area.name
+    
     -# Match Info
-    %p.large-text= "#{saver.matched_amount.format(:no_cents)} (#{saver.requested_match_amount.format(:no_cents)} requested)"
+    %p{:class => "large-text", :style => "margin-top:15px;"}
+      =:match_progress.l :balance => saver.matched_amount.format(:no_cents), :request => saver.requested_match_amount.format(:no_cents)
     
     -# Progress Bar
     = render(:partial => "savers/progress_bar", :locals => {:saver => saver, :style => "progress-bar"})
@@ -20,8 +39,9 @@
     - else
       %span.text12GreenBold
         = :already_funded.l
-    %p= truncate_words(saver.description, 20, '...')
 
+  -# Thumbnail
   %a{:class => 'with-img', :href => "#{saver_path(saver)}"}
     =image_tag(saver.avatar_photo_url(:thumb))
-    %span=saver.display_name.upcase
+    %span
+      =:savers_story.l :saver => "#{possessivize(saver.display_name).upcase}"

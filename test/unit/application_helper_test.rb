@@ -51,6 +51,16 @@ class ApplicationHelperTest < ActiveSupport::TestCase
     assert_equal max_spec, entries.last[1]
   end
 
+  test "Names can be made possessive" do
+    name = "Tommy"
+    assert_equal "Tommy's", possessivize(name)
+  end
+  
+  test "Names ending in 's' can be made possessive" do
+    name = "James"
+    assert_equal "James'", possessivize(name)
+  end
+  
 /
   test "SaveTogether pledge amounts" do
     assert false
