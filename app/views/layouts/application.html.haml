@@ -31,19 +31,19 @@
             - form_tag sessions_path do
               .column
                 %label{"for"=>"username"}=:e_mail_address.l
-                = text_field_tag('login', nil, :size => 35)
+                = text_field_tag 'login', nil, :size => 35, :tabindex => "1"
               .column
-                = link_to :forgot_your_password.l, forgot_password_url, :tabindex => "0"
-                = password_field_tag('password', nil,:size => 35)
-              = submit_tag("", {:class => 'button'})
+                = link_to :forgot_your_password.l, forgot_password_url, :tabindex => "4"
+                = password_field_tag 'password', nil,:size => 35, :tabindex => "2"
+              = submit_tag "", {:class => 'button', :tabindex => "3"}
           .relax= '&nbsp;'
           .link-bar
             .anchor-right
               / AddThis Button BEGIN
-              %a{:href => "http://www.addthis.com/bookmark.php?v=250", :onmouseover => "return addthis_open(this, '', '[URL]', '[TITLE]')", :onmouseout => "addthis_close()", :onclick => "return addthis_sendto()"}
+              %a{:href => "http://www.addthis.com/bookmark.php?v=250", :onmouseover => "return addthis_open(this, '', '[URL]', '[TITLE]')", :onmouseout => "addthis_close()", :onclick => "return addthis_sendto()", :tabindex => "6"}
                 %img{:src => "http://s7.addthis.com/static/btn/lg-share-en.gif", :width => "125", :height => "16", :alt => "Bookmark and Share", :style => "border:0"}
               / AddThis Button END
-            %a{:href=> "/feedback"}=:feedback.l
+            %a{:href=> "/feedback", :tabindex => "5"}=:feedback.l
 
         / Banner Image
         =link_to((image_tag "#{image_path('logotype_beta2.jpg')}", :alt => 'SaveTogether'), home_path)
