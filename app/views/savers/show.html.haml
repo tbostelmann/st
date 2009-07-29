@@ -11,6 +11,19 @@
       - else
         = image_tag( user.avatar_photo_url(:medium), :class => "polaroid" )
 
+    %h3
+      %table
+        %tr
+          %td{:width => "35%"}
+            = "#{:program.l}:"
+          %td
+            = link_to @saver.organization.first_name, organization_path(@saver.organization)
+        %tr
+          %td
+            = "#{:region.l}:"
+          %td
+            = @saver.metro_area.name
+
   .about-saver
     .box.wide
       .box-bottom
@@ -24,15 +37,14 @@
                 = render(:partial => "savers/match_box/control", :locals => {:saver => @saver})
                 
     .relax='&nbsp;'
-    %h3= :about_user.l :user_name => @saver.display_name
-    %p.no-margin
-      = @saver.description
-    %h3
-      = "#{:matched_savings_program.l}:"
-      = link_to @saver.organization.first_name, organization_path(@saver.organization)
+  
+    %div{:style => "margin-top: 20px; width: 98%; height: 250px; overflow: auto;"}
+      %h3= :about_user.l :user_name => @saver.display_name
+      %p.no-margin
+        = @saver.description
 
   .relax='&nbsp;'
-  %h2
+  %h2{:style => "margin-top: 40px;"}
     = image_tag 'titles/people-who-have-contributed-to-this-saver.gif'
 
   .pagination= paginating_links @donors, :params => params if @donors.page_count > 1
