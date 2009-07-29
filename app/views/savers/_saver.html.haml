@@ -2,9 +2,9 @@
 - next_last = last - 1
 %div{:class => "saver #{'right' if saver_counter.odd?} #{'no-border' if saver_counter.even? && saver_counter >= next_last || saver_counter.odd? && saver_counter == last}"}
   .info
-    -# Goal & Region
-    
     %table{:border => "0", :width => "100%", :style => "margin-top:0px;", :cellpadding => "0"}
+
+      -# Goal & Region
       %tr
         %td{:width => "55%", :align => "left"}
           %p.large-text
@@ -19,13 +19,6 @@
         %td
           %p.large-text
             =saver.metro_area.name
-      %tr
-        %td{:align => "left"}
-          %p.large-text
-            ="Match requested:"
-        %td
-          %p.large-text
-            =saver.requested_match_amount.format(:no_cents)
       
       -# Spacer
       %tr
@@ -37,18 +30,26 @@
       %tr
         %td{:align => "left"}
           %p.large-text
-            ="Match committed:"
+            ="#{:match_requested.l}:"
         %td
           %p.large-text
-            ="#{saver.matched_amount.format(:no_cents)} (#{(saver.match_percent*100).round}%)"
+            %em
+              =saver.requested_match_amount.format(:no_cents)
+      %tr
+        %td{:align => "left"}
+          %p.large-text
+            ="#{:match_committed.l}:"
+        %td
+          %p.large-text
+            %em
+              ="#{saver.matched_amount.format(:no_cents)} (#{(saver.match_percent*100).round}%)"
     
     -# Progress Bar
     = render(:partial => "savers/progress_bar", :locals => {:saver => saver, :style => "progress-bar"})
     
     -# Match Controls
-    .relax='&nbsp;'
     - if saver.match_amount_left_cents > 0
-      %table{:border => "0", :width => "80%", :cellpadding => "1"}
+      %table{:border => "0", :cellpadding => "1", :width => "75%"}
         - form_for :donation, :url => { :controller => :pledges, :action => :add_to_pledge } do |f|
           %tr
             %td{:align => "right"}

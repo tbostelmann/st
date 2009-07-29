@@ -233,6 +233,10 @@ LABEL {cursor: pointer;}
 	margin-top: 0;
 	font-weight: bold;
 }
+.content P.large-text EM {
+  font-style: normal;
+  color: #5b930d;
+}
 .content P.small-text {
 	font-size: 10px;
 	color: #4d4a43;
@@ -301,7 +305,9 @@ LABEL {cursor: pointer;}
 	padding: 20px 0;
 	background: url("../images/bg/box-bottom.gif") no-repeat left bottom;
 }
-.content .about-saver P {margin: 15px 15px 0;}
+.content .about-saver P {
+  margin: 15px 15px 0;
+}
 .small-column {
 	float: left;
 	width: 168px;
@@ -313,12 +319,12 @@ LABEL {cursor: pointer;}
 	color: #000;
 	margin: 3px 0 0;
 }
-.content .small-column P SPAN {color: #4f8306;}
-.match-now {
-	margin-top: 15px;
-	float: left;
+.content .small-column P SPAN {
+  color: #4f8306;
 }
-.content P.no-margin {margin-top: 0;}
+.content P.no-margin {
+  margin-top: 0;
+}
 
 /* Common Layout */
 .content .two-column-layout {
@@ -444,7 +450,7 @@ LABEL {cursor: pointer;}
 
 /*Progress Bars*/
 .progress-bar {
-  width: 80%;
+  width: 75%;
   margin-top: 5px;
   margin-bottom: 5px;
 }

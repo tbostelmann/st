@@ -673,6 +673,8 @@ en:
   manage_posts: Manage Posts
   #en: match: Match
   match: Match
+  #en: match_committed: Match committed
+  match_committed: Match committed
   #en: match_goal: To Invest In
   match_goal: To Invest In
   #en: match_needed: Match Still Needed
@@ -681,6 +683,8 @@ en:
   match_progress: "Progress: {{balance}} ({{request}}%)"
   #en: match_request: "I'm Saving"
   match_request: "I'm Saving"
+  #en: match_requested: Match requested
+  match_requested: Match requested
   #en: matched_savings_program: Matched Savings Program
   matched_savings_program: Matched Savings Program
   #en: matched_so_far: Match Committed
