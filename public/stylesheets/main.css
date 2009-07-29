@@ -209,7 +209,7 @@ LABEL {cursor: pointer;}
 }
 .saver {
 	float: left;
-	width: 385px;
+	width: 46%;
 	margin-top: 22px;
 	margin-left: 20px;
 	display: inline;
@@ -219,7 +219,7 @@ LABEL {cursor: pointer;}
 .saver.no-border {border: none;}
 .info {
 	float: right;
-	width: 232px;
+	width: 62%;
 }
 .content P {
 	margin-top: 15px;
@@ -245,7 +245,7 @@ LABEL {cursor: pointer;}
 }
 .with-img:HOVER {text-decoration: none;}
 .with-img IMG {
-  padding: 15px;
+  padding: 15px 10px 15px 10px;
   border-style: dotted;
   border-color: #a9b270;
   border-width: 1px;
@@ -259,8 +259,6 @@ LABEL {cursor: pointer;}
 	margin: 3px 10px 0;
 }
 .info IMG {margin: 15px 0;}
-.match {float: right;}
-.match.inside-element {margin-right: 3px;}
 .info .match IMG {margin: 0;}
 .saver.right {float: right;}
 .content H1 {
@@ -446,7 +444,7 @@ LABEL {cursor: pointer;}
 
 /*Progress Bars*/
 .progress-bar {
-  width: 66%;
+  width: 80%;
   margin-top: 5px;
   margin-bottom: 5px;
 }

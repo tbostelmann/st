@@ -4,9 +4,9 @@
   .info
     -# Goal & Region
     
-    %table{:border => "0", :width => "100%", :style => "margin-top:5px;"}
+    %table{:border => "0", :width => "100%", :style => "margin-top:0px;", :cellpadding => "0"}
       %tr
-        %td{:width => "25%", :align => "left"}
+        %td{:width => "55%", :align => "left"}
           %p.large-text
             ="#{:goal.l}:"
         %td
@@ -19,10 +19,28 @@
         %td
           %p.large-text
             =saver.metro_area.name
+      %tr
+        %td{:align => "left"}
+          %p.large-text
+            ="Match requested:"
+        %td
+          %p.large-text
+            =saver.requested_match_amount.format(:no_cents)
+      
+      -# Spacer
+      %tr
+        %td
+          %p.relax
+            ="&nbsp;"
     
-    -# Match Info
-    %p{:class => "large-text", :style => "margin-top:15px;"}
-      =:match_progress.l :balance => saver.matched_amount.format(:no_cents), :request => saver.requested_match_amount.format(:no_cents)
+      -# Match Info
+      %tr
+        %td{:align => "left"}
+          %p.large-text
+            ="Match committed:"
+        %td
+          %p.large-text
+            ="#{saver.matched_amount.format(:no_cents)} (#{(saver.match_percent*100).round}%)"
     
     -# Progress Bar
     = render(:partial => "savers/progress_bar", :locals => {:saver => saver, :style => "progress-bar"})
@@ -30,12 +48,14 @@
     -# Match Controls
     .relax='&nbsp;'
     - if saver.match_amount_left_cents > 0
-      - form_for :donation, :url => { :controller => :pledges, :action => :add_to_pledge } do |f|
-        = image_submit_tag "#{image_path('buttons/match.gif')}", :alt => 'Match', :class => 'match'
-        = f.select :cents, select_pledge_amounts_cents_values(saver.match_amount_left_cents), {}, {:class => "match inside-element"}
-        %p{:class => 'large-text', :width => '50%'}
-          = :amount_raised.l :amount => "#{(saver.match_percent*100).round}%"
-          = f.hidden_field :to_user_id, :value => saver.id
+      %table{:border => "0", :width => "80%", :cellpadding => "1"}
+        - form_for :donation, :url => { :controller => :pledges, :action => :add_to_pledge } do |f|
+          %tr
+            %td{:align => "right"}
+              = f.select :cents, select_pledge_amounts_cents_values(saver.match_amount_left_cents)
+              = f.hidden_field :to_user_id, :value => saver.id
+            %td{:align => "left"}
+              = image_submit_tag "#{image_path('buttons/match.gif')}", :alt => 'Match'
     - else
       %span.text12GreenBold
         = :already_funded.l

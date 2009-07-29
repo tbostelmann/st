@@ -678,7 +678,7 @@ en:
   #en: match_needed: Match Still Needed
   match_needed: Match Still Needed
   #en: match_progress: "{{balance}} ({{request}} match requested)"
-  match_progress: "{{balance}} ({{request}} match requested)"
+  match_progress: "Progress: {{balance}} ({{request}}%)"
   #en: match_request: "I'm Saving"
   match_request: "I'm Saving"
   #en: matched_savings_program: Matched Savings Program
