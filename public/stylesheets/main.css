@@ -288,7 +288,8 @@ LABEL {cursor: pointer;}
 	background: #fbfbf7 url("../images/bg/box-top.gif") no-repeat left top;
 }
 .box.wide {
-  width: 425px;
+  width: 90%;
+  margin-left: 20px;
 }
 .box-bottom {
 	float: left;
@@ -296,26 +297,28 @@ LABEL {cursor: pointer;}
 	padding: 10px 0;
 	background: url("../images/bg/box-bottom.gif") no-repeat left bottom;
 }
-.content .saver-info {
-	width: 436px;
+.content .party-info {
+	width: 60%;
 	float: right;
 	margin-top: 60px; 
 }
-.content .saver-info P {
+.content .party-info P {
   font-size: 12px;
   margin: 15px 15px 0;
 }
-.content .saver-info A {
+.content .party-info A {
   color: #4F8306;
 }
-.content .saver-info .about-saver {
-  width: 96%;
+.content .party-info .about-party {
+  width: 90%;
   float:right;
-  margin-right: 11px;
+  margin-right: 34px;
 }
-.content .saver-info .about-saver .story {
-  height: 237px;
+.content .party-info .about-party .story {
+  margin-top: 5px;
+  height: 300px;
   overflow: auto;
+  background: #fbfbf7 url("../images/bg/box-top.gif") no-repeat left top;
 }
 .small-column {
 	float: left;

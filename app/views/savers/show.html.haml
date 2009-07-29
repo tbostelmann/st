@@ -27,20 +27,18 @@
             = @saver.metro_area.name
 
   -# Saver Info
-  .saver-info
+  .party-info
     .box.wide
-      .box-bottom
-        .small-column
-          %table{:width => "400", :cellspacing => "0", :cellpadding => "10", :border => "0", :align => "center"}
-            %tr
-              %td{:width => "200"}
-                = render(:partial => "savers/match_box/request_summary", :locals => {:saver => @saver})
-                
-              %td
-                = render(:partial => "savers/match_box/control", :locals => {:saver => @saver})
+      %table{:width => "100%", :cellspacing => "0", :cellpadding => "10", :align => "center"}
+        %tr
+          %td{:width => "50%"}
+            = render(:partial => "savers/match_box/request_summary", :locals => {:saver => @saver})
+            
+          %td
+            = render(:partial => "savers/match_box/control", :locals => {:saver => @saver})
     
     -# About Saver
-    .about-saver
+    .about-party
       %h3= :about_user.l :user_name => @saver.display_name  
       .story
         %p.no-margin
