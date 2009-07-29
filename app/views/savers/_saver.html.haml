@@ -19,8 +19,8 @@
       =render :partial => "savers/saver/progress_bar", :locals => {:saver => saver, :style => "progress-bar"}
     
       -# Match Controls
-      - if saver.match_amount_left_cents > 0
-        %table{:border => "0", :cellpadding => "1", :width => "75%"}
+      %table{:border => "0", :cellpadding => "1", :width => "75%"}
+        - if saver.match_amount_left_cents > 0
           - form_for :donation, :url => { :controller => :pledges, :action => :add_to_pledge } do |f|
             %tr
               %td{:align => "right"}
@@ -28,9 +28,12 @@
                 = f.hidden_field :to_user_id, :value => saver.id
               %td{:align => "left"}
                 = image_submit_tag "#{image_path('buttons/match.gif')}", :alt => 'Match'
-      - else
-        %span.text12GreenBold
-          = :already_funded.l
+        - else
+          %tr
+            %td{:align => "center"}
+              %p.large-text
+                %em
+                  = "#{:already_funded.l}"
 
   -# Thumbnail
   %a{:class => 'with-img', :href => "#{saver_path(saver)}"}
