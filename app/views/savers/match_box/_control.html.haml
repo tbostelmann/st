@@ -2,7 +2,7 @@
   %tr
     %td{:colspan => "2"}
       -# Progress Bar
-      = render(:partial => "savers/progress_bar", :locals => {:saver => saver, :style => "progress-bar profile"})
+      = render(:partial => "savers/saver/progress_bar", :locals => {:saver => saver, :style => "progress-bar profile"})
   %tr
     %td{:colspan => "2", :align => "center"}
       = :amount_raised.l :amount => "#{(saver.match_percent*100).round}%"

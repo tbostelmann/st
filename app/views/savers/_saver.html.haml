@@ -5,61 +5,32 @@
     %table{:border => "0", :width => "100%", :style => "margin-top:0px;", :cellpadding => "0"}
 
       -# Goal & Region
-      %tr
-        %td{:width => "55%", :align => "left"}
-          %p.large-text
-            ="#{:goal.l}:"
-        %td
-          %p.large-text
-            =saver.asset_type
-      %tr
-        %td{:align => "left"}
-          %p.large-text
-            ="#{:region.l}:"
-        %td
-          %p.large-text
-            =saver.metro_area.name
+      =render :partial => "savers/saver/detail", :locals => {:detail => "#{:goal.l}:", :value => saver.asset_type}
+      =render :partial => "savers/saver/detail", :locals => {:detail => "#{:region.l}:", :value => saver.metro_area.name}
       
       -# Spacer
-      %tr
-        %td
-          %p.relax
-            ="&nbsp;"
+      =render :partial => "savers/saver/spacer"
     
       -# Match Info
-      %tr
-        %td{:align => "left"}
-          %p.large-text
-            ="#{:match_requested.l}:"
-        %td
-          %p.large-text
-            %em
-              =saver.requested_match_amount.format(:no_cents)
-      %tr
-        %td{:align => "left"}
-          %p.large-text
-            ="#{:match_committed.l}:"
-        %td
-          %p.large-text
-            %em
-              ="#{saver.matched_amount.format(:no_cents)} (#{(saver.match_percent*100).round}%)"
+      =render :partial => "savers/saver/detail", :locals => {:detail => "#{:match_requested.l}:", :value => saver.requested_match_amount.format(:no_cents)}
+      =render :partial => "savers/saver/detail", :locals => {:detail => "#{:match_committed.l}:", :value => "#{saver.matched_amount.format(:no_cents)} (#{(saver.match_percent*100).round}%)"}
     
-    -# Progress Bar
-    = render(:partial => "savers/progress_bar", :locals => {:saver => saver, :style => "progress-bar"})
+      -# Progress Bar
+      =render :partial => "savers/saver/progress_bar", :locals => {:saver => saver, :style => "progress-bar"}
     
-    -# Match Controls
-    - if saver.match_amount_left_cents > 0
-      %table{:border => "0", :cellpadding => "1", :width => "75%"}
-        - form_for :donation, :url => { :controller => :pledges, :action => :add_to_pledge } do |f|
-          %tr
-            %td{:align => "right"}
-              = f.select :cents, select_pledge_amounts_cents_values(saver.match_amount_left_cents)
-              = f.hidden_field :to_user_id, :value => saver.id
-            %td{:align => "left"}
-              = image_submit_tag "#{image_path('buttons/match.gif')}", :alt => 'Match'
-    - else
-      %span.text12GreenBold
-        = :already_funded.l
+      -# Match Controls
+      - if saver.match_amount_left_cents > 0
+        %table{:border => "0", :cellpadding => "1", :width => "75%"}
+          - form_for :donation, :url => { :controller => :pledges, :action => :add_to_pledge } do |f|
+            %tr
+              %td{:align => "right"}
+                = f.select :cents, select_pledge_amounts_cents_values(saver.match_amount_left_cents)
+                = f.hidden_field :to_user_id, :value => saver.id
+              %td{:align => "left"}
+                = image_submit_tag "#{image_path('buttons/match.gif')}", :alt => 'Match'
+      - else
+        %span.text12GreenBold
+          = :already_funded.l
 
   -# Thumbnail
   %a{:class => 'with-img', :href => "#{saver_path(saver)}"}
