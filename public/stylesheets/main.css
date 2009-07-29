@@ -269,19 +269,10 @@ LABEL {cursor: pointer;}
 	font-size: 24px;
 	color: #5b930d;
 }
-.about-saver {
-	width: 436px;
-	float: right;
-	margin-top: 60px; 
-}
-.content .about-saver P {font-size: 12px;}
 .content H3 {
 	font-size: 14px;
 	color: #5b930d;
 	margin: 15px 15px 0;
-}
-.content .about-saver A {
-  color: #4F8306;
 }
 .photo {
 	width: 320px;
@@ -302,11 +293,29 @@ LABEL {cursor: pointer;}
 .box-bottom {
 	float: left;
 	width: 100%;
-	padding: 20px 0;
+	padding: 10px 0;
 	background: url("../images/bg/box-bottom.gif") no-repeat left bottom;
 }
-.content .about-saver P {
+.content .saver-info {
+	width: 436px;
+	float: right;
+	margin-top: 60px; 
+}
+.content .saver-info P {
+  font-size: 12px;
   margin: 15px 15px 0;
+}
+.content .saver-info A {
+  color: #4F8306;
+}
+.content .saver-info .about-saver {
+  width: 96%;
+  float:right;
+  margin-right: 11px;
+}
+.content .saver-info .about-saver .story {
+  height: 237px;
+  overflow: auto;
 }
 .small-column {
 	float: left;
