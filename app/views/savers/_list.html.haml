@@ -25,5 +25,10 @@
         %img{:height => "2", :width => "2", :src => "#{image_path('icons/spacer.gif')}"}
 
   -# Savers
-  - savers.each do |saver|
-    =render :partial => "savers/list/saver", :locals => {:saver => saver}
+  - unless savers.size == 0
+    - savers.each do |saver|
+      =render :partial => "savers/list/saver", :locals => {:saver => saver}
+  - else
+    %tr
+      %td{:class => "large-text", :colspan => "5", :align => "center"}
+        =:no_savers_matched_search_criteria.l

@@ -811,6 +811,8 @@ en:
   no_thanks: No thanks
   #en: none: None
   none: None
+  #en: no_savers_matched_search_criteria: "Sorry, no savers meet your search criteria. Please try again."
+  no_savers_matched_search_criteria: "Sorry, no savers meet your search criteria. Please try again."
   #en: notify_email_updates: Notify of community news
   notify_email_updates: Notify of community news
   #en: notify_of_comments: Notify of comments
