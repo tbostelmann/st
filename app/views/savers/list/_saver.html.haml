@@ -15,7 +15,6 @@
     %table{:width => "100%", :cellpadding => "0", :cellspacing => "0", :border => "0"}
       =render :partial => "savers/mini_saver/detail", :locals => {:detail => "#{:match_request.l}:", :value => saver.requested_match_amount.format(:no_cents)}
       =render :partial => "savers/mini_saver/detail", :locals => {:detail => "#{:match_committed.l}:", :value => "#{saver.matched_amount.format(:no_cents)} (#{(saver.match_percent*100).round}%)"}
-      =render :partial => "savers/mini_saver/detail", :locals => {:detail => "#{:match_needed.l}:", :value => "#{saver.match_amount_left.format(:no_cents)}"}
       =render :partial => "savers/shared/progress_bar", :locals => {:saver => saver, :style => "progress-bar"}
       =render :partial => "savers/mini_saver/ask_control", :locals => {:saver => saver}
 
