@@ -32,7 +32,7 @@
 
   .pagination= paginating_links @savers, :params => params if @savers.page_count > 1
 
-  = render(:partial => "savers/saver", :collection => @savers)
+  = render(:partial => "savers/mini_saver", :collection => @savers)
 
   %br.clear
   .pagination= paginating_links @savers, :params => params if @savers.page_count > 1

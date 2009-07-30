@@ -8,7 +8,7 @@
     .with-img.plus
       = image_tag( @donor.avatar_photo_url(:medium), :class => 'polaroid')
 
-  .about-saver
+  .party-info
     .box.wide
       - if @donor.eql?(current_user)
         .box-bottom
