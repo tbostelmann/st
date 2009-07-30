@@ -472,6 +472,10 @@ LABEL {cursor: pointer;}
   width: 100%;
   margin: 0px;
 }
+.progress-bar.list {
+  width: 98%;
+  margin-left: 3px;
+}
 .progress-bar TR {
   height: 7px;
 }

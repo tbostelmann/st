@@ -1,7 +1,6 @@
 %tr
   %td{:valign => "middle", :align => "center"}
     = link_to((image_tag saver.avatar_photo_url(:thumb), :alt => saver.display_name), saver_path(saver))
-  %td{:class => "text12", :valign => "middle", :align => "left"}
     %span.text12GreenBold
       = link_to saver.display_name.capitalize, saver_path(saver)
   %td{:class => "text12", :valign => "middle", :align => "left"}
@@ -9,11 +8,14 @@
   %td{:class => "text12", :valign => "middle", :align => "left"}
     =saver.metro_area.name
     %br/
-    =saver.organization.display_name
+    =link_to saver.organization.display_name, organization_path(saver.organization)
   %td{:class => "text12", :valign => "middle", :align => "left"}
-    =truncate_words(saver.description, 15, " &hellip;")
+    =truncate_words(saver.description, 25, " &hellip;")
   %td{:class => "text12", :valign => "middle", :align => "left"}
-    =render :partial => "savers/match_box/request_summary", :locals => {:saver => saver}
+    %table{:width => "100%"}
+      =render :partial => "savers/mini_saver/detail", :locals => {:detail => "#{:match_requested.l}:", :value => saver.requested_match_amount.format(:no_cents)}
+      =render :partial => "savers/mini_saver/detail", :locals => {:detail => "#{:match_committed.l}:", :value => "#{saver.matched_amount.format(:no_cents)} (#{(saver.match_percent*100).round}%)"}
+      =render :partial => "savers/shared/progress_bar", :locals => {:saver => saver, :style => "progress-bar"}
 
 -# Spacer Row
 %tr{:valign => "top", :align => "left"}
