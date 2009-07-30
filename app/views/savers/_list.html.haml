@@ -2,24 +2,24 @@
 
   -# Headings
   %tr
-    %td{:class => "large-text", :height => "36", :width => "10%", :bgcolor => "#f8faf5"}
+    %td{:class => "large-text", :height => "36", :width => "12%", :bgcolor => "#f8faf5"}
       %p.large-text
         =:photo.l
-    %td{:class => "large-text", :height => "36", :width => "10%", :bgcolor => "#f8faf5"}
+    %td{:class => "large-text", :height => "36", :width => "12%", :bgcolor => "#f8faf5"}
       %p.large-text
         =:saver_name.l
-    %td{:class => "large-text", :height => "36", :width => "25%", :bgcolor => "#f8faf5"}
-      %p.large-text
-        ="Control goes here"
     %td{:class => "large-text", :height => "36", :width => "10%", :bgcolor => "#f8faf5"}
       %p.large-text
-        =:region.l
+        =:goal.l
     %td{:class => "large-text", :height => "36", :width => "20%", :bgcolor => "#f8faf5"}
       %p.large-text
-        =:program.l
+        ="#{:region.l} / #{:program.l}"
     %td{:class => "large-text", :height => "36", :bgcolor => "#f8faf5"}
       %p.large-text
         ="Saver's Story"
+    %td{:class => "large-text", :height => "36", :width => "22%", :bgcolor => "#f8faf5"}
+      %p.large-text
+        =:donate.l
         
   -# Spacer
   %tr
