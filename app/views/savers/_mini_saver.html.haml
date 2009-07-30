@@ -12,28 +12,14 @@
       =render :partial => "savers/mini_saver/spacer"
     
       -# Match Info
-      =render :partial => "savers/mini_saver/detail", :locals => {:detail => "#{:match_requested.l}:", :value => mini_saver.requested_match_amount.format(:no_cents)}
+      =render :partial => "savers/mini_saver/detail", :locals => {:detail => "#{:match_request.l}:", :value => mini_saver.requested_match_amount.format(:no_cents)}
       =render :partial => "savers/mini_saver/detail", :locals => {:detail => "#{:match_committed.l}:", :value => "#{mini_saver.matched_amount.format(:no_cents)} (#{(mini_saver.match_percent*100).round}%)"}
     
       -# Progress Bar
       =render :partial => "savers/shared/progress_bar", :locals => {:saver => mini_saver, :style => "progress-bar"}
     
       -# Match Controls
-      %table{:border => "0", :cellpadding => "1", :width => "75%"}
-        - if mini_saver.match_amount_left_cents > 0
-          - form_for :donation, :url => { :controller => :pledges, :action => :add_to_pledge } do |f|
-            %tr
-              %td{:align => "right"}
-                = f.select :cents, select_pledge_amounts_cents_values(mini_saver.match_amount_left_cents)
-                = f.hidden_field :to_user_id, :value => mini_saver.id
-              %td{:align => "left"}
-                = image_submit_tag "#{image_path('buttons/match.gif')}", :alt => 'Match'
-        - else
-          %tr
-            %td{:align => "center"}
-              %p.large-text
-                %em
-                  = "#{:already_funded.l}"
+      =render :partial => "savers/mini_saver/ask_control", :locals => {:saver => mini_saver}
 
   -# Thumbnail
   %a{:class => 'with-img', :href => "#{saver_path(mini_saver)}"}
