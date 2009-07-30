@@ -316,11 +316,27 @@ LABEL {cursor: pointer;}
   float:right;
   margin-right: 34px;
 }
+/* H3 margin exceptions */
+/* When H3 descendent of .about-party */
+.content .party-info .about-party H3 {
+  margin-top: 0px;
+}
+/* When H3 descendent of .about-party sibling to .box.wide (basically .box.wide occurs sequentially before .about-party) */
+.content .party-info .box.wide + .about-party H3 {
+  margin-top: 15px;
+}
+/* default .about-party .story format */
 .content .party-info .about-party .story {
   margin-top: 5px;
   height: 300px;
   overflow: auto;
   background: #fbfbf7 url("../images/bg/box-top.gif") no-repeat left top;
+}
+.content .party-info .about-partg .story.saver {
+}
+/* exception for orgs - taller story area */
+.content .party-info .about-party .story.org {
+  height: 594px;
 }
 .small-column {
 	float: left;

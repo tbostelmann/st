@@ -17,13 +17,12 @@
 
 
   .party-info
-    .box.wide
-      .box-bottom
-        %h3= :about_user.l :user_name => @org.display_name
+    .about-party
+      %h3
+        = :about_user.l :user_name => @org.display_name
+      .story.org
         %p.no-margin
           = @org.description
-
-        .relax='&nbsp;'
 
   .relax='&nbsp;'
   =image_tag "#{image_path('titles/savers_supported_by_this_organization.gif')}", :alt => 'SaveTogether', :style => "margin-top: 30px;"
