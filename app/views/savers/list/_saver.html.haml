@@ -1,0 +1,57 @@
+%tr
+  %td{:valign => "middle", :align => "left"}
+    = link_to((image_tag saver.avatar_photo_url(:thumb), :alt => saver.display_name), saver_path(saver))
+  %td{:class => "text12", :valign => "middle", :align => "left"}
+    %span.text12GreenBold
+      = link_to saver.display_name.capitalize, saver_path(saver)
+  %td{:class => "text12", :valign => "middle", :align => "left"}
+    -# --------------------------------------------------------
+
+    %table{:width => "100%", :border => "0"}
+      /
+        -# Goal & Region
+        =render :partial => "savers/mini_saver/detail", :locals => {:detail => "#{:goal.l}:", :value => saver.asset_type}
+        =render :partial => "savers/mini_saver/detail", :locals => {:detail => "#{:region.l}:", :value => saver.metro_area.name}
+    
+        -# Spacer
+        =render :partial => "savers/mini_saver/spacer"
+  
+      -# Match Info
+      =render :partial => "savers/mini_saver/detail", :locals => {:detail => "#{:match_requested.l}:", :value => saver.requested_match_amount.format(:no_cents)}
+      =render :partial => "savers/mini_saver/detail", :locals => {:detail => "#{:match_committed.l}:", :value => "#{saver.matched_amount.format(:no_cents)} (#{(saver.match_percent*100).round}%)"}
+  
+      -# Progress Bar
+      =render :partial => "savers/shared/progress_bar", :locals => {:saver => saver, :style => "progress-bar"}
+  
+      -# Match Controls
+      %tr
+        %td
+          %table{:border => "0", :cellpadding => "1", :width => "100%"}
+            - if saver.match_amount_left_cents > 0
+              - form_for :donation, :url => { :controller => :pledges, :action => :add_to_pledge } do |f|
+                %tr
+                  %td{:align => "right"}
+                    = f.select :cents, select_pledge_amounts_cents_values(saver.match_amount_left_cents)
+                    = f.hidden_field :to_user_id, :value => saver.id
+                  %td{:align => "left"}
+                    = image_submit_tag "#{image_path('buttons/match.gif')}", :alt => 'Match'
+            - else
+              %tr
+                %td{:align => "center", :colspan => "2"}
+                  %p.large-text
+                    %em
+                      = "#{:already_funded.l}"
+
+    -# --------------------------------------------------------
+  %td{:class => "text12", :valign => "middle", :align => "left"}
+    =saver.metro_area.name
+  %td{:class => "text12", :valign => "middle", :align => "left"}
+    =saver.organization.display_name
+  %td{:class => "text12", :valign => "middle", :align => "left"}
+    =truncate_words(saver.description, 30, " &hellip;")
+
+-# Spacer Row
+%tr{:valign => "top", :align => "left"}
+  %td{:height => "2", :valign => "middle", :background => "#{image_path('bg/dotted_line.gif')}", :style => "background-repeat: repeat-x;", :colspan => "6"}
+    %span{:style => "background-repeat: repeat-x;"}
+      %img{:height => "2", :width => "2", :src => "#{image_path('icons/spacer.gif')}"}

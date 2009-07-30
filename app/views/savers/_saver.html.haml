@@ -1,0 +1,6 @@
+%tr
+  %td{:valign => "middle", :align => "left"}
+    = link_to((image_tag saver.avatar_photo_url(:thumb), :alt => saver.display_name), saver_path(saver))
+  %td{:class => "text12", :valign => "middle", :align => "left"}
+    %span.text12GreenBold
+      = link_to saver.display_name.capitalize, saver_path(saver)

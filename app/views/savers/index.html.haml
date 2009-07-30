@@ -10,7 +10,7 @@
   %div{:class => "pagination", :style => "margin-top:15px;"}
     = paginating_links @savers, :params => params if @savers.page_count > 1
 
-  = render(:partial => "savers/mini_saver", :collection => @savers)
+  = render :partial => "savers/list", :locals => {:savers => @savers}
 
   %div{:class => "pagination", :style => "float:left; margin-top:24px;"}
     = paginating_links @savers, :params => params if @savers.page_count > 1

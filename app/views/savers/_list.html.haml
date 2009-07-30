@@ -1,0 +1,32 @@
+%table{:width => "96%", :cellspacing => "0", :cellpadding => "5", :border => "0", :align => "center"}
+
+  -# Headings
+  %tr
+    %td{:class => "large-text", :height => "36", :width => "10%", :bgcolor => "#f8faf5"}
+      %p.large-text
+        =:photo.l
+    %td{:class => "large-text", :height => "36", :width => "10%", :bgcolor => "#f8faf5"}
+      %p.large-text
+        =:saver_name.l
+    %td{:class => "large-text", :height => "36", :width => "25%", :bgcolor => "#f8faf5"}
+      %p.large-text
+        ="Control goes here"
+    %td{:class => "large-text", :height => "36", :width => "10%", :bgcolor => "#f8faf5"}
+      %p.large-text
+        =:region.l
+    %td{:class => "large-text", :height => "36", :width => "20%", :bgcolor => "#f8faf5"}
+      %p.large-text
+        =:program.l
+    %td{:class => "large-text", :height => "36", :bgcolor => "#f8faf5"}
+      %p.large-text
+        ="Saver's Story"
+        
+  -# Spacer
+  %tr
+    %td{:valign => "middle", :align => "left", :colspan => "6"}
+      %span{:style => "background-repeat: repeat-x;"}
+        %img{:height => "2", :width => "2", :src => "#{image_path('icons/spacer.gif')}"}
+
+  -# Savers
+  - savers.each do |saver|
+    =render :partial => "savers/list/saver", :locals => {:saver => saver}
