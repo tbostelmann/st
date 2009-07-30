@@ -1,21 +1,30 @@
-%table{:width => "400", :cellspacing => "0", :cellpadding => "5", :border => "0", :align => "center"}
+%table{:width => "87%", :cellspacing => "0", :cellpadding => "1", :border => "0", :align => "center"}
   - if @org.web_site_url
     %tr
-      %td.label
-        = "Web Site:"
+      %td
+        %p.large-text
+          = "Web Site:"
       %td{:align => "right"}
-        %span.request-values
-          -# Apparently have to handcraft the anchor - using link_to *always* discovers the org
-          -# and builds a relative link to the organization, even tho' the url property is specified
-          %a{:href => "http://#{@org.web_site_url}"}=@org.web_site_url
+        %p.large-text
+          %em
+            -# Apparently have to handcraft the anchor - using link_to *always* discovers the org
+            -# and builds a relative link to the organization, even tho' the url property is specified
+            %a{:href => "http://#{@org.web_site_url}"}
+              =@org.web_site_url
   %tr
-    %td.label
-      ="Email Contact:"
+    %td
+      %p.large-text
+        ="Email Contact:"
     %td{:align => "right"}
-      %span.request-values= organization_survey.contact_email
+      %p.large-text
+        %em
+          = organization_survey.contact_email
   - if @org.phone_number
     %tr
-      %td.label
-        ="Phone Number:"
+      %td
+        %p.large-text
+          ="Phone Number:"
       %td{:align => "right"}
-        %span.request-values= @org.phone_number
+        %p.large-text
+          %em
+            = @org.phone_number

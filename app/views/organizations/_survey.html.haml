@@ -1,26 +1,41 @@
-%table{:width => "400", :cellspacing => "0", :cellpadding => "5", :border => "0", :align => "center"}
+%table{:width => "87%", :cellspacing => "0", :cellpadding => "1", :border => "0", :align => "center"}
   %tr
-    %td.label
-      Year Founded:
+    %td
+      %p.large-text
+        Year Founded:
     %td{:align => "right"}
-      %span.request-values= organization_survey.year_founded
+      %p.large-text
+        %em
+          = organization_survey.year_founded
   %tr
-    %td.label
-      Annual Operating Expenses:
+    %td
+      %p.large-text
+        Annual Operating Expenses:
     %td{:align => "right"}
-      %span.request-values= organization_survey.annual_operating_expenses
+      %p.large-text
+        %em
+          = organization_survey.annual_operating_expenses
   %tr
-    %td.label
-      Total Matched Accounts:
+    %td
+      %p.large-text
+        Total Matched Accounts:
     %td{:align => "right"}
-      %span.request-values= organization_survey.total_matched_accounts
+      %p.large-text
+        %em
+          = organization_survey.total_matched_accounts
   %tr
-    %td.label
-      Year First Accounts Opened:
+    %td
+      %p.large-text
+        Year First Accounts Opened:
     %td{:align => "right"}
-      %span.request-values= organization_survey.year_first_accounts_opened
+      %p.large-text
+        %em
+          = organization_survey.year_first_accounts_opened
   %tr
-    %td.label
-      Number of Active Accounts:
+    %td
+      %p.large-text
+        Number of Active Accounts:
     %td{:align => "right"}
-      %span.request-values= organization_survey.number_of_active_accounts
+      %p.large-text
+        %em
+          = organization_survey.number_of_active_accounts

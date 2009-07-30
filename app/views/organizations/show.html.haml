@@ -6,10 +6,15 @@
     %h1= @org.display_name
 
     .with-img.plus
-      - if @org.avatar
-        = image_tag( @org.avatar_photo_url(:medium), :class => 'polaroid')
-      - else
-        = image_tag( @org.avatar_photo_url(:medium), :class => "polaroid" )
+      = image_tag( @org.avatar_photo_url(:medium), :class => "polaroid" )
+      
+      - if @org.organization_survey
+        %h3="Organization information:"
+        = render :partial => "organizations/survey", :object => @org.organization_survey, :locals => { :organization_survey => @org.organization_survey }
+
+        %h3="Contact information:"
+        = render :partial => "organizations/contact_info", :object => @org.organization_survey, :locals => { :organization_survey => @org.organization_survey }
+
 
   .party-info
     .box.wide
@@ -20,15 +25,8 @@
 
         .relax='&nbsp;'
 
-      - if @org.organization_survey
-        %h3="Organization information:"
-        = render :partial => "organizations/survey", :object => @org.organization_survey, :locals => { :organization_survey => @org.organization_survey }
-
-        %h3="Contact information:"
-        = render :partial => "organizations/contact_info", :object => @org.organization_survey, :locals => { :organization_survey => @org.organization_survey }
-
   .relax='&nbsp;'
-  =image_tag "#{image_path('titles/savers_supported_by_this_organization.gif')}", :alt => 'SaveTogether'
+  =image_tag "#{image_path('titles/savers_supported_by_this_organization.gif')}", :alt => 'SaveTogether', :style => "margin-top: 30px;"
 
   .pagination= paginating_links @savers, :params => params if @savers.page_count > 1
 
