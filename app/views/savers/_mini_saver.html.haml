@@ -5,15 +5,15 @@
     %table{:border => "0", :width => "100%", :style => "margin-top:0px;", :cellpadding => "0"}
 
       -# Goal & Region
-      =render :partial => "savers/shared/detail", :locals => {:detail => "#{:goal.l}:", :value => mini_saver.asset_type}
-      =render :partial => "savers/shared/detail", :locals => {:detail => "#{:region.l}:", :value => mini_saver.metro_area.name}
+      =render :partial => "savers/shared/property", :locals => {:name => "#{:goal.l}:", :value => mini_saver.asset_type}
+      =render :partial => "savers/shared/property", :locals => {:name => "#{:region.l}:", :value => mini_saver.metro_area.name}
       
       -# Spacer
       =render :partial => "savers/shared/spacer"
     
       -# Match Info
-      =render :partial => "savers/shared/detail", :locals => {:detail => "#{:match_request.l}:", :value => mini_saver.requested_match_amount.format(:no_cents)}
-      =render :partial => "savers/shared/detail", :locals => {:detail => "#{:match_committed.l}:", :value => "#{mini_saver.matched_amount.format(:no_cents)} (#{(mini_saver.match_percent*100).round}%)"}
+      =render :partial => "savers/shared/property", :locals => {:name => "#{:match_request.l}:", :value => mini_saver.requested_match_amount.format(:no_cents)}
+      =render :partial => "savers/shared/property", :locals => {:name => "#{:match_committed.l}:", :value => "#{mini_saver.matched_amount.format(:no_cents)} (#{(mini_saver.match_percent*100).round}%)"}
     
       -# Progress Bar
       =render :partial => "savers/shared/progress_bar", :locals => {:saver => mini_saver, :style => "progress-bar"}
