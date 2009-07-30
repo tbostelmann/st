@@ -169,11 +169,13 @@ LABEL {cursor: pointer;}
 .search-options UL LI {
 	display: inline;
 	font-size: 14px;
-}
-.search-options UL LI A {
-	color: #fff;
+	color: #5b930d;
 	font-weight: bold;
-	margin: 0 12px;
+}
+/* This applies to all siblings of the first LI - so every LI but
+   the first gets left padding */
+.search-options UL LI + LI {
+  padding-left: 5px;
 }
 .search-options .search-button {
 	top: 6px;
