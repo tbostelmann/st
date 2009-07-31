@@ -2,8 +2,8 @@ community_name: "SaveTogether"
 community_tagline: "Building Savings. Transforming Lives."
 community_description:  "SaveTogether description"
 support_email:  "info@savetogether.org"
-meta_description: 'A description of your community for use in META tags.'
-meta_keywords: 'keywords for use in META tags'
+meta_description: 'Help someone reach their dream to get an education, start a business, or buy a home. Donate $25 today to match their savings goal.'
+meta_keywords: 'Savings, working families, low-income, poverty, microfinance, microsavings, education, microbusiness, home, match, donations, goals, social, community'
 #sections_enabled: ['photos', 'posts', 'clippings', 'contests', 'categories', 'events']
 #sections_enabled: ['photos']
 exception_notification_email: "youremailaddress@example.com"
