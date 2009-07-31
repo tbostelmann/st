@@ -13,6 +13,6 @@
       %h3
         = image_tag("#{image_path('titles/featured-savers.gif')}", {:alt => 'Featured Savers'})
     .link
-      = link_to "(See All Savers)", savers_path
+      = link_to "(See All Savers &raquo;)", savers_path
     
   = render(:partial => "savers/mini_saver", :collection => @savers)
