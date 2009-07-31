@@ -3,4 +3,4 @@
     %p= truncate_words(donor.description, 40, '...')
   .with-img
     = link_to image_tag( donor.avatar_photo_url(:thumb), :border => "0" ), donor_path(donor)
-    %span= link_to donor.display_name.upcase, donor_path(donor)
+    %span= link_to donor.display_name, donor_path(donor)
