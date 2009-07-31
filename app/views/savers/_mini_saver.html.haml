@@ -22,7 +22,8 @@
       =render :partial => "savers/shared/ask_control", :locals => {:saver => mini_saver}
 
   -# Thumbnail
-  %a{:class => 'with-img', :href => "#{saver_path(mini_saver)}"}
-    =image_tag(mini_saver.avatar_photo_url(:thumb))
+  .with-img
+    = link_to image_tag(mini_saver.avatar_photo_url(:thumb), :border => "0" ), saver_path(mini_saver)
     %span
       =:savers_story.l :saver => "#{possessivize(mini_saver.display_name).upcase}"
+      =link_to "&hellip;", saver_path(mini_saver)

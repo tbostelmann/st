@@ -1027,8 +1027,8 @@ en:
   saver_name: Saver Name
   #en: savers: Savers
   savers: Savers
-  #en: savers_story: "{{saver}} STORY &hellip;"
-  savers_story: "{{saver}} STORY &hellip;"
+  #en: savers_story: "{{saver}} STORY"
+  savers_story: "{{saver}} STORY"
   #en: savers_you_have_contributed_to: Savers You Have Contributed To
   savers_you_have_contributed_to: Savers You Have Contributed To
   #en: save_and_continue_to_step_three: Save, and continue to step three
