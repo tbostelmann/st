@@ -5,6 +5,8 @@
     %span.text12GreenBold
       = link_to donor.display_name.capitalize, donor_path(donor)
   %td{:class => "text12", :valign => "middle", :align => "left"}
+    = l donor.created_at, :format => :member_since
+  %td{:class => "text12", :valign => "middle", :align => "left"}
     = truncate_words(donor.description, 50, "...")
   %td{:class => "text12", :valign => "middle", :align => "center"}
     - most_recent_donation = donor.most_recent_donation
@@ -14,6 +16,6 @@
 
 -# Spacer Row
 %tr{:valign => "top", :align => "left"}
-  %td{:height => "2", :valign => "middle", :background => "#{image_path('bg/dotted_line.gif')}", :style => "background-repeat: repeat-x;", :colspan => "4"}
+  %td{:height => "2", :valign => "middle", :background => "#{image_path('bg/dotted_line.gif')}", :style => "background-repeat: repeat-x;", :colspan => "5"}
     %span{:style => "background-repeat: repeat-x;"}
       %img{:height => "2", :width => "2", :src => "#{image_path('icons/spacer.gif')}"}
