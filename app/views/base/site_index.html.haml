@@ -1,4 +1,12 @@
-- @meta = { :description => AppConfig.meta_description, :keywords => AppConfig.meta_keywords, :robots => AppConfig.robots_meta_list_content }
+- @meta = {                                       |
+  :description => AppConfig.meta_description,     |
+  :keywords => AppConfig.meta_keywords,           |
+  :robots => AppConfig.robots_meta_list_content   |
+  }                                               |
+
+-# Add the Google Webmaster verification string - Home page only
+- @meta.merge!("verify-v1" => "qUbzpZfuULUTf2nSxp3he3j3jq8yYp1MhbbCFG+i524=")
+  
 - # This is for identifying current tab selection in navbar
 - @section = 'home'
 
