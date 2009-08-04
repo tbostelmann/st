@@ -27,7 +27,9 @@
           = @org.description
 
   .relax='&nbsp;'
-  =image_tag "#{image_path('titles/savers_supported_by_this_organization.gif')}", :alt => 'SaveTogether', :style => "margin-top: 30px;"
+  
+  %h2{:style => "margin-top: 30px;"}
+    =:savers_supported_by_this_organization.l
 
   .pagination= paginating_links @savers, :params => params if @savers.page_count > 1
 

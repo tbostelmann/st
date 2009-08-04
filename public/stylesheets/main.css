@@ -177,7 +177,7 @@ LABEL {
   float: left;
   width: 100%;
 	padding-bottom: 30px;
-	margin-top: 20px;
+	margin-top: 25px;
 }
 .content H1, .content H2, .content H3, .content P {
 	padding: 0;
@@ -192,8 +192,7 @@ LABEL {
 .content H2 {
 	font-size: 21px;
 	color: #5b930d;
-	margin-top: 25px;
-	margin-bottom: 10px;
+	letter-spacing: 0.05em;
 }
 .content H3 {
 	font-size: 14px;
@@ -242,14 +241,14 @@ LABEL {
   color: #4F8306;
 }
 .featured-savers {
-  margin-top: 12px;
+  margin-top: 20px;
   width: 100%;
 }
 .featured-savers .heading {
   float:left;
 }
 .featured-savers .link {
-  padding-top: 8px;
+  padding-top: 4px;
   margin-bottom: 4px;
 }
 .featured-savers .link A, .featured-savers .link A:VISITED {
