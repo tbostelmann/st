@@ -343,6 +343,8 @@ en:
   donation_amount: ${{amount}}
   #en: donation_amount_to_st: "{{amount}} ({{percent}}%%)"
   donation_amount_to_st: "{{amount}} ({{percent}}%)"
+  #en: donor_community: Donor Community
+  donor_community: Donor Community
   #en: donor_name: Donor Name
   donor_name: Donor Name
   #en: dont_have_an_account: Don't have an account?
@@ -465,6 +467,8 @@ en:
   favorite_this: Favorite this
   #en: featured_posts: Featured posts
   featured_posts: Featured posts
+  #en: featured_savers: Featured Savers
+  featured_savers: Featured Savers
   #en: features: Features
   features: Features
   #en: feedback: Feedback
@@ -1199,6 +1203,8 @@ en:
   thanks_for_activating_your_account: Thanks for activating your account!
   #en: thanks_youre_now_logged_in: Thanks! You're now logged in.
   thanks_youre_now_logged_in: Thanks! You're now logged in.
+  #en: thank_you_for_your_donation: Thank You for Your Donation
+  thank_you_for_your_donation: Thank You for Your Donation
   #en: the_comment_was_deleted: The comment was deleted.
   the_comment_was_deleted: The comment was deleted.
   #en: the_friendship_was_accepted: The friendship was accepted.

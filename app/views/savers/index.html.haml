@@ -3,8 +3,8 @@
 .content
   = render :partial => 'users/search_options'
 
-  %p
-    = image_tag "#{image_path('titles/savers.gif')}"
+  %h1
+    =:savers.l.titleize
 
   %div{:class => "pagination", :style => "margin-top:15px;"}
     = paginating_links @savers, :params => params if @savers.page_count > 1

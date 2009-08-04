@@ -1,7 +1,10 @@
 -@page_title= :feedback.l.titleize
 
 .content.single-column
-  = image_tag "#{image_path('titles/feedback.gif')}"
+
+  %h1
+    =:feedback.l.titleize
+
   %table{:width =>"96%", :cellspacing => "0", :callpadding => "0", :border => "0", :align => "center"}
     %tr
       %td{:valign => "top", :align =>"left"}

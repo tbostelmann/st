@@ -14,8 +14,8 @@
 
   .featured-savers
     .heading
-      %h3
-        = image_tag("#{image_path('titles/featured-savers.gif')}", {:alt => 'Featured Savers'})
+      %h1
+        =:featured_savers.l.titleize
     .link
       = link_to "(See All Savers &raquo;)", savers_path
     
