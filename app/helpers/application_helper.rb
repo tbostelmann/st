@@ -1,5 +1,11 @@
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
+  def is_ssl
+    # wrap call so we can add environment specific return values if needed
+    # logger.debug("request is over SSL ? : #{request.ssl?}")
+    request.ssl?
+  end
+
   def find_pledge
     if session[:pledge_id].nil?
       pledge = Pledge.create!
