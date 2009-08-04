@@ -1,3 +1,5 @@
+-@page_title= "#{possessivize(@user.display_name)} #{:profile_settings.l.titleize}"
+
 .content
   - form_tag donor_url(@user), :method => 'put', :multipart =>true, :class => 'MainForm' do
 

@@ -1,5 +1,7 @@
 - @meta = { :description => "#{@donor.display_name}'s profile on #{AppConfig.community_name}.", :keywords => "#{@donor.display_name}, #{@donor.tags.join(", ") unless @donor.tags.nil?}", :robots => AppConfig.robots_meta_show_content }
 
+-@page_title= @donor.display_name
+
 .content
 
   .photo

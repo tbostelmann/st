@@ -1,3 +1,5 @@
+-@page_title= :login.l.titleize
+
 .content
   = image_tag "#{image_path('temp/image-sub-signup.jpg')}"
   = render :partial => 'sessions/login', :locals => {:standalone => true, :title => :log_in_to_site.l(:site => AppConfig.community_name), :offer_password_change => true}

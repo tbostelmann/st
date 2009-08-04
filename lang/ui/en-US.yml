@@ -491,6 +491,8 @@ en:
   for_detailed_contest_rules: "For detailed contest rules,"
   #en: for_more_information_on_tags_check_out_the: For more information on tags check out the
   for_more_information_on_tags_check_out_the: For more information on tags check out the
+  #en: forgot_password: Forgot Password
+  forgot_password: Forgot Password
   #en: forgot_your_password: Forgot your password?
   forgot_your_password: Forgot your password?
   #en: forgot_your_username: Forgot your username?
@@ -691,6 +693,8 @@ en:
   match_request: "I'm Saving"
   #en: match_requested: Match requested
   match_requested: Match requested
+  #en: match_savers
+  match_savers: Match Savers
   #en: matched_savings_program: Matched Savings Program
   matched_savings_program: Matched Savings Program
   #en: matched_so_far: Match Committed
@@ -943,6 +947,8 @@ en:
   profile_photo: Profile Photo
   #en: profile_privacy: Profile Privacy
   profile_privacy: Profile Privacy
+  #en: profile_settings: Profile Settings
+  profile_settings: Profile Settings
   #en: profile_views: profile views
   profile_views: profile views
   #en: program: Program
@@ -1047,6 +1053,10 @@ en:
   save_post_as: "Save post as:"
   #en: save_reply: Save reply
   save_reply: Save reply
+  #en: save_together_page_title_template: "SaveTogether | {{page_title}}"
+  savetogether_page_title_template: "SaveTogether | {{page_title}}"
+  #en: savetogether_motto: Building Savings. Transforming Lives.
+  savetogether_motto: Building Savings. Transforming Lives.
   #en: says: says
   says: says
   #en: sb_post_was_deleted: "Post '{{title}}' was deleted."
@@ -1103,6 +1113,8 @@ en:
   sign_out: Sign out
   #en: sign_up: Sign Up!
   sign_up: Sign Up!
+  #en: sign_up_or_log_in: Sign Up or Log In
+  sign_up_or_log_in: Sign Up or Log In
   #en: sign_up_for_an_account: Sign up for an account.
   sign_up_for_an_account: Sign up for an account.
   #en: sign_up_for_a_: Sign up for a

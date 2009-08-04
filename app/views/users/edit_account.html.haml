@@ -1,3 +1,5 @@
+-@page_title= "#{possessivize(@user.display_name)} #{:account_settings.l.titleize}"
+
 .content
   - form_tag update_account_user_url(@user), :method => 'put', :class => "MainForm", :multipart => true do
 

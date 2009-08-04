@@ -11,7 +11,7 @@
     - @meta_page.each do |key|
       %meta{:name=> key[0], :content => key[1]}
 
-    %title= page_title
+    %title= :savetogether_page_title_template.l :page_title => (@page_title ? @page_title : :savetogether_motto.l)
 
     %link{:rel => "icon", :type => "image/jpg", :href => "#{image_path('icons/logo_icon_large.jpg')}"}
     
