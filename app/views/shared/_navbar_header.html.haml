@@ -4,16 +4,16 @@
     = link_to :home.l.upcase, home_path
     = image_tag 'separator.gif'
   %li
-    = link_to :match.l.upcase, savers_path
+    = link_to :match.l.upcase, match_savers_path
     = image_tag 'separator.gif'
   %li
     = link_to :how_it_works.l.upcase, how_it_works_path
     = image_tag 'separator.gif'
   %li
-    = link_to :do_more.l.upcase, new_donor_survey_path
+    = link_to :do_more.l.upcase, do_more_path
     = image_tag 'separator.gif'
   %li
-    = link_to :community.l.upcase, donors_path
+    = link_to :community.l.upcase, community_path
     = image_tag 'separator.gif'
   - if current_user
     %li

@@ -174,20 +174,30 @@ LABEL {
 .menu P SPAN {color: #ec972c;}
 /*Content*/
 .content {
-    float: left;
-    width: 100%;
+  float: left;
+  width: 100%;
 	padding-bottom: 30px;
-	margin-top: 10px;
+	margin-top: 25px;
 }
 .content H1, .content H2, .content H3, .content P {
 	padding: 0;
 	margin: 0;
 }
+.content H1 {
+	font-size: 26px;
+	color: #5b930d;
+	padding-left: 5px;
+	letter-spacing: 0.03em;
+}
 .content H2 {
 	font-size: 21px;
 	color: #5b930d;
-	margin-top: 25px;
-	margin-bottom: 10px;
+	letter-spacing: 0.05em;
+}
+.content H3 {
+	font-size: 14px;
+	color: #5b930d;
+	margin: 15px 15px 0;
 }
 .search-options-header {
     width: 900px;
@@ -231,17 +241,19 @@ LABEL {
   color: #4F8306;
 }
 .featured-savers {
-  margin-top: 12px;
+  margin-top: 20px;
   width: 100%;
 }
 .featured-savers .heading {
   float:left;
 }
 .featured-savers .link {
-  padding-top: 14px;
+  padding-top: 4px;
+  margin-bottom: 4px;
 }
 .featured-savers .link A, .featured-savers .link A:VISITED {
   color: #a9b270;
+  margin-left: 10px;
 }
 .saver {
 	float: left;
@@ -313,15 +325,6 @@ LABEL {
 }
 .saver.right {
   float: right;
-}
-.content H1 {
-	font-size: 24px;
-	color: #5b930d;
-}
-.content H3 {
-	font-size: 14px;
-	color: #5b930d;
-	margin: 15px 15px 0;
 }
 .photo {
 	width: 320px;

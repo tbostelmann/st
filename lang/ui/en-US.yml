@@ -261,6 +261,8 @@ en:
   compose: Compose
   #en: compose_message: Compose message
   compose_message: Compose message
+  #en: confirm_donation: Confirm Donation
+  confirm_donation: Confirm Donation
   #en: confirm_password: Confirm Password
   confirm_password: Confirm Password
   #en: contest_was_successfully_created: Contest was successfully created.
@@ -339,10 +341,14 @@ en:
   do_more: Do more
   #en: donate: Donate
   donate: Donate
+  #en: donate_to_savetogether: Donate to SaveTogether
+  donate_to_savetogether: Donate to SaveTogether
   #en: donation_amount: ${{amount}}
   donation_amount: ${{amount}}
   #en: donation_amount_to_st: "{{amount}} ({{percent}}%%)"
   donation_amount_to_st: "{{amount}} ({{percent}}%)"
+  #en: donor_community: Donor Community
+  donor_community: Donor Community
   #en: donor_name: Donor Name
   donor_name: Donor Name
   #en: dont_have_an_account: Don't have an account?
@@ -465,6 +471,8 @@ en:
   favorite_this: Favorite this
   #en: featured_posts: Featured posts
   featured_posts: Featured posts
+  #en: featured_savers: Featured Savers
+  featured_savers: Featured Savers
   #en: features: Features
   features: Features
   #en: feedback: Feedback
@@ -745,6 +753,8 @@ en:
   most_recent_donation: Most Recent Donation
   #en: my_details: My Details
   my_details: My Details
+  #en: my_matches: My Matches
+  my_matches: My Matches
   #en: my_friends: My Friends
   my_friends: My Friends
   #en: my_profile: My Profile
@@ -863,6 +873,8 @@ en:
   pending_friendships: Pending Friendships
   #en: people: People
   people: People
+  #en: people_who_have_contributed_to_this_saver: People who have Contributed to this Saver
+  people_who_have_contributed_to_this_saver: People who have Contributed to this Saver
   #en: people_who_sign_up_using_your_invitation_will_automatically_be_added_as_your_friends_on: People who sign up using your invitation will automatically be added as your friends on
   people_who_sign_up_using_your_invitation_will_automatically_be_added_as_your_friends_on: People who sign up using your invitation will automatically be added as your friends on
   #en: permanently_delete_this_clipping: Permanently delete this clipping?
@@ -1039,10 +1051,12 @@ en:
   saver_name: Saver Name
   #en: savers: Savers
   savers: Savers
+  #en: savers_i_have_contributed_to: Savers I Have Contributed To
+  savers_i_have_contributed_to: Savers I Have Contributed To
   #en: savers_story: "{{saver}} STORY"
   savers_story: "{{saver}} STORY"
-  #en: savers_you_have_contributed_to: Savers You Have Contributed To
-  savers_you_have_contributed_to: Savers You Have Contributed To
+  #en: savers_supported_by_this_organization: Savers Supported by This Organization
+  savers_supported_by_this_organization: Savers Supported by This Organization
   #en: save_and_continue_to_step_three: Save, and continue to step three
   save_and_continue_to_step_three: Save, and continue to step three
   #en: save_changes: Save Changes
@@ -1199,6 +1213,8 @@ en:
   thanks_for_activating_your_account: Thanks for activating your account!
   #en: thanks_youre_now_logged_in: Thanks! You're now logged in.
   thanks_youre_now_logged_in: Thanks! You're now logged in.
+  #en: thank_you_for_your_donation: Thank You for Your Donation
+  thank_you_for_your_donation: Thank You for Your Donation
   #en: the_comment_was_deleted: The comment was deleted.
   the_comment_was_deleted: The comment was deleted.
   #en: the_friendship_was_accepted: The friendship was accepted.

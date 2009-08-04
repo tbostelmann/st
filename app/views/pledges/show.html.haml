@@ -1,9 +1,8 @@
 .content
-  %br/
-  %p
-    = image_tag "#{image_path('titles/confirmdonation.gif')}"
-    %br/
-    %br/
+
+  %h1{:style => "margin-bottom: 15px;"}
+    =:confirm_donation.l.titleize
+
   %table{:width => "96%", :cellspacing => "0", :cellpadding => "5", :border => "0", :align => "center"}
     -# Invoice Headings Row
     = render :partial => 'pledges/invoice/headings_row', :locals => {:photo_col_name => :photo.l, :item_col_name => :saver_name.l, :program_col_name => :program.l, :description_col_name => :goal_description.l, :amount_col_name => :amount.l, :action_col_name => :remove_saver_question.l}

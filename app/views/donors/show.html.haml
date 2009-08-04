@@ -33,7 +33,8 @@
       = @donor.description
 
   .relax='&nbsp;'
-  %h2
-    =image_tag "#{image_path('titles/savers_you_have_contributed_to.gif')}", :alt => :savers_you_have_contributed_to.l
+
+  %h2{:style => "margin-top: 30px; margin-bottom: 15px;"}
+    =:savers_i_have_contributed_to.l
 
   = render :partial => "pledges/contributions/beneficiaries", :locals => {:grouped_donations => @grouped_donations, :show_totals => (@donor.eql?(current_user))}

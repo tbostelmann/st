@@ -34,13 +34,15 @@ ActionController::Routing::Routes.draw do |map|
 
   # See how all your routes lay out with "rake routes"
 
-  # Re-route signup to the donors controller - signup is for donors only
-  map.signup          '/signup',          :controller => 'donors', :action => 'new'
-  map.signup_or_login '/signup_or_login', :controller => 'donors', :action => 'signup_or_login'
+  # Re-routes - friendly routes to controller/actions
+  map.signup          '/signup',          :controller => 'donors',        :action => 'new'
+  map.signup_or_login '/signup_or_login', :controller => 'donors',        :action => 'signup_or_login'
+  map.community       '/community',       :controller => 'donors',        :action => 'index'
+  map.match_savers    '/match_savers',    :controller => 'savers',        :action => 'index'
+  map.do_more         '/do_more',         :controller => 'donor_surveys', :action => 'new'
   
   # New base actions
   map.how_it_works    '/how_it_works',    :controller => 'base',   :action => 'how_it_works'
-  map.do_more         '/do_more',         :controller => 'base',   :action => 'do_more'
   map.feedback        '/feedback',        :controller => 'base',   :action => 'feedback' 
   map.about_us        '/about_us',        :controller => 'base',   :action => 'about_us'
   map.terms_of_use    '/terms_of_use',    :controller => 'base',   :action => 'terms_of_use'
@@ -51,7 +53,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :donors
   map.resources :organizations
   map.resources :donor_surveys
-  
+
 #  map.resources  :pledges
   map.new          '/pledges/new/:saver_id', :controller => 'pledges', :action => 'new'
   map.create       '/pledges/create',        :controller => 'pledges', :action => 'create'
