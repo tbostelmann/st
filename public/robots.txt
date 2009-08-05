@@ -6,11 +6,10 @@
 User-Agent: *
 Allow: /
 
-Disallow: /css/
 Disallow: /images/
 Disallow: /javascripts/
-Disallow: /savers/
-Disallow: /donors/
-Disallow: /organizations/
+Disallow: /photos/
+Disallow: /plugin_assets/
+Disallow: /stylesheets/
 
 Sitemap: http://www.savetogether.org/sitemap.xml
