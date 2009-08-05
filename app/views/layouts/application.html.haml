@@ -1,4 +1,5 @@
 !!!
+-  @add_this_protocol = is_ssl ?  'https' : 'http'
 %html
   %head
     %meta{:content => "text/html; charset=ISO-8859-1"}
@@ -46,7 +47,7 @@
             .anchor-right
               / AddThis Button BEGIN
               %a{:href => "http://www.addthis.com/bookmark.php?v=250", :onmouseover => "return addthis_open(this, '', '[URL]', '[TITLE]')", :onmouseout => "addthis_close()", :onclick => "return addthis_sendto()", :tabindex => "6"}
-                %img{:src => "http://s7.addthis.com/static/btn/lg-share-en.gif", :width => "125", :height => "16", :alt => "Bookmark and Share", :style => "border:0"}
+                %img{:src => "#{@add_this_protocol}://s7.addthis.com/static/btn/lg-share-en.gif", :width => "125", :height => "16", :alt => "Bookmark and Share", :style => "border:0"}
               / AddThis Button END
             %a{:href=> "/feedback", :tabindex => "5"}=:feedback.l
 
@@ -79,7 +80,7 @@
         var addthis_options = 'email, facebook, twitter, linkedin, myspace, technorati, wordpress, stumbleupon, favorites, more';
       %script{:type => "text/javascript"}
         var addthis_brand = 'SaveTogether';
-      =javascript_include_tag "http://s7.addthis.com/js/250/addthis_widget.js?pub=dylanhiggins"
+      =javascript_include_tag "#{@add_this_protocol}://s7.addthis.com/js/250/addthis_widget.js?pub=dylanhiggins"
   :javascript
     var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
     document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
