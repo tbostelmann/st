@@ -37,8 +37,8 @@ ActionController::Routing::Routes.draw do |map|
   # Re-routes - friendly routes to controller/actions
   map.signup          '/signup',          :controller => 'donors',        :action => 'new'
   map.signup_or_login '/signup-or-login', :controller => 'donors',        :action => 'signup_or_login'
-  map.community       '/community/:donor_id',       :controller => 'donors',        :action => 'index'
-  map.match_savers    '/match-savers/:saver_id',    :controller => 'savers',        :action => 'index'
+  map.community       '/community/:id',       :controller => 'donors',        :action => 'index'
+  map.match_savers    '/match-savers/:id',    :controller => 'savers',        :action => 'index'
   map.do_more         '/do-more',         :controller => 'donor_surveys', :action => 'new'
   
   # New base actions
