@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
   # Uncomment the :secret if you're not using the cookie session store
   protect_from_forgery # :secret => 'e3a2381ed3c0a1d9a991691d41eb753b'
 
-  before_filter :force_non_ssl
+  # DPIRONE - not now before_filter :force_non_ssl
 
   # Scrub sensitive parameters from your log
   # filter_parameter_logging :password
@@ -73,6 +73,7 @@ class ApplicationController < ActionController::Base
     was_ssl = request.ssl?
     if was_ssl 
       logger.debug{"Request was SSL, bouncing back to non-ssl ..."}
+      # TODO: this loses all params after ? - so don't use it for now!
       redirect_to :protocol => "http"
       return false
     end
