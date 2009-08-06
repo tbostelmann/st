@@ -9,6 +9,8 @@ class ApplicationController < ActionController::Base
   # Uncomment the :secret if you're not using the cookie session store
   protect_from_forgery # :secret => 'e3a2381ed3c0a1d9a991691d41eb753b'
 
+  before_filter :force_non_ssl
+
   # Scrub sensitive parameters from your log
   # filter_parameter_logging :password
 
@@ -35,6 +37,7 @@ class ApplicationController < ActionController::Base
       when Proc then deliverer.call(self)
     end
 
+    logger.debug{" RESCUE : #{exception.inspect}"}
     ExceptionNotifier.deliver_exception_notification(exception, self,
       request, data)
 
@@ -64,8 +67,18 @@ class ApplicationController < ActionController::Base
     super
     logger.debug{"end: #{@method_name}"}
   end
-  # --------------------------------------------------------------------------
 
+  # --------------------------------------------------------------------------
+  def force_non_ssl
+    was_ssl = request.ssl?
+    if was_ssl 
+      logger.debug{"Request was SSL, bouncing back to non-ssl ..."}
+      redirect_to :protocol => "http"
+      return false
+    end
+    return true
+  end
+  # --------------------------------------------------------------------------
 
 
 end
