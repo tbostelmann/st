@@ -1,6 +1,6 @@
 class SaversController < BaseController
   def index  
-    # if a numberic ID was passed - show that saver
+    # if a numeric ID was passed - show that saver
     if params[:id] && params[:id].to_i > 0
       redirect_to :action => 'show' 
       return false
@@ -19,7 +19,7 @@ class SaversController < BaseController
   end
   
   def show
-    # if a NON-numberic ID was passed - show  index
+    # if a NON-numeric ID was passed - show  index
     if params[:id] && params[:id].to_i < 1 
       redirect_to :action => 'index' 
       return false
