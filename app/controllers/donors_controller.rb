@@ -1,6 +1,14 @@
 class DonorsController < BaseController
 
   def index
+
+   # if a numberic ID was passed - show that saver
+   if params[:id] && params[:id].to_i > 0
+    redirect_to :action => 'show'
+    return false
+   end
+
+
     # Use this one instead of find_all_by_anonymous because that one haven't figured
     # out how to integrate the :page stuff (it's avoiding Roles != Member)
     @donors = Donor.find_all_by_profile_public(true,
@@ -70,6 +78,12 @@ class DonorsController < BaseController
   end
 
   def show
+   # if a numberic ID was passed - show that saver
+   if params[:id] && params[:id].to_i  < 1
+    redirect_to :action => 'index'
+    return false
+   end
+
     @donor = Donor.find(params[:id])
     unless @donor.eql?(current_user) || @donor.profile_public
       redirect_to home_path

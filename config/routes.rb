@@ -37,8 +37,8 @@ ActionController::Routing::Routes.draw do |map|
   # Re-routes - friendly routes to controller/actions
   map.signup          '/signup',          :controller => 'donors',        :action => 'new'
   map.signup_or_login '/signup-or-login', :controller => 'donors',        :action => 'signup_or_login'
-  map.community       '/community',       :controller => 'donors',        :action => 'index'
-  map.match_savers    '/match-savers',    :controller => 'savers',        :action => 'index'
+  map.community       '/community/:donor_id',       :controller => 'donors',        :action => 'index'
+  map.match_savers    '/match-savers/:saver_id',    :controller => 'savers',        :action => 'index'
   map.do_more         '/do-more',         :controller => 'donor_surveys', :action => 'new'
   
   # New base actions
@@ -60,7 +60,7 @@ ActionController::Routing::Routes.draw do |map|
   map.done         '/pledges/done',          :controller => 'pledges', :action => 'done'
   map.cancel       '/pledges/cancel',        :controller => 'pledges', :action => 'cancel'
   map.notify       '/pledges/notify',        :controller => 'pledges', :action => 'notify'
-  map.signup_after '/signup/:pledge_id',     :controller => 'donors',  :action => 'new'
+  # map.signup_after '/signup/:pledge_id',     :controller => 'donors',  :action => 'new'
 
   # Any route ST app-specific should come before the community engine routes
   map.from_plugin :community_engine
