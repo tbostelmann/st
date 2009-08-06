@@ -36,17 +36,17 @@ ActionController::Routing::Routes.draw do |map|
 
   # Re-routes - friendly routes to controller/actions
   map.signup          '/signup',          :controller => 'donors',        :action => 'new'
-  map.signup_or_login '/signup_or_login', :controller => 'donors',        :action => 'signup_or_login'
+  map.signup_or_login '/signup-or-login', :controller => 'donors',        :action => 'signup_or_login'
   map.community       '/community',       :controller => 'donors',        :action => 'index'
-  map.match_savers    '/match_savers',    :controller => 'savers',        :action => 'index'
-  map.do_more         '/do_more',         :controller => 'donor_surveys', :action => 'new'
+  map.match_savers    '/match-savers',    :controller => 'savers',        :action => 'index'
+  map.do_more         '/do-more',         :controller => 'donor_surveys', :action => 'new'
   
   # New base actions
-  map.how_it_works    '/how_it_works',    :controller => 'base',   :action => 'how_it_works'
+  map.how_it_works    '/how-it-works',    :controller => 'base',   :action => 'how_it_works'
   map.feedback        '/feedback',        :controller => 'base',   :action => 'feedback' 
-  map.about_us        '/about_us',        :controller => 'base',   :action => 'about_us'
-  map.terms_of_use    '/terms_of_use',    :controller => 'base',   :action => 'terms_of_use'
-  map.privacy_policy  '/privacy_policy',  :controller => 'base',   :action => 'privacy_policy'
+  map.about_us        '/about-us',        :controller => 'base',   :action => 'about_us'
+  map.terms_of_use    '/terms-of-use',    :controller => 'base',   :action => 'terms_of_use'
+  map.privacy_policy  '/privacy-policy',  :controller => 'base',   :action => 'privacy_policy'
   # map.resources gives us RESTful routes to these models
   # Run rake routes to see the list (these will be the first listed)
   map.resources :savers
