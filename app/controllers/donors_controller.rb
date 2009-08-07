@@ -12,7 +12,7 @@ class DonorsController < BaseController
     
     # Force all donors indexing to go through community (emphasize Community)
     if request.path =~ /#{donors_path}/
-      redirect_to community_path(:trailing_slash => false)
+      redirect_to community_path
       return false
     end
 
