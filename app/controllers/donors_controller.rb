@@ -12,7 +12,7 @@ class DonorsController < BaseController
     
     # Force all donors indexing to go through community (emphasize Community)
     if request.path =~ /#{donors_path}/
-      redirect_to community_path
+      redirect_to community_path, :status => 301
       return false
     end
 

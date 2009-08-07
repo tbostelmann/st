@@ -5,7 +5,8 @@ class DonorStoriesTest < ActionController::IntegrationTest
 
   test "The Donors path is redirected to Community" do
     get "/donors"
-    assert_redirected_to community_path(:trailing_slash => false)
+    assert_redirected_to community_path
+    assert_response 301
   end
   
 end

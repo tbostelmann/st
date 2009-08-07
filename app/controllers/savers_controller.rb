@@ -11,7 +11,7 @@ class SaversController < BaseController
 
     # Force all savers indexing to go through match-savers (emphasize Match Savers)
     if request.path =~ /#{savers_path}/
-      redirect_to match_savers_path
+      redirect_to match_savers_path, :status => 301
       return false
     end
 
