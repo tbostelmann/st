@@ -25,6 +25,9 @@ P A:HOVER {
 .text12 A:HOVER {
   text-decoration: none;
 }
+A.target {
+  text-decoration: none;
+}
 IMG {
   border: none;
 }

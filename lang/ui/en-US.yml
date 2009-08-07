@@ -1187,6 +1187,8 @@ en:
   subject: Subject
   #en: subscribe_to: Subscribe to
   subscribe_to: Subscribe to
+  #en: success_stories: Success Stories
+  success_stories: Success Stories
   #en: tag_does_not_exists: The tag {{tag}} does not exist
   tag_does_not_exists: The tag {{tag}} does not exist
   #en: tag_name: Tag name

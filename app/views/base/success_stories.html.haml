@@ -4,9 +4,9 @@
   .how-it-works
     .block.no-border
       %h1
-        ="success stories".titleize
+        =:success_stories.l.titleize
       %h4
-        %a{:name => "gilma"}
+        %a{:name => "gilma", :class => "target"}
           EDUCATION - GILMA
       .thumbnail
         =image_tag "#{image_path('thumbnails/gilma.png')}"
@@ -23,7 +23,7 @@
       %p
         Gilma is just one of thousands of children and youth nationwide who saved for their futures through SEED programs.
       %h4
-        %a{:name => "wally"}
+        %a{:name => "wally", :class => "target"}
           STARTING A BUSINESS - WALLY
       .thumbnail
         =image_tag "#{image_path('thumbnails/wally.png')}"
@@ -34,7 +34,7 @@
       %p
         Today, he owns Wynn’s Home Repair and hires his own crews. Business continues to grow, and for the last two years, his company has shown a profit. Wynn keeps a close eye on his crews and lets his customers know what his prices will be and when he will be able to complete each job. Asked to describe himself now, Wally says, “I am an owner and a boss. I like that!”
       %h4
-        %a{:name => "sunshine"}
+        %a{:name => "sunshine", :class => "target"}
           HOME PURCHASE - SUNSHINE
       .thumbnail
         =image_tag "#{image_path('thumbnails/sunshine.png')}"
