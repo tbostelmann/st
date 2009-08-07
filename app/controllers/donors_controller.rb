@@ -1,13 +1,20 @@
 class DonorsController < BaseController
 
+  before_filter :log_request
+
   def index
 
-   # if a numeric ID was passed - show that saver
-   if params[:id] && params[:id].to_i > 0
+    # if a numeric ID was passed - show that saver
+    if params[:id] && params[:id].to_i > 0
     redirect_to :action => 'show'
     return false
-   end
-
+    end
+    
+    # Force all donors indexing to go through community (emphasize Community)
+    if request.path =~ /#{donors_path}/
+      redirect_to community_path(:trailing_slash => false)
+      return false
+    end
 
     # Use this one instead of find_all_by_anonymous because that one haven't figured
     # out how to integrate the :page stuff (it's avoiding Roles != Member)
@@ -115,4 +122,11 @@ class DonorsController < BaseController
       render :action => 'new'
     end
   end
+  
+  private
+  
+  def log_request
+    logger.debug{"DonorsController, action: #{action_name}, request: #{request.path}, method: #{request.method}"}
+  end
+  
 end
