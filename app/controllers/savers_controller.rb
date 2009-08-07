@@ -1,4 +1,7 @@
 class SaversController < BaseController
+
+  before_filter :log_request
+
   def index  
     # if a numeric ID was passed - show that saver
     if params[:id] && params[:id].to_i > 0
@@ -38,6 +41,12 @@ class SaversController < BaseController
     #@saver.donations_received.each do |d|
     #  @donors << d.from_user
     #end
+  end
+
+  private
+  
+  def log_request
+    logger.debug{"SaversController, originating request: \"#{request.path}\""}
   end
 
 end

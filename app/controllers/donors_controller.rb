@@ -126,7 +126,7 @@ class DonorsController < BaseController
   private
   
   def log_request
-    logger.debug{"DonorsController, action: #{action_name}, request: #{request.path}, method: #{request.method}"}
+    logger.debug{"DonorsController, originating request: \"#{request.path}\""}
   end
   
 end

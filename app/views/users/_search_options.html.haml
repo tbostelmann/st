@@ -1,6 +1,6 @@
 .search-options-header
   = link_to( "&raquo; #{:back_to_all_users.l}", users_path) if params['login'] || params['tag_list']
-  - form_tag savers_path, :method => :get , :class => 'MainForm' do
+  - form_tag match_savers_path, :method => :get , :class => 'MainForm' do
     .search-options
       %ul
         %li
