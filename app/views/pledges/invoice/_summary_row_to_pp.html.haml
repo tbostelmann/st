@@ -15,7 +15,7 @@
       = hidden_field_tag :invoice, @pledge.id
 
       = hidden_field_tag :tax, "0.00"
-      = hidden_field_tag :business, "tom@savetogether.org"
+      = hidden_field_tag :business, AppConfig.paypal_account.to_s
       = hidden_field_tag :address_override, "0"
       = hidden_field_tag :shipping, "0.00"
       = hidden_field_tag :no_note, "1"
