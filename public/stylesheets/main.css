@@ -436,6 +436,12 @@ LABEL {
   padding-left: 18px;
   padding-right: 0px;
 }
+.content .two-column-layout .tcl-column.left.two-thirds {
+  width: 64%;
+}
+.content .two-column-layout .tcl-column.right.one-third {
+  width: 32%;
+}
 .content .block {
   padding-top: 10px;
   padding-bottom: 5px;

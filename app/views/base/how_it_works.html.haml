@@ -2,8 +2,8 @@
 
 .content
   .how-it-works
-    %div{:class => "two-column-layout wide", :style => "height: 430px;"}
-      .tcl-column.left
+    %div{:class => "two-column-layout wide", :style => "height: 270px;"}
+      .tcl-column.left.two-thirds
 
         %h1
           =:how_it_works.l.titleize
@@ -14,19 +14,19 @@
           %h4
             THEY SAVE
           %p
-            Participants from carefully selected matched savings programs work hard to put away some of their income each month towards a specified savings goal.  The savings they build in their accounts will help them make life-changing investments such as attending college, starting a business, or buying a home.
+            Participants from carefully selected matched savings programs work hard to put away some of their income each month towards a specified savings goal.
           %h4
             YOU MATCH
           %p
-            You select a saver whose story and unique aspirations inspire you and agree to match all or a portion of the amount they have committed to saving.  Each dollar you donate will be further matched by the matched savings program that supports the saver.  For example, if a saver saves $5, and you match her $5, a matched savings program will match the saver with another $5 and ultimately she has $15 to use for her investment. 
+            You select a saver whose story and unique aspirations inspire you and agree to match all or a portion of the amount they have committed to saving. Each dollar you donate will be further matched by the matched savings program that supports the saver.
           %h4 
             TOGETHER, WE PROSPER
           %p
-            When the savers successfully reach their savings goal, they will have access to their savings plus the combined matching funds (including yours!) to use towards purchasing their investment.  This collaborative matching model makes it more feasible for the savers to make a significant investment in their future and accelerates the investment process.   Along the way, we all benefit from helping someone learn to save and generate prosperity for themselves, their family, and our community.
+            When the savers successfully reach their savings goal, they will have access to their savings plus the combined matching funds to use towards purchasing their investment.
 
-      .tcl-column.right
+      .tcl-column.right.one-third
 
-        %div{:style => "float:right; margin-top: 40px;"}
+        %div{:style => "float:right; margin: 42px 25px 0px 5px;"}
           =image_tag "#{image_path('graphics/how_it_works.jpg')}"
 
     %div{:class => "block", :style => "margin-top:20px;"}
@@ -37,24 +37,26 @@
       %h4
         COMMITMENT
       %p
-        It begins with a hard-working saver who is determined to improve her life and gain financial independence for herself and her family (Men can participate, too, but the majority of savers in most matched savings programs are women, so we will say “her” in describing SaveTogether’s typical saver).
-      %p
-        The saver hears about a nonprofit community organization that offers matched savings accounts to people like her who are struggling to get ahead.  She knows that it will improve her chances of success and help keep her on track if she can receive a match for every dollar saved. She applies for a matched savings account by submitting detailed financial records to show that her household income is below the maximum level for eligibility, and that she has minimal assets.  She also talks with program staff to convince them that she is committed to meeting a savings goal (and earning a match) that will allow her to make a life-changing investment, such as going to college, starting a small business, or buying a home.
+        It begins with a hard-working saver who is determined to improve her life and gain financial independence for herself and her family. The saver hears about a nonprofit community organization that offers matched savings accounts to people like her who are struggling to get ahead. She knows that it will improve her chances of success and help keep her on track if she can receive a match for every dollar saved. She applies for a matched savings account by submitting detailed financial records to show that her household income is below the maximum level for eligibility, and that she has minimal assets.
       %div{:style => "float:left; margin: 15px 10px 15px 0;"}
         =image_tag "#{image_path('graphics/education.jpg')}"
       %h4
         EDUCATION
       %p
-        While making deposits every month into a restricted account (only the matched savings program administrators can approve withdrawals), she is required to attend financial education classes to help her save more on her modest income, learn household budgeting skills, understand how to build her credit, and help her plan for the investment she intends to make. 
+        While making deposits every month into a restricted account (only the matched savings program administrators can approve withdrawals), she is required to attend financial education classes to help her save more on her modest income, learn household budgeting skills, understand how to build her credit, and help her plan for the investment she intends to make.
       %div{:style => "float:right; margin: 0px 20px 0px 10px;"}
         =image_tag "#{image_path('graphics/investment.jpg')}"
       %h4
         INVESTMENT
       %p
-        When she has saved for at least six months and completed the training requirements, she can begin to invest her savings and the matches she has earned. The checks are cut straight from the matched savings program to approved vendors so there is no chance for misuse of funds. Program staff advise the saver on making the most responsible investments with her funds, helping to make sure that her education, small business or home ownership plan is right for her.
+        When she has saved for at least six months and completed the training requirements, she can begin to invest her savings and the matches she has earned. Each matched savings program is a little different: some have different upper limits on how much can be saved (often $2,000), different match ratios (a saver may earn a 1:1 match, or a 2:1 match, or even higher), different lengths of time to complete the program, and different eligibility criteria.
       %p
-        Each matched savings program is a little different: some have different upper limits on how much can be saved (often $2,000), different match ratios (a saver may earn a 1:1 match, or a 2:1 match, or even higher), different lengths of time to complete the program, and different eligibility criteria. We carefully screen each of our participating matched savings program partners to be certain that they all have exceptional staff, years of experience managing a program for working families, and the highest quality services to help savers succeed in breaking the cycle of poverty.
-
+        The checks are cut straight from the matched savings program to approved vendors so there is no chance for misuse of funds. Program staff advise the saver on making the most responsible investments with her funds, helping to make sure that her education, small business or home ownership plan is right for her.
+      %p
+        More questions? Click
+        %a{:href => "#{faq_path}"}
+          here
+        to visit our FAQ page.
     %div{:class => "block", :style => "margin-top:20px;"}
       %h3
         How it Worked – Success Stories
