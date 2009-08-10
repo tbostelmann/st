@@ -18,15 +18,15 @@
       .indent
         %h3
           Tell policymakers that I support making opportunities like this one available to others!
-        %span.text12
-          - form_for @donor_survey, :url => {:controller => :donor_surveys, :action => :create, :id => @donor_survey.id} do |f|
-            = error_messages_for :donor_survey
-            = f.hidden_field :donor_id
-            %br
-            %table{:width => "100%", :cellspacing => "0", :cellpadding => "5", :border => "0", :align => "left"}
+        .indent.text12
+          %br
+          %table{:width => "100%", :cellspacing => "0", :cellpadding => "5", :border => "0", :align => "left"}
+            - form_for @donor_survey, :url => {:controller => :donor_surveys, :action => :create, :id => @donor_survey.id} do |f|
+              = error_messages_for :donor_survey
+              = f.hidden_field :donor_id
               %tr
-                %td{:align => 'right', :width => "15%"}
-                  %span.text12GreenBold= :first_name.l
+                %td{:width => "12%"}
+                  %label{"for"=>"firstname"}= :first_name.l
                 %td{:align => 'left'}
                   - if current_user
                     = f.text_field :first_name, {:value => current_user.first_name}
@@ -34,8 +34,8 @@
                     = f.text_field :first_name
                 %td
               %tr
-                %td{:align => 'right', :width => "15%"}
-                  %span.text12GreenBold= :last_name.l
+                %td
+                  %label{"for"=>"lastname"}= :last_name.l
                 %td{:align => 'left'}
                   - if current_user
                     = f.text_field :last_name, {:value => current_user.last_name}
@@ -43,30 +43,31 @@
                     = f.text_field :last_name
                 %td
               %tr
-                %td{:align => 'right', :width => "15%"}
-                  %span.text12GreenBold= :zippostal_code.l
+                %td
+                  %label{"for"=>"postalcode"}= :zippostal_code.l
                 %td{:align => 'left'}
                   = f.text_field :zip_code, :size => 10
                 %td
               %tr
-                %td{:align => 'right', :width => "15%"}
+                %td
+                %td
                   = f.submit :submit
-                %td{:colspan => 2}
-      
-        -# succeed "string" do {proc} is the haml helper to take care of these situations where
-        -# a following string, usually punctuation, would otherwise be separated from preceding
-        -# text by a space. precede is the analog for similar conditions at the beginning of a string.
-        -# See http://haml-lang.com/docs/yardoc/Haml/Helpers.html for more info.
-        
-        %p
-          = "Learn more about"
-          = succeed "," do
-            %a{:href=>"http://www.cfed.org/savetogether/"}= "how my name will be used"
-          = succeed ", and" do
-            %a{:href=>"http://www.cfed.org/savetogether/"}= "current policy efforts"
-          %a{:href=>"http://www.cfed.org/savetogether/"}= "what else I can do"
-          = " to make this opportunity available to others."
     
+          -# succeed "string" do {proc} is the haml helper to take care of these situations where
+          -# a following string, usually punctuation, would otherwise be separated from preceding
+          -# text by a space. precede is the analog for similar conditions at the beginning of a string.
+          -# See http://haml-lang.com/docs/yardoc/Haml/Helpers.html for more info.
+      
+        %div{:style => "margin-top: 15px;"}
+          %p
+            = "Learn more about"
+            = succeed "," do
+              %a{:href=>"http://www.cfed.org/savetogether/"}= "how my name will be used"
+            = succeed ", and" do
+              %a{:href=>"http://www.cfed.org/savetogether/"}= "current policy efforts"
+            %a{:href=>"http://www.cfed.org/savetogether/"}= "what else I can do"
+            = " to make this opportunity available to others."
+  
       %div{:class => "block", :style => "margin-top: 25px"}
         = render :partial => 'users/invite'
       
