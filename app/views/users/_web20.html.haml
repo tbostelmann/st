@@ -18,17 +18,19 @@
             %param{:name => "quality", :value => "high"}
             %param{:name => "bgcolor", :value => "#000000"}
             %param{:name => "FlashVars", :value => "userID=19210829&styleURL=http://static.twitter.com/flash/widgets/profile/smooth.xml"}
-            %embed{:src => "http://static.twitter.com/flash/widgets/profile/TwitterWidget.swf", :quality => "high", :bgcolor => "#000000", :width => "290", :height => "350", :name => "TwitterWidget", :align => "middle", :allowScriptAccess => "sameDomain", :allowFullScreen => "false", :type => "application/x-shockwave-flash", :pluginspage => "http://www.macromedia.com/go/getflashplayer", :FlashVars => "userID=19210829&styleURL=http://static.twitter.com/flash/widgets/profile/smooth.xml"}
+            %embed{:src => "http://static.twitter.com/flash/widgets/profile/TwitterWidget.swf", :quality => "high", :bgcolor => "#000000", :width => "290", :height => "366", :name => "TwitterWidget", :align => "middle", :allowScriptAccess => "sameDomain", :allowFullScreen => "false", :type => "application/x-shockwave-flash", :pluginspage => "http://www.macromedia.com/go/getflashplayer", :FlashVars => "userID=19210829&styleURL=http://static.twitter.com/flash/widgets/profile/smooth.xml"}
         / Twitter badge END
 
-        %div{:style => "float: left; margin-top: -21px; margin-left: 35px;"}
+        %div{:style => "float: left; margin-left: 35px;"}
           / Facebook badge START
-          %a{:href => "http://www.facebook.com/pages/SaveTogether/201523205283", :title => "SaveTogether", :target => "_TOP", :style => "font-family: &quot;lucida grande&quot;,tahoma,verdana,arial,sans-serif; font-size: 11px; font-variant: normal; font-style: normal; font-weight: normal; color: #3B5998; text-decoration: none;"}
-          %br
-          %a{:href => "http://www.facebook.com/pages/SaveTogether/201523205283", :title => "SaveTogether", :target => "_TOP"}
-            %img{:src => "http://badge.facebook.com/badge/201523205283.3103.216153620.png", :alt => "SaveTogether", :style => "border: 0px;"}
-          %br
-          %a{:href => "http://www.facebook.com/business/dashboard/", :title => "Make your own badge!", :target => "_TOP", :style => "font-family: &quot;lucida grande&quot;,tahoma,verdana,arial,sans-serif; font-size: 11px; font-variant: normal; font-style: normal; font-weight: normal; color: #3B5998; text-decoration: none;"}
+          %script{:type => "text/javascript", :src => "http://static.ak.facebook.com/js/api_lib/v0.4/FeatureLoader.js.php/en_US"}
+          %script{:type => "text/javascript"}
+            FB.init("f706afc45926e36c80c5def2e444ef84");
+          %fb:fan{:profile_id => "201523205283", :stream => "1", :connections => "", :width => "290"}
+          %div{:style => "font-size:8px; padding-left:10px"}
+            %a{:href => "http://www.facebook.com/pages/SaveTogether/201523205283"}
+              SaveTogether
+            on Facebook
           / Facebook Badge END
 
         %div{:style => "float: left; margin-left: 35px;"}
