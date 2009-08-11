@@ -41,6 +41,14 @@ LABEL {
 	font-size: 0;
 }
 
+/* textarea for forms */
+textarea {
+  font-family: Tahoma, Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  padding: 5px;
+}
+
 /*Page*/
 #page {
   margin: auto;
@@ -200,7 +208,7 @@ LABEL {
 .content H3 {
 	font-size: 14px;
 	color: #5b930d;
-	margin: 15px 15px 0;
+	margin-top: 15px;
 }
 .search-options-header {
     width: 900px;
@@ -412,6 +420,10 @@ LABEL {
 }
 
 /* Common Layout */
+.content .single-column {
+  width: 860px;
+  margin-left: 20px;
+}
 .content .two-column-layout {
   width: 900px;
   padding: 5px 15px 0px 15px;
@@ -449,6 +461,9 @@ LABEL {
   border-top-color: #a9b270;
   border-top-width: 1px;
 }
+.content .block .indent {
+  margin-left: 20px;
+}
 .content .block.no-border {
   padding-bottom: 5px;
   border-style: none;
@@ -474,6 +489,9 @@ LABEL {
 .content .block H2.error-page {
 	color: #EC911E;  
 }
+.content .block H2.numbered {
+  margin: 1px 0px 0px 40px;
+}
 .content .block H3 {
 	font-size: 16px;
 	color: #EC911E;
@@ -495,6 +513,10 @@ LABEL {
 /* Paragraph space above *only* when following H3 headings */
 .content .block H3 + P {
   margin-top: 12px;
+}
+/* H3 space above *only* when following H2 headings */
+.content .block .indent H3 {
+  margin-top: 5px;
 }
 .content .block UL {
 	font-size: 12px;
