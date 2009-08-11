@@ -48,14 +48,13 @@
                 = error_messages_for :donor_survey
                 = f.hidden_field :donor_id
                 %tr
-                  %td{:width => "12%"}
+                  %td{:width => "13%"}
                     %label{"for"=>"firstname"}= :first_name.l
                   %td{:align => 'left'}
                     - if current_user
                       = f.text_field :first_name, {:value => current_user.first_name}
                     - else
                       = f.text_field :first_name
-                  %td
                 %tr
                   %td
                     %label{"for"=>"lastname"}= :last_name.l
@@ -64,13 +63,11 @@
                       = f.text_field :last_name, {:value => current_user.last_name}
                     - else
                       = f.text_field :last_name
-                  %td
                 %tr
                   %td
                     %label{"for"=>"postalcode"}= :zippostal_code.l
                   %td{:align => 'left'}
                     = f.text_field :zip_code, :size => 10
-                  %td
                 %tr
                   %td
                   %td
