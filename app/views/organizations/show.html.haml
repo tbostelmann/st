@@ -4,36 +4,40 @@
 
 .content
 
-  .photo
-    %h1= @org.display_name
+  %h1
+    = @org.display_name
 
-    .with-img.plus
-      = image_tag( @org.avatar_photo_url(:medium), :class => "polaroid" )
+  .single-column
+
+    .photo
+
+      .with-img.plus
+        = image_tag( @org.avatar_photo_url(:medium), :class => "polaroid" )
       
-      - if @org.organization_survey
-        %h3="Organization information:"
-        = render :partial => "organizations/survey", :object => @org.organization_survey, :locals => { :organization_survey => @org.organization_survey }
+        - if @org.organization_survey
+          %h3="Organization information:"
+          = render :partial => "organizations/survey", :object => @org.organization_survey, :locals => { :organization_survey => @org.organization_survey }
 
-        %h3="Contact information:"
-        = render :partial => "organizations/contact_info", :object => @org.organization_survey, :locals => { :organization_survey => @org.organization_survey }
+          %h3="Contact information:"
+          = render :partial => "organizations/contact_info", :object => @org.organization_survey, :locals => { :organization_survey => @org.organization_survey }
 
 
-  .party-info
-    .about-party
-      %h3
-        = :about_user.l :user_name => @org.display_name
-      .story.org
-        %p.no-margin
-          = @org.description
+    .party-info
+      .about-party
+        %h3
+          = :about_user.l :user_name => @org.display_name
+        .story.org
+          %p.no-margin
+            = @org.description
 
-  .relax='&nbsp;'
+    .relax='&nbsp;'
   
-  %h2{:style => "margin-top: 30px;"}
-    =:savers_supported_by_this_organization.l
+    %h2{:style => "margin-top: 30px;"}
+      =:savers_supported_by_this_organization.l
 
-  .pagination= paginating_links @savers, :params => params if @savers.page_count > 1
+    .pagination= paginating_links @savers, :params => params if @savers.page_count > 1
 
-  = render(:partial => "savers/mini_saver", :collection => @savers)
+    = render(:partial => "savers/mini_saver", :collection => @savers)
 
-  %br.clear
-  .pagination= paginating_links @savers, :params => params if @savers.page_count > 1
+    %br.clear
+    .pagination= paginating_links @savers, :params => params if @savers.page_count > 1

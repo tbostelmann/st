@@ -4,37 +4,36 @@
 
 .content
 
-  .photo
-    %h1= @donor.display_name
+  %h1
+    = @donor.display_name
 
-    .with-img.plus
-      = image_tag( @donor.avatar_photo_url(:medium), :class => 'polaroid')
+  .single-column
 
-  .party-info
-    .box.wide
-      - if @donor.eql?(current_user)
-        .box-bottom
-          .small-column
-            %table{:width => "100%", :cellpadding => "2"}
-              %tr
-                %td
-                  %span.text12GreenTitle
-                    =:manage_my.l
-              %tr
-                %td
-                  =link_to "&raquo; #{:profile.l}", edit_donor_path(@donor)
-              %tr
-                %td
-                  =link_to "&raquo; #{:account_settings.l}", edit_account_user_path(@donor)
+    .photo
+
+      .with-img.plus
+        = image_tag( @donor.avatar_photo_url(:medium), :class => 'polaroid')
+
+    .party-info
+      .box.wide
+        - if @donor.eql?(current_user)
+          .box-bottom
+            %h2
+              =:manage_my.l
+            =link_to "&raquo; #{:profile.l}", edit_donor_path(@donor)
+            %br/
+            =link_to "&raquo; #{:account_settings.l}", edit_account_user_path(@donor)
+
+      .relax='&nbsp;'
+      .block.no-border
+        .indent
+          %h3= :why_i_am_interested_in_helping_savers.l
+          %p.no-margin
+            = @donor.description
 
     .relax='&nbsp;'
-    %h3= :why_i_am_interested_in_helping_savers.l
-    %p.no-margin
-      = @donor.description
 
-  .relax='&nbsp;'
+    %h2{:style => "margin-top: 30px; margin-bottom: 15px;"}
+      =:savers_i_have_contributed_to.l
 
-  %h2{:style => "margin-top: 30px; margin-bottom: 15px;"}
-    =:savers_i_have_contributed_to.l
-
-  = render :partial => "pledges/contributions/beneficiaries", :locals => {:grouped_donations => @grouped_donations, :show_totals => (@donor.eql?(current_user))}
+    = render :partial => "pledges/contributions/beneficiaries", :locals => {:grouped_donations => @grouped_donations, :show_totals => (@donor.eql?(current_user))}

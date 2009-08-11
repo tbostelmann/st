@@ -4,59 +4,62 @@
 
 .content
 
-  -# Photo
-  .photo
-    %h1= @saver.display_name
+  %h1= @saver.display_name
 
-    .with-img.plus
-      - if @saver.avatar
-        = image_tag( @saver.avatar_photo_url(:medium), :class => 'polaroid')
-      - else
-        = image_tag( user.avatar_photo_url(:medium), :class => "polaroid" )
+  .single-column
+  
+    -# Photo
+    .photo
 
-    -# Program and Region
-    %h3
-      %table{:cellpadding => "5"}
-        %tr
-          %td{:width => "32%"}
-            = "#{:program.l}:"
-          %td
-            = link_to @saver.organization.first_name, organization_path(@saver.organization)
-        %tr
-          %td
-            = "#{:region.l}:"
-          %td
-            = @saver.metro_area.name
+      .with-img.plus
+        - if @saver.avatar
+          = image_tag( @saver.avatar_photo_url(:medium), :class => 'polaroid')
+        - else
+          = image_tag( user.avatar_photo_url(:medium), :class => "polaroid" )
 
-  -# Saver Info
-  .party-info
-    .box.wide
-      %table{:width => "100%", :cellspacing => "0", :cellpadding => "10", :align => "center"}
-        %tr
-          %td{:width => "50%"}
-            = render(:partial => "savers/match_box/request_summary", :locals => {:saver => @saver})
+      -# Program and Region
+      %h3
+        %table{:cellpadding => "5"}
+          %tr
+            %td{:width => "32%"}
+              = "#{:program.l}:"
+            %td
+              = link_to @saver.organization.first_name, organization_path(@saver.organization)
+          %tr
+            %td
+              = "#{:region.l}:"
+            %td
+              = @saver.metro_area.name
+
+    -# Saver Info
+    .party-info
+      .box.wide
+        %table{:width => "100%", :cellspacing => "0", :cellpadding => "10", :align => "center"}
+          %tr
+            %td{:width => "55%"}
+              = render(:partial => "savers/match_box/request_summary", :locals => {:saver => @saver})
             
-          %td
-            = render(:partial => "savers/match_box/control", :locals => {:saver => @saver})
+            %td
+              = render(:partial => "savers/match_box/control", :locals => {:saver => @saver})
     
-    -# About Saver
-    .about-party
-      %h3= :about_user.l :user_name => @saver.display_name  
-      .story
-        %p.no-margin
-          = @saver.description
+      -# About Saver
+      .about-party
+        %h3= :about_user.l :user_name => @saver.display_name
+        .story
+          %p.no-margin
+            = @saver.description
   
-  -# Saver's Donors
-  -unless @donors.size == 0
-    .relax='&nbsp;'
+    -# Saver's Donors
+    -unless @donors.size == 0
+      .relax='&nbsp;'
   
-    %h2{:style => "margin-top: 30px;"}
-      =:people_who_have_contributed_to_this_saver.l
+      %h2{:style => "margin-top: 30px;"}
+        =:people_who_have_contributed_to_this_saver.l
 
-    .pagination= paginating_links @donors, :params => params if @donors.page_count > 1
+      .pagination= paginating_links @donors, :params => params if @donors.page_count > 1
 
-    = render(:partial => "donors/donor", :collection => @donors)
+      = render(:partial => "donors/donor", :collection => @donors)
 
-    %br.clear
-    .pagination= paginating_links @donors, :params => params if @donors.page_count > 1
+      %br.clear
+      .pagination= paginating_links @donors, :params => params if @donors.page_count > 1
 
