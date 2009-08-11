@@ -13,12 +13,14 @@
         %span.text12GreenBold
           = link_to "(Click here to create / update your profile)", edit_donor_path(current_user)
 
-      %h2
+      %div{:style => "float: left;"}
+        = image_tag "#{image_path('icons/one.gif')}"
+      %h2.numbered
         Use Your Voice
       .indent
-        %h3
-          Tell policymakers that I support making opportunities like this one available to others!
         .indent.text12
+          %h3
+            Tell policymakers that I support making opportunities like this one available to others!
           %br
           %table{:width => "100%", :cellspacing => "0", :cellpadding => "5", :border => "0", :align => "left"}
             - form_for @donor_survey, :url => {:controller => :donor_surveys, :action => :create, :id => @donor_survey.id} do |f|
@@ -51,7 +53,7 @@
               %tr
                 %td
                 %td
-                  = f.submit :submit
+                  = image_submit_tag "#{image_path('buttons/signup-small.gif')}", :alt => :signup.l
     
           -# succeed "string" do {proc} is the haml helper to take care of these situations where
           -# a following string, usually punctuation, would otherwise be separated from preceding
