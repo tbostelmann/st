@@ -5,13 +5,13 @@
   .two-column-layout
     
     / Signup form
-    .tcl-column
+    .tcl-column.left
 
       = render :partial => "donors/signup_form"
       = render :partial => "donors/signup_sidebar", :locals => {:standalone => false}
 
     / Login form
-    .tcl-column
+    .tcl-column.right
 
       = render :partial => "sessions/login_form", :locals => {:title => :or_log_in.l}
       = render :partial => 'sessions/login_sidebar', :locals => {:standalone => false, :offer_password_change => true}
