@@ -2,11 +2,12 @@
 
 .content
   .how-it-works
-    %div{:class => "two-column-layout wide", :style => "height: 270px;"}
-      .tcl-column.left.two-thirds
 
-        %h1
-          =:how_it_works.l.titleize
+  %h1
+    =:how_it_works.l.titleize
+
+    %div{:class => "two-column-layout", :style => "height: 240px;"}
+      .tcl-column.left.two-thirds
 
         .block.no-border
           %h3
@@ -26,55 +27,57 @@
 
       .tcl-column.right.one-third
 
-        %div{:style => "float:right; margin: 42px 25px 0px 5px;"}
+        %div{:style => "float:right; margin: 15px 25px 0px 5px;"}
           =image_tag "#{image_path('graphics/how_it_works.jpg')}"
 
-    %div{:class => "block", :style => "margin-top:20px;"}
-      %div{:style => "float:right; margin: 0px 20px 15px 5px;"}
-        =image_tag "#{image_path('graphics/commitment.jpg')}"
-      %h3
-        How a Matched Savings Programs Works
-      %h4
-        COMMITMENT
-      %p
-        It begins with a hard-working saver who is determined to improve her life and gain financial independence for herself and her family. The saver hears about a nonprofit community organization that offers matched savings accounts to people like her who are struggling to get ahead. She knows that it will improve her chances of success and help keep her on track if she can receive a match for every dollar saved. She applies for a matched savings account by submitting detailed financial records to show that her household income is below the maximum level for eligibility, and that she has minimal assets.
-      %div{:style => "float:left; margin: 15px 10px 15px 0;"}
-        =image_tag "#{image_path('graphics/education.jpg')}"
-      %h4
-        EDUCATION
-      %p
-        While making deposits every month into a restricted account (only the matched savings program administrators can approve withdrawals), she is required to attend financial education classes to help her save more on her modest income, learn household budgeting skills, understand how to build her credit, and help her plan for the investment she intends to make.
-      %div{:style => "float:right; margin: 0px 20px 0px 10px;"}
-        =image_tag "#{image_path('graphics/investment.jpg')}"
-      %h4
-        INVESTMENT
-      %p
-        When she has saved for at least six months and completed the training requirements, she can begin to invest her savings and the matches she has earned. Each matched savings program is a little different: some have different upper limits on how much can be saved (often $2,000), different match ratios (a saver may earn a 1:1 match, or a 2:1 match, or even higher), different lengths of time to complete the program, and different eligibility criteria.
-      %p
-        The checks are cut straight from the matched savings program to approved vendors so there is no chance for misuse of funds. Program staff advise the saver on making the most responsible investments with her funds, helping to make sure that her education, small business or home ownership plan is right for her.
-      %p
-        More questions? Click
-        %a{:href => "#{faq_path}"}
-          here
-        to visit our FAQ page.
-    %div{:class => "block", :style => "margin-top:20px;"}
-      %h3
-        How it Worked – Success Stories
-      %div{:style => "float: left; display: inline; width: 25%; margin-left: 95px;"}
-        %a{:href => "#{success_stories_path}\#gilma"}
-          %h4
-            EDUCATION - GILMA
-          .thumbnail.smidge
-            =image_tag "#{image_path('thumbnails/gilma.png')}"
-      %div{:style => "float: left; display: inline; width: 30%"}
-        %a{:href => "#{success_stories_path}\#wally"}
-          %h4
-            STARTING A BUSINESS - WALLY
-          .thumbnail.nudge
-            =image_tag "#{image_path('thumbnails/wally.png')}"
-      %div{:style => "float: left; display: inline"}
-        %a{:href => "#{success_stories_path}\#sunshine"}
-          %h4
-            HOME PURCHASE - SUNSHINE
-          .thumbnail.nudge
-            =image_tag "#{image_path('thumbnails/sunshine.png')}"
+    .single-column
+    
+      %div{:class => "block", :style => "margin-top:20px;"}
+        %div{:style => "float:right; margin: 0px 20px 15px 5px;"}
+          =image_tag "#{image_path('graphics/commitment.jpg')}"
+        %h3
+          How a Matched Savings Programs Works
+        %h4
+          COMMITMENT
+        %p
+          It begins with a hard-working saver who is determined to improve her life and gain financial independence for herself and her family. The saver hears about a nonprofit community organization that offers matched savings accounts to people like her who are struggling to get ahead. She knows that it will improve her chances of success and help keep her on track if she can receive a match for every dollar saved. She applies for a matched savings account by submitting detailed financial records to show that her household income is below the maximum level for eligibility, and that she has minimal assets.
+        %div{:style => "float:left; margin: 25px 10px 25px 0;"}
+          =image_tag "#{image_path('graphics/education.jpg')}"
+        %h4
+          EDUCATION
+        %p
+          While making deposits every month into a restricted account (only the matched savings program administrators can approve withdrawals), she is required to attend financial education classes to help her save more on her modest income, learn household budgeting skills, understand how to build her credit, and help her plan for the investment she intends to make.
+        %div{:style => "float:right; margin: 0px 20px 0px 10px;"}
+          =image_tag "#{image_path('graphics/investment.jpg')}"
+        %h4
+          INVESTMENT
+        %p
+          When she has saved for at least six months and completed the training requirements, she can begin to invest her savings and the matches she has earned. Each matched savings program is a little different: some have different upper limits on how much can be saved (often $2,000), different match ratios (a saver may earn a 1:1 match, or a 2:1 match, or even higher), different lengths of time to complete the program, and different eligibility criteria.
+        %p
+          The checks are cut straight from the matched savings program to approved vendors so there is no chance for misuse of funds. Program staff advise the saver on making the most responsible investments with her funds, helping to make sure that her education, small business or home ownership plan is right for her.
+        %p
+          More questions? Click
+          %a{:href => "#{faq_path}"}
+            here
+          to visit our FAQ page.
+      %div{:class => "block", :style => "margin-top:20px;"}
+        %h3
+          How it Worked – Success Stories
+        %div{:style => "float: left; display: inline; width: 25%; margin-left: 95px;"}
+          %a{:href => "#{success_stories_path}\#gilma"}
+            %h4
+              EDUCATION - GILMA
+            .thumbnail.smidge
+              =image_tag "#{image_path('thumbnails/gilma.png')}"
+        %div{:style => "float: left; display: inline; width: 30%"}
+          %a{:href => "#{success_stories_path}\#wally"}
+            %h4
+              STARTING A BUSINESS - WALLY
+            .thumbnail.nudge
+              =image_tag "#{image_path('thumbnails/wally.png')}"
+        %div{:style => "float: left; display: inline"}
+          %a{:href => "#{success_stories_path}\#sunshine"}
+            %h4
+              HOME PURCHASE - SUNSHINE
+            .thumbnail.nudge
+              =image_tag "#{image_path('thumbnails/sunshine.png')}"
