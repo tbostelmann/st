@@ -1,0 +1,35 @@
+%h3
+  Tell policymakers that I support making opportunities like this one available to others!
+
+%table{:width => "100%", :cellspacing => "0", :cellpadding => "5", :border => "0", :style => "margin-top: 15px;"}
+  - form_for @donor_survey, :url => {:controller => :donor_surveys, :action => :create, :id => @donor_survey.id} do |f|
+    = error_messages_for :donor_survey
+    = f.hidden_field :donor_id
+    %tr
+      %td{:width => "13%"}
+        %label{"for"=>"firstname"}= :first_name.l
+      %td{:align => 'left'}
+        - if @donor_survey.first_name
+          = f.text_field :first_name, {:value => @donor_survey.first_name}
+        - else
+          = f.text_field :first_name
+    %tr
+      %td
+        %label{"for"=>"lastname"}= :last_name.l
+      %td{:align => 'left'}
+        - if @donor_survey.last_name
+          = f.text_field :last_name, {:value => @donor_survey.last_name}
+        - else
+          = f.text_field :last_name
+    %tr
+      %td
+        %label{"for"=>"postalcode"}= :zippostal_code.l
+      %td{:align => 'left'}
+        - if @donor_survey.zip_code
+          = f.text_field :zip_code, {:size => 10, :value => @donor_survey.zip_code}
+        - else
+          = f.text_field :zip_code, :size => 10
+    %tr
+      %td
+      %td
+        = image_submit_tag "#{image_path('buttons/signup-small.gif')}", :alt => :signup.l

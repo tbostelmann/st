@@ -1,0 +1,14 @@
+-# succeed "string" do {proc} is the haml helper to take care of these situations where
+-# a following string, usually punctuation, would otherwise be separated from preceding
+-# text by a space. precede is the analog for similar conditions at the beginning of a string.
+-# See http://haml-lang.com/docs/yardoc/Haml/Helpers.html for more info.
+
+%div{:style => "margin-top: 10px;"}
+  %p
+    = "Learn more about"
+    = succeed "," do
+      %a{:href=>"http://www.cfed.org/savetogether/"}= "how my name will be used"
+    = succeed ", and" do
+      %a{:href=>"http://www.cfed.org/savetogether/"}= "current policy efforts"
+    %a{:href=>"http://www.cfed.org/savetogether/"}= "what else I can do"
+    = " to make this opportunity available to others."

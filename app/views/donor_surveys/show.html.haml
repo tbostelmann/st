@@ -1,0 +1,44 @@
+-@page_title= :do_more.l.titleize
+
+.content
+
+  -if flash[:thank_you_for_pledge]
+    - sep_do_more = true
+    %h1="#{:thank_you_for_your_donation.l}!"
+
+  - if current_user && (!current_user.description || !current_user.avatar)
+    - sep_do_more = true
+    .single-column
+      .block.no-border
+        %div{:style => "float: left;"}
+          = link_to((image_tag "#{image_path('icons/asterisks.gif')}", :alt => :edit_profile.l), edit_donor_path(current_user))
+        %h2.numbered
+          Create or Update your Profile
+        .indent
+          .indent
+            %h3
+              And help improve the SaveTogether community today!
+            %p
+              Click
+              = link_to "here", edit_donor_path(current_user)
+              to upload a photo and tell us why you supported a Saver.
+
+  - if sep_do_more
+    %div{:class => "block", :style => "margin-top: 25px"}
+
+  -# Do More Section
+  %h1
+    = :do_more.l.titleize
+
+  .single-column
+
+    .block.no-border
+    
+      = render :partial => 'donor_surveys/survey_form'
+      
+      %div{:class => "block", :style => "margin-top: 25px"}
+        = render :partial => 'users/invite'
+      
+      %div{:class => "block", :style => "margin-top: 25px"}
+        = render :partial => 'users/web20'
+       
