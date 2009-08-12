@@ -239,6 +239,12 @@ textarea {
 .pagination {
     width: 900px;
 }
+.pagination.upper {
+  margin: 10px 0px 10px 10px;
+}
+.pagination.lower {
+  margin-left: 10px;
+}
 .pagination .pagination_info {
 	font-size: 14px;
 	color: #4d4a43;

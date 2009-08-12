@@ -1,15 +1,18 @@
 - @page_title = :match_savers.l.titleize
 
 .content
+
   = render :partial => 'users/search_options'
 
   %h1
     =:savers.l.titleize
 
-  %div{:class => "pagination", :style => "margin-top:15px;"}
-    = paginating_links @savers, :params => params if @savers.page_count > 1
+  .single-column
 
-  = render :partial => "savers/list", :locals => {:savers => @savers}
+    .pagination.upper
+      = paginating_links @savers, :params => params if @savers.page_count > 1
 
-  %div{:class => "pagination", :style => "float:left; margin-top:24px;"}
-    = paginating_links @savers, :params => params if @savers.page_count > 1
+    = render :partial => "savers/list", :locals => {:savers => @savers}
+
+    .pagination.lower
+      = paginating_links @savers, :params => params if @savers.page_count > 1
