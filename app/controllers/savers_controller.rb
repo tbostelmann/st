@@ -16,10 +16,11 @@ class SaversController < BaseController
     end
 
     cond, @search, @metro_areas, @states, @asset_types = Saver.paginated_users_conditions_with_search(params)
-    @savers = Saver.recent.find(:all,
+    @savers = Saver.find(:all,
       :conditions => cond.to_sql,
       :include => [:tags],
-      :page => {:current => params[:page], :size => 20}
+      :page => {:current => params[:page], :size => 20},
+      :order => :first_name
       )
 
     @tags = Saver.tag_counts :limit => 10
