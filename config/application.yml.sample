@@ -11,6 +11,7 @@ paypal_account: "paypal@savetogether.org"
 app_url: "http://localhost:3000"
 paypal_url: "https://www.sandbox.paypal.com/cgi-bin/webscr"
 paypal_return_protocol: "http"
+enable_optify: true
 
 photo:
   missing_thumb: '/plugin_assets/community_engine/images/icon_missing_thumb.gif'

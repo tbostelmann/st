@@ -5,6 +5,11 @@ module ApplicationHelper
     # logger.debug("request is over SSL ? : #{request.ssl?}")
     request.ssl?
   end
+  
+  def is_production?
+    logger.debug{"is_production?: env is #{RAILS_ENV}"}
+    return RAILS_ENV.eql?('production')
+  end
 
   def find_pledge
     if session[:pledge_id].nil?
