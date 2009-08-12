@@ -239,6 +239,12 @@ textarea {
 .pagination {
     width: 900px;
 }
+.pagination.upper {
+  margin: 10px 0px 10px 10px;
+}
+.pagination.lower {
+  margin-left: 10px;
+}
 .pagination .pagination_info {
 	font-size: 14px;
 	color: #4d4a43;
@@ -425,13 +431,12 @@ textarea {
   margin-left: 20px;
 }
 .content .two-column-layout {
-  width: 900px;
-  padding: 5px 15px 0px 15px;
+  width: 860px;
+  margin: 0px 20px 0px 20px;
   display: block;
 }
 .content .two-column-layout.wide {
   width: 900px;
-  padding: 5px 0px 0px 0px;
 }
 .content .two-column-layout .tcl-column {
   float: left;
@@ -441,11 +446,11 @@ textarea {
 .content .two-column-layout .tcl-column.left {
   width: 48%;
   padding-left: 0px;
-  padding-right: 18px;
+  padding-right: 2%;
 }
 .content .two-column-layout .tcl-column.right {
   width: 48%;
-  padding-left: 18px;
+  padding-left: 2%;
   padding-right: 0px;
 }
 .content .two-column-layout .tcl-column.left.two-thirds {
@@ -495,7 +500,7 @@ textarea {
 .content .block H3 {
 	font-size: 16px;
 	color: #EC911E;
-	margin: 24px 0px 0px 0px;
+	margin: 8px 0px 0px 0px;
 	font-weight: normal;
 	line-height: 100%;
 }

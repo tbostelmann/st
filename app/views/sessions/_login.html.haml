@@ -1,13 +1,13 @@
 -# Reusable login
 %p
-  .two-column-layout
+.two-column-layout
 
-    / Login form
-    .tcl-column
+  / Login form
+  .tcl-column.left
 
-      = render :partial => "sessions/login_form", :locals => {:title => title}
+    = render :partial => "sessions/login_form", :locals => {:title => title}
 
-    / Help text
-    .tcl-column
+  / Help text
+  .tcl-column.right
 
-      = render :partial => 'sessions/login_sidebar', :locals => {:standalone => standalone, :offer_password_change => offer_password_change}
+    = render :partial => 'sessions/login_sidebar', :locals => {:standalone => standalone, :offer_password_change => offer_password_change}

@@ -4,12 +4,14 @@
 
   %h1
     =:donor_community.l.titleize
+
+  .single-column
+
+    .pagination.upper
+      = paginating_links @donors, :params => params if @donors.page_count > 1
   
-  %div{:class => "pagination", :style => "margin-bottom:15px;"}
-    - if @donors.page_count > 1
-      = paginating_links @donors, :params => params
+    = render :partial => "donors/community", :locals => {:donors => @donors}
   
-  = render :partial => "donors/community", :locals => {:donors => @donors}
-  
-  .pagination= paginating_links @donors, :params => params if @donors.page_count > 1
+    .pagination.lower
+      = paginating_links @donors, :params => params if @donors.page_count > 1
   
