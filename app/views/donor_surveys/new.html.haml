@@ -11,7 +11,7 @@
     .single-column
       .block.no-border
         %div{:style => "float: left;"}
-          = image_tag "#{image_path('icons/asterix.gif')}"
+          = link_to((image_tag "#{image_path('icons/asterisks.gif')}", :alt => :edit_profile.l), edit_donor_path(current_user))
         %h2.numbered
           Create or Update your Profile
         .indent
