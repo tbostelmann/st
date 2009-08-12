@@ -1,0 +1,19 @@
+%h3
+  Thank you for helping us tell policymakers to make this opportunity available to others!
+
+%table{:width => "100%", :cellspacing => "0", :cellpadding => "5", :border => "0", :style => "margin-top: 15px;"}
+  %tr
+    %td{:width => "13%"}
+      %label{"for"=>"firstname"}= :first_name.l
+    %td{:align => 'left'}
+      = @donor_survey.first_name
+  %tr
+    %td
+      %label{"for"=>"lastname"}= :last_name.l
+    %td{:align => 'left'}
+      = @donor_survey.last_name
+  %tr
+    %td
+      %label{"for"=>"postalcode"}= :zippostal_code.l
+    %td{:align => 'left'}
+      = @donor_survey.zip_code

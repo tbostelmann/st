@@ -35,11 +35,11 @@ ActionController::Routing::Routes.draw do |map|
   # See how all your routes lay out with "rake routes"
 
   # Re-routes - friendly routes to controller/actions
-  map.signup          '/signup',          :controller => 'donors',        :action => 'new'
-  map.signup_or_login '/signup-or-login', :controller => 'donors',        :action => 'signup_or_login'
-  map.community       '/community/:id',       :controller => 'donors',        :action => 'index'
-  map.match_savers    '/match-savers/:id',    :controller => 'savers',        :action => 'index'
-  map.do_more         '/do-more',         :controller => 'donor_surveys', :action => 'new'
+  map.signup          '/signup',           :controller => 'donors',        :action => 'new'
+  map.signup_or_login '/signup-or-login',  :controller => 'donors',        :action => 'signup_or_login'
+  map.community       '/community/:id',    :controller => 'donors',        :action => 'index'
+  map.match_savers    '/match-savers/:id', :controller => 'savers',        :action => 'index'
+  map.do_more         '/do-more',          :controller => 'donor_surveys', :action => 'show'
   
   # New base actions
   map.how_it_works    '/how-it-works',    :controller => 'base',   :action => 'how_it_works'
