@@ -15,12 +15,33 @@ class SaversController < BaseController
       return false
     end
 
+    if params[:order_by]
+      if session[:order_by] && session[:order_by] == params[:order_by]
+        if session[:order] == 'ASC'
+          session[:order] = 'DESC'
+        else
+          session[:order] = 'ASC'
+        end
+      else
+        session[:order_by] = params[:order_by]
+        session[:order] = 'ASC'
+      end
+
+    else
+      session[:order_by] = 'first_name'
+      session[:order] = 'ASC'
+    end
+
+    @order_by = session[:order_by]
+    @order = session[:order]
+
     cond, @search, @metro_areas, @states, @asset_types = Saver.paginated_users_conditions_with_search(params)
     @savers = Saver.find(:all,
       :conditions => cond.to_sql,
       :include => [:tags],
       :page => {:current => params[:page], :size => 20},
-      :order => :first_name
+      :include => [:asset_type, :metro_area],
+      :order => "#{@order_by} #{@order}"
       )
 
     @tags = Saver.tag_counts :limit => 10

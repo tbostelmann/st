@@ -4,13 +4,14 @@
   %tr
     %td{:class => "large-text", :height => "36", :width => "15%", :bgcolor => "#f8faf5"}
       %p.large-text
-        =:saver.l
+        = link_to :saver.l, :controller => :savers, :order_by => 'first_name'
     %td{:class => "large-text", :height => "36", :width => "10%", :bgcolor => "#f8faf5"}
       %p.large-text
-        =:goal.l
+        = link_to :goal.l, :controller => :savers, :order_by => 'asset_types.asset_name'
     %td{:class => "large-text", :height => "36", :width => "18%", :bgcolor => "#f8faf5"}
       %p.large-text
-        ="#{:region.l} / #{:program.l}"
+        = link_to :region.l, :controller => :savers, :order_by => 'metro_areas.name'
+        = " / #{:program.l}"
     %td{:class => "large-text", :height => "36", :bgcolor => "#f8faf5"}
       %p.large-text
         ="Saver's Story"

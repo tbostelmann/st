@@ -94,15 +94,15 @@ class Party < User
   def self.build_conditions_for_search(search)
     cond = Caboose::EZ::Condition.new
 
-    cond.append ['activated_at IS NOT NULL ']
+    cond.append ['users.activated_at IS NOT NULL ']
     if search['country_id'] && !(search['metro_area_id'] || search['state_id'])
-      cond.append ['country_id = ?', search['country_id'].to_s]
+      cond.append ['users.country_id = ?', search['country_id'].to_s]
     end
     if search['state_id'] && !search['metro_area_id']
-      cond.append ['state_id = ?', search['state_id'].to_s]
+      cond.append ['users.state_id = ?', search['state_id'].to_s]
     end
     if search['metro_area_id']
-      cond.append ['metro_area_id = ?', search['metro_area_id'].to_s]
+      cond.append ['users.metro_area_id = ?', search['metro_area_id'].to_s]
     end
     if search['login']
       cond.login =~ "%#{search['login']}%"
@@ -114,7 +114,7 @@ class Party < User
       cond.description =~ "%#{search['description']}%"
     end
     if search['asset_type_id']
-      cond.append ['asset_type_id = ?', search['asset_type_id']]
+      cond.append ['users.asset_type_id = ?', search['asset_type_id']]
     end
     cond
   end
