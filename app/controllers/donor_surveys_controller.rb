@@ -32,6 +32,9 @@ class DonorSurveysController < BaseController
 
     if @donor_survey.save
       flash[:thank_you_for_donor_survey] = true
+    else
+      render :show
+      return
     end
 
     redirect_to :controller => :donor_surveys, :action => :show, :completed_survey => @donor_survey

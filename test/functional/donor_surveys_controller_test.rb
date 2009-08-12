@@ -13,7 +13,9 @@ class DonorSurveysControllerTest < ActionController::TestCase
             :last_name => "TestLastName",
             :zip_code => "55406"}}
 
-    assert_template :create
+    assert_response :redirect
+    assert_redirected_to :action => :show
+    
     assert assigns['donor_survey']
 
     donor = Donor.find(donor.id)
@@ -27,7 +29,9 @@ class DonorSurveysControllerTest < ActionController::TestCase
             :last_name => "TestLastName",
             :zip_code => "55406"}}
 
-    assert_template :create
+    assert_response :redirect
+    assert_redirected_to :action => :show
+
     assert assigns['donor_survey']
     assert flash[:thank_you_for_donor_survey]
   end
@@ -38,7 +42,10 @@ class DonorSurveysControllerTest < ActionController::TestCase
             :last_name => "TestLastName",
             :zip_code => "5406"}}
 
-    assert_template :new
+    # Its an error state, but the page renders, so that's success
+    assert_response :success
+
+    # Assert error state down here
     donor_survey = assigns['donor_survey']
     assert_not_nil donor_survey
     assert_not_nil donor_survey.errors[:first_name]
@@ -47,9 +54,11 @@ class DonorSurveysControllerTest < ActionController::TestCase
   end
 
   test "Get new survey as anonymous user" do
-    get :new
+    get :show
 
-    assert_template :new
+    assert_response :success
+    # assert_template :foo - this is successful - why?
+
     assert_not_nil assigns['donor_survey']
     assert_nil flash[:thank_you_for_donor_survey]
   end
@@ -57,9 +66,11 @@ class DonorSurveysControllerTest < ActionController::TestCase
   test "Get new survey as logged in user" do
     login_as(:donor)
 
-    get :new
+    get :show
 
-    assert_template :new
+    assert_response :success
+    # assert_template :bar - this is successfull - why?
+
     donor_survey = assigns['donor_survey']
     assert_not_nil donor_survey
     donor = users(:donor)

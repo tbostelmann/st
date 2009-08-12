@@ -665,6 +665,10 @@ textarea {
   margin-left: 12px;
 }
 /* Form errors */
+
+#errorExplanation {
+  margin-top: 15px;
+}
 .errorExplanation H2 {
   font-size: 12px;
 	color: #DC1C03;
