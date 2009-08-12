@@ -3,11 +3,11 @@
   .two-column-layout
 
     / Signup form
-    .tcl-column
+    .tcl-column.left
 
       = render :partial => "donors/signup_form"
     
     / Help text
-    .tcl-column
+    .tcl-column.right
 
       = render :partial => "donors/signup_sidebar", :locals => {:standalone => standalone}
