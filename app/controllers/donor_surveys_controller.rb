@@ -1,5 +1,19 @@
 class DonorSurveysController < BaseController
 
+  # This is a total hack to protect in the odd case where we can get redirected
+  # to an index method - so far this can only happen if you
+  #
+  # 1. Do More
+  # 2. Submit erroneous form (leave out any field)
+  # 3. When error returns, instead of correcting, attempt to login via upper/right
+  #
+  # Login is successful and the referrer recorded for redirect is apparently #index
+  #
+  # This is certainly the fault of the routes designer (me)
+  def index
+    redirect_to do_more_path
+  end
+
   def show
     if (params[:thank_you_for_pledge])
       flash[:thank_you_for_pledge] = true
