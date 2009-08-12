@@ -13,6 +13,8 @@
     - if most_recent_donation
       - recipient = most_recent_donation.to_user
       = link_to((image_tag recipient.avatar_photo_url(:thumb), :alt => recipient.display_name), saver_path(recipient))
+      %span.text12GreenBold
+        = link_to recipient.display_name.capitalize, saver_path(recipient)
 
 -# Spacer Row
 %tr{:valign => "top", :align => "left"}
