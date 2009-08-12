@@ -108,7 +108,7 @@ class PledgesController < BaseController
 
     UserNotifier.deliver_donation_thanks_notification(current_user)
     flash[:thank_you_for_pledge] = true
-    redirect_to :controller => :donor_surveys, :action => :new, :thank_you_for_pledge => true
+    redirect_to :controller => :donor_surveys, :action => :show, :thank_you_for_pledge => true
   end
 
   def notify
