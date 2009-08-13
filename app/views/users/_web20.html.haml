@@ -23,10 +23,13 @@
 
         %div{:style => "float: left; margin-left: 35px;"}
           / Facebook badge START
-          - fb_server_and_protocol = is_ssl ? "https://www.connect.facebook.com" : "http://static.ak.facebook.com"
+          - fb_server_and_protocol = (is_ssl? ? "https://www.connect.facebook.com" : "http://static.ak.facebook.com")
           %script{:type => "text/javascript", :src => "#{fb_server_and_protocol}/js/api_lib/v0.4/FeatureLoader.js.php/en_US"}
           %script{:type => "text/javascript"}
-            FB.init("f706afc45926e36c80c5def2e444ef84");
+            - if is_ssl?
+              FB.init("f706afc45926e36c80c5def2e444ef84", "integrations/xd_receiver_ssl.html");
+            - else
+              FB.init("f706afc45926e36c80c5def2e444ef84")
           %fb:fan{:profile_id => "201523205283", :stream => "1", :connections => "", :width => "290"}
           %div{:style => "font-size:8px; padding-left:10px"}
             %a{:href => "http://www.facebook.com/pages/SaveTogether/201523205283"}

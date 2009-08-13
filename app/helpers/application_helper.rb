@@ -1,6 +1,6 @@
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
-  def is_ssl
+  def is_ssl?
     # wrap call so we can add environment specific return values if needed
     # logger.debug("request is over SSL ? : #{request.ssl?}")
     request.ssl?
@@ -12,7 +12,7 @@ module ApplicationHelper
   end
   
   def current_request_protocol
-    is_ssl ?  'https' : 'http'
+    is_ssl? ?  'https' : 'http'
   end
 
   def find_pledge
