@@ -7,8 +7,12 @@ module ApplicationHelper
   end
   
   def is_production?
-    logger.debug{"is_production?: env is #{RAILS_ENV}"}
+    # logger.debug{"is_production?: env is #{RAILS_ENV}"}
     return RAILS_ENV.eql?('production')
+  end
+  
+  def current_request_protocol
+    is_ssl ?  'https' : 'http'
   end
 
   def find_pledge

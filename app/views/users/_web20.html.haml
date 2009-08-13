@@ -23,7 +23,8 @@
 
         %div{:style => "float: left; margin-left: 35px;"}
           / Facebook badge START
-          %script{:type => "text/javascript", :src => "http://static.ak.facebook.com/js/api_lib/v0.4/FeatureLoader.js.php/en_US"}
+          - fb_server_and_protocol = is_ssl ? "https://www.connect.facebook.com" : "http://static.ak.facebook.com"
+          %script{:type => "text/javascript", :src => "#{fb_server_and_protocol}/js/api_lib/v0.4/FeatureLoader.js.php/en_US"}
           %script{:type => "text/javascript"}
             FB.init("f706afc45926e36c80c5def2e444ef84");
           %fb:fan{:profile_id => "201523205283", :stream => "1", :connections => "", :width => "290"}
@@ -36,5 +37,5 @@
         %div{:style => "float: left; margin-left: 35px;"}
           / LinkedIn badge START
           %a{:href => "http://www.linkedin.com/groups?gid=1622727"}
-            %img{:src => "http://www.linkedin.com/img/webpromo/btn_viewmy_160x33.gif", :width => "160", :height => "33", :border => "0", :alt => "View SaveTogether's profile on LinkedIn"}
+            %img{:src => "#{current_request_protocol}://www.linkedin.com/img/webpromo/btn_viewmy_160x33.gif", :width => "160", :height => "33", :border => "0", :alt => "View SaveTogether's profile on LinkedIn"}
           / LinkedIn Badge END
