@@ -4,7 +4,8 @@ en:
       # for formats, look to http://github.com/rails/rails/blob/master/activesupport/lib/active_support/locale/en.yml#L15
       # (no kidding)
       member_since: "%B %Y"     
-      
+      just_date:    "%B %d, %Y"
+
   #en: a_few_seconds_ago:  a few seconds ago
   a_few_seconds_ago:  a few seconds ago
   #en: about: About
