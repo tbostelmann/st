@@ -1,0 +1,3 @@
+class FriendNotifier
+  
+end

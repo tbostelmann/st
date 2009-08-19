@@ -53,4 +53,10 @@ class DonorSurveysController < BaseController
 
     redirect_to :controller => :donor_surveys, :action => :show, :completed_survey => @donor_survey
   end
+  
+  def invite
+    @invite = Invitation.new({:title => params[:title], :message => params[:message], :friends => params[:emails]})
+    redirect_to :controller => :donor_surveys, :action => :show
+  end
+  
 end
