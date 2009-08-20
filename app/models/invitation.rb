@@ -4,15 +4,18 @@ class Invitation
   attr_reader   :errors
   
   def initialize(args = nil)
-    @limit = 10
     args.each{|key, value| self.send(key.to_s + "=", value)} if args
+    @title   = "" unless @title
+    @message = "" unless @message
+    @friends = "" unless @friends
+    @limit   = 10 unless @limit
   end
   
-  def email_list
-    if @email_list == nil
-      @email_list = friends.strip.split(/[ ,;]+/)
+  def emails
+    if @cached_emails == nil
+      @cached_emails = @friends.strip.split(/[ ,;]+/).uniq
     end
-    @email_list
+    @cached_emails
   end
   
   def is_valid?
@@ -26,7 +29,8 @@ protected
 
   def validate
     @errors = []
-    email_list.each{|email| validate_email(email)}
+    emails.each{|email| validate_email(email)}
+    validate_minimum
     validate_limit
   end
 
@@ -34,8 +38,12 @@ protected
     @errors << "\"#{email}\" is not a valid email address" unless email =~ /^([^@\s]+)@((?:[-a-z0-9A-Z]+\.)+[a-zA-Z]{2,})$/
   end
   
+  def validate_minimum
+    @errors << "At least one email address must be provided" unless emails.size > 0
+  end
+  
   def validate_limit
-    @errors << "More than #{limit} email addresses where invited" unless email_list.size <= @limit
+    @errors << "No more than #{limit} email addresses may be provided" unless emails.size <= @limit
   end
   
 end

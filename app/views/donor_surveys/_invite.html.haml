@@ -9,7 +9,7 @@
   %div{:class => "indent", :style => "margin-top: 15px;"}
     - if (current_user)
       - form_tag :action => :invite do
-        -if flash[:thank_you_for_sending_invitations]
+        -if session[:thank_you_for_sending_invitations]
           %h2
             THANKS!
         %p

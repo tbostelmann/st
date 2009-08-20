@@ -33,9 +33,13 @@ class InvitationTest < ActiveSupport::TestCase
     invite = Invitation.new({:title => "This is a test", :message => "Check it out", :friends => friends_list})
     # puts "Friends' emails: \"#{invite.email_list.join("\" \"")}\""
     
-    email_list = invite.email_list
-    assert_equal emails.size, email_list.size
-    email_list.each {|email| assert_not_nil emails.include?(email)}
+    assert_equal emails.size, invite.emails.size
+    invite.emails.each {|email| assert_not_nil emails.include?(email)}
+  end
+  
+  test "Can handle empty email list" do
+    invite = new_test_invite({:friends => nil})
+    assert !invite.is_valid?
   end
   
   test "Will accept valid email formats" do
@@ -47,6 +51,12 @@ class InvitationTest < ActiveSupport::TestCase
     invite = new_test_invite({:friends => "a@b c@d.com foo@bar.12345"})    
     assert !invite.is_valid?
     assert_equal 2, invite.errors.size
+  end
+  
+  test "Will remove any duplicate emails from the friends list" do
+    invite = new_test_invite({:friends => "a@b.com  b@c.com  a@b.com  c@d.com  a@b.com  e@f.com"})    
+    assert invite.is_valid?
+    assert_equal 4, invite.emails.size
   end
   
   test "Invitation list defaults to 10 invitees" do
