@@ -35,7 +35,7 @@
         %textarea{:name => "emails", :cols => "90", :rows => "1"}
           =params[:emails]
         %p{:style => "margin-top: 10px;"}
-          =submit_tag "Invite!"
+        = image_submit_tag "#{image_path('buttons/invite-small.gif')}", :alt => :invite.l
     - else
       %p
         = link_to "Login", login_path
