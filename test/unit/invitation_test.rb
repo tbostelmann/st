@@ -5,10 +5,12 @@ class InvitationTest < ActiveSupport::TestCase
     title = "This is a test"
     message = "Check it out"
     friends = "a@b.com c@d.com, e@g.com; f@h.com"
-    invite = Invitation.new({:title => title, :message => message, :friends => friends})
+    limit = 5
+    invite = Invitation.new({:title => title, :message => message, :friends => friends, :limit => limit})
     assert_equal title, invite.title
     assert_equal message, invite.message
     assert_equal friends, invite.friends
+    assert_equal limit, invite.limit
   end
   
   test "Supports only those fields" do
@@ -20,35 +22,61 @@ class InvitationTest < ActiveSupport::TestCase
   test "Can accept emails delimited by space, comma or semi-colon" do
     emails = ["a@b.com", "c@d.com", "e@g.com", "f@h.com", "i@j.com", "k@l.net"]
 
-    friends_list = "" << emails[0] << ", "
+    friends_list = "  " << emails[0] << ", "
     friends_list << emails[1] << "; "
     friends_list << emails[2] << "  "
     friends_list << emails[3] << " ,, "
     friends_list << emails[4] << "; , ;"
-    friends_list << emails[5]
-    #puts "Friends' list: \"#{friends_list}\""
+    friends_list << emails[5] << "  "
+    # puts "Friends' list: \"#{friends_list}\""
     
     invite = Invitation.new({:title => "This is a test", :message => "Check it out", :friends => friends_list})
-    #puts "Friends' emails: \"#{fn.email_list.join("\" \"")}\""
+    # puts "Friends' emails: \"#{invite.email_list.join("\" \"")}\""
     
     email_list = invite.email_list
     assert_equal emails.size, email_list.size
-    email_list.each {|email| assert_not_nil emails.include? email}
+    email_list.each {|email| assert_not_nil emails.include?(email)}
   end
   
   test "Will accept valid email formats" do
-    emails = "a@b.com c@d.com foo@bar.net"
-    invite = Invitation.new({:title => "This is a test", :message => "Check it out", :friends => emails})
-    
+    invite = new_test_invite   
     assert invite.is_valid?
   end
   
   test "Will not accept invalid email formats" do
-    emails = "a@b c@d.com foo@bar.12345"
-    invite = Invitation.new({:title => "This is a test", :message => "Check it out", :friends => emails})
-    
+    invite = new_test_invite({:friends => "a@b c@d.com foo@bar.12345"})    
     assert !invite.is_valid?
     assert_equal 2, invite.errors.size
+  end
+  
+  test "Invitation list defaults to 10 invitees" do
+    invite = new_test_invite({:friends => new_test_invitee_list(10)})
+    assert invite.is_valid?
+    
+    invite = new_test_invite({:friends => new_test_invitee_list(11)})
+    assert !invite.is_valid?
+  end
+  
+  test "Invitation list limit can be specified" do
+    invite = new_test_invite({:friends => new_test_invitee_list(5), :limit => 5})
+    assert invite.is_valid?
+    
+    invite = new_test_invite({:friends => new_test_invitee_list(6), :limit => 5})
+    assert !invite.is_valid?
+  end
+  
+protected
+
+  def new_test_invite(options = {})
+    Invitation.new({
+      :title => "This is a test",
+      :message => "Check it out",
+      :friends => "a@b.com c@d.com foo@bar.net"
+      }.merge(options))
+  end
+  
+  def new_test_invitee_list(count)
+    (1..count).inject([]){|invitees, i| invitees << "foo+#{i}@bar.com"}.join(" ")
   end
   
 end

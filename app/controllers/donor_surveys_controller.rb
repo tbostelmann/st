@@ -11,10 +11,12 @@ class DonorSurveysController < BaseController
   #
   # This is certainly the fault of the routes designer (me)
   def index
+    logger.debug{"index action referred from: #{request.referrer}"}
     redirect_to do_more_path
   end
 
   def show
+    logger.debug{"current flash: #{flash}"}
     if (params[:thank_you_for_pledge])
       flash[:thank_you_for_pledge] = true
     end
@@ -47,8 +49,7 @@ class DonorSurveysController < BaseController
     if @donor_survey.save
       flash[:thank_you_for_donor_survey] = true
     else
-      render :show
-      return
+      render :show and return
     end
 
     redirect_to :controller => :donor_surveys, :action => :show, :completed_survey => @donor_survey
@@ -56,6 +57,14 @@ class DonorSurveysController < BaseController
   
   def invite
     @invite = Invitation.new({:title => params[:title], :message => params[:message], :friends => params[:emails]})
+    if @invite.is_valid?
+      flash[:thank_you_for_sending_invitations] = true
+    else
+      @donor_survey = DonorSurvey.new
+      @errors = @invite.errors
+      render :show and return
+    end
+    
     redirect_to :controller => :donor_surveys, :action => :show
   end
   

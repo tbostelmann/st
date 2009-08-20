@@ -9,16 +9,23 @@
   %div{:class => "indent", :style => "margin-top: 15px;"}
     - if (current_user)
       - form_tag :action => :invite do
-        = error_messages_for :invitation
+        -if flash[:thank_you_for_sending_invitations]
+          %h2
+            THANKS!
         %p
           ="Go ahead and use the suggested text below or feel free to create your own message:"
         %textarea{:name => "title", :cols => "90", :rows => "1"}
           = "Match $25 to change lives through SaveTogether"
         %textarea{:name => "message", :cols => "90", :rows => "6", :style => "margin-top: 10px;"}
           = "Hi! I wanted to let you know about a great new website called SaveTogether (http://www.savetogether.org).  It allows each of us to participate in helping working Americans achieve their dreams by matching their savings goals so they can make life-changing investments in a college education, small business, or a first home.   Check it out and donate to join someone on the path to financial opportunity.   It’s fun – I did it!"
+        - if @errors
+          - @errors.each do |error|
+            %h2
+              =error
         %p{:style => "margin-top: 10px;"}
           ="Enter up to 10 email addresses separated by spaces, commas or semi-colons:"
         %textarea{:name => "emails", :cols => "90", :rows => "1"}
+          =params[:emails]
         %p{:style => "margin-top: 10px;"}
           =submit_tag "Invite!"
     - else
