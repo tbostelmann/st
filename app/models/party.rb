@@ -104,6 +104,9 @@ class Party < User
     if search['metro_area_id']
       cond.append ['users.metro_area_id = ?', search['metro_area_id'].to_s]
     end
+    if search['organization_id']
+      cond.append ['users.organization_id = ?', search['organization_id'].to_s]
+    end
     if search['login']
       cond.login =~ "%#{search['login']}%"
     end
@@ -117,6 +120,16 @@ class Party < User
       cond.append ['users.asset_type_id = ?', search['asset_type_id']]
     end
     cond
+  end
+
+  def self.prepare_params_for_search(params)
+    search = {}.merge(params)
+    search['metro_area_id'] = params[:metro_area_id] || nil
+    search['state_id'] = params[:state_id] || nil
+    search['country_id'] = params[:country_id] || nil
+    search['skill_id'] = params[:skill_id] || nil
+    search['organization_id'] = params[:organization_id] || nil
+    search
   end
 
   def self.find_country_and_state_from_search_params(search)

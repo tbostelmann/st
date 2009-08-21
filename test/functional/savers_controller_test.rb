@@ -10,6 +10,19 @@ class SaversControllerTest < ActionController::TestCase
     assert session[:order] == 'ASC'
   end
 
+  test "find savers by organization_id" do
+    org = users(:earn)
+    get :index, {:organization_id => org.id}
+
+    assert_response :success
+    savers = @response.template.assigns['savers']
+    assert savers.size > 0
+
+    savers.each do |saver|
+      assert saver.organization.first_name == org.first_name
+    end
+  end
+
   test "sort savers by asset_type" do
     get :index, {:order_by => 'asset_types.asset_name'}
 

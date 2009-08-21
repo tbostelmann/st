@@ -65,6 +65,10 @@ class Organization < Party
     find_by_login(PAYPAL_LOGIN)
   end
 
+  def self.find_partners
+    find(:all, :conditions => ["login != ? AND login != ?", SAVETOGETHER_LOGIN, PAYPAL_LOGIN])
+  end
+
   def to_param
     self.id.to_s
   end

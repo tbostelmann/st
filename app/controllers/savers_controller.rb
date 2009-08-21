@@ -38,9 +38,11 @@ class SaversController < BaseController
     unless params.has_key?(:asset_type_id) && params.has_key?(:metro_area_id)
       params[:asset_type_id] = session[:asset_type_id]
       params[:metro_area_id] = session[:metro_area_id]
+      params[:organization_id] = session[:organization_id]
     else
       session[:asset_type_id] = params[:asset_type_id]
       session[:metro_area_id] = params[:metro_area_id]
+      session[:organization_id] = params[:organization_id]
     end
 
     cond, @search, @metro_areas, @states, @asset_types = Saver.paginated_users_conditions_with_search(params)
@@ -50,10 +52,9 @@ class SaversController < BaseController
       :page => {:current => params[:page], :size => 20},
       :include => [:asset_type, :metro_area],
       :order => "#{@order_by} #{@order}"
-      )
+      )    
 
     @tags = Saver.tag_counts :limit => 10
-
     #setup_metro_areas_for_cloud
   end
   
