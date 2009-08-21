@@ -36,19 +36,25 @@ class DonorSurveyStoriesTest < ActionController::IntegrationTest
    
    test "Successful invitation request sends emails" do
 
-     title = "Hey come join the fun!"
-     message = "We're righting a wronged world by helping people to save!"
-     recips  = "fred@foo.com barney@bar.net inga@bazinga.org"
+     title     = "Hey come join the fun!"
+     message   = "We're righting a wronged world by helping people to save!"
+     addresses = "fred@foo.com barney@bar.net inga@bazinga.org"
 
      # try to get a session
      donor = users(:generous_donor)
      post "/sessions", :login => donor.login, :password => 'test'
 
-     post "/do-more/invite", :title => title, :message => message, :friends => recips
-     assert_response :success
+     post "/do-more/invite", :title => title, :message => message, :emails => addresses
+     assert_redirected_to "/do-more"
 
-     assert_equal 3, @emails.size
-     assert_equal "[SaveTogether] Your SaveTogether account has been activated!", @emails[0].subject
+     assert_equal 1, @emails.size
+     assert_equal 3, @emails[0].to.size
+     
+     recips = addresses.split(" ")
+     recips.each{|recip| assert @emails[0].to.include?(recip)}
+     
+     assert_equal "[SaveTogether] #{title}", @emails[0].subject
+     # the rest of the email integrity issues we're already testing in friend_inviter_test
    end
    
   

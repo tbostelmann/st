@@ -28,10 +28,6 @@ class FriendNotifierTest < ActiveSupport::TestCase
     assert_match /#{@invite.title}/, invitation_email.subject
     @invite.emails.each{|email| assert invitation_email.to.include?(email)}
     assert_match /SaveTogether member #{@donor.first_name} #{@donor.last_name}/, invitation_email.body
-    puts "Actual string:"
-    puts "#{@invite.message}"
-    puts "Escaped string:"
-    puts "#{Regexp.escape(@invite.message)}"
     assert_match /#{Regexp.escape(@invite.message)}/, invitation_email.body
   end
   

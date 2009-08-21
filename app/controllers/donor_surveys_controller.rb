@@ -60,7 +60,7 @@ class DonorSurveysController < BaseController
       session[:thank_you_for_sending_invitations] = true
     else
       @donor_survey = DonorSurvey.new
-      @errors = @invite.errors
+      @errors = invite.errors
       render :show and return
     end
     
