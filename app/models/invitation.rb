@@ -13,7 +13,7 @@ class Invitation
   
   def emails
     if @cached_emails == nil
-      @cached_emails = @friends.strip.split(/[ ,;]+/).uniq
+      @cached_emails = @friends.split(/[,;\r\n]+/).collect(&:strip).uniq
     end
     @cached_emails
   end
