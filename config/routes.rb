@@ -40,6 +40,8 @@ ActionController::Routing::Routes.draw do |map|
   map.community       '/community/:id',    :controller => 'donors',        :action => 'index'
   map.match_savers    '/match-savers/:id', :controller => 'savers',        :action => 'index'
   map.do_more         '/do-more',          :controller => 'donor_surveys', :action => 'show'
+  map.invite          '/do-more/invite',   :controller => 'donor_surveys', :action => 'invite'
+  map.survey          '/do-more/survey',   :controller => 'donor_surveys', :action => 'create'
   
   # New base actions
   map.how_it_works    '/how-it-works',    :controller => 'base',   :action => 'how_it_works'
@@ -53,7 +55,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :savers
   map.resources :donors
   map.resources :organizations
-  map.resources :donor_surveys
+  # map.resources :donor_surveys
 
 #  map.resources  :pledges
   map.new          '/pledges/new/:saver_id', :controller => 'pledges', :action => 'new'

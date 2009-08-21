@@ -35,6 +35,30 @@ class ActiveSupport::TestCase
   fixtures :all
 
   # Add more helper methods to be used by all tests here...
+  
+  # This clever idea courtesy of
+  # http://alexbrie.net/1526/functional-tests-with-login-in-rails/
+  #
+  # Gets around the ActionController::TestCase restriction on a
+  # single controller per test class, but specifically, to allow
+  # one to get a login against the sessions controller so that
+  # a valid, authorized session exists in the request. Then, restricted
+  # actions can be tested against. (See DonorSurveysControllerTest#invite)
+  
+  # It's a good thought, currently can't get it to work. Not sure if the forgery
+  # protection stuff is getting the way (the login form also passes an authenticity
+  # based on session, but can't find out enough docs to know if that's the problem here)
+  def login(login = 'gennydonor@example.com', password =' test')
+    old_controller = @controller
+    
+    @controller = SessionsController.new
+    post :login, :login => login, :password => password
+    # assert_redirected_to :controller => tsap, :action=>'overview'
+    assert_not_nil(session[:user])
+    
+    @controller = old_controller
+  end
+
   def pledge_params(saver)
     stOrg = Organization.find_savetogether_org
 
