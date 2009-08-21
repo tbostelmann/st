@@ -1,5 +1,7 @@
 class DonorSurveysController < BaseController
 
+  before_filter :authorize, :only => [:invite]
+  
   def show
     logger.debug{"current flash: #{flash}"}
     if (params[:thank_you_for_pledge])
@@ -52,8 +54,8 @@ class DonorSurveysController < BaseController
   end
   
   def invite
-    @invite = Invitation.new({:title => params[:title], :message => params[:message], :friends => params[:emails]})
-    if @invite.is_valid?
+    invite = Invitation.new({:title => params[:title], :message => params[:message], :friends => params[:emails]})
+    if invite.is_valid?
       # flash[:thank_you_for_sending_invitations] = true - this is what we should be using, but can't make it work in this controller
       session[:thank_you_for_sending_invitations] = true
     else
@@ -61,6 +63,8 @@ class DonorSurveysController < BaseController
       @errors = @invite.errors
       render :show and return
     end
+    
+    UserNotifier.deliver_friends_invitation(invite, current_user)
     
     redirect_to :controller => :donor_surveys, :action => :show
   end
@@ -72,6 +76,12 @@ protected
   def nil_session_variables
     session[:completed_survey] = nil                  if session[:completed_survey]
     session[:thank_you_for_sending_invitations] = nil if session[:thank_you_for_sending_invitations]
+  end
+  
+  def authorize
+    unless current_user
+      redirect_to login_path
+    end
   end
   
 end
