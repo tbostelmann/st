@@ -54,13 +54,23 @@ class DonorSurveysController < BaseController
   end
   
   def invite
-    invite = Invitation.new({:title => params[:title], :message => params[:message], :friends => params[:emails]})
+    # Strip out the added mystery spaces
+    title   = params[:title].strip
+    message = params[:message].strip
+    emails  = params[:emails].strip
+
+    invite = Invitation.new({:title => title, :message => message, :friends => emails})
     if invite.is_valid?
       # flash[:thank_you_for_sending_invitations] = true - this is what we should be using, but can't make it work in this controller
       session[:thank_you_for_sending_invitations] = true
     else
       @donor_survey = DonorSurvey.new
       @errors = invite.errors
+      # Keep from propogating the added mystery spaces
+      params[:title]   = title
+      params[:message] = message
+      params[:emails]  = emails
+      
       render :show and return
     end
     
