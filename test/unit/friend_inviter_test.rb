@@ -17,7 +17,7 @@ class FriendNotifierTest < ActiveSupport::TestCase
               It allows each of us to participate in helping working Americans achieve their dreams by matching their savings \
               goals so they can make life-changing investments in a college education, small business, or a first home.       \
               Check it out and donate to join someone on the path to financial opportunity.   It’s fun – I did it!".gsub(/[ ]+/, " ")
-    friends = "fred@foo.com barry@bar.net inga@bazinga.org"
+    friends = "fred@foo.com, barry@bar.net, inga@bazinga.org"
     
     @invite = Invitation.new({:title => title, :message => message, :friends => friends})
   end

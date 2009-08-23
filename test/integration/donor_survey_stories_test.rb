@@ -38,7 +38,7 @@ class DonorSurveyStoriesTest < ActionController::IntegrationTest
 
      title     = "Hey come join the fun!"
      message   = "We're righting a wronged world by helping people to save!"
-     addresses = "fred@foo.com barney@bar.net inga@bazinga.org"
+     addresses = "fred@foo.com, barney@bar.net, inga@bazinga.org"
 
      # try to get a session
      donor = users(:generous_donor)
@@ -50,7 +50,7 @@ class DonorSurveyStoriesTest < ActionController::IntegrationTest
      assert_equal 1, @emails.size
      assert_equal 3, @emails[0].to.size
      
-     recips = addresses.split(" ")
+     recips = addresses.split(", ")
      recips.each{|recip| assert @emails[0].to.include?(recip)}
      
      assert_equal "[SaveTogether] #{title}", @emails[0].subject

@@ -33,9 +33,33 @@ protected
     validate_minimum
     validate_limit
   end
+  
+  # This validates using the standard email validation we've used throughout, but it
+  # also allows this condition "Doogie Browser <doogieb@foobar.com>", i.e. the address
+  # embedded in < > with freeform text as a friendly name. This should allow for easy
+  # exporting of names from a variety of email programs without burdening users with
+  # cleanup tasks before importing them into our invitation form.
+  
+  # You should *not* use this validator to *store* any addresses, only use the tighter
+  # version of validation for that (or process after). These emails are intended to
+  # immediately be used to queue up invitations, so the decision is to favor the user.
+
+  ADDRESS_PORTION       = "([^@\s]+)@((?:[-a-z0-9A-Z]+\.)+[a-zA-Z]{2,})".freeze
+
+  # Currently the only chars not allowed in friendly format are:
+  # []\ These are regex character class control chars - hard to get into string escaped (I haven't figured out how)
+  # `'" Various quotes can't be part of friendly name and are hard to get into string escaped
+  # | Pipe appears to be unacceptable to emailers - they'll split the name in two at a pipe char
+  # ,; These are our list separator charactrs
+
+  # Everything else appears acceptable
+  
+  FRIENDLY_FORMAT_BEGIN = "[-A-Za-z0-9.:!?_#={}~@$%^&*() \t]*<".freeze
+  FRIENDLY_FORMAT_END   = ">".freeze
 
   def validate_email(email)
-    @errors << "\"#{email}\" is not a valid email address" unless email =~ /^([^@\s]+)@((?:[-a-z0-9A-Z]+\.)+[a-zA-Z]{2,})$/
+    @errors << "\"#{email}\" is not a valid email address" unless \
+      email =~ /^#{ADDRESS_PORTION}$|^#{FRIENDLY_FORMAT_BEGIN}#{ADDRESS_PORTION}#{FRIENDLY_FORMAT_END}$/
   end
   
   def validate_minimum
