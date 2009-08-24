@@ -1,0 +1,38 @@
+-@page_title= "#{possessivize(@user.display_name)} #{:profile_settings.l.titleize}"
+
+.content
+
+  %h1
+    =:profile_photo.l
+
+  .single-column
+    - form_tag organization_url(@user), :method => 'put', :multipart =>true, :class => 'MainForm' do
+
+      = error_messages_for :user
+
+      .photo
+        .with-img.plus
+          = image_tag( @user.avatar_photo_url(:medium), :class => "polaroid" )
+
+        %table{:width => "100%", :cellspacing => "0", :cellpadding => "0", :border => "0"}
+          %tr
+            %td{:class => "text12", :valign => "bottom", :height => "36"}
+              %span.text12GreenTitle
+                =:choose_a_photo_for_your_profile.l
+          %tr
+            %td{:class => "text12", :width => "72%", :height => "36"}
+              = file_field :avatar, :uploaded_data, :size => "33"
+
+      .party-info
+        .box.wide
+          .box-bottom
+            %h2
+              =:you_are_editing_your_profile.l
+            = link_to "&raquo; #{:edit_your_account_settings_instead.l}", edit_account_user_path(@user)
+
+        .relax='&nbsp;'
+        .block.no-border
+          .indent
+            %h3= :why_i_support_savers.l
+            = text_area :user, :description, :class => "rich_text_editor", :style => "width:91%; height:232px; margin: 10px 0 10px 0;"
+            = submit_tag :save_changes.l

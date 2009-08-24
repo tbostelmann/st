@@ -17,7 +17,12 @@
     = image_tag 'separator.gif'
   - if current_user
     %li
-      = link_to :my_profile.l.upcase, donor_path(current_user)
+      - if current_user.class == Saver
+        = link_to :my_profile.l.upcase, saver_path(current_user)
+      - elsif current_user.class == Donor
+        = link_to :my_profile.l.upcase, donor_path(current_user)
+      - else
+        = link_to :my_profile.l.upcase, organization_path(current_user)
   -else
     %li
       = link_to :sign_up.l.upcase, signup_path

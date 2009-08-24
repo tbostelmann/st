@@ -23,6 +23,11 @@
 
 
     .party-info
+      - if @org.eql?(current_user)
+        .box-bottom
+          %h2
+            =:manage_my.l
+          =link_to "&raquo; #{:profile.l}", edit_organization_path(@org)
       .about-party
         %h3
           = :about_user.l :user_name => @org.display_name

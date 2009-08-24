@@ -1,8 +1,14 @@
 class OrganizationsController < BaseController
   def edit
-    @user = current_user
+    # TODO this should be a :before_filter :only => :edit
+    # Don't do it now because we need an authorize method
+    if current_user.nil?
+      redirect_to login_path
+    else
+      @user = current_user
+    end
   end
-
+  
   def update
     @user = current_user
     @user.attributes      = params[:user]
