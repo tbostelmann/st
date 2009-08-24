@@ -54,7 +54,7 @@ class DonorSurveysController < BaseController
   end
   
   def invite
-    # Strip out the added mystery spaces
+    # Strip out any added spaces
     title   = params[:title].strip
     message = params[:message].strip
     emails  = params[:emails].strip
@@ -66,7 +66,7 @@ class DonorSurveysController < BaseController
     else
       @donor_survey = DonorSurvey.new
       @errors = invite.errors
-      # Keep from propogating the added mystery spaces
+      # Keep from propogating any added spaces
       params[:title]   = title
       params[:message] = message
       params[:emails]  = emails
