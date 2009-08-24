@@ -88,7 +88,11 @@ class LineItem < ActiveRecord::Base
   end
 
   def from_user_display_name
-    from_user.display_name
+    if !from_user.nil?
+      from_user.display_name
+    else
+      'none'
+    end
   end
 
   def amount_before_type_cast
