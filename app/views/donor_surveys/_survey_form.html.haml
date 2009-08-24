@@ -6,7 +6,7 @@
   .indent.text12
     %div{:style => "display: block;"}
 
-    - form = params[:completed_survey] ? "completed_form" : "new_form"
+    - form = session[:completed_survey] ? "completed_form" : "new_form"
     = render :partial => "donor_surveys/survey_form/#{form}"
 
     = render :partial => "donor_surveys/survey_form/cfed_links"

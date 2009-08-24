@@ -3,6 +3,12 @@ require File.dirname(__FILE__) + '/../test_helper'
 class DonorSurveysControllerTest < ActionController::TestCase
   include AuthenticatedTestHelper
 
+  def setup
+    # allows you to inspect email notifications 
+    @emails = ActionMailer::Base.deliveries
+    @emails.clear
+  end
+  
   test "Update donor survey content" do
     login_as(:donor)
     donor = users(:donor)
@@ -79,4 +85,28 @@ class DonorSurveysControllerTest < ActionController::TestCase
     assert donor.id == donor_survey.donor_id
     assert_nil flash[:thank_you_for_donor_survey]
   end
+  
+  test "An invitation can only be sent by a logged in user" do
+    post :invite
+    assert_redirected_to login_path
+  end
+  
+  / Until we can figure out test_helper#login, this test will
+    have to move to integration tests where the multiple controller
+    per test rule doesn't exist
+  test "Successful invitation request sends emails" do
+    
+    title = "Hey come join the fun!"
+    message = "We're righting a wronged world by helping people to save!"
+    recips  = "fred@foo.com barney@bar.net inga@bazinga.org"
+    
+    login # see test_helper.rb
+    
+    post :invite, :title => title, :message => message, :friends => recips
+    assert_response :success
+    
+    assert_equal 1, @emails.size
+    assert_equal "[SaveTogether] Your SaveTogether account has been activated!", @emails[0].subject
+  end
+  /
 end
