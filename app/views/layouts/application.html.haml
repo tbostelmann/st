@@ -16,6 +16,8 @@
 
     %link{:rel => "icon", :type => "image/jpg", :href => "#{image_path('icons/logo_icon_large.jpg')}"}
     
+    = javascript_include_tiny_mce_if_used
+    = tiny_mce if using_tiny_mce?
     = stylesheet_link_tag 'main', :media => 'screen'
     - if @rss_title && @rss_url
       = auto_discovery_link_tag(:rss, @rss_url, {:title => @rss_title})

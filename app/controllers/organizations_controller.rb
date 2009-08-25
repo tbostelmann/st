@@ -1,4 +1,8 @@
 class OrganizationsController < BaseController
+  uses_tiny_mce(:options => AppConfig.default_mce_options.merge({:editor_selector => "rich_text_editor"}),
+    :only => [:new, :create, :update, :edit, :welcome_about])
+  uses_tiny_mce(:options => AppConfig.simple_mce_options, :only => [:show])
+
   def edit
     # TODO this should be a :before_filter :only => :edit
     # Don't do it now because we need an authorize method
