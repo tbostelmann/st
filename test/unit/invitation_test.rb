@@ -25,7 +25,7 @@ class InvitationTest < ActiveSupport::TestCase
   end
   
   test "Friendly formatted email can include most characters in friendly part" do
-    crazy_but_valid_friendly_name = '123.45:-_={}~67890!@#$%^&*() <pathological@case.net>'
+    crazy_but_valid_friendly_name = '123.45:-_={}~67890!@#$%^&*()\' <pathological@case.net>'
     # puts "Pathological case: #{crazy_but_valid_friendly_name}"
 
     invite = mock_test_invite({:friends => crazy_but_valid_friendly_name})
@@ -33,22 +33,22 @@ class InvitationTest < ActiveSupport::TestCase
   end
 
   test "A few characters are not valid Friendly formatted email" do
-    invalid_friendly_names = '[]\\`\'"| <pathologicallyinvalid@case.net>, seps,;are <invalid@chars.org>'
+    invalid_friendly_names = '[]\\`"| <pathologicallyinvalid@case.net>, seps,;are <invalid@chars.org>'
     # puts "Pathological invalid cases: #{invalid_friendly_names}"
 
     invite = mock_test_invite({:friends => invalid_friendly_names})
     # invite.emails.each{|e| puts "Parsed email: \"#{e}\""}
+    # invite.errors.each{|e| puts "Parsed error: \"#{e}\""}
     assert !invite.is_valid?
     assert_equal 3, invite.emails.size
     assert_equal 2, invite.errors.size # last one parsed as "are <invalid@chars.org>", which is valid
   end
   
-  
   test "Will not accept invalid email formats" do
-    invite = mock_test_invite({:friends => "thisis@bad, this@ok.com, invalid@topleveldomain.12345, missing langle friendly@err.org>, missing rangle <friendly@err.org"})
+    invite = mock_test_invite({:friends => "thisis@bad, this@ok.com, invalid@topleveldomain, invalid@topleveldomain.12345, missing langle friendly@err.org>, missing rangle <friendly@err.org"})
     assert !invite.is_valid?
-    assert_equal 5, invite.emails.size
-    assert_equal 4, invite.errors.size
+    assert_equal 6, invite.emails.size
+    assert_equal 5, invite.errors.size
   end
   
   test "Can accept emails delimited by comma" do
