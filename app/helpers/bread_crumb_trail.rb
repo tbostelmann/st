@@ -3,15 +3,37 @@ class BreadCrumbTrail
     @crumbs = []
   end
   
-  def crumbs
-    @crumbs
+  def drop_crumb(path)
+    if (i = match_at(path))
+      trim_after(i)
+    else
+      push(path)
+    end
   end
   
+  def size
+    @crumbs.size
+  end
+  
+  def [](i)
+    @crumbs[i]
+  end
+  
+  def each(&block)
+    @crumbs.each(&block)
+  end
+  
+  def to_s
+    "#{@crumbs.join(", ")}"
+  end
+  
+protected
+
   def push(path)
     crumb = path.gsub(/\/[0-9]+\Z/, '/[0-9]+')
     @crumbs.push(crumb)
   end
-  
+
   def match_at(element)
     @crumbs.each_with_index do |crumb, i|
       return i if element =~ /\A#{Regexp.new(crumb)}\Z/
@@ -25,16 +47,5 @@ class BreadCrumbTrail
     # writing a different algorithm that requires its different behavior)
     @crumbs.slice!((i + 1)..(@crumbs.size - 1)) if i < (@crumbs.size - 1)
   end
-  
-  def size
-    @crumbs.size
-  end
-  
-  def [](i)
-    @crumbs[i]
-  end
-  
-  def to_s
-    "#{@crumbs.join(", ")}"
-  end
+
 end
