@@ -7,13 +7,13 @@ class BreadCrumbTrailTest < ActiveSupport::TestCase
   end
 
   test "Crumb trail grows with new paths" do
-    assert_crumbs(%w(/, /do-more, /match/)) do |path|
+    assert_crumbs(%w(/ /do-more /match-savers/)) do |path|
       @breadcrumbs.drop_crumb(path)
     end
   end
 
   test "Crumb trail pruned when user circles back to earlier traversed path" do
-    initial_paths = %w(/, /do-more, /match/)
+    initial_paths = %w(/ /do-more /match-savers/)
     all_paths     = initial_paths + %w(/pledge/add_to_pledge, /pledge/savetogether_ask)
     
     # User traverses long path
@@ -29,7 +29,7 @@ class BreadCrumbTrailTest < ActiveSupport::TestCase
   end
   
   test "User returning to last visited path results in no change to the crumb trail" do
-    some_paths = %w(/, /do-more, /match/)
+    some_paths = %w(/ /do-more /match-savers/)
     
     # User traverses long path
     assert_crumbs(some_paths) do |path|
@@ -44,7 +44,7 @@ class BreadCrumbTrailTest < ActiveSupport::TestCase
   end
   
   test "RESTful paths with indexes are saved and matched as generic patterns" do
-    initial_path = %w(/ /match /saver/201)
+    initial_path = %w(/ /match-savers/ /saver/201)
     all_paths    = initial_path + %w(/donor/302)
     
     # Traverse long path through specific profiles
@@ -58,6 +58,15 @@ class BreadCrumbTrailTest < ActiveSupport::TestCase
     # Crumb trail should match original path because last and first saver
     # match generically, so crumbs are popped back to the first one
     assert_crumbs(initial_path)    
+  end
+  
+  test "Serialized Bread Crumb List reloads and restores" do
+    some_flow = %w(/ /match-savers/ /saver/201)
+    some_flow.each {|path| @breadcrumbs.drop_crumb(path)}
+    
+    loaded_breadcrumbs = Marshal.load(Marshal.dump(@breadcrumbs))
+    
+    assert @breadcrumbs.eql?(loaded_breadcrumbs)
   end
   
 protected
@@ -79,6 +88,5 @@ protected
       (0..i).each{|i| assert_match Regexp.new( @breadcrumbs[i]), paths[i]}
     end
   end
-  
-  
+
 end
