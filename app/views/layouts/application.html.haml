@@ -66,6 +66,9 @@
                 
             = render :partial => "shared/navbar_header"
 
+      %div{:class => "bread-crumb-links"}
+        =user_crumb_trail
+
       / Page begins
       = @content_for_layout
 

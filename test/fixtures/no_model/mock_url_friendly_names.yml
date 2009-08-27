@@ -1,0 +1,6 @@
+# Fixture for testing Hansel module's friendly names feature
+home: "Home"
+this_is_a_test: "This is a Test"
+nothing_could_be_finer: "Nothing Could be Finer"
+than_to_be: "Than to be"
+in_carolina: "In Carolina"
