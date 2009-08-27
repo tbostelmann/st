@@ -19,16 +19,23 @@ class Invitation
   end
   
   def is_valid?
-    if @errors == nil
+    if @cached_errors == nil
       validate
     end
-    @errors.size == 0
+    @cached_errors.size == 0
+  end
+  
+  def errors
+    if @cached_errors == nil
+      validate
+    end
+    @cached_errors
   end
   
 protected
 
   def validate
-    @errors = []
+    @cached_errors = []
     emails.each{|email| validate_email(email)}
     validate_minimum
     validate_limit
@@ -44,30 +51,30 @@ protected
   # version of validation for that (or process after). These emails are intended to
   # immediately be used to queue up invitations, so the decision is to favor the user.
 
-  ADDRESS_PORTION       = "([^@\s]+)@((?:[-a-z0-9A-Z]+\.)+[a-zA-Z]{2,})".freeze
+  ADDRESS_PORTION = /([^@\s]+)@((?:[-a-z0-9A-Z]+\.)+[a-zA-Z]{2,})/
 
   # Currently the only chars not allowed in friendly format are:
   # []\ These are regex character class control chars - hard to get into string escaped (I haven't figured out how)
-  # `'" Various quotes can't be part of friendly name and are hard to get into string escaped
+  # `" Various quotes can't be part of friendly name and are hard to get into string escaped
   # | Pipe appears to be unacceptable to emailers - they'll split the name in two at a pipe char
   # ,; These are our list separator charactrs
 
   # Everything else appears acceptable
   
-  FRIENDLY_FORMAT_BEGIN = "[-A-Za-z0-9.:!?_#={}~@$%^&*() \t]*<".freeze
-  FRIENDLY_FORMAT_END   = ">".freeze
+  FRIENDLY_FORMAT_BEGIN = /[-A-Za-z0-9'.:!?_#={}~@$%^&*() \t]*</
+  FRIENDLY_FORMAT_END   = />/
 
   def validate_email(email)
-    @errors << "\"#{email}\" is not a valid email address" unless \
+    @cached_errors << "\"#{email}\" is not a valid email address" unless \
       email =~ /^#{ADDRESS_PORTION}$|^#{FRIENDLY_FORMAT_BEGIN}#{ADDRESS_PORTION}#{FRIENDLY_FORMAT_END}$/
   end
   
   def validate_minimum
-    @errors << "At least one email address must be provided" unless emails.size > 0
+    @cached_errors << "At least one email address must be provided" unless emails.size > 0
   end
   
   def validate_limit
-    @errors << "No more than #{limit} email addresses may be provided" unless emails.size <= @limit
+    @cached_errors << "No more than #{limit} email addresses may be provided" unless emails.size <= @limit
   end
   
 end

@@ -32,30 +32,56 @@ class DonorSurveyStoriesTest < ActionController::IntegrationTest
     
     # assert_redirected_to survey_path
 
-   end
+  end
+
+  test "Successful invitation request sends emails" do
+
+    addresses = ["fred@foo.com", "barney@bar.net", "inga@bazinga.org"]
+    setup_invitation_test(addresses.join(", "))
+    assert_redirected_to "/do-more"
+
+    assert_equal 1, @emails.size
+    assert_nil      @emails[0].to
+    assert_equal 3, @emails[0].bcc.size
+
+    addresses.each{|address| assert @emails[0].bcc.include?(address)}
+
+    # The email integrity (content) we're already testing in friend_inviter_test
+  end
    
-   test "Successful invitation request sends emails" do
+  test "Invite request with errors returns errors to the user" do
 
-     title     = "Hey come join the fun!"
-     message   = "We're righting a wronged world by helping people to save!"
-     addresses = "fred@foo.com, barney@bar.net, inga@bazinga.org"
+    bad_addresses = ["bad@address", "notso@good", "thisone@too"]
+    addresses     = ["good@address.com"].concat(bad_addresses)
+    
+    #sanity
+    assert_equal 4, addresses.size
+    assert_equal 3, bad_addresses.size
 
-     # try to get a session
-     donor = users(:generous_donor)
-     post "/sessions", :login => donor.login, :password => 'test'
+    setup_invitation_test(addresses.join(", "))
+    assert_response :success
 
-     post "/do-more/invite", :title => title, :message => message, :emails => addresses
-     assert_redirected_to "/do-more"
+    assert_select "div#errorExplanation" do
+      assert_select "ul" do
+        assert_select "li", :count => 3
+        assert_select "li", /bad@address/
+        assert_select "li", /notso@good/
+        assert_select "li", /thisone@to/
+      end
+    end
+  end
 
-     assert_equal 1, @emails.size
-     assert_equal 3, @emails[0].to.size
-     
-     recips = addresses.split(", ")
-     recips.each{|recip| assert @emails[0].to.include?(recip)}
-     
-     assert_equal "[SaveTogether] #{title}", @emails[0].subject
-     # the rest of the email integrity issues we're already testing in friend_inviter_test
-   end
-   
+protected
+
+  def setup_invitation_test(emails)
+    title     = "Hey come join the fun!"
+    message   = "We're righting a wronged world by helping people to save!"
+    
+    # try to get a session
+    donor = users(:generous_donor)
+    post "/sessions", :login => donor.login, :password => 'test'
+
+    post "/do-more/invite", :title => title, :message => message, :emails => emails
+  end
   
 end

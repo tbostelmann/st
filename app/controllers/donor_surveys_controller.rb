@@ -59,13 +59,13 @@ class DonorSurveysController < BaseController
     message = params[:message].strip
     emails  = params[:emails].strip
 
-    invite = Invitation.new({:title => title, :message => message, :friends => emails})
-    if invite.is_valid?
+    invitation = Invitation.new({:title => title, :message => message, :friends => emails})
+    if invitation.is_valid?
       # flash[:thank_you_for_sending_invitations] = true - this is what we should be using, but can't make it work in this controller
       session[:thank_you_for_sending_invitations] = true
     else
       @donor_survey = DonorSurvey.new
-      @errors = invite.errors
+      @errors = invitation.errors
       # Keep from propogating any added spaces
       params[:title]   = title
       params[:message] = message
@@ -74,7 +74,7 @@ class DonorSurveysController < BaseController
       render :show and return
     end
     
-    UserNotifier.deliver_friends_invitation(invite, current_user)
+    send_user_invitation(invitation, current_user)
     
     redirect_to :controller => :donor_surveys, :action => :show
   end
@@ -92,6 +92,11 @@ protected
     unless current_user
       redirect_to login_path
     end
+  end
+  
+  def send_user_invitation(invitation, from)
+    UserNotifier.deliver_friends_invitation(invitation, from)
+    logger.info{"Friends invitation from #{from.login} delivered to #{invitation.emails.size} recipients: #{invitation.emails.join(", ")}"}
   end
   
 end

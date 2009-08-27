@@ -26,7 +26,12 @@ class FriendNotifierTest < ActiveSupport::TestCase
     invitation_email = UserNotifier.create_friends_invitation(@invite, @donor)
     
     assert_match /#{@invite.title}/, invitation_email.subject
-    @invite.emails.each{|email| assert invitation_email.to.include?(email)}
+    # if invitation_email.to  then invitation_email.to.each  {|e| puts "To:  recip: #{e}"} end
+    # if invitation_email.bcc then invitation_email.bcc.each {|e| puts "Bcc: recip: #{e}"} end
+
+    assert_nil invitation_email.to
+    assert_equal 3, invitation_email.bcc.size
+    @invite.emails.each{|email| assert invitation_email.bcc.include?(email)}
     assert_match /SaveTogether member #{@donor.first_name} #{@donor.last_name}/, invitation_email.body
     assert_match /#{Regexp.escape(@invite.message)}/, invitation_email.body
   end
