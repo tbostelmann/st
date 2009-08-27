@@ -20,14 +20,14 @@ class HanselHelperTest < ActiveSupport::TestCase
   end
   
   test "Crumb trail grows with new paths" do
-    assert_crumbs(["/", "/do-more", "/match/"]) do |path|
+    assert_crumbs(%w(/, /do-more, /match/)) do |path|
       drop_this_crumb(path)
     end
   end
   
   test "Crumb trail pruned when user circles back to earlier traversed path" do
-    initial_paths = ["/", "/do-more", "/match/"]
-    all_paths     = initial_paths + ["add_to_pledge", "savetogether_ask"]
+    initial_paths = %w(/, /do-more, /match/)
+    all_paths     = initial_paths + %w(/pledge/add_to_pledge, /pledge/savetogether_ask)
     
     # User traverses long path
     assert_crumbs(all_paths) do |path|
@@ -42,7 +42,7 @@ class HanselHelperTest < ActiveSupport::TestCase
   end
   
   test "User returning to last visited path results in no change to the crumb trail" do
-    some_paths = ["/", "/do-more", "/match/"]
+    some_paths = %w(/, /do-more, /match/)
     
     # User traverses long path
     assert_crumbs(some_paths) do |path|
@@ -54,6 +54,23 @@ class HanselHelperTest < ActiveSupport::TestCase
     
     # Crumb trail should be still match original path
     assert_crumbs(some_paths)    
+  end
+  
+  test "RESTful paths with indexes are saved and matched as generic patterns" do
+    initial_path = %w(/ /match /saver/201)
+    all_paths    = initial_path + %w(/donor/302)
+    
+    # Traverse long path through specific profiles
+    assert_crumbs(all_paths) do |path|
+      drop_this_crumb(path)
+    end
+    
+    # User circles back to different saver
+    drop_this_crumb("/saver/206")
+    
+    # Crumb trail should match original path because last and first saver
+    # match generically, so crumbs are popped back to the first one
+    assert_crumbs(initial_path)    
   end
   
 protected
@@ -77,7 +94,7 @@ protected
       else
         assert_equal paths.size, user_crumb_trail.size
       end
-      (0..i).each{|i| assert_equal paths[i], user_crumb_trail[i]}
+      (0..i).each{|i| assert_match Regexp.new(user_crumb_trail[i]), paths[i]}
     end
   end
   

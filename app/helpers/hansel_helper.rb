@@ -14,7 +14,16 @@ module HanselHelper
   def user_crumb_trail
     session[:crumb_trail] ||= BreadCrumbTrail.new
   end
-  
+
+  # Remove - should be part of BreadCrumbTrail once Crumbs are formal class with "to_friendly" method
+  def friendly_trail
+    str = ""
+    user_crumb_trail.crumbs.each do |crumb|
+      str << "#{URL_FRIENDLY_NAMES[crumb] || crumb}, "
+    end
+    str
+  end
+
 protected
 
   if RAILS_ENV.eql?("test")

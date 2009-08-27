@@ -8,11 +8,15 @@ class BreadCrumbTrail
   end
   
   def push(path)
-    @crumbs.push(path)
+    crumb = path.gsub(/\/[0-9]+\Z/, '/[0-9]+')
+    @crumbs.push(crumb)
   end
   
   def match_at(element)
-    @crumbs.index(element)
+    @crumbs.each_with_index do |crumb, i|
+      return i if element =~ /\A#{Regexp.new(crumb)}\Z/
+    end
+    return nil
   end
 
   def trim_after(i)
