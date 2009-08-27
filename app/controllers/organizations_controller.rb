@@ -15,12 +15,14 @@ class OrganizationsController < BaseController
   
   def update
     @user = current_user
-    @user.attributes      = params[:user]
+    @user.update_attributes params['organization']
 
-    @avatar       = Photo.new(params[:avatar])
-    @avatar.user  = @user
+    if !params[:avatar].nil? && !params[:avatar][:uploaded_data].blank?
+      @avatar       = Photo.new(params[:avatar])
+      @avatar.user  = @user
+      @user.avatar  = @avatar if @avatar.save
+    end
 
-    @user.avatar  = @avatar if @avatar.save
 
     if @user.save!
       @user.track_activity(:updated_profile)

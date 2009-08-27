@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 20090422073021
+# Schema version: 20090701201617
 #
 # Table name: users
 #
@@ -42,6 +42,9 @@
 #  organization_id           :integer(4)
 #  first_name                :string(255)
 #  last_name                 :string(255)
+#  web_site_url              :string(255)
+#  phone_number              :string(255)
+#  notify_advocacy           :boolean(1)
 #
 
 class Organization < Party
@@ -53,6 +56,8 @@ class Organization < Party
            
   has_many :fees_paid, :class_name => 'Fee', :foreign_key => :from_user_id
   has_many :fees_received, :class_name => 'Fee', :foreign_key => :to_user_id
+
+  accepts_nested_attributes_for :organization_survey
 
   PAYPAL_LOGIN = 'paypal@savetogether.org'
   SAVETOGETHER_LOGIN = 'storg@savetogether.org'

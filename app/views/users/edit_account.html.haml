@@ -65,8 +65,10 @@
               =:you_are_editing_your_account.l
             - if @user.is_a? Donor
               = link_to "&raquo; #{:edit_your_user_profile.l}", edit_donor_path(@user)
-            - else
-              = link_to :edit_your_user_profile.l, edit_user_path(@user)
+            - elsif @user.is_a? Saver
+              = link_to :edit_your_user_profile.l, edit_saver_path(@user)
+            - elsif @user.is_a? Organization
+              = link_to :edit_your_user_profile.l, edit_organization_path(@user)
 
         .relax='&nbsp;'
         .block.no-border

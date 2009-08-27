@@ -1,3 +1,16 @@
+# == Schema Information
+# Schema version: 20090701201617
+#
+# Table name: donor_surveys
+#
+#  id                      :integer(4)      not null, primary key
+#  donor_id                :integer(4)
+#  add_me_to_cfed_petition :boolean(1)
+#  first_name              :string(255)
+#  last_name               :string(255)
+#  zip_code                :string(255)
+#
+
 class DonorSurvey < ActiveRecord::Base
   belongs_to :donor
 

@@ -6,7 +6,7 @@
     =:profile_photo.l
 
   .single-column
-    - form_tag organization_url(@user), :method => 'put', :multipart =>true, :class => 'MainForm' do
+    - form_for @user, :method => 'put', :multipart =>true, :class => 'MainForm' do |org_form|
 
       = error_messages_for :user
 
@@ -34,5 +34,59 @@
         .block.no-border
           .indent
             %h3= :why_i_support_savers.l
-            = text_area :user, :description, :class => "rich_text_editor", :style => "width:91%; height:232px; margin: 10px 0 10px 0;"
-            = submit_tag :save_changes.l
+            = org_form.text_area :description, :class => "rich_text_editor", :style => "width:91%; height:232px; margin: 10px 0 10px 0;"
+
+          %table{:width => "91%", :cellspacing => "0", :cellpadding => "0", :border => "0"}
+            %tr
+              %td{:align => "right"}
+                %p.large-text
+                  = "Web Site URL:"
+              %td{:align => "right"}
+                = org_form.text_field :web_site_url
+            %tr
+              %td{:align => "right"}
+                %p.large-text
+                  ="Phone Number:"
+              %td{:align => "right"}
+                = org_form.text_field :phone_number
+            = hidden_field_tag 'organization[organization_survey_attributes][id]', @user.organization_survey.id
+            %tr
+              %td{:align => "right"}
+                %p.large-text
+                  ="Email Contact:"
+              %td{:align => "right"}
+                = text_field_tag 'organization[organization_survey_attributes][contact_email]', @user.organization_survey.contact_email, :size => 30
+            %tr
+              %td{:align => "right"}
+                %p.large-text
+                  ="Year Founded:"
+              %td{:align => "right"}
+                = text_field_tag 'organization[organization_survey_attributes][year_founded]', @user.organization_survey.year_founded, :size => 30
+            %tr
+              %td{:align => "right"}
+                %p.large-text
+                  ="Annual Operating Expenses:"
+              %td{:align => "right"}
+                = text_field_tag 'organization[organization_survey_attributes][annual_operating_expenses]', @user.organization_survey.annual_operating_expenses, :size => 30
+            %tr
+              %td{:align => "right"}
+                %p.large-text
+                  ="Total Matched Accounts:"
+              %td{:align => "right"}
+                = text_field_tag 'organization[organization_survey_attributes][total_matched_accounts]', @user.organization_survey.total_matched_accounts, :size => 30
+            %tr
+              %td{:align => "right"}
+                %p.large-text
+                  ="Year First Accounts Opened:"
+              %td{:align => "right"}
+                = text_field_tag 'organization[organization_survey_attributes][year_first_accounts_opened]', @user.organization_survey.year_first_accounts_opened, :size => 30
+            %tr
+              %td{:align => "right"}
+                %p.large-text
+                  ="Number of Active Accounts:"
+              %td{:align => "right"}
+                = text_field_tag 'organization[organization_survey_attributes][number_of_active_accounts]', @user.organization_survey.number_of_active_accounts, :size => 30
+            %tr
+              %td{:align => "right"}
+                = submit_tag :save_changes.l
+              %td{:align => "right"}

@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 20090422073021
+# Schema version: 20090701201617
 #
 # Table name: payment_notifications
 #

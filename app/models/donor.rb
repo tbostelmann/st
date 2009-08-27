@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 20090422073021
+# Schema version: 20090701201617
 #
 # Table name: users
 #
@@ -42,6 +42,9 @@
 #  organization_id           :integer(4)
 #  first_name                :string(255)
 #  last_name                 :string(255)
+#  web_site_url              :string(255)
+#  phone_number              :string(255)
+#  notify_advocacy           :boolean(1)
 #
 
 class Donor < Party

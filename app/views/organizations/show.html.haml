@@ -28,6 +28,8 @@
           %h2
             =:manage_my.l
           =link_to "&raquo; #{:profile.l}", edit_organization_path(@org)
+          %br/
+          =link_to "&raquo; #{:account_settings.l}", edit_account_user_path(@org)
       .about-party
         %h3
           = :about_user.l :user_name => @org.display_name

@@ -5,6 +5,16 @@ class SaversController < BaseController
 
   before_filter :log_request
 
+  def edit
+    # TODO this should be a :before_filter :only => :edit
+    # Don't do it now because we need an authorize method
+    if current_user.nil?
+      redirect_to login_path
+    else
+      @user = current_user
+    end
+  end
+
   def index  
     # if a numeric ID was passed - show that saver
     if params[:id] && params[:id].to_i > 0
@@ -79,6 +89,24 @@ class SaversController < BaseController
 
   private
   
+  def update_account
+    @user             = current_user
+    @user.attributes  = params[:user]
+
+    if @user.save
+      flash[:notice] = :your_changes_were_saved.l
+      respond_to do |format|
+        format.html {redirect_to donor_path(@user)}
+        format.js
+      end
+    else
+      respond_to do |format|
+        format.html {render :action => 'edit_account'}
+        format.js
+      end
+    end
+  end
+
   def log_request
     logger.debug{"SaversController, originating request: \"#{request.path}\""}
   end
