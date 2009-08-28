@@ -2,7 +2,7 @@
 # http://en.wikipedia.org/wiki/Hansel_and_Gretel
 module HanselHelper
 
-  def drop_crumb(request)
+  def drop_crumb
     user_crumb_trail.drop_crumb(request.path)
   end
   

@@ -12,5 +12,6 @@
 /terms-of-use             : "Terms of Use"
 
 /donors/[0-9]+            : "Donor Profile"
+/organizations/[0-9]+     : "Organization Profile"
 /pledges/[_a-z]+to_pledge : "Pledge"
 /savers/[0-9]+            : "Saver Profile"

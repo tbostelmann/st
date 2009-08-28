@@ -204,7 +204,8 @@ textarea {
   float: left;
   width: 100%;
 	padding-bottom: 30px;
-	margin-top: 15px;
+	/* margin-top: 15px; DSCOTT - Use this if breadcrumbs are enabled */
+	margin-top: 25px;
 }
 .content H1, .content H2, .content H3, .content P {
 	padding: 0;

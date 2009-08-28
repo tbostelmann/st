@@ -3,7 +3,9 @@
 
 class ApplicationController < ActionController::Base
   include ExceptionNotifiable
-  include HanselHelper
+  # DSCOTT - disable for now
+  # include HanselHelper
+  # before_filter :drop_crumb
 
   helper :all # include all helpers, all the time
   filter_parameter_logging :password #prevent logging of password param
@@ -12,7 +14,6 @@ class ApplicationController < ActionController::Base
   protect_from_forgery # :secret => 'e3a2381ed3c0a1d9a991691d41eb753b'
 
   # DPIRONE - not now before_filter :force_non_ssl
-  before_filter :sprinkle_the_bread_crumbs
 
   # Scrub sensitive parameters from your log
   # filter_parameter_logging :password
@@ -83,10 +84,5 @@ class ApplicationController < ActionController::Base
     return true
   end
   # --------------------------------------------------------------------------
-
-  def sprinkle_the_bread_crumbs
-    drop_crumb(request)
-    logger.debug session.inspect
-  end
 
 end
