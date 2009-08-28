@@ -19,6 +19,14 @@ class BreadCrumbTrail
     crumbs.size
   end
   
+  def first
+    crumbs.first
+  end
+  
+  def last
+    crumbs.last
+  end
+  
   def [](i)
     crumbs[i]
   end

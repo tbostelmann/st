@@ -25,25 +25,17 @@ class NavigationStoriesTest < ActionController::IntegrationTest
     get "/donors/#{donor.id}"
     assert_response :success
     
-    friendly_names = session[:crumb_trail].to_s
-    
-    # Assert the URLs are not in the names list, friendly names are. Each of
-    # these are paired with the native URL that ultimately maps to friendly name.
-    
-    # TODO: change these into assert_tags that get their info from the response (DOM)
-    assert_no_match /[ ]*\/[,]/, friendly_names
-    assert_match /Home/, friendly_names
+    assert_select "div.bread-crumb-links" do
+      assert_select "ul" do
+        assert_select "li", :count => 4
+        assert_select "li > a[href=/]", /Home/
+        assert_select "li > a[href=/match-savers/]", /Match Savers/
+        assert_select "li > a[href=/community/]", /Community/
+        assert_select "li > a[href=/donors/#{donor.id}]", :count => 0 # No link for the last path visited
+        assert_select "li", /Donor Profile/ # instead just a list element
+      end
+    end
 
-    assert_no_match Regexp.new(Regexp.escape("/match-savers/")), friendly_names
-    assert_match /Match Savers/, friendly_names
-    
-    assert_no_match Regexp.new(Regexp.escape("/community/")), friendly_names
-    assert_match /Community/, friendly_names
-
-    assert_no_match Regexp.new(Regexp.escape("/donors/#{donor.id}")), friendly_names
-    assert_no_match Regexp.new(Regexp.escape("/donors/[0-9]+")), friendly_names
-    assert_match /Donor Profile/, friendly_names
-  
   end
   
 protected
