@@ -3,10 +3,10 @@
 .content
   .about-us
     .two-column-layout.wide
-
-      %h1= :about_us.l.titleize
-
       .tcl-column.left
+
+        %h1= :about_us.l.titleize
+
         .block
           %h3
             The Team
@@ -73,10 +73,15 @@
             %em
               MARC SPENCER
             CEO, JUMA VENTURES
+
+      .tcl-column.right
+
+        %h1= :partners.l.titleize
+
         .block
           %h3
             Founding Partners
-          %ul.horiz.last
+          %ul.horiz
             %li
               %a{:href=>'http://www.cfed.org'}
                 CFED
@@ -89,47 +94,58 @@
             %li
               %a{:href=>'http://www.jumaventures.org'}
                 JUMA VENTURES
+          %ul.horiz.last
             %li
               %a{:href=>'http://www.opportunityfund.org'}
                 OPPORTUNITY FUND
-          .block
-            %h3
-              Funders
-            %ul.horiz.last
-              %li
-                %a{:href=>'http://www.siliconvalleycf.org'}
-                  SILICON VALLEY COMMUNITY FOUNDATION
-            
-      .tcl-column.right
-        %div{:style => "float:left; margin: 0 0 20px 0;"}
-          =image_tag "#{image_path('graphics/about_us.jpg')}", {:width => "390", :height => "300"}
-        .block.no-border
+        .block
+          %h3
+            Funders
+          %ul.horiz
+            %li
+              %a{:href=>'http://www.siliconvalleycf.org'}
+                SILICON VALLEY COMMUNITY FOUNDATION
+            %li
+              %a{:href=>'http://www.marincf.org'}
+                MARIN COMMUNITY FOUNDATION
+          %ul.horiz.last
+            %li
+              %a{:href=>'http://www.sff.org'}
+                SAN FRANCISCO FOUNDATION
+            %li
+              %a{:href=>'http://www.uwba.org'}
+                UNITED OF THE BAY AREA
+            %li
+              %a{:href=>'http://www.haassr.org'}
+                HAAS SR. FUND
+
+        .block
           %h3
             Corporate/Institutional Partners
           %ul.horiz
             %li
               %a{:href=>'http://www.dwt.com'}
-                Davis Wright Tremaine
+                DAVIS WRIGHT TREMAINE
             %li
               %a{:href=>'http://www.grahamdunn.com'}
-                Graham Dunn
+                GRAHAM DUNN
             %li
               %a{:href=>'http://www.perkinscoie.com'}
-                Perkins Coie
+                PERKINS COIE
             %li
               %a{:href=>'http://www.balsamiq.com'}
-                Balsamiq Mockups 
+                BALSAMIQ MOCKUPS 
           %ul.horiz.last
             %li
               %a{:href=>'http://www.law.washington.edu/clinics/entrepreneurial/'}
-                UW Entrepreneurial Law Clinic
+                UW ENTREPRENEURIAL LAW CLINIC
             %li
               %a{:href=>'http://www.bzzagent.com'}
-                BzzAgent
+                BZZAGENT
         .block
           %h3
             Volunteers
-          %ul.horiz.condensed
+          %ul.horiz
             %li
               Gwendy Donaker Brown
             %li
@@ -140,7 +156,7 @@
               Liz Coit
             %li
               Bob Friedman
-          %ul.horiz.condensed
+          %ul.horiz
             %li
               Gwyneth Galbraith
             %li
@@ -151,7 +167,7 @@
               Arun Israel
             %li
               Caitlin McShane
-          %ul.horiz.condensed
+          %ul.horiz
             %li
               Eric Norman
             %li
@@ -162,7 +178,7 @@
               Maria Sison
             %li
               Lonnie Snyder
-          %ul.horiz.condensed
+          %ul.horiz
             %li
               Sarah Sullivant
             %li
@@ -173,7 +189,7 @@
               Rochelle Watson
             %li
               Eric Weaver 
-          %ul.horiz.condensed.last
+          %ul.horiz.last
             %li
               Cathy Barsukoff
             %li
@@ -184,3 +200,8 @@
               Conor Higgins
             %li
               MacKenzie Huff
+
+      .relax="&nbsp;"
+      %div{:style => "margin: 30px 0 0 35%;"}
+        =image_tag "#{image_path('graphics/how_it_works.jpg')}"
+
