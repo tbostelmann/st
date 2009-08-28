@@ -27,12 +27,22 @@ class NavigationStoriesTest < ActionController::IntegrationTest
     
     friendly_names = session[:crumb_trail].to_s
     
-    assert_match /[ ]*\/[,]/, friendly_names
-    assert_match Regexp.new(Regexp.escape("/match-savers/")), friendly_names
-    assert_match Regexp.new(Regexp.escape("/community/")), friendly_names
+    # Assert the URLs are not in the names list, friendly names are. Each of
+    # these are paired with the native URL that ultimately maps to friendly name.
+    
+    # TODO: change these into assert_tags that get their info from the response (DOM)
+    assert_no_match /[ ]*\/[,]/, friendly_names
+    assert_match /Home/, friendly_names
+
+    assert_no_match Regexp.new(Regexp.escape("/match-savers/")), friendly_names
+    assert_match /Match Savers/, friendly_names
+    
+    assert_no_match Regexp.new(Regexp.escape("/community/")), friendly_names
+    assert_match /Community/, friendly_names
 
     assert_no_match Regexp.new(Regexp.escape("/donors/#{donor.id}")), friendly_names
-    assert_match Regexp.new(Regexp.escape("/donors/[0-9]+")), friendly_names
+    assert_no_match Regexp.new(Regexp.escape("/donors/[0-9]+")), friendly_names
+    assert_match /Donor Profile/, friendly_names
   
   end
   

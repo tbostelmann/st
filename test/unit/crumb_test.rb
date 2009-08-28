@@ -10,7 +10,7 @@ class CrumbTest < ActiveSupport::TestCase
     assert_equal path, crumb.path_key
   end
   
-  test "Crumb initialized with Savers path initialize path key to a common descriptor value" do
+  test "Crumb initialized with different Savers paths initialize path key to a shared value" do
     path1 = "/savers/123"
     path2 = "/savers/236"
     crumb1 = Crumb.new(path1)

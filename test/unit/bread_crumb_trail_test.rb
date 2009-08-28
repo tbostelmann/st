@@ -48,7 +48,7 @@ class BreadCrumbTrailTest < ActiveSupport::TestCase
   end
   
   test "RESTful paths with indexes are saved and matched as generic patterns" do
-    initial_path = %w(/ /match-savers/ /saver/201)
+    initial_path = %w(/ /match-savers/ /savers/201)
     all_paths    = initial_path + %w(/donor/302)
     
     # Traverse long path through specific profiles
@@ -57,7 +57,7 @@ class BreadCrumbTrailTest < ActiveSupport::TestCase
     end
     
     # User circles back to different saver
-    @breadcrumbs.drop_crumb("/saver/206")
+    @breadcrumbs.drop_crumb("/savers/206")
     
     # Crumb trail should match original path because last and first saver
     # match generically, so crumbs are popped back to the first one
@@ -65,7 +65,7 @@ class BreadCrumbTrailTest < ActiveSupport::TestCase
   end
   
   test "Serialized Bread Crumb List reloads and restores" do
-    some_flow = %w(/ /match-savers/ /saver/201)
+    some_flow = %w(/ /match-savers/ /savers/201)
     some_flow.each {|path| @breadcrumbs.drop_crumb(path)}
     
     loaded_breadcrumbs = Marshal.load(Marshal.dump(@breadcrumbs))
