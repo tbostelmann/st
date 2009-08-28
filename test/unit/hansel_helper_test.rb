@@ -19,23 +19,4 @@ class HanselHelperTest < ActiveSupport::TestCase
     end
   end
   
-  test "Can get a friendly record of user flow" do
-    @mock_request.path = "/"
-    drop_crumb(@mock_request)
-    
-    @mock_request.path = "/match-savers/"
-    drop_crumb(@mock_request)
-    
-    @mock_request.path = "/savers/123"
-    drop_crumb(@mock_request)
-    
-    friendly = friendly_names
-    
-    assert_match /[ ]*\/[,]/, friendly
-    assert_match Regexp.new(Regexp.escape("/match-savers/")), friendly
-    assert_no_match Regexp.new(Regexp.escape("/savers/123")), friendly
-    assert_match Regexp.new(Regexp.escape("/savers/[0-9]+")), friendly
-  
-  end
-  
 end

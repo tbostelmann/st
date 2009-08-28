@@ -17,11 +17,4 @@ protected
     session[:crumb_trail] ||= BreadCrumbTrail.new
   end
 
-  if RAILS_ENV.eql?("test")
-    # this works because otherwise session is defined on any ActionController that includes this helper
-    def session
-        @mock_session ||= {}
-    end
-  end
-  
 end
