@@ -32,19 +32,18 @@ class BreadCrumbTrail
   end
   
   def to_s
-    "#{crumbs.join(", ")}"
+    crumbs.collect(&:friendly_name).join(", ")
   end
   
 protected
 
   def push(path)
-    crumb = path.gsub(/\/[0-9]+\Z/, '/[0-9]+')
-    crumbs.push(crumb)
+    crumbs.push(Crumb.new(path))
   end
 
   def match_at(element)
     crumbs.each_with_index do |crumb, i|
-      return i if element =~ /\A#{Regexp.new(crumb)}\Z/
+      return i if element =~ /\A#{Regexp.new(crumb.path_key)}\Z/
     end
     return nil
   end
@@ -62,7 +61,7 @@ protected
   
   # For whatever reason, Ruby passes one argument to _dump, which isn't explained in the docs
   def _dump(ignored)
-    crumbs.join("||")
+    crumbs.collect(&:path).join("||")
   end
   
   def self._load(data)

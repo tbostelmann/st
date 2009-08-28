@@ -6,6 +6,10 @@ class BreadCrumbTrailTest < ActiveSupport::TestCase
     @breadcrumbs = BreadCrumbTrail.new
   end
 
+  test "Crumb trail always contains at least Home path" do
+    assert_crumbs(["/"])
+  end
+
   test "Crumb trail grows with new paths" do
     assert_crumbs(%w(/ /do-more /match-savers/)) do |path|
       @breadcrumbs.drop_crumb(path)
@@ -85,7 +89,7 @@ protected
       else
         assert_equal paths.size, @breadcrumbs.size
       end
-      (0..i).each{|i| assert_match Regexp.new( @breadcrumbs[i]), paths[i]}
+      (0..i).each{|i| assert_match Regexp.new(@breadcrumbs[i].path_key), paths[i]}
     end
   end
 

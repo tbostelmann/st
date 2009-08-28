@@ -6,13 +6,9 @@ module HanselHelper
     user_crumb_trail.drop_crumb(request.path)
   end
   
-  # Remove - should be part of BreadCrumbTrail once Crumbs are formal class with "to_friendly" method
-  def friendly_trail
-    str = ""
-    user_crumb_trail.each do |crumb|
-      str << "#{URL_FRIENDLY_NAMES[crumb] || crumb}, "
-    end
-    str
+  # Necessity of this?
+  def friendly_names
+    user_crumb_trail.to_s
   end
 
 protected

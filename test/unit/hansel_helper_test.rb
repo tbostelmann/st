@@ -29,7 +29,7 @@ class HanselHelperTest < ActiveSupport::TestCase
     @mock_request.path = "/savers/123"
     drop_crumb(@mock_request)
     
-    friendly = friendly_trail
+    friendly = friendly_names
     
     assert_match /[ ]*\/[,]/, friendly
     assert_match Regexp.new(Regexp.escape("/match-savers/")), friendly
