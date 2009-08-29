@@ -12,7 +12,7 @@ class OrganizationsController < BaseController
       @user = current_user
     end
   end
-  
+
   def update
     @user = current_user
     @user.update_attributes params['organization']

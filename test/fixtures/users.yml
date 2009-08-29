@@ -49,6 +49,7 @@
 
 saver:
   login: saver@example.com
+  email: saver@example.com
   first_name: Super
   last_name: Saver1
   description: I am a saver

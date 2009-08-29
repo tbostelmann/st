@@ -55,6 +55,11 @@ class Saver < Party
   has_many :donors, :through => :donations_received, :source => :from_user,
            :uniq => true, :conditions => "users.profile_public = 1"
   
+  composed_of :requested_match,
+              :class_name => "Money",
+              :mapping => [%w(requested_match_cents cents)],
+              :converter => Proc.new { |value| value.to_money }
+
   validates_presence_of :first_name
   validates_presence_of :last_name
 

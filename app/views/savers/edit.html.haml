@@ -1,4 +1,4 @@
--@page_title= "#{possessivize(@user.display_name)} #{:profile_settings.l.titleize}"
+-@page_title= "#{possessivize(@saver.display_name)} #{:profile_settings.l.titleize}"
 
 .content
 
@@ -6,13 +6,13 @@
     =:profile_photo.l
 
   .single-column
-    - form_tag organization_url(@user), :method => 'put', :multipart =>true, :class => 'MainForm' do
+    - form_tag saver_url(@saver), :method => 'put', :multipart =>true, :class => 'MainForm' do
 
-      = error_messages_for :user
+      = error_messages_for :saver
 
       .photo
         .with-img.plus
-          = image_tag( @user.avatar_photo_url(:medium), :class => "polaroid" )
+          = image_tag( @saver.avatar_photo_url(:medium), :class => "polaroid" )
 
         %table{:width => "100%", :cellspacing => "0", :cellpadding => "0", :border => "0"}
           %tr
@@ -28,11 +28,28 @@
           .box-bottom
             %h2
               =:you_are_editing_your_profile.l
-            = link_to "&raquo; #{:edit_your_account_settings_instead.l}", edit_account_user_path(@user)
+            = link_to "&raquo; #{:edit_your_account_settings_instead.l}", edit_account_user_path(@saver)
 
         .relax='&nbsp;'
         .block.no-border
           .indent
             %h3= :why_i_support_savers.l
-            = text_area :user, :description, :class => "rich_text_editor", :style => "width:91%; height:232px; margin: 10px 0 10px 0;"
-            = submit_tag :save_changes.l
+            = text_area :saver, :description, :class => "rich_text_editor", :style => "width:91%; height:232px; margin: 10px 0 10px 0;"
+
+          %table{:width => "91%", :cellspacing => "0", :cellpadding => "0", :border => "0"}
+            %tr
+              %td{:align => "right"}
+                %p.large-text
+                  = "Requested Match:"
+              %td{:align => "right"}
+                = text_field :saver, :requested_match
+            %tr
+              %td{:align => "right"}
+                %p.large-text
+                  ="Goal:"
+              %td{:align => "right"}
+                = select :saver, :asset_type_id, AssetType.all.collect {|p| [ p.asset_name, p.id ] }, { :include_blank => true }
+            %tr
+              %td{:align => "right"}
+                = submit_tag :save_changes.l
+              %td{:align => "right"}

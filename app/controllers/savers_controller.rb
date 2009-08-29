@@ -5,13 +5,40 @@ class SaversController < BaseController
 
   before_filter :log_request
 
+  def update
+    @saver = Saver.find(params[:id])
+    if @saver != current_user
+      redirect_to saver_path(@saver)
+    else
+      @saver.update_attributes params['saver']
+
+      if !params[:avatar].nil? && !params[:avatar][:uploaded_data].blank?
+        @avatar       = Photo.new(params[:avatar])
+        @avatar.user  = @saver
+        @user.avatar  = @avatar if @avatar.save
+      end
+
+
+      if @saver.save!
+        @saver.track_activity(:updated_profile)
+
+        flash[:notice] = :your_changes_were_saved.l
+
+        redirect_to saver_path(@saver)
+      else
+        redirect_to edit_saver_path(@saver)
+      end
+    end 
+  rescue ActiveRecord::RecordInvalid
+    redirect_to edit_saver_path(@saver)
+  end
+
   def edit
     # TODO this should be a :before_filter :only => :edit
     # Don't do it now because we need an authorize method
-    if current_user.nil?
-      redirect_to login_path
-    else
-      @user = current_user
+    @saver = Saver.find(params[:id])
+    if current_user.nil? || current_user != @saver
+      redirect_to saver_path(@saver)
     end
   end
 
