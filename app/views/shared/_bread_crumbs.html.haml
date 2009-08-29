@@ -1,0 +1,10 @@
+- if crumb_trail.size > 1
+  %ul
+    - crumb_trail.each do |crumb|
+      %li
+        - unless crumb.eql?(crumb_trail.last)
+          = link_to crumb.friendly_name, crumb.path
+          %span{:class => "sep"}
+            = "&nbsp;&raquo;"
+        - else
+          = crumb.friendly_name

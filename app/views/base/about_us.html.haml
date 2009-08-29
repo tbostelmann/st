@@ -4,12 +4,28 @@
   .about-us
     .two-column-layout.wide
       .tcl-column.left
-        %div{:style => "float:left; margin-bottom:20px;"}
-          =image_tag "#{image_path('graphics/about_us.jpg')}"
-        .block.no-border
+
+        %h1= :about_us.l.titleize
+
+        .block
           %h3
             The Team
           %h4.sub.first
+            %em
+              %a{:href=>'mailto:dylan@savetogether.org'}
+                DYLAN HIGGINS
+            CO-FOUNDER, CEO
+          %h4.sub
+            %em
+              %a{ :href=>'mailto:blair@savetogether.org' }
+                BLAIR BENJAMIN
+            CO-FOUNDER, COO
+          %h4.sub
+            %em
+              %a{ :href=>'mailto:tom@savetogether.org'}
+                TOM BOSTELMANN
+            CO-FOUNDER, CTO
+          %h4.sub
             %em
               %a{:href => "http://www.linkedin.com/in/ericdesio"}
                 ERIC DESIO
@@ -57,10 +73,15 @@
             %em
               MARC SPENCER
             CEO, JUMA VENTURES
+
+      .tcl-column.right
+
+        %h1= :partners.l.titleize
+
         .block
           %h3
-            Supporters
-          %ul.horiz.last
+            Founding Partners
+          %ul.horiz
             %li
               %a{:href=>'http://www.cfed.org'}
                 CFED
@@ -68,54 +89,63 @@
               %a{:href=>'http://americandreammatchfund.org'}
                 AMERICAN DREAM MATCH FUND
             %li
-              %a{:href=>'http://www.siliconvalleycf.org'}
-                SILICON VALLEY COMMUNITY FOUNDATION
-        .block
-          %h3
-            Matched Savings Program Partners
-          %ul.horiz.last
-            %li
               %a{:href=>'http://www.earn.org'}
                 EARN
             %li
               %a{:href=>'http://www.jumaventures.org'}
                 JUMA VENTURES
+          %ul.horiz.last
             %li
               %a{:href=>'http://www.opportunityfund.org'}
                 OPPORTUNITY FUND
+        .block
+          %h3
+            Funders
+          %ul.horiz
             %li
-              %a{:href=>'http://www.snapwa.org'}
-                SNAP
+              %a{:href=>'http://www.siliconvalleycf.org'}
+                SILICON VALLEY COMMUNITY FOUNDATION
             %li
-              %a{:href=>'http://www.massassets.org'}
-                MIDAS COLLABORATIVE
+              %a{:href=>'http://www.marincf.org'}
+                MARIN COMMUNITY FOUNDATION
+          %ul.horiz.last
+            %li
+              %a{:href=>'http://www.sff.org'}
+                SAN FRANCISCO FOUNDATION
+            %li
+              %a{:href=>'http://www.uwba.org'}
+                UNITED OF THE BAY AREA
+            %li
+              %a{:href=>'http://www.haassr.org'}
+                HAAS SR. FUND
+
         .block
           %h3
             Corporate/Institutional Partners
           %ul.horiz
             %li
               %a{:href=>'http://www.dwt.com'}
-                Davis Wright Tremaine
+                DAVIS WRIGHT TREMAINE
             %li
               %a{:href=>'http://www.grahamdunn.com'}
-                Graham Dunn
+                GRAHAM DUNN
             %li
               %a{:href=>'http://www.perkinscoie.com'}
-                Perkins Coie
+                PERKINS COIE
+            %li
+              %a{:href=>'http://www.balsamiq.com'}
+                BALSAMIQ MOCKUPS 
           %ul.horiz.last
             %li
               %a{:href=>'http://www.law.washington.edu/clinics/entrepreneurial/'}
-                UW Entrepreneurial Law Clinic
+                UW ENTREPRENEURIAL LAW CLINIC
             %li
               %a{:href=>'http://www.bzzagent.com'}
-                BzzAgent
-            %li
-              %a{:href=>'http://www.balsamiq.com'}
-                Balsamiq Mockups 
+                BZZAGENT
         .block
           %h3
-            Bay Area Working Group
-          %ul.horiz.condensed
+            Volunteers
+          %ul.horiz
             %li
               Gwendy Donaker Brown
             %li
@@ -126,7 +156,7 @@
               Liz Coit
             %li
               Bob Friedman
-          %ul.horiz.condensed
+          %ul.horiz
             %li
               Gwyneth Galbraith
             %li
@@ -137,7 +167,7 @@
               Arun Israel
             %li
               Caitlin McShane
-          %ul.horiz.condensed
+          %ul.horiz
             %li
               Eric Norman
             %li
@@ -148,7 +178,7 @@
               Maria Sison
             %li
               Lonnie Snyder
-          %ul.horiz.condensed.last
+          %ul.horiz
             %li
               Sarah Sullivant
             %li
@@ -159,10 +189,7 @@
               Rochelle Watson
             %li
               Eric Weaver 
-        .block
-          %h3
-            Volunteers 
-          %ul.horiz.condensed
+          %ul.horiz.last
             %li
               Cathy Barsukoff
             %li
@@ -173,55 +200,8 @@
               Conor Higgins
             %li
               MacKenzie Huff
-                
-      .tcl-column.right
 
-        %h1= :about_us.l.titleize
-
-        .block
-          .thumbnail
-            = image_tag "#{image_path('thumbnails/dylanh.png')}"
-          %h3
-            Executive Team
-          %h4
-            %em
-              %a{:href=>'mailto:dylan@savetogether.org'}
-                DYLAN HIGGINS
-            CO-FOUNDER, CEO
-          %p
-            Dylan is a former management consultant with Accenture and a licensed attorney. At Accenture, he led teams performing strategy, business process, product management and IT consulting for multiple Fortune 100 companies and start-ups. As an attorney, he focused on complex commercial litigation in federal and state courts.
-          %p
-            He has significant work experience in Asia, Africa, and Europe and has traveled to over 20 countries.  His passion for matched savings was born out of his recent Kiva fellowship in Ghana where he saw first hand the benefits of improving access to financial services for the working poor.
-          %p
-            While not working to change the world one saver at a time, Dylan enjoys sailing his 28-foot sailboat Saoirse or revising his first novel – yet again.
-        .block
-          .thumbnail
-            = image_tag "#{image_path('thumbnails/blairb.png')}"
-          %h3
-            Executive Team
-          %h4
-            %em
-              %a{ :href=>'mailto:blair@savetogether.org' }
-                BLAIR BENJAMIN
-            CO-FOUNDER, COO
-          %p
-            Blair is an asset development practitioner, managing Assets for Artists, an IDA program for low-income artists and artisans in the Berkshires of western Massachusetts. He writes regularly about the asset development field on his Asset Almanac blog. 
-          %p
-            Other experience in community development includes serving as Director of Real Estate and Community Development for the Massachusetts Museum of Contemporary Art (MASS MoCA), directing all commercial real estate development and leasing for 125,000 square feet of income-producing space. He serves on the boards of the Berkshire Creative Economy Council and Northern Berkshire United Way. 
-          %p
-            Previously, he served as Director of Development for MASS MoCA, leading a development team that raised over $2 million per year in contributed income, worked as Director of Marketing, Development and Community Relations for the Flatbush Development Corporation (a nonprofit community development corporation in Brooklyn), and served as a Peace Corps volunteer supporting agricultural and craft-based microenterprise development in the Ivory Coast. 
-        .block
-          .thumbnail
-            = image_tag "#{image_path('thumbnails/tomb.png')}"
-          %h3
-            Executive Team
-          %h4
-            %em
-              %a{ :href=>'mailto:tom@savetogether.org'}
-                TOM BOSTELMANN
-            CO-FOUNDER, CTO
-          %p
-            Originally from Minneapolis, Tom moved to Seattle to develop open-source software and is an IP Consultant and software architect in the Seattle area.  In 2000 he worked for a 'social business' (a term Muhammud Yunus coined) called Viatru that provided U.S. market opportunities for artisans in developing countries.
-          %p
-            Tom has also served several years as a volunteer teacher with organizations such as Technology Access Foundation and BDPA.  Finally, Tom has taken Muhammud Yunus' pledge to end poverty and he hopes that his work with SaveTogether will contribute to that.
+      .relax="&nbsp;"
+      %div{:style => "margin: 30px 0 0 35%;"}
+        =image_tag "#{image_path('graphics/how_it_works.jpg')}"
 

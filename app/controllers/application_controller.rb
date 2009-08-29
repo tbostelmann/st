@@ -3,6 +3,10 @@
 
 class ApplicationController < ActionController::Base
   include ExceptionNotifiable
+  # DSCOTT - disable for now
+  # include HanselHelper
+  # before_filter :drop_crumb
+
   helper :all # include all helpers, all the time
   filter_parameter_logging :password #prevent logging of password param
   # See ActionController::RequestForgeryProtection for details
@@ -80,6 +84,5 @@ class ApplicationController < ActionController::Base
     return true
   end
   # --------------------------------------------------------------------------
-
 
 end

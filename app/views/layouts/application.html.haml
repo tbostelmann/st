@@ -66,6 +66,11 @@
                 
             = render :partial => "shared/navbar_header"
 
+      -# DSCOTT Disable for now
+      -# .relax= '&nbsp;'
+      -# .bread-crumb-links
+      -#   = render :partial => "shared/bread_crumbs", :locals => {:crumb_trail => user_crumb_trail}
+
       / Page begins
       = @content_for_layout
 
