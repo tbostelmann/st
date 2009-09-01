@@ -5,18 +5,89 @@
   }                                                             |
 - @page_title = :savetogether_motto.l
 
-  
 .content
-  = image_tag "#{image_path('image.jpg')}", :usemap => "#banner_map"
-  %map{:name => "banner_map"}
-    %area{:shape => "rect", :coords =>"683,85,824,127", :href => "#{match_savers_path}"}
-    %area{:shape => "rect", :coords =>"0,0,900,221", :href => "#{how_it_works_path}"}
-
-  .featured-savers
-    .heading
+  .section.min-height.min-width
+    .panel.w75
+      .section
+        .panel.w32.padding
+          %h3
+            ="They Save"
+          %h5
+            ="for the things that matter most."
+          %p
+            ="A qualified individual or family works hard to save for a goal."
+        .panel.w32.padding
+          %h3
+            ="You Match"
+          %h5
+            ="funds, then the funds are matched again."
+          %p
+            ="You match someone's goal and your donation is matched again by a matched savings program."
+        .panel.w32.padding
+          %h3
+            ="Together, We Prosper"
+          %h5
+            ="Invest in a poverty-free future."
+          %p
+            ="By helping working people who are already helping themselves, we break the poverty cycle and create economic stability for all."
+      .section.padding
+        .arrow.light
+          What if &raquo;
+        .arrow.dark
+          you had the &raquo;
+        .arrow.light
+          economic &raquo;
+        .arrow.dark
+          power &raquo;
+        .arrow.light
+          to break &raquo;
+        .arrow.dark
+          poverty? &raquo;
+    .panel.w24.padding
       %h2
-        =:featured_savers.l.titleize
-    .link
-      = link_to "(See All Savers &raquo;)", match_savers_path
+        ="Success Stories"
+      .section
+        .thumbnail
+          =image_tag "#{image_path('thumbnails/gilma.png')}", {:alt => "Gilma"}
+      .section
+        %p
+          ="Through hard work and dedication and access to a matched-savings program, Gilma saved to become the first in her family to graduate from college."
+  .section
+    %h1.centered
+      ="Now You Do"
+    %h3.centered
+      ="Success Stories in the Making"
+  .section
     
-  = render(:partial => "savers/mini_saver", :collection => @savers)
+    = render(:partial => "savers/home_page/saver", :collection => @savers)
+
+    .panel
+      %h3.centered
+        Help Break the Cycle
+      =link_to image_tag(image_path('buttons/match-now.gif')), community_path
+
+  .section.min-height
+    %div{:style => "float:left; border:1px solid; height: 200px;"}
+      Founding Partners
+    %div{:style => "float:left; border:1px solid; height: 200px;"}
+      Volunteer
+    %div{:style => "float:left; border:1px solid; height: 200px;"}
+      News
+    %div{:style => "float:left; border:1px solid; height: 200px;"}
+      Policy Advocacy
+
+/ 
+  .content
+    = image_tag "#{image_path('image.jpg')}", :usemap => "#banner_map"
+    %map{:name => "banner_map"}
+      %area{:shape => "rect", :coords =>"683,85,824,127", :href => "#{match_savers_path}"}
+      %area{:shape => "rect", :coords =>"0,0,900,221", :href => "#{how_it_works_path}"}
+
+    .featured-savers
+      .heading
+        %h2
+          =:featured_savers.l.titleize
+      .link
+        = link_to "(See All Savers &raquo;)", match_savers_path
+    
+    = render(:partial => "savers/mini_saver", :collection => @savers)

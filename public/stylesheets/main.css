@@ -165,6 +165,25 @@ textarea {
 	top: 5px;
 	position: relative;
 }
+.text-box {
+	float: right;
+	width: 170px;
+	display: inline;
+	margin-right: 18px;
+	margin-top: 14px;
+	height: 28px;
+	text-align: center;
+	background: url("../images/bg/white-area.gif") no-repeat left top;
+}
+.menu P {
+	padding: 0;
+	margin: 6px 10px 0;
+	font-weight: bold;
+	color: #7ca13e;
+	font-size: 14px;
+}
+.menu P SPAN {color: #ec972c;}
+/* bread crumbs */
 .bread-crumb-links UL {
   margin: 10px 0px 10px 0px;
   padding: 0px 0px 10px 0px;
@@ -181,24 +200,6 @@ textarea {
 .bread-crumb-links .sep {
   color: #4D4A43;
 }
-.text-box {
-	float: right;
-	width: 221px;
-	display: inline;
-	margin-right: 18px;
-	margin-top: 14px;
-	height: 28px;
-	text-align: center;
-	background: url("../images/bg/white-area.gif") no-repeat left top;
-}
-.menu P {
-	padding: 0;
-	margin: 6px 10px 0;
-	font-weight: bold;
-	color: #7ca13e;
-	font-size: 14px;
-}
-.menu P SPAN {color: #ec972c;}
 /*Content*/
 .content {
   float: left;
@@ -227,6 +228,65 @@ textarea {
 	color: #5b930d;
 	margin-top: 15px;
 }
+
+/*=== Some general layout styles === */
+.content .section {
+  clear: both;
+}
+.content .section.min-height {
+  height: 200px;
+}
+.content .section.min-width {
+  width: 900px;
+}
+.content .section.h75 {
+  height: 75%;
+}
+.content .panel {
+  float: left;
+}
+.content .padding {
+  padding: 5px 5px;  
+}
+.content H1.centered, H2.centered, H3.centered {
+  text-align: center;
+}
+.content .w24 {
+  width: 23%;
+}
+.content .w25 {
+  width: 25%;
+}
+.content .w32 {
+  width: 31%;
+}
+.content .w33 {
+  width: 33%;
+}
+.content .w75 {
+  width: 75%;
+}
+.content .border {
+  border: solid 1px;
+}
+.content .arrow {
+  font-size: 19px;
+  font-weight: bold;
+  color: #FFF;
+  height: 30px;
+  margin-top: 25px;
+  padding-top: 5px;
+  padding-left: 5px;
+  float:left;
+}
+.content .arrow.light {
+  background-color: #BCD383; 
+}
+.content .arrow.dark {
+  background-color: #5B930D;  
+}
+/*=== Some general layout styles === */
+
 .search-options-header {
     width: 900px;
     text-align: center;

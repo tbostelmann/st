@@ -694,6 +694,8 @@ en:
   manage_posts: Manage Posts
   #en: match: Match
   match: Match
+  #en: match_a_saver: Match a Saver
+  match_a_saver: Match a Saver
   #en: match_committed: Match committed
   match_committed: Match committed
   #en: match_goal: To Invest In

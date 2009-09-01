@@ -1,0 +1,10 @@
+.panel.w24
+  .row
+    .panel
+      =image_tag saver.avatar_photo_url(:thumb), {:alt => saver.display_name}
+    .panel
+      %h3
+        =saver.display_name
+      %p
+        =truncate_words saver.description, 25, "&hellip;"
+      =link_to image_tag(image_path('buttons/match.gif')), saver_path(saver)
