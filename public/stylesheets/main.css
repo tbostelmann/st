@@ -155,7 +155,7 @@ textarea {
 .menu UL LI A {
 	color: #fff;
 	font-weight: bold;
-	margin: 0 12px;
+	margin: 0 7px;
 	text-decoration: none;
 }
 .menu UL LI A:HOVER {
@@ -167,7 +167,7 @@ textarea {
 }
 .text-box {
 	float: right;
-	width: 170px;
+	width: 205px;
 	display: inline;
 	margin-right: 18px;
 	margin-top: 14px;
