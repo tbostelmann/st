@@ -280,10 +280,12 @@ textarea {
   float:left;
 }
 .content .arrow.light {
-  background-color: #BCD383; 
+  /*background-color: #BCD383;*/
+  /*background-color: #8FB548;*/
+  background-color: #7FA63B;
 }
 .content .arrow.dark {
-  background-color: #5B930D;  
+  background-color: #5B930D;
 }
 /*=== Some general layout styles === */
 
