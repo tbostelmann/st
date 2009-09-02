@@ -61,20 +61,49 @@
     
     = render(:partial => "savers/home_page/saver", :collection => @savers)
 
-    .panel
+    .panel.w24.padding
       %h3.centered
-        Help Break the Cycle
-      =link_to image_tag(image_path('buttons/match-now.gif')), community_path
+        ="Help Break the Cycle"
+      .centered
+        =link_to image_tag(image_path('buttons/match-now.gif')), community_path
 
   .section.min-height
-    %div{:style => "float:left; border:1px solid; height: 200px;"}
-      Founding Partners
-    %div{:style => "float:left; border:1px solid; height: 200px;"}
-      Volunteer
-    %div{:style => "float:left; border:1px solid; height: 200px;"}
-      News
-    %div{:style => "float:left; border:1px solid; height: 200px;"}
-      Policy Advocacy
+    .panel.w24.padding
+      %h3
+        ="Founding Partners"
+      %h3
+        =link_to "CFED", about_us_path
+        %br/
+        =link_to "American Dream Match Fund", about_us_path
+        %br/
+        =link_to "EARN", about_us_path
+        %br/
+        =link_to "Juma Ventures", about_us_path
+        %br/
+        =link_to "Opportunity Fund", about_us_path
+    .panel.w24.padding
+      %h3
+        ="Volunteer"
+      %h6
+        ="SaveTogether envisions a world where savings incentives and a path to long-term financial stability are available to everyone."
+      %p
+        ="We give you the opportunity to help working people save toward economic stability by providing them a tax-deductible matching donation. Click"
+        =link_to "here", match_savers_path
+        ="for more."
+    .panel.w24.padding
+      %h3
+        ="News"
+      %h6
+        ="SaveTogether announces its Bay Area launch party to be held on Sept. 30th."
+      %h6
+        ="CFED announces that it loves the new SaveTogether layout - pledges increase to US $1B."
+    .panel.w24.padding
+      %h3
+        ="Extend Our Impact"
+      %h6
+        ="Make this opportunity available to millions. Click"
+        =link_to "here", do_more_path
+        ="to support polocies that expand this opportunity."
 
 / 
   .content
