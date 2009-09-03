@@ -1,0 +1,80 @@
+-@page_title= :do_more.l.titleize
+
+.content
+  %h1= :do_more.l.titleize
+  .block.no-border
+    .do-more
+      .two-column-layout.wide
+        .tcl-column.left
+          %h2
+            Important Legislation
+          .block.no-border
+            .indent
+              %p
+                Each year Federal and state governments provide $500 billion in tax incentives for higher education, home ownership, business and retirement savings.  The lion’s share of these tax incentives flow to the top 20% of tax payers, while less that 3% reaches the bottom 3/5 of American families.  Yet we know from 20 years of rigorously evaluated demonstrations that given the opportunity, low-inome and even very poor families will save, learn, work and invest and ultimately, go to college, start a business, buy a home, save for retirement and craft economic futures for their families and their country.
+
+              %p
+                Four legislative proposals with bipartisan support are being considered in Congress, each of which would extend matched savings opportunities to millions of working American Families:
+
+              %h4
+                = link_to "Savings for Working Families Act", 'http://www.cfed.org/'
+              %p
+                This would expand the largest current Federal matched savings program, the Assets for Independence Act from 50,000 low income families who work, save, learn and invest to three million.
+
+              %h4
+                = link_to "The ASPIRE Act", 'http://www.cfed.org/'
+              %p
+                Which would create an account at birth for each of the 4 million children born each year, with a $500 deposit for every child, and an additional $500 for the poorest third of kids.  What difference would it make if every child grew up knowing she or he had a nest egg for college, business or a home?
+
+              %h4
+                = link_to "Expanding the Savers Credit", 'http://www.cfed.org/'
+              %p
+                As the Obama Administration has proposed, would create a $500 match for 60 million families who do not currently benefit from our $500 billion dollars in annual incentives to families to save for retirement, homes, and educations.
+
+              %h4
+                = link_to "Entrepreneurship Tax Credit", 'http://www.cfed.org/'
+              %p
+                This could speed millions of low-income and poor entrepreneurs into the mainstream economy by lifting the punitive tax burden on these new self employed who currently must pay double what wage earners do.
+
+
+        .tcl-column.right
+          %h2
+            Use Your Voice
+          .block.no-border
+            .indent
+              %h3
+                Let your Congressional representatives know you support these proposals by allowing us to send them a supportive note with your endorsement below
+              .indent.text12
+                %div{:style => "display: block;"}
+
+                %table{:width => "100%", :cellspacing => "0", :cellpadding => "5", :border => "0", :style => "margin-top: 15px;"}
+                  - form_for :donor_survey, :url => {:controller => :donor_surveys, :action => :create} do |f|
+                    = error_messages_for :donor_survey
+                    = f.hidden_field :donor_id
+                    %tr
+                      %td{:width => "13%"}
+                        %label{"for"=>"firstname"}= :first_name.l
+                      %td{:align => 'left'}
+                        = f.text_field :first_name
+                    %tr
+                      %td
+                        %label{"for"=>"lastname"}= :last_name.l
+                      %td{:align => 'left'}
+                        = f.text_field :last_name
+                    %tr
+                      %td
+                        %label{"for"=>"postalcode"}= :zippostal_code.l
+                      %td{:align => 'left'}
+                        = f.text_field :zip_code, :size => 10
+                    %tr
+                      %td
+                      %td
+                        = image_submit_tag "#{image_path('buttons/signup-small.gif')}", :alt => :signup.l
+          .block.no-border
+            %h2
+              Quick Statistic
+            .block.no-border
+              .indent
+                %em
+                  "Federal and State governments spend more than half a trillion dollars each year on incentives for Americans to save for education, homes, businesses and retirement."
+    
