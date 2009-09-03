@@ -275,8 +275,7 @@ textarea {
   color: #FFF;
   height: 30px;
   margin-top: 25px;
-  padding-top: 5px;
-  padding-left: 5px;
+  padding: 5px 3px 3px 3px;
   float:left;
 }
 .content .arrow.light {

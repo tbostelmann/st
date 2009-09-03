@@ -7,51 +7,9 @@
 
 .content
   .section.min-height.min-width
-    .panel.w75
-      .section
-        .panel.w32.padding
-          %h3
-            ="They Save"
-          %h5
-            ="for the things that matter most."
-          %p
-            ="A qualified individual or family works hard to save for a goal."
-        .panel.w32.padding
-          %h3
-            ="You Match"
-          %h5
-            ="funds, then the funds are matched again."
-          %p
-            ="You match someone's goal and your donation is matched again by a matched savings program."
-        .panel.w32.padding
-          %h3
-            ="Together, We Prosper"
-          %h5
-            ="Invest in a poverty-free future."
-          %p
-            ="By helping working people who are already helping themselves, we break the poverty cycle and create economic stability for all."
-      .section.padding
-        .arrow.light
-          What if &raquo;
-        .arrow.dark
-          you had the &raquo;
-        .arrow.light
-          economic &raquo;
-        .arrow.dark
-          power &raquo;
-        .arrow.light
-          to break &raquo;
-        .arrow.dark
-          poverty? &raquo;
-    .panel.w24.padding
-      %h2
-        ="Success Stories"
-      .section
-        .thumbnail
-          =image_tag "#{image_path('thumbnails/gilma.png')}", {:alt => "Gilma"}
-      .section
-        %p
-          ="Through hard work and dedication and access to a matched-savings program, Gilma saved to become the first in her family to graduate from college."
+
+    =render :partial => "base/site_index/intro"
+
   .section
     %h1.centered
       ="Now You Do"

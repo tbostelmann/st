@@ -1,0 +1,7 @@
+-panels.each do |panel|
+  .panel.w32.padding
+    =image_tag image_path("#{panel.image}"), {:alt => panel.alt_tag}
+    %h5
+      =panel.summary
+    %p
+      =panel.description

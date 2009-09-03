@@ -22,3 +22,7 @@ ActionMailer::Base.delivery_method = :sendmail
 config.notifications.donors        = true
 config.notifications.savers        = false
 config.notifications.organizations = false
+
+
+# Getting around a reload problem
+ActiveSupport::Dependencies.load_once_paths << "#{RAILS_ROOT}/app/helpers"

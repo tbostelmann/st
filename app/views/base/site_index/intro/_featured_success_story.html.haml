@@ -1,0 +1,9 @@
+.panel.w24.padding
+  %h2
+    ="Success Story"
+  .section
+    .thumbnail
+      =image_tag "#{image_path(featured_saver.avatar_photo_url)}", {:alt => featured_saver.display_name}
+  .section
+    %p
+      =featured_saver.summary
