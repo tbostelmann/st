@@ -424,6 +424,8 @@ en:
   editing_post: Editing post
   #en: editing_skill: Editing skill
   editing_skill: Editing skill
+  #en: email_address: Email Address
+  email_address: Email Address
   #en: email_addresses: Email Addresses
   email_addresses: Email Addresses
   #en: email_signup_thanks: Thanks for signing up! You should receive an e-mail confirmation shortly at {{email}}

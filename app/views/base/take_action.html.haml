@@ -48,24 +48,18 @@
                 %div{:style => "display: block;"}
 
                 %table{:width => "100%", :cellspacing => "0", :cellpadding => "5", :border => "0", :style => "margin-top: 15px;"}
-                  - form_for :donor_survey, :url => {:controller => :donor_surveys, :action => :create} do |f|
-                    = error_messages_for :donor_survey
-                    = f.hidden_field :donor_id
+                  %form{:name => "arcos", :method => "get", :action => "http://cfed.org/save_together/signup"}
+                    %input{:type => "hidden", :name => "rm", :value => "process"}
                     %tr
                       %td{:width => "13%"}
-                        %label{"for"=>"firstname"}= :first_name.l
+                        %label{"for"=>"email"}= :email_address.l
                       %td{:align => 'left'}
-                        = f.text_field :first_name
-                    %tr
-                      %td
-                        %label{"for"=>"lastname"}= :last_name.l
-                      %td{:align => 'left'}
-                        = f.text_field :last_name
+                        %input{ :name => 'email', :id => 'email'}
                     %tr
                       %td
                         %label{"for"=>"postalcode"}= :zippostal_code.l
                       %td{:align => 'left'}
-                        = f.text_field :zip_code, :size => 10
+                        %input{ :name => 'zip', :id => 'zip'}
                     %tr
                       %td
                       %td
