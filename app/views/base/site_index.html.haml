@@ -19,55 +19,5 @@
     =render :partial => "base/site_index/success_stories"
 
   .section.min-height
-    .panel.w24.padding
-      %h3
-        ="Founding Partners"
-      %h3
-        =link_to "CFED", about_us_path
-        %br/
-        =link_to "American Dream Match Fund", about_us_path
-        %br/
-        =link_to "EARN", about_us_path
-        %br/
-        =link_to "Juma Ventures", about_us_path
-        %br/
-        =link_to "Opportunity Fund", about_us_path
-    .panel.w24.padding
-      %h3
-        ="Volunteer"
-      %h6
-        ="SaveTogether envisions a world where savings incentives and a path to long-term financial stability are available to everyone."
-      %p
-        ="We give you the opportunity to help working people save toward economic stability by providing them a tax-deductible matching donation. Click"
-        =link_to "here", match_savers_path
-        ="for more."
-    .panel.w24.padding
-      %h3
-        ="News"
-      %h6
-        ="SaveTogether announces its Bay Area launch party to be held on Sept. 30th."
-      %h6
-        ="CFED announces that it loves the new SaveTogether layout - pledges increase to US $1B."
-    .panel.w24.padding
-      %h3
-        ="Extend Our Impact"
-      %h6
-        ="Make this opportunity available to millions. Click"
-        =link_to "here", do_more_path
-        ="to support polocies that expand this opportunity."
 
-/ 
-  .content
-    = image_tag "#{image_path('image.jpg')}", :usemap => "#banner_map"
-    %map{:name => "banner_map"}
-      %area{:shape => "rect", :coords =>"683,85,824,127", :href => "#{match_savers_path}"}
-      %area{:shape => "rect", :coords =>"0,0,900,221", :href => "#{how_it_works_path}"}
-
-    .featured-savers
-      .heading
-        %h2
-          =:featured_savers.l.titleize
-      .link
-        = link_to "(See All Savers &raquo;)", match_savers_path
-    
-    = render(:partial => "savers/mini_saver", :collection => @savers)
+    =render :partial => "base/site_index/info_panels"
