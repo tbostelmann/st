@@ -342,24 +342,26 @@ textarea {
 .match-now .text {
   padding-top: 10px;
 }
-.content .w24 {
+/* === Info Panels Section === */
+.section.info-panels {
+  padding: 30px 0;
+}
+.section.info-panels H2 {
+  font-size: 20px;
+}
+.info-panels .panel {
   width: 23%;
+  padding: 5px 5px;
 }
-.content .w25 {
-  width: 25%;
+.info-panels .panel.news {
+  width: 22%;
+  padding: 5px 5px;
 }
-.content .w32 {
-  width: 31%;
+.info-panels .panel.policy-advocacy {
+  width: 24%;
+  padding: 5px 5px;
 }
-.content .w33 {
-  width: 33%;
-}
-.content .w75 {
-  width: 75%;
-}
-.content .border {
-  border: solid 1px;
-}
+/* === Remove these when home-page arrow graphic is in place */
 .content .arrow {
   font-size: 19px;
   font-weight: bold;
