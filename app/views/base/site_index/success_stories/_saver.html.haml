@@ -1,10 +1,12 @@
-.panel.w24.padding
-  .row
-    .panel
-      =image_tag saver.avatar_photo_url(:thumb), {:alt => saver.display_name}
-    .panel
-      %h3
-        =saver.display_name
-      %p
-        =truncate_words saver.description, 25, "&hellip;"
+.panel.saver-story
+  .panel.image
+    =image_tag saver.avatar_photo_url(:thumb), {:alt => saver.display_name}
+  .panel.text
+    %h3
+      =saver.display_name
+    %p
+      =truncate_words saver.description, 25, "&hellip;"
+    %p.skinny-floater
+      ="&hellip;"
+    %div{:style =>"float:left; width: 65px;"}
       =link_to image_tag(image_path('buttons/match.gif')), saver_path(saver)

@@ -239,7 +239,8 @@ textarea {
 .content H1.centered, H2.centered, H3.centered, H4.centered, H5.centered, H6.centered {
   text-align: center;
 }
-/* === Home Page - Intro styles === */
+/* === Home Page styles === */
+/* === Intro Section === */
 .panel.banner {
   width: 75%;
 }
@@ -294,7 +295,53 @@ textarea {
   margin: 5px auto;
   font-size: 12px;
 }
-/* === === */
+/* === Impact Section === */
+.section.impact {
+  width: 75%;
+  padding: 20px 0;
+}
+.section.impact H3 {
+  margin-top: 5px;
+}
+/* === Success Stories Section === */
+.section.success-stories {
+  padding: 5px 0;
+}
+.panel.saver-story {
+  width: 25%;
+  padding: 5px 5px;
+}
+.saver-story .image {
+  width: 100px;
+}
+.saver-story .text {
+  width: 50%;
+  padding: 0 6px;
+}
+.saver-story H3 {
+  margin-top: -5px;
+}
+.content .saver-story P {
+  margin-top: 0px;
+  height: 68px;
+  overflow: hidden;
+}
+.content .saver-story P.skinny-floater {
+  float: left;
+  width: 10px;
+  height: 20px;
+  padding-right: 20px;
+  margin-top: -9px;
+  font-size: 16px;
+  font-style: bold;
+	color: #5b930d;
+}
+.panel.match-now {
+  padding-left: 10px;
+}
+.match-now .text {
+  padding-top: 10px;
+}
 .content .w24 {
   width: 23%;
 }
