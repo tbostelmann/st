@@ -229,28 +229,72 @@ textarea {
 	margin-top: 15px;
 }
 
-/*=== Some general layout styles === */
+/* === Some general layout styles === */
 .content .section {
   clear: both;
-}
-.content .section.min-height {
-  height: 200px;
-}
-.content .section.min-width {
-  width: 900px;
-}
-.content .section.h75 {
-  height: 75%;
 }
 .content .panel {
   float: left;
 }
-.content .padding {
-  padding: 5px 5px;  
-}
-.content H1.centered, H2.centered, H3.centered {
+.content H1.centered, H2.centered, H3.centered, H4.centered, H5.centered, H6.centered {
   text-align: center;
 }
+/* === Home Page - Intro styles === */
+.panel.banner {
+  width: 75%;
+}
+.panel.triptych {
+  width: 30%;
+  padding: 5px 5px;
+}
+.panel H5 {
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+/* This gives a consistent image height - can be removed if images recreated consistently. */
+.triptych .image {
+  height: 100px;
+}
+/* these center the images - again, not necessary if width is consistent */
+/* (actually only necessary once then and can be commonly applied)       */
+.triptych .image.one {
+  width: 119px;
+  margin: 0 auto;
+}
+.triptych .image.two {
+  width: 132px;
+  margin: 0 auto;
+}
+.triptych .image.three {
+  width: 199px;
+  margin: 0 auto;
+}
+.triptych P {
+  width: 95%;
+  margin: 0 auto;
+  padding-left: 5px;
+}
+.panel.success-story {
+  width: 23%;
+}
+.success-story .image {
+  /* This part will be necessary to center the eventual mid-sized image */
+  width: 108px;
+  margin: 10px auto;
+  /* This part adds a fake border that inflates the thumbnail size
+  /* to the size we need. It can be removed once mid-sized images are in place */
+  padding: 21px 21px;
+  border-style: dotted;
+  border-color: #a9b270;
+  border-width: 1px;
+}
+.content .success-story P {
+  width: 190px;
+  padding-left: 10px;
+  margin: 5px auto;
+  font-size: 12px;
+}
+/* === === */
 .content .w24 {
   width: 23%;
 }
@@ -274,7 +318,7 @@ textarea {
   font-weight: bold;
   color: #FFF;
   height: 30px;
-  margin-top: 25px;
+  margin-top: 15px;
   padding: 5px 3px 3px 3px;
   float:left;
 }

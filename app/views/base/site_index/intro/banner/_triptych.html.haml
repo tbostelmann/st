@@ -1,7 +1,9 @@
--panels.each do |panel|
-  .panel.w32.padding
-    =image_tag image_path("#{panel.image}"), {:alt => panel.alt_tag}
-    %h5
+-nums = ["one", "two", "three"]
+-panels.each_with_index do |panel, i|
+  .panel.triptych
+    %div{:class => "image #{nums[i]}"}
+      =image_tag image_path("#{panel.image}"), {:alt => panel.alt_tag}
+    %h5.centered
       =panel.summary
     %p
       =panel.description

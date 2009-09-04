@@ -6,11 +6,11 @@ module BaseHelper
     ::TRIPTYCH_PANELS = [
       OpenStruct.new(:image => "graphics/1.jpg",
         :alt_tag     => "They Save",
-        :summary     => "for the things that matter most.",
+        :summary     => "For the things that matter most.",
         :description => "A qualified individual or family works hard to save for a goal."),
       OpenStruct.new(:image => "graphics/2.jpg",
         :alt_tag     => "You Match",
-        :summary     => "funds, then the funds are matched again.",
+        :summary     => "Then your match is matched again.",
         :description => "You match someone's goal and your donation is matched again by a matched savings program."),
       OpenStruct.new(:image => "graphics/3.jpg",
         :alt_tag     => "Together, We Prosper",
