@@ -11,10 +11,9 @@
     =render :partial => "base/site_index/intro"
 
   .section
-    %h1.centered
-      ="Now You Do"
-    %h3.centered
-      ="Success Stories in the Making"
+
+    =render :partial => "base/site_index/impact"
+
   .section
     
     = render(:partial => "savers/home_page/saver", :collection => @savers)
