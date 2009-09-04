@@ -16,13 +16,7 @@
 
   .section
     
-    = render(:partial => "savers/home_page/saver", :collection => @savers)
-
-    .panel.w24.padding
-      %h3.centered
-        ="Help Break the Cycle"
-      .centered
-        =link_to image_tag(image_path('buttons/match-now.gif')), community_path
+    =render :partial => "base/site_index/success_stories"
 
   .section.min-height
     .panel.w24.padding
