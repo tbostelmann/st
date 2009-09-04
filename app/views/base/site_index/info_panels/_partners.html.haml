@@ -1,13 +1,7 @@
 .panel
   %h2
-    ="Founding Partners"
-  %h3
-    =link_to "CFED", about_us_path
-    %br/
-    =link_to "American Dream Match Fund", about_us_path
-    %br/
-    =link_to "EARN", about_us_path
-    %br/
-    =link_to "Juma Ventures", about_us_path
-    %br/
-    =link_to "Opportunity Fund", about_us_path
+    =partner_list.partners_kind
+  %ul
+    -partner_list.partners.each do |partner|
+      %li
+        =link_to partner.display_name, partner.organization_path

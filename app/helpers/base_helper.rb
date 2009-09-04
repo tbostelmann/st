@@ -32,5 +32,49 @@ module BaseHelper
         :summary          => "Through hard work and dedication and access to a matched-savings program, Gilma saved to become the first in her family to graduate from college."
     )
   end
+  
+  # Static data this is a mock of anticipated results from a Organization.find_by_founding_partners query.
+  # THIS SHOULD BE REMOVED.
+  unless defined?(ORGANIZATION_BY_FOUNDING_PARTNERS)
+    ::ORGANIZATION_BY_FOUNDING_PARTNERS = [
+      OpenStruct.new(
+        :display_name      => "CFED",
+        :organization_path => "http://www.cfed.org"),
+      OpenStruct.new(
+        :display_name      => "American Dream Match Fund",
+        :organization_path => "http://americandreammatchfund.org"),
+      OpenStruct.new(
+        :display_name      => "EARN",
+        :organization_path => "http://www.earn.org"),
+      OpenStruct.new(
+        :display_name      => "JUMA Ventures",
+        :organization_path => "http://www.jumaventures.org"),
+      OpenStruct.new(
+        :display_name      => "Opportunity Fund",
+        :organization_path => "http://www.opportunityfund.org")
+    ]
+  end
+  
+  # Static data this is a mock of anticipated results from a Organization.find_by_supporters query.
+  # THIS SHOULD BE REMOVED.
+  unless defined?(ORGANIZATION_BY_SUPPORTERS)
+    ::ORGANIZATION_BY_SUPPORTERS = [
+      OpenStruct.new(
+        :display_name      => "Silicon Valley Community Foundation",
+        :organization_path => "http://www.siliconvalleycf.org"),
+      OpenStruct.new(
+        :display_name      => "Marin Community Foundation",
+        :organization_path => "http://www.marincf.org"),
+      OpenStruct.new(
+        :display_name      => "San Francisco Foundation",
+        :organization_path => "http://www.sff.org"),
+      OpenStruct.new(
+        :display_name      => "United Way of the Bay Area",
+        :organization_path => "http://www.uwba.org"),
+      OpenStruct.new(
+        :display_name      => "Haas Sr. Fund",
+        :organization_path => "http://www.haassr.org")
+    ]
+  end
 
 end
