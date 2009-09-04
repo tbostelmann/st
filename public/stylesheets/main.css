@@ -240,17 +240,28 @@ textarea {
   text-align: center;
 }
 /* === Home Page styles === */
-/* === Intro Section === */
+.content .section H3 {
+  margin-top: 8px;
+  margin-bottom: 3px;
+  color: #EC911E;
+}
+.content .section H5 {
+	font-size: 14px;
+	color: #5b930d;
+	margin-top: 15px;
+}
+/*.content .section H5 {
+  margin-top: 8px;
+  margin-bottom: 3px;
+  color: #EC911E;
+}
+*//* === Intro Section === */
 .panel.banner {
   width: 75%;
 }
 .panel.triptych {
   width: 30%;
   padding: 5px 5px;
-}
-.panel H5 {
-  margin-top: 10px;
-  margin-bottom: 5px;
 }
 /* This gives a consistent image height - can be removed if images recreated consistently. */
 .triptych .image {
@@ -281,7 +292,7 @@ textarea {
 .success-story .image {
   /* This part will be necessary to center the eventual mid-sized image */
   width: 108px;
-  margin: 10px auto;
+  margin: 8px auto;
   /* This part adds a fake border that inflates the thumbnail size
   /* to the size we need. It can be removed once mid-sized images are in place */
   padding: 21px 21px;
@@ -318,8 +329,9 @@ textarea {
   width: 50%;
   padding: 0 6px;
 }
-.saver-story H3 {
+.content .saver-story H5 {
   margin-top: -5px;
+  margin-bottom: 0;
 }
 .content .saver-story P {
   margin-top: 0px;
@@ -341,6 +353,9 @@ textarea {
 }
 .match-now .text {
   padding-top: 10px;
+}
+.match-now H5 {
+  margin-bottom: 3px;
 }
 /* === Info Panels Section === */
 .section.info-panels {
