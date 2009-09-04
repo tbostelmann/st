@@ -8,7 +8,7 @@
 .content
   .section.intro
 
-    =render :partial => "base/site_index/intro"
+    =render :partial => "base/site_index/intro", :locals => {:successful_saver => @successful_saver}
 
   .section.impact
 
@@ -16,7 +16,7 @@
 
   .section.success-stories
     
-    =render :partial => "base/site_index/success_stories"
+    =render :partial => "base/site_index/success_stories", :locals => {:savers => @featured_savers}
 
   .section.info-panels
 
