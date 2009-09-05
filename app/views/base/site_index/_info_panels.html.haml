@@ -1,7 +1,11 @@
-= render :partial => "base/site_index/info_panels/partners", :locals => {:partner_list => @partner_list}
+.panel.partners
+  = render :partial => "base/site_index/info_panels/partners", :locals => {:partner_list => @partner_list}
 
-= render :partial => "base/site_index/info_panels/featured_donor"
+.panel.featured-donor
+  = render :partial => "base/site_index/info_panels/featured_donor"
 
-= render :partial => "base/site_index/info_panels/news"
+.panel.news
+  = render :partial => "base/site_index/info_panels/news"
 
-= render :partial => "base/site_index/info_panels/policy_advocacy"
+.panel.policy-advocacy
+  = render :partial => "base/site_index/info_panels/policy_advocacy"

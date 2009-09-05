@@ -1,7 +1,6 @@
-.panel
-  %h2
-    =partner_list.partners_kind
-  %ul
-    -partner_list.partners.each do |partner|
-      %li
-        =link_to partner.display_name, partner.organization_path
+%h2
+  =partner_list.partners_kind
+%ul
+  -partner_list.partners.each do |partner|
+    %li
+      =link_to partner.display_name, partner.organization_path

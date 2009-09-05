@@ -1,3 +1,6 @@
-= render :partial => "base/site_index/success_stories/saver", :collection => savers
+-savers.each do |saver|
+  .panel.saver-story
+    = render :partial => "base/site_index/success_stories/saver", :locals => {:saver => saver}
 
-= render :partial => "base/site_index/success_stories/match_now"
+.panel.match-now
+  = render :partial => "base/site_index/success_stories/match_now"
