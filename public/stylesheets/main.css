@@ -250,12 +250,7 @@ textarea {
 	color: #5b930d;
 	margin-top: 15px;
 }
-/*.content .section H5 {
-  margin-top: 8px;
-  margin-bottom: 3px;
-  color: #EC911E;
-}
-*//* === Intro Section === */
+/* === Intro Section === */
 .panel.banner {
   width: 75%;
 }
@@ -375,6 +370,16 @@ textarea {
 .info-panels .panel.policy-advocacy {
   width: 24%;
   padding: 5px 5px;
+}
+.info-panels UL {
+  padding: 0;
+	list-style: none;
+	margin-top: 10px;
+}
+.info-panels LI {
+  padding: 4px 0;
+	font-size: 12px;
+	font-weight: bold;
 }
 /* === Remove these when home-page arrow graphic is in place */
 .content .arrow {
