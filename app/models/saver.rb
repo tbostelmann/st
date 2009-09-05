@@ -97,10 +97,24 @@ class Saver < Party
     return donations_received.sum(:cents)
   end
   
-  def self.featured_savers(truncate_count=4)
+  # This reference influenced the choice of Enumerable#sort_by rather than Array#sort
+  #
+  #    http://www.ruby-forum.com/topic/92083
+  #
+  # I used the last commentor's sort_by recommendation. Performance testing shows that
+  # twice as slow as Array#sort, but they're still both plenty fast enough with a Saver
+  # group size in the 20's, and I was swayed by the commentors assertion that they
+  # Enumerable#sort_by{rand} technique was *more* random than Array.sort{rand(3)-1}
+  #
+  def self.featured_savers(truncate_count=4, sort_kind="enumerable")
     savers = self.find(:all)
     last = [savers.size, [truncate_count, 1].max].min - 1
-    savers.sort_by{rand}[0..last]
+    # conditional is only really for benchmarking - see unit test
+    if (sort_kind == "enumerable")
+      savers.sort_by{rand}[0..last]
+    else
+      savers.sort{rand(3)-1}[0..last]
+    end
   end
   
 end

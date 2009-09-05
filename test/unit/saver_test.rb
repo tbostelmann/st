@@ -1,4 +1,6 @@
 require File.dirname(__FILE__) + '/../test_helper'
+require 'benchmark'
+include Benchmark
 
 class SaverTest < ActiveSupport::TestCase
   test "get the list of donations_received" do
@@ -71,4 +73,15 @@ class SaverTest < ActiveSupport::TestCase
     
     assert itsrandom
   end
+  
+  # test "featured savers should be fast" do
+  #   puts "About to benchmark featured savers"
+  #   
+  #   bmbm(100) do |b|
+  #     b.report("fs sort_by") {Saver.featured_savers(4, "enumerable")}
+  #     b.report("fs sort")    {Saver.featured_savers(4, "array")}
+  #   end
+  #   
+  #   puts "Completed benchmarking featured savers"
+  # end
 end

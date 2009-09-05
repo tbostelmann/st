@@ -24,8 +24,8 @@ module BaseHelper
   
   # Static data this is a mock of anticipated results from a Saver.random_successful_saver query.
   # THIS SHOULD BE REMOVED.
-  unless defined?(RANDOM_SUCCESSFUL_SAVER)
-    ::RANDOM_SUCCESSFUL_SAVER =
+  unless defined?(SAVER_FEATURED_SUCCESSFUL_SAVER)
+    ::SAVER_FEATURED_SUCCESSFUL_SAVER =
       OpenStruct.new(
         :display_name     => "Gilma",
         :avatar_photo_url => "thumbnails/gilma.png",
@@ -35,8 +35,8 @@ module BaseHelper
   
   # Static data this is a mock of anticipated results from a Organization.find_by_founding_partners query.
   # THIS SHOULD BE REMOVED.
-  unless defined?(ORGANIZATION_BY_FOUNDING_PARTNERS)
-    ::ORGANIZATION_BY_FOUNDING_PARTNERS = [
+  unless defined?(ORGANIZATION_FIND_BY_FOUNDING_PARTNERS)
+    ::ORGANIZATION_FIND_BY_FOUNDING_PARTNERS = [
       OpenStruct.new(
         :display_name      => "CFED",
         :organization_path => "http://www.cfed.org"),
@@ -57,8 +57,8 @@ module BaseHelper
   
   # Static data this is a mock of anticipated results from a Organization.find_by_supporters query.
   # THIS SHOULD BE REMOVED.
-  unless defined?(ORGANIZATION_BY_SUPPORTERS)
-    ::ORGANIZATION_BY_SUPPORTERS = [
+  unless defined?(ORGANIZATION_FIND_BY_SUPPORTERS)
+    ::ORGANIZATION_FIND_BY_SUPPORTERS = [
       OpenStruct.new(
         :display_name      => "Silicon Valley Community Foundation",
         :organization_path => "http://www.siliconvalleycf.org"),
