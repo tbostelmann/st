@@ -364,6 +364,7 @@ textarea {
 }
 /* === Info Panels Section === */
 .section.info-panels {
+  width: 101%;
   padding: 30px 0;
 }
 .section.info-panels H2 {
@@ -374,11 +375,11 @@ textarea {
   padding: 5px 5px;
 }
 .info-panels .panel.news {
-  width: 22%;
+  width: 49%;
   padding: 5px 5px;
 }
 .info-panels .panel.policy-advocacy {
-  width: 24%;
+  width: 23%;
   padding: 5px 5px;
 }
 .info-panels UL {
@@ -390,24 +391,6 @@ textarea {
   padding: 4px 0;
 	font-size: 12px;
 	font-weight: bold;
-}
-/* === Remove these when home-page arrow graphic is in place */
-.content .arrow {
-  font-size: 19px;
-  font-weight: bold;
-  color: #FFF;
-  height: 30px;
-  margin-top: 15px;
-  padding: 5px 3px 3px 3px;
-  float:left;
-}
-.content .arrow.light {
-  /*background-color: #BCD383;*/
-  /*background-color: #8FB548;*/
-  background-color: #7FA63B;
-}
-.content .arrow.dark {
-  background-color: #5B930D;
 }
 /*=== Some general layout styles === */
 
