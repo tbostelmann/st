@@ -5,8 +5,9 @@
       .panel.triptych
         =render :partial => "base/site_index/intro/triptych", :locals =>{ :panel => panel, :which => "#{classes[i]}"}
 
-  .section
-    =render :partial => "base/site_index/intro/arrow_graphic_placeholder_remove_me"
+  .section.ask
+    %h2
+      ="What if you had the economic power to break poverty?"
 
 .panel.success-story
-  =render :partial => "base/site_index/intro/featured_success_story", :locals => {:successful_saver => successful_saver}
+  =render :partial => "base/site_index/shared/featured_profile", :locals => {:title => "Success Story", :profile => successful_saver}

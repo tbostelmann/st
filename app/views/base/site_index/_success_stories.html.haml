@@ -1,10 +1,8 @@
 .section.impact
-  =render :partial => "base/site_index/success_stories/impact"
+  .panel.centered
+    =render :partial => "base/site_index/success_stories/impact"
 
 .section.savers
   -savers.each do |saver|
     .panel.saver-story
       = render :partial => "base/site_index/success_stories/saver", :locals => {:saver => saver}
-
-  .panel.match-now
-    = render :partial => "base/site_index/success_stories/match_now"

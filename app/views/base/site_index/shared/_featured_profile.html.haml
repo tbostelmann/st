@@ -1,0 +1,8 @@
+%h1.centered
+  ="#{title}"
+.section
+  .image
+    =image_tag "#{image_path(profile.avatar_photo_url)}", {:alt => profile.display_name}
+.section
+  %p
+    =profile.summary
