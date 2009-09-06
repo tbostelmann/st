@@ -1,8 +1,16 @@
-.section.impact
-  .panel.centered
-    =render :partial => "base/site_index/success_stories/impact"
+.panel.impact
+  .section.ask
+    %h2.centered
+      ="What if you had the economic power to break poverty?"
 
-.section.savers
-  -savers.each do |saver|
-    .panel.saver-story
-      = render :partial => "base/site_index/success_stories/saver", :locals => {:saver => saver}
+  .section
+    .panel.centered
+      =render :partial => "base/site_index/success_stories/impact"
+
+  .section.savers
+    -savers.each do |saver|
+      .panel.saver-story
+        = render :partial => "base/site_index/success_stories/saver", :locals => {:saver => saver}
+
+.panel.featured-profile
+  =render :partial => "base/site_index/shared/featured_profile", :locals => {:title => "Featured Donor", :profile => featured_donor}

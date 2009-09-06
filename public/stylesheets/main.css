@@ -281,13 +281,10 @@ textarea {
   margin: 0 auto;
   padding-left: 5px;
 }
-.section.ask {
-  padding-top: 20px;
+.panel.featured-profile {
+  width: 25%;
 }
-.panel.success-story {
-  width: 23%;
-}
-.success-story .image {
+.featured-profile .image {
   /* This part will be necessary to center the eventual mid-sized image */
   width: 108px;
   margin: 8px auto;
@@ -298,7 +295,7 @@ textarea {
   border-color: #a9b270;
   border-width: 1px;
 }
-.content .success-story P {
+.content .featured-profile P {
   width: 190px;
   padding-left: 10px;
   margin: 5px auto;
@@ -306,12 +303,18 @@ textarea {
 }
 /* === Success Stories Section === */
 .section.success-stories {
+  padding-top: 20px;
+}
+.panel.impact {
   width: 75%;
   padding: 5px 0;
 }
 .impact .panel.centered {
   margin: 0 7%;
   width: 86%;
+}
+.section.ask {
+  padding-bottom: 20px;
 }
 .panel.statement {
   padding-top: 10px;
