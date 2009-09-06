@@ -1,3 +1,12 @@
-=render :partial => "base/site_index/intro/banner"
+.panel.banner
+  .section
+    -classes = ["one", "two", "three"]
+    -::TRIPTYCH_PANELS.each_with_index do |panel, i|
+      .panel.triptych
+        =render :partial => "base/site_index/intro/triptych", :locals =>{ :panel => panel, :which => "#{classes[i]}"}
 
-=render :partial => "base/site_index/intro/featured_success_story", :locals => {:successful_saver => successful_saver}
+  .section
+    =render :partial => "base/site_index/intro/arrow_graphic_placeholder_remove_me"
+
+.panel.success-story
+  =render :partial => "base/site_index/intro/featured_success_story", :locals => {:successful_saver => successful_saver}

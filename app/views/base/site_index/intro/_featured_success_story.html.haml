@@ -1,9 +1,8 @@
-.panel.success-story
-  %h1.centered
-    ="Success Story"
-  .section
-    .image
-      =image_tag "#{image_path(successful_saver.avatar_photo_url)}", {:alt => successful_saver.display_name}
-  .section
-    %p
-      =successful_saver.summary
+%h1.centered
+  ="Success Story"
+.section
+  .image
+    =image_tag "#{image_path(successful_saver.avatar_photo_url)}", {:alt => successful_saver.display_name}
+.section
+  %p
+    =successful_saver.summary
