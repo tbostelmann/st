@@ -8,13 +8,73 @@
 .content
 
   .section.intro
+    %table{:width => "100%"}
+      %tr
+        %td{:width => "%20"}
+          .image.one
+            =image_tag image_path(::TRIPTYCH_PANELS[0].image), {:alt => ::TRIPTYCH_PANELS[0].alt_tag}
+        %td{:width => "%20"}
+          .image.two
+            =image_tag image_path(::TRIPTYCH_PANELS[1].image), {:alt => ::TRIPTYCH_PANELS[1].alt_tag}
+        %td{:width => "%25"}
+          .image.three
+            =image_tag image_path(::TRIPTYCH_PANELS[2].image), {:alt => ::TRIPTYCH_PANELS[2].alt_tag}
+        %td{:width => "%35", :rowspan => 3}
+          .image.success-story
+            =image_tag @successful_saver.avatar_photo_url(:thumb), {:alt => @successful_saver.display_name}
+          %h5
+            =@successful_saver.display_name
+          %p
+            =truncate @successful_saver.description, 600, "&hellip;"
+      %tr
+        %td
+          %h3.centered
+            =::TRIPTYCH_PANELS[0].summary
+        %td
+          %h3.centered
+            =::TRIPTYCH_PANELS[1].summary
+        %td
+          %h3.centered
+            =::TRIPTYCH_PANELS[2].summary
+      %tr
+        %td
+          %p
+            =::TRIPTYCH_PANELS[0].description
+        %td
+          %p
+            =::TRIPTYCH_PANELS[1].description
+        %td
+          %p
+            =::TRIPTYCH_PANELS[2].description
 
-    =render :partial => "base/site_index/intro", :locals => {:successful_saver => @successful_saver}
 
   .section.success-stories
-    
-    =render :partial => "base/site_index/success_stories", :locals => {:savers => @featured_savers}
+    .section.impact
+      %h1
+        ="What if you had the economic power to break poverty?"
+
+    .section.savers
+      -@featured_savers.each do |saver|
+        .panel.saver-story
+          .panel.image
+            =link_to image_tag(saver.avatar_photo_url(:thumb), {:alt => saver.display_name}), saver_path(saver)
+          .panel.text
+            %h5
+              =saver.display_name
+            %p
+              =truncate saver.description, 75, "&hellip;"
+            %div
+              =link_to image_tag(image_path('buttons/match.gif')), saver_path(saver)
 
   .section.info-panels
+    .panel.partners
+      = render :partial => "base/site_index/info_panels/partners", :locals => {:partner_list => @partner_list}
 
-    =render :partial => "base/site_index/info_panels"
+    .panel.featured-donor
+      = render :partial => "base/site_index/info_panels/featured_donor"
+
+    .panel.news
+      = render :partial => "base/site_index/info_panels/news"
+
+    .panel.policy-advocacy
+      = render :partial => "base/site_index/info_panels/policy_advocacy"

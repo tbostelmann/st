@@ -116,5 +116,15 @@ class Saver < Party
       savers.sort{rand(3)-1}[0..last]
     end
   end
-  
+
+  def self.successful_savers(truncate_count=1, sort_kind="enumerable")
+    savers = self.find(:all)
+    last = [savers.size, [truncate_count, 1].max].min - 1
+    # conditional is only really for benchmarking - see unit test
+    if (sort_kind == "enumerable")
+      savers.sort_by{rand}[0..last]
+    else
+      savers.sort{rand(3)-1}[0..last]
+    end
+  end
 end

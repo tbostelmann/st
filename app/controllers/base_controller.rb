@@ -1,7 +1,7 @@
 class BaseController < ApplicationController
   def site_index
-    @successful_saver = SAVER_FEATURED_SUCCESSFUL_SAVER # TODO (dscott) replace this with a new Saver.featured_successful_saver call
-    @featured_savers  = Saver.featured_savers(3)
+    @successful_saver = Saver.successful_savers(1)[0]
+    @featured_savers  = Saver.featured_savers(4)
     @partner_list     = random_partner_list
 
     # DPIRONE: note this does a lot of extra work to get CE meta data that we presently don't use,

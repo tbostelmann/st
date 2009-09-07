@@ -264,15 +264,15 @@ textarea {
 }
 /* these center the images - again, not necessary if width is consistent */
 /* (actually only necessary once then and can be commonly applied)       */
-.triptych .image.one {
+.image.one {
   width: 119px;
   margin: 0 auto;
 }
-.triptych .image.two {
+.image.two {
   width: 132px;
   margin: 0 auto;
 }
-.triptych .image.three {
+.image.three {
   width: 199px;
   margin: 0 auto;
 }
@@ -284,10 +284,11 @@ textarea {
 .panel.success-story {
   width: 23%;
 }
-.success-story .image {
+.image.success-story {
   /* This part will be necessary to center the eventual mid-sized image */
   width: 108px;
   margin: 8px auto;
+  float: left;
   /* This part adds a fake border that inflates the thumbnail size
   /* to the size we need. It can be removed once mid-sized images are in place */
   padding: 21px 21px;
@@ -301,32 +302,40 @@ textarea {
   margin: 5px auto;
   font-size: 12px;
 }
+.content H5 {
+    border-bottom:1px solid #888650;
+    color: #5b930d;
+}
 /* === Impact Section === */
 .section.impact {
-  width: 75%;
-  padding: 20px 0;
+  width: 100%;
+  padding: 5px 0;
 }
-.section.impact H3 {
-  margin-top: 5px;
+.section.impact H1 {
+  margin: 5px 5px;
+    background-color: #7FA63B;
+    color: #FFF;
+    padding: 5px 5px 5px 5px;
 }
 /* === Success Stories Section === */
 .section.success-stories {
   padding: 5px 0;
 }
 .panel.saver-story {
-  width: 25%;
+  width: 23%;
   padding: 5px 5px;
 }
 .saver-story .image {
   width: 100px;
 }
 .saver-story .text {
-  width: 50%;
-  padding: 0 6px;
+  width: 45%;
+  padding: 1px 6px;
 }
 .content .saver-story H5 {
-  margin-top: -5px;
+  margin-top: -2px;
   margin-bottom: 0;
+    border-bottom:1px solid #888650;
 }
 .content .saver-story P {
   margin-top: 0px;
@@ -341,7 +350,6 @@ textarea {
   margin-top: -9px;
   font-size: 16px;
   font-style: bold;
-	color: #5b930d;
 }
 .panel.match-now {
   padding-left: 10px;
@@ -358,10 +366,12 @@ textarea {
 }
 .section.info-panels H2 {
   font-size: 20px;
+  border-bottom:1px solid #888650;
 }
 .info-panels .panel {
   width: 23%;
   padding: 5px 5px;
+  height: 225px;
 }
 .info-panels .panel.news {
   width: 22%;
@@ -371,7 +381,19 @@ textarea {
   width: 24%;
   padding: 5px 5px;
 }
+.info-panels .panel.featured-donor {
+    width: 24%;
+    padding: 5px 5px;
+}
+.info-panels .panel.partners {
+    width: 24%;
+    padding: 5px 5px;
+}
+.info-panels p {3
+    margin-left: 5px;    
+}
 .info-panels UL {
+    margin-left: 5px;
   padding: 0;
 	list-style: none;
 	margin-top: 10px;
