@@ -254,6 +254,11 @@ textarea {
 .panel.banner {
   width: 75%;
 }
+.panel.centered {
+    width: 83%;
+  float: right;
+    padding: 10px 10px;
+}
 .panel.triptych {
   width: 30%;
   padding: 5px 5px;
@@ -308,14 +313,11 @@ textarea {
 }
 /* === Impact Section === */
 .section.impact {
-  width: 100%;
-  padding: 5px 0;
+  width: 75%;
+  padding: 20px 0;
 }
-.section.impact H1 {
-  margin: 5px 5px;
-    background-color: #7FA63B;
-    color: #FFF;
-    padding: 5px 5px 5px 5px;
+.section.impact H3 {
+  margin-top: 5px;
 }
 /* === Success Stories Section === */
 .section.success-stories {
@@ -335,7 +337,6 @@ textarea {
 .content .saver-story H5 {
   margin-top: -2px;
   margin-bottom: 0;
-    border-bottom:1px solid #888650;
 }
 .content .saver-story P {
   margin-top: 0px;
@@ -350,6 +351,7 @@ textarea {
   margin-top: -9px;
   font-size: 16px;
   font-style: bold;
+	color: #5b930d;
 }
 .panel.match-now {
   padding-left: 10px;
