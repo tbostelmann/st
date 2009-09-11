@@ -34,11 +34,11 @@
 
     .block.no-border
     
-      = render :partial => 'donor_surveys/survey_form'
-      
-      %div{:class => "block", :style => "margin-top: 25px"}
-        = render :partial => 'donor_surveys/invite'
+      = render :partial => 'donor_surveys/invite'
       
       %div{:class => "block", :style => "margin-top: 25px"}
         = render :partial => 'donor_surveys/web20'
-       
+
+      %div{:class => "block", :style => "margin-top: 25px; float: left;"}
+        = render :partial => 'donor_surveys/survey_form'
+

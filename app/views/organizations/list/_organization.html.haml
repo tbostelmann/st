@@ -6,7 +6,7 @@
       = link_to org.display_name.capitalize, organization_path(org)
   %td{:class => "text12", :valign => "middle", :align => "left"}
     -# This whole thing could be a useful helper function: truncate_and_link or something
-    =truncate org.description, 250, "&hellip;"
+    =truncate org.description, :length => 250, :omission => "&hellip;"
     =link_to "more &raquo;", organization_path(saver)
   %td{:valign => "middle", :align => "center"}
     - if !saver.nil?

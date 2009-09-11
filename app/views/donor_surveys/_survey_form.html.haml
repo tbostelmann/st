@@ -1,12 +1,11 @@
 %div{:style => "float: left;"}
-  = image_tag "#{image_path('icons/one.gif')}"
+  = image_tag "#{image_path('icons/three.gif')}"
 %h2.numbered
   Use Your Voice
 .indent
   .indent.text12
     %div{:style => "display: block;"}
-
-    - form = session[:completed_survey] ? "completed_form" : "new_form"
-    = render :partial => "donor_surveys/survey_form/#{form}"
-
-    = render :partial => "donor_surveys/survey_form/cfed_links"
+      %h3
+        = "Make this opportunity available to millions. Click "
+        = link_to 'here', take_action_path
+        = " to support policies that expand this opportunity to millions more."
