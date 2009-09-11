@@ -75,7 +75,7 @@ class PledgesControllerTest < ActionController::TestCase
     post :remove_from_pledge, {:to_user_id => donation.to_user.id}
 
     assert_response :success
-    assert_template 'show'
+    assert_template 'edit'
 
     pledge = Pledge.find(session[:pledge_id])
     d = pledge.find_donation_with_to_user_id(donation.to_user_id)
