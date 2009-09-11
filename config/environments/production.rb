@@ -1,5 +1,12 @@
 # Settings specified here will take precedence over those in config/environment.rb
 
+# =============================================================================
+require "#{RAILS_ROOT}/lib/message_logger.rb"
+logger = MessageLogger.new(RAILS_ENV, File.join( 'log/', RAILS_ENV + ".log"))
+ActiveRecord::Base.logger = logger
+ActionController::Base.logger = logger
+# =============================================================================
+
 # The production environment is meant for finished, "live" apps.
 # Code is not reloaded between requests
 config.cache_classes = true

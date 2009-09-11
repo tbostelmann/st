@@ -61,7 +61,9 @@ class ApplicationController < ActionController::Base
   def process(request, response, method = :perform_action, *arguments)
     @method_name="#{request.symbolized_path_parameters[:controller].capitalize}.#{request.symbolized_path_parameters[:action]}"
     @request_guid = ActiveSupport::SecureRandom.base64(32)
-    logger.prefix = @request_guid
+    if logger.respond_to?('prefix')
+      logger.prefix = @request_guid
+    end  
     super
   end
 

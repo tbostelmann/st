@@ -69,10 +69,3 @@ ExceptionNotifier.sender_address = AppConfig.support_email
 
 I18n.reload!
 require "ruport"
-
-# =============================================================================
-require "#{RAILS_ROOT}/lib/message_logger.rb"
-logger = MessageLogger.new(RAILS_ENV, File.join( 'log/', RAILS_ENV + ".log"))
-ActiveRecord::Base.logger = logger
-ActionController::Base.logger = logger
-# =============================================================================
