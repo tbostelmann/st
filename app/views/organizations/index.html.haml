@@ -1,0 +1,15 @@
+- @page_title = :match_savers.l.titleize
+
+.content
+  %h1
+    =:organizations.l.titleize
+
+  .single-column
+
+    .pagination.upper
+      = paginating_links @orgs, :params => params if @orgs.page_count > 1
+
+    = render :partial => "organizations/list", :locals => {:orgs => @orgs}
+
+    .pagination.lower
+      = paginating_links @orgs, :params => params if @orgs.page_count > 1

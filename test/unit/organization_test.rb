@@ -20,4 +20,16 @@ class OrganizationTest < ActiveSupport::TestCase
       assert p.login != Organization::PAYPAL_LOGIN
     end
   end
+
+  test "find_random_savers" do
+    org = users(:earn)
+
+    savers = org.find_random_savers(1)
+
+    assert !savers.nil?
+    assert savers[0].organization.id == org.id
+
+    savers = org.find_random_savers(2)
+    assert savers.size == 2
+  end
 end

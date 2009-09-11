@@ -3,6 +3,12 @@ require 'test_helper'
 class OrganizationsControllerTest < ActionController::TestCase
   include AuthenticatedTestHelper
 
+  test "get organization index page" do
+    get :index
+
+    assert_response :success
+  end
+
   test "show an organization" do
     org = users(:earn)
     get :show, {:id => org.id}

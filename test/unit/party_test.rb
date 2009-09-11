@@ -3,6 +3,14 @@ require File.dirname(__FILE__) + '/../test_helper'
 class PartyTest < ActiveSupport::TestCase
   
   # These tests protect the current contract of the overloaded Party#<=> operator
+
+  test "find_public only returns profile_public == true" do
+    orgs = Organization.find_public(:all)
+    assert !orgs.nil?
+    orgs.each do |org|
+      assert org.profile_public
+    end
+  end
   
   test "parties are sortable by first name" do
     parties = []

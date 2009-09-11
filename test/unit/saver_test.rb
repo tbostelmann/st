@@ -38,26 +38,26 @@ class SaverTest < ActiveSupport::TestCase
   end
   
   test "featured savers should default to 4" do
-    assert_equal 4, Saver.featured_savers.size
+    assert_equal 4, Saver.find_random.size
   end
   
   test "more than 4 featured savers can be requested" do
     requested = 5
-    assert_equal requested, Saver.featured_savers(requested).size
+    assert_equal requested, Saver.find_random(requested).size
   end
   
   test "less than 4 featured savers can be requested" do
     requested = 3
-    assert_equal requested, Saver.featured_savers(requested).size
+    assert_equal requested, Saver.find_random(requested).size
   end
   
   test "requesting more featured savers than savers returns all savers" do
     count_all = Saver.find(:all).size
-    assert_equal count_all, Saver.featured_savers(count_all+1).size
+    assert_equal count_all, Saver.find_random(count_all+1).size
   end
   
-  test "requesting less than one saver returns exactly one saver" do
-    assert_equal 1, Saver.featured_savers(-1).size
+  test "requesting one saver returns exactly one saver" do
+    assert_equal 1, Saver.find_random(1).size
   end
   
   test "featured savers should be random" do
@@ -68,8 +68,8 @@ class SaverTest < ActiveSupport::TestCase
     
     itsrandom = false
     
-    first_first_position = Saver.featured_savers[0]
-    (2..10).each{ itsrandom ||= Saver.featured_savers[0] != first_first_position }
+    first_first_position = Saver.find_random[1]
+    (2..10).each{ itsrandom ||= Saver.find_random[1] != first_first_position }
     
     assert itsrandom
   end

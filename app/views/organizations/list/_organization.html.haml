@@ -1,0 +1,22 @@
+%tr
+  %td{:valign => "middle", :align => "center"}
+    = link_to((image_tag org.avatar_photo_url(:thumb), :alt => org.display_name), organization_path(org))
+    %br
+    %span.text12GreenBold
+      = link_to org.display_name.capitalize, organization_path(org)
+  %td{:class => "text12", :valign => "middle", :align => "left"}
+    -# This whole thing could be a useful helper function: truncate_and_link or something
+    =truncate org.description, 250, "&hellip;"
+    =link_to "more &raquo;", organization_path(saver)
+  %td{:valign => "middle", :align => "center"}
+    - if !saver.nil?
+      = link_to((image_tag saver.avatar_photo_url(:thumb), :alt => saver.display_name), saver_path(saver))
+      %br
+      %span.text12GreenBold
+        = link_to saver.display_name.capitalize, saver_path(saver)
+
+-# Spacer Row
+%tr{:valign => "top", :align => "left"}
+  %td{:height => "2", :valign => "middle", :background => "#{image_path('bg/dotted_line.gif')}", :style => "background-repeat: repeat-x;", :colspan => "6"}
+    %span{:style => "background-repeat: repeat-x;"}
+      %img{:height => "2", :width => "2", :src => "#{image_path('icons/spacer.gif')}"}

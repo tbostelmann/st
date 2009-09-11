@@ -3,6 +3,12 @@ class OrganizationsController < BaseController
     :only => [:new, :create, :update, :edit, :welcome_about])
   uses_tiny_mce(:options => AppConfig.simple_mce_options, :only => [:show])
 
+  def index
+    @orgs = Organization.find_public(:all,
+      :page => {:current => params[:page], :size => 20}
+      )
+  end
+
   def edit
     # TODO this should be a :before_filter :only => :edit
     # Don't do it now because we need an authorize method

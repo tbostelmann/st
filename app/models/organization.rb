@@ -71,7 +71,24 @@ class Organization < Party
   end
 
   def self.find_partners
-    find(:all, :conditions => ["login != ? AND login != ?", SAVETOGETHER_LOGIN, PAYPAL_LOGIN])
+    find_public(:all, :conditions => ["login != ? AND login != ?", SAVETOGETHER_LOGIN, PAYPAL_LOGIN])
+  end
+
+  def self.find_random(count=4)
+    find_public(:all, :limit => count, :order => 'rand()')
+  end
+
+  def find_random_savers(count=3)
+    self.savers.find_public(:all, :limit => count, :order => 'rand()')
+  end
+
+  def find_random_saver
+    savers = find_random_savers(1)
+    if !savers.nil? && savers.size == 1
+      return savers[0]
+    else
+      return
+    end
   end
 
   def to_param

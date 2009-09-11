@@ -55,6 +55,12 @@ class Party < User
 
   composed_of :requested_match_amount, :class_name => "Money", :mapping => [%w(requested_match_cents cents)], :converter => Proc.new { |value| value.to_money }
 
+  def self.find_public(*args)
+    with_scope(:find => {:conditions => {:profile_public => true}}) do
+      find(*args)
+    end
+  end
+
   def display_name
     if anonymous
       'Anonymous'

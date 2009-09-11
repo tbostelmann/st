@@ -474,7 +474,7 @@ en:
   favorite_this: Favorite this
   #en: featured_posts: Featured posts
   featured_posts: Featured posts
-  #en: featured_savers: Featured Savers
+  featured_saver: Featured Saver
   featured_savers: Featured Savers
   #en: features: Features
   features: Features
@@ -868,6 +868,9 @@ en:
   or: or
   #en: or_log_in: Or Log In
   or_log_in: Or Log In
+  organization: Organization
+  organizations: Organizations
+  organization_description: Description
   #en: page: page
   page: page
   #en: pages: "Pages:"

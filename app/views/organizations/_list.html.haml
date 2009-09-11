@@ -1,0 +1,23 @@
+%table{:width => "100%", :cellspacing => "0", :cellpadding => "5", :border => "0"}
+
+  -# Headings
+  %tr
+    %td{:class => "large-text", :height => "36", :width => "15%", :bgcolor => "#f8faf5", :align => "center"}
+      %p.large-text
+        = :organization.l
+    %td{:class => "large-text", :height => "36", :width => "10%", :bgcolor => "#f8faf5"}
+      %p.large-text
+        = :organization_description.l
+    %td{:class => "large-text", :height => "36", :width => "18%", :bgcolor => "#f8faf5", :align => "center"}
+      %p.large-text
+        = :featured_saver.l
+
+  -# Spacer
+  %tr
+    %td{:valign => "middle", :align => "left", :colspan => "6"}
+      %span{:style => "background-repeat: repeat-x;"}
+        %img{:height => "2", :width => "2", :src => "#{image_path('icons/spacer.gif')}"}
+
+  -# Savers
+  - orgs.each do |org|
+    =render :partial => "organizations/list/organization", :locals => {:org => org, :saver => org.find_random_saver}
