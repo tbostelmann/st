@@ -11,7 +11,10 @@
     =link_to saver.organization.display_name, organization_path(saver.organization)
   %td{:class => "text12", :valign => "middle", :align => "left"}
     -# This whole thing could be a useful helper function: truncate_and_link or something
-    =truncate_words saver.description, 25, "&hellip;"
+    - if saver.short_description?
+      =truncate saver.short_description, :length => 250, :omission => "&hellip;"
+    - else
+      =truncate saver.description, :length => 250, :omission => "&hellip;"
     =link_to "more &raquo;", saver_path(saver)
   %td{:class => "text12", :valign => "middle", :align => "left"}
     %table{:width => "100%", :cellpadding => "0", :cellspacing => "0", :border => "0"}

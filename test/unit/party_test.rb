@@ -4,6 +4,21 @@ class PartyTest < ActiveSupport::TestCase
   
   # These tests protect the current contract of the overloaded Party#<=> operator
 
+  test "short_description? should return false if there is no text" do
+    saver = Saver.new
+
+    assert saver.short_description.nil?
+    assert !saver.short_description?
+
+    saver.short_description = ""
+    assert saver.short_description == ""
+    assert !saver.short_description?
+
+    saver.short_description = "test"
+    assert saver.short_description == "test"
+    assert saver.short_description?
+  end
+
   test "find_public only returns profile_public == true" do
     orgs = Organization.find_public(:all)
     assert !orgs.nil?

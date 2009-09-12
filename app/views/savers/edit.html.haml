@@ -33,10 +33,16 @@
         .relax='&nbsp;'
         .block.no-border
           .indent
-            %h3= :why_i_support_savers.l
+            %h3= :about_me.l
             = text_area :saver, :description, :class => "rich_text_editor", :style => "width:91%; height:232px; margin: 10px 0 10px 0;"
 
           %table{:width => "91%", :cellspacing => "0", :cellpadding => "0", :border => "0"}
+            %tr
+              %td{:align => "right"}
+                %p.large-text
+                  = "Short Description:"
+              %td{:align => "right"}
+                = text_field :saver, :short_description, :size => "100"
             %tr
               %td{:align => "right"}
                 %p.large-text

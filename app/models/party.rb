@@ -61,6 +61,10 @@ class Party < User
     end
   end
 
+  def short_description?
+    !short_description.nil? && !short_description.blank?
+  end
+
   def display_name
     if anonymous
       'Anonymous'
