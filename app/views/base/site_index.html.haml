@@ -17,4 +17,4 @@
 
   .section.info-panels
 
-    =render :partial => "base/site_index/info_panels"
+    =render :partial => "base/site_index/info_panels", :locals => {:featured_donor => @featured_donor}

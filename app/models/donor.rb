@@ -61,6 +61,10 @@ class Donor < Party
   validates_presence_of :first_name
   validates_presence_of :last_name
 
+  def self.find_featured_donor
+    find_random(:all,:limit => 1, :conditions => ["description is NOT NULL AND description <> '' AND avatar_id is NOT NULL"])[0]
+  end
+
   def donations_grouped_by_beneficiaries
     donations_given.find(:all).group_by{ |d| d.to_user }
   end

@@ -37,27 +37,21 @@ class SaverTest < ActiveSupport::TestCase
     assert saver3.match_percent == 0
   end
   
-  test "featured savers should default to 4" do
-    assert_equal 4, Saver.find_random.size
-  end
-  
-  test "more than 4 featured savers can be requested" do
-    requested = 5
-    assert_equal requested, Saver.find_random(requested).size
+  test "more than 4 featured savers can be requested" do  
+    assert_equal 5, Saver.find_random(:all, :limit => 5).size
   end
   
   test "less than 4 featured savers can be requested" do
-    requested = 3
-    assert_equal requested, Saver.find_random(requested).size
+    assert_equal 3, Saver.find_random(:all, :limit => 3).size
   end
   
   test "requesting more featured savers than savers returns all savers" do
     count_all = Saver.find(:all).size
-    assert_equal count_all, Saver.find_random(count_all+1).size
+    assert_equal count_all, Saver.find_random(:all, :limit => count_all+1).size
   end
   
   test "requesting one saver returns exactly one saver" do
-    assert_equal 1, Saver.find_random(1).size
+    assert_equal 1, Saver.find_random(:all, :limit => 1).size
   end
   
   test "featured savers should be random" do
@@ -68,8 +62,8 @@ class SaverTest < ActiveSupport::TestCase
     
     itsrandom = false
     
-    first_first_position = Saver.find_random[1]
-    (2..10).each{ itsrandom ||= Saver.find_random[1] != first_first_position }
+    first_first_position = Saver.find_random(:all, :limit => 4)[1]
+    (2..10).each{ itsrandom ||= Saver.find_random(:all, :limit => 4)[1] != first_first_position }
     
     assert itsrandom
   end

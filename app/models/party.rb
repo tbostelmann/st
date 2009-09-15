@@ -61,6 +61,12 @@ class Party < User
     end
   end
 
+  def self.find_random(*args)
+    with_scope(:find => {:conditions => {:profile_public => true}, :order => 'rand()'}) do
+      find(*args)
+    end
+  end
+
   def short_description?
     !short_description.nil? && !short_description.blank?
   end

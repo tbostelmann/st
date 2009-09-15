@@ -1,8 +1,8 @@
 %h2
   ="Featured Donor"
-%h6
-  ="Joe the Donor envisions a world where savings incentives and a path to long-term financial stability are available to everyone."
+.section{:style => "float: left; margin: 10px;"}
+  = link_to((image_tag donor.avatar_photo_url(:thumb), :alt => donor.display_name), donor_path(donor))
+%h5{:style => "float: top;"}
+  =link_to donor.display_name, donor_path(donor)
 %p
-  ="Joe the Donor takes the opportunity to help working people save toward economic stability by providing them a tax-deductible matching donation. Click"
-  =link_to "here", match_savers_path
-  ="for more info about Joe."
+  =truncate donor.description, :length => 250, :omission => "&hellip;"

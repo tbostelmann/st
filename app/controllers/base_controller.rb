@@ -1,8 +1,9 @@
 class BaseController < ApplicationController
   def site_index
     @successful_saver = SAVER_FEATURED_SUCCESSFUL_SAVER # TODO (dscott) replace this with a new Saver.featured_successful_saver call
-    @featured_savers  = Saver.find_random(3)
+    @featured_savers  = Saver.find_random(:all, :limit => 3)
     @partner_list     = random_partner_list
+    @featured_donor   = Donor.find_featured_donor
 
     # DPIRONE: note this does a lot of extra work to get CE meta data that we presently don't use,
     # so commenting out to save CPU cycles ...

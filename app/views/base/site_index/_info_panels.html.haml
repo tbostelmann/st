@@ -2,7 +2,7 @@
   = render :partial => "base/site_index/info_panels/partners", :locals => {:partner_list => @partner_list}
 
 .panel.featured-donor
-  = render :partial => "base/site_index/info_panels/featured_donor"
+  = render :partial => "base/site_index/info_panels/featured_donor", :locals => {:donor => featured_donor}
 
 .panel.news
   = render :partial => "base/site_index/info_panels/news"

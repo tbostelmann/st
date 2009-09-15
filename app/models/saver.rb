@@ -96,8 +96,4 @@ class Saver < Party
   def matched_amount_cents
     return donations_received.sum(:cents)
   end
-  
-  def self.find_random(count=4)
-    self.find(:all, :limit => count, :order => 'rand()')
-  end 
 end
