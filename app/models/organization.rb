@@ -91,6 +91,10 @@ class Organization < Party
     end
   end
 
+  def has_organization_survey?
+    return !self.organization_survey.nil?
+  end
+
   def to_param
     self.id.to_s
   end

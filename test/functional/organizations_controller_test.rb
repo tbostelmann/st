@@ -9,16 +9,51 @@ class OrganizationsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test "show an organization with no organization_survey contents" do
+    org = users(:cfed)
+    assert !org.has_organization_survey?
+
+    get :show, {:id => org.id}
+
+    assert_response :success
+    assert_template :show
+  end
+
+  test "show an organization that is not public" do
+    storg = users(:savetogether)
+    get :show, {:id => storg.id}
+    assert_redirected_to home_path
+  end
+
   test "show an organization" do
     org = users(:earn)
     get :show, {:id => org.id}
     assert_response :success
     assert_template :show
+  end
 
-    storg = users(:savetogether)
-    get :show, {:id => storg.id}
+  test "edit an organization" do
+    org = users(:earn)
+    login_as(:earn)
+
+    get :edit, {:id => org.id}
     assert_response :success
-    assert_template :show
+    assert_template :edit
+  end
+
+  test "edit an organization that is not logged in" do
+    org = users(:earn)
+
+    get :edit, {:id => org.id}
+    assert_redirected_to login_path
+  end
+
+  test "edit an organization when logged in as a different user" do
+    donor = users(:donor)
+    org = users(:earn)
+    login_as(:donor)
+    get :edit, {:id => org.id}
+    assert_redirected_to :action => :show
   end
 
   test "update an organization profile" do

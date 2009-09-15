@@ -231,7 +231,27 @@ earn:
   activities_count: 0
   role_id: 3
   type: Organization
-  
+
+cfed:
+  first_name: CFED
+  login: cfed@savetogether.org
+  description: <p>CFED description.</p>
+  phone_number: 555-555-5555
+  web_site_url: www.cfed.org
+  salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
+  crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
+  created_at: <%= 5.days.ago.to_s :db %>
+  activated_at: <%= 5.days.ago.to_s :db %>
+  activation_code:
+  state: 2
+  metro_area: sanfrancisco
+  profile_public: true
+  login_slug: cfed@savetogether.org
+  birthday: <%= 15.years.ago.to_s :db %>
+  activities_count: 0
+  role_id: 3
+  type: Organization
+
 savetogether:
   first_name: SaveTogether
   login: storg@savetogether.org

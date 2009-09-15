@@ -7,7 +7,7 @@
   %td{:class => "text12", :valign => "middle", :align => "left"}
     -# This whole thing could be a useful helper function: truncate_and_link or something
     =truncate org.description, :length => 250, :omission => "&hellip;"
-    =link_to "more &raquo;", organization_path(saver)
+    =link_to "more &raquo;", organization_path(org)
   %td{:valign => "middle", :align => "center"}
     - if !saver.nil?
       = link_to((image_tag saver.avatar_photo_url(:thumb), :alt => saver.display_name), saver_path(saver))

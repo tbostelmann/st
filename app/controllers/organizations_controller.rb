@@ -12,11 +12,15 @@ class OrganizationsController < BaseController
   def edit
     # TODO this should be a :before_filter :only => :edit
     # Don't do it now because we need an authorize method
-    if current_user.nil?
+    if !params[:id]
+      redirect_to :root
+    elsif !current_user || current_user.nil?
       redirect_to login_path
+    elsif current_user.id.to_s == params[:id].to_s
+      @user = Organization.find(params[:id])
     else
-      @user = current_user
-    end
+      redirect_to :action => :show, :id => params[:id]
+    end 
   end
 
   def update
@@ -64,6 +68,9 @@ class OrganizationsController < BaseController
 
   def show
     @org = Organization.find(params[:id])
+    if !@org.profile_public
+      redirect_to home_path
+    end
     @photos = @org.photos.find(:all, :limit => 5)
     @savers = @org.savers.find(:all, :page => {:current => params[:page], :size => 20})
   end

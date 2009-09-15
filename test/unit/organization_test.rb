@@ -1,6 +1,14 @@
 require 'test_helper'
 
 class OrganizationTest < ActiveSupport::TestCase
+  test "existence of organization_survey" do
+    org = users(:savetogether)
+    assert !org.has_organization_survey?
+
+    org = users(:earn)
+    assert org.has_organization_survey?
+  end
+
   test "check find_paypal_org" do
     paypal = Organization.find_paypal_org
     assert !paypal.nil?
