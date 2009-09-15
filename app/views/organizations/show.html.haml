@@ -17,8 +17,8 @@
           %h3="Organization information:"
           = render :partial => "organizations/survey", :object => @org.organization_survey, :locals => { :organization_survey => @org.organization_survey }
 
-          %h3="Contact information:"
-          = render :partial => "organizations/contact_info", :object => @org.organization_survey, :locals => { :organization_survey => @org.organization_survey }
+        %h3="Contact information:"
+        = render :partial => "organizations/contact_info", :object => @org.organization_survey, :locals => { :organization_survey => @org.organization_survey }
 
 
     .party-info
@@ -37,13 +37,14 @@
             = @org.description
 
     .relax='&nbsp;'
-  
-    %h2{:style => "margin-top: 30px;"}
-      =:savers_supported_by_this_organization.l
 
-    .pagination= paginating_links @savers, :params => params if @savers.page_count > 1
+    - if !@savers.nil? && @savers.size > 0
+      %h2{:style => "margin-top: 30px;"}
+        =:savers_supported_by_this_organization.l
 
-    = render(:partial => "savers/mini_saver", :collection => @savers)
+      .pagination= paginating_links @savers, :params => params if @savers.page_count > 1
 
-    %br.clear
-    .pagination= paginating_links @savers, :params => params if @savers.page_count > 1
+      = render(:partial => "savers/mini_saver", :collection => @savers)
+
+      %br.clear
+      .pagination= paginating_links @savers, :params => params if @savers.page_count > 1

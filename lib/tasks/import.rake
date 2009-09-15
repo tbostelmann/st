@@ -21,22 +21,25 @@ namespace :import do
           :web_site_url => org_data['web_site_url'],
           :phone_number => org_data['phone_number'],
           :salt => "7e3041ebc2fc05a40c60028e2c4901a81035d3cd",
-          :crypted_password => "00742970dc9e6319f8019fd54864d3ea740f04b1", # test
+          :crypted_password => "00742970dc9e6319f8019fd54864d3ea740f04b1", # test 
           :state => State.find(:first, :conditions => {:name => org_data['state']}),
           :metro_area => MetroArea.find(:first, :conditions => {:name => org_data['metro_area']}),
           :birthday => 30.years.ago,
           :activities_count => 0,
           :role => Role[:member])
         org.activate
-        org_survey = OrganizationSurvey.create!(
-          :organization => org,
-          :contact_email => org_data['contact_email'],
-          :year_founded => org_data['year_founded'],
-          :annual_operating_expenses => org_data['annual_operating_expenses'],
-          :total_matched_accounts => org_data['total_matched_accounts'],
-          :year_first_accounts_opened => org_data['year_first_accounts_opened'],
-          :number_of_active_accounts => org_data['number_of_active_accounts']
-        )
+        if org_data['contact_email'] || org_data['year_founded'] || org_data['annual_operating_expenses'] ||
+                    org_data['total_matched_accounts'] || org_data['year_first_accounts_opened'] ||
+                    org_data['number_of_active_accounts']
+          org_survey = OrganizationSurvey.create!(
+            :organization => org,
+            :contact_email => org_data['contact_email'],
+            :year_founded => org_data['year_founded'],
+            :annual_operating_expenses => org_data['annual_operating_expenses'],
+            :total_matched_accounts => org_data['total_matched_accounts'],
+            :year_first_accounts_opened => org_data['year_first_accounts_opened'],
+            :number_of_active_accounts => org_data['number_of_active_accounts'])
+        end
         photo = Photo.new(
                 :name => "#{org_data['first_name']} Logo",
                 :uploaded_data => ActionController::TestUploadedFile.new("#{RAILS_ROOT}/test/files/import/#{org_data['image_file']}", org_data['image_file_type']),

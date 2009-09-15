@@ -1,5 +1,5 @@
 %table{:width => "87%", :cellspacing => "0", :cellpadding => "1", :border => "0", :align => "center"}
-  - if @org.web_site_url
+  - if !@org.web_site_url.nil? && !@org.web_site_url.blank?
     %tr
       %td
         %p.large-text
@@ -11,15 +11,16 @@
             -# and builds a relative link to the organization, even tho' the url property is specified
             %a{:href => "http://#{@org.web_site_url}"}
               =@org.web_site_url
-  %tr
-    %td
-      %p.large-text
-        ="Email Contact:"
-    %td{:align => "right"}
-      %p.large-text
-        %em
-          = organization_survey.contact_email
-  - if @org.phone_number
+  - if !organization_survey.nil?
+    %tr
+      %td
+        %p.large-text
+          ="Email Contact:"
+      %td{:align => "right"}
+        %p.large-text
+          %em
+            = organization_survey.contact_email
+  - if !@org.phone_number.nil? && !@org.phone_number.blank?
     %tr
       %td
         %p.large-text
