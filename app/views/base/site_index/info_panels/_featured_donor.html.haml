@@ -8,6 +8,6 @@
       =link_to donor.display_name, donor_path(donor)
     %p
       - if donor.short_description?
-        =truncate donor.short_description, :length => 150, :omission => "&hellip;"
+        =truncate donor.short_description, :length => 120, :omission => "&hellip;"
       - else
-        =truncate donor.description, :length => 150, :omission => "&hellip;"
+        =truncate donor.description, :length => 120, :omission => "&hellip;"

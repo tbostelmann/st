@@ -151,7 +151,7 @@ textarea {
 }
 .menu UL LI {
 	display: inline;
-	font-size: 14px;
+	font-size: 16px;
 }
 .menu UL LI A {
 	color: #fff;
@@ -193,6 +193,7 @@ textarea {
     font-size: 18px;
     color: #ec972c;
     height: 2em;
+    font-weight: bold;
 }
 
 .display-name {
@@ -201,6 +202,7 @@ textarea {
 .display-name a {
     color: #ec972c;
     font-size: 18px;
+    font-weight: bold;
 }
 
 /* bread crumbs */
@@ -375,7 +377,7 @@ textarea {
 .content P {
 	margin-top: 10px;
 	color: #0a0a0a;
-	font-size: 11px;
+	font-size: 14px;
 	line-height: 150%;
 }
 .content P.large-text {

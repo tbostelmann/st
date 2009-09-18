@@ -15,7 +15,7 @@
       .display-name
         =link_to @successful_saver.display_name, saver_path(@successful_saver)
       %p
-        =truncate @successful_saver.description, :length => 250, :omission => "&hellip;"
+        =truncate @successful_saver.description, :length => 200, :omission => "&hellip;"
     .explain{:style => "float: left; width: 635px;"}
       #one{:style => "float: left; width: 183px;"}
         =image_tag image_path('graphics/they-save.jpg'), {:alt => 'they save'}
@@ -47,7 +47,7 @@
 
     .featured-savers
       -@featured_savers.each do |saver|
-        .featured{:style => "width: 210px; height: 100%; float: left;"}
+        .featured{:style => "width: 215px; height: 100%; float: left;"}
           .image{:style => "width: 165px; height: 165px; border: 1px dashed #bbbbbb; margin-left: 5px; margin-right: 5px"}
             = link_to((image_tag saver.avatar_photo_url(:mini), {:alt => saver.display_name, :style => "width: 155px; height: 155px; margin: 5px;"}), saver_path(saver))
           .info-block
@@ -55,12 +55,12 @@
               =link_to saver.display_name, saver_path(saver)
             %p
               - if saver.short_description?
-                =truncate saver.short_description, :length => 150, :omission => "&hellip;"
+                =truncate saver.short_description, :length => 120, :omission => "&hellip;"
               - else
-                =truncate saver.description, :length => 150, :omission => "&hellip;"
+                =truncate saver.description, :length => 120, :omission => "&hellip;"
             %div{:style =>"float:left;"}
               =render :partial => "savers/shared/ask_control", :locals => {:saver => saver}
-      .panel.match-now{:style => "float: left; width: 260px; height: 100%"}
+      .panel.match-now{:style => "float: left; width: 245px; height: 100%"}
         %h2{:style => "float: right; margin-top: 75px;"}
           ="Help Break the Cycle"
         .text
