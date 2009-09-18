@@ -1,8 +1,13 @@
 %h2
   ="Featured Donor"
-.section{:style => "float: left; margin: 10px;"}
-  = link_to((image_tag donor.avatar_photo_url(:thumb), :alt => donor.display_name), donor_path(donor))
-%h5{:style => "float: top;"}
-  =link_to donor.display_name, donor_path(donor)
-%p
-  =truncate donor.description, :length => 250, :omission => "&hellip;"
+.featured{:style => "width: 100%; float: left;"}
+  .image{:style => "width: 165px; height: 165px; border: 1px dashed #bbbbbb;"}
+    = link_to((image_tag donor.avatar_photo_url(:mini), {:alt => donor.display_name, :style => "width: 155px; height: 155px; margin: 5px;"}), donor_path(donor))
+  .info-block
+    .display-name
+      =link_to donor.display_name, donor_path(donor)
+    %p
+      - if donor.short_description?
+        =truncate donor.short_description, :length => 150, :omission => "&hellip;"
+      - else
+        =truncate donor.description, :length => 150, :omission => "&hellip;"

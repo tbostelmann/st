@@ -1,6 +1,6 @@
 class BaseController < ApplicationController
   def site_index
-    @successful_saver = SAVER_FEATURED_SUCCESSFUL_SAVER # TODO (dscott) replace this with a new Saver.featured_successful_saver call
+    @successful_saver = Saver.find_successful_saver
     @featured_savers  = Saver.find_random(:all, :limit => 3)
     @partner_list     = random_partner_list
     @featured_donor   = Donor.find_featured_donor

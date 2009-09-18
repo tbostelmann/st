@@ -6,15 +6,80 @@
 - @page_title = :savetogether_motto.l
 
 .content
+  .top{:style => "width: 900px; float: left;"}
+    #question{:style => "float: left; width: 70%;"}
+      =image_tag image_path('graphics/what-if-you-had-the-economic-power-to-break-poverty.jpg'), {:alt => 'what if you had the economic power to break povery?'}
+    #success-story{:style => "float: right; width: 220px;"}
+      #image{:style => "width: 220px; border: 1px dashed #bbbbbb;"}
+        = link_to((image_tag @successful_saver.avatar_photo_url(:small), {:alt => @successful_saver.display_name, :style => "width: 210px; margin: 5px;"}), saver_path(@successful_saver))
+      .display-name
+        =link_to @successful_saver.display_name, saver_path(@successful_saver)
+      %p
+        =truncate @successful_saver.description, :length => 250, :omission => "&hellip;"
+    .explain{:style => "float: left; width: 635px;"}
+      #one{:style => "float: left; width: 183px;"}
+        =image_tag image_path('graphics/they-save.jpg'), {:alt => 'they save'}
+        .explanation
+          .tagline
+            ="For the things that matter most."
+          %p
+            ="A qualified individual or family works hard to save for a life-changing goal such as a higher education, home or small business."
+      #two{:style => "float: left; width: 203px;"}
+        =image_tag image_path('graphics/you-match.jpg'), {:alt => 'you match'}
+        .info-block
+          .tagline
+            ="To multiply the impact."
+          %p
+            ="Your contribution provides a dollar-for-dollar match and is matched again by a non-profit organization."
+      #three{:style => "float: left; width: 249px;"}
+        =image_tag image_path('graphics/together-we-prosper.jpg'), {:alt => 'together we prosper'}
+        .explanation
+          .tagline
+            ="Build a poverty-free future."
+          %p
+            ="By helping low-wage workers who are helping themselves, we break poverty and create economic opportunity for all."
+  %br
+  .middle{:style => "width: 900px; border-top: 1px dashed #bbbbbb; float: left; margin-top: 10px; margin-bottom: 10px;"}
 
-  .section.intro
+    .title{:style => "width: 100%; margin-top: 10px;"}
+      %h2
+        ="Success Stories in the making..."
 
-    =render :partial => "base/site_index/intro", :locals => {:successful_saver => @successful_saver}
+    .featured-savers
+      -@featured_savers.each do |saver|
+        .featured{:style => "width: 210px; height: 100%; float: left;"}
+          .image{:style => "width: 165px; height: 165px; border: 1px dashed #bbbbbb; margin-left: 5px; margin-right: 5px"}
+            = link_to((image_tag saver.avatar_photo_url(:mini), {:alt => saver.display_name, :style => "width: 155px; height: 155px; margin: 5px;"}), saver_path(saver))
+          .info-block
+            .display-name
+              =link_to saver.display_name, saver_path(saver)
+            %p
+              - if saver.short_description?
+                =truncate saver.short_description, :length => 150, :omission => "&hellip;"
+              - else
+                =truncate saver.description, :length => 150, :omission => "&hellip;"
+            %div{:style =>"float:left;"}
+              =render :partial => "savers/shared/ask_control", :locals => {:saver => saver}
+      .panel.match-now{:style => "float: left; width: 260px; height: 100%"}
+        %h2{:style => "float: right; margin-top: 75px;"}
+          ="Help Break the Cycle"
+        .text
+          =link_to image_tag(image_path('buttons/get-started.jpg'), {:alt => 'get started', :style => "float: right; margin-top: 10px;"}), match_savers_path
 
-  .section.success-stories
-    
-    =render :partial => "base/site_index/success_stories", :locals => {:savers => @featured_savers}
+  .bottom{:style => "width: 900px; border-top: 1px dashed #bbbbbb; float: left; margin-top: 10px;"}
 
-  .section.info-panels
+    .panel{:style => "width: 224px; height: 100%; float: left; border-right: 1px dashed #bbbbbb;"}
+      .info{:style => "width: 204px; margin: 10px;"}
+        = render :partial => "base/site_index/info_panels/featured_donor", :locals => {:donor => @featured_donor}
 
-    =render :partial => "base/site_index/info_panels", :locals => {:featured_donor => @featured_donor}
+    .panel{:style => "width: 214px; height: 100%; float: left; border-right: 1px dashed #bbbbbb;"}
+      .info{:style => "width: 194px; margin: 10px;"}
+        = render :partial => "base/site_index/info_panels/news"
+
+    .panel{:style => "width: 224px; height: 100%; float: left; border-right: 1px dashed #bbbbbb;"}
+      .info{:style => "width: 204px; margin: 10px;"}
+        = render :partial => "base/site_index/info_panels/policy_advocacy"
+
+    .panel{:style => "width: 234px; height: 100%; float: left;"}
+      .info{:style => "width: 214px; margin: 10px;"}
+        = render :partial => "base/site_index/info_panels/partners", :locals => {:partner_list => @partner_list}

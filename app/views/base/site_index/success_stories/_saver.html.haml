@@ -1,14 +1,17 @@
-.panel.image
+.image
   = link_to((image_tag saver.avatar_photo_url(:thumb), :alt => saver.display_name), saver_path(saver))
 .panel.text
-  %h5
+  %br
+  %span.display-name
     =link_to saver.display_name, saver_path(saver)
-  %p
+  %br
+  %span.description
     - if saver.short_description?
       =truncate saver.short_description, :length => 250, :omission => "&hellip;"
     - else
       =truncate saver.description, :length => 250, :omission => "&hellip;"
-  %p.skinny-floater
+  %br
+  %span.skinny-floater
     ="&hellip;"
 %div{:style =>"float:left;"}
   =render :partial => "savers/shared/ask_control", :locals => {:saver => saver}
