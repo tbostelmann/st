@@ -1,9 +1,9 @@
 class BaseController < ApplicationController
   def site_index
-    @successful_saver = Saver.find_successful_saver
+    @successful_savers = Saver.find_successful_savers(:all, :limit => 5)
     @featured_savers  = Saver.find_random(:all, :limit => 3)
     @partner_list     = random_partner_list
-    @featured_donor   = Donor.find_featured_donor
+    @featured_donors   = Donor.find_featured_donor(3)
 
     # DPIRONE: note this does a lot of extra work to get CE meta data that we presently don't use,
     # so commenting out to save CPU cycles ...
@@ -16,11 +16,14 @@ protected
 
   def random_partner_list
     founders = random_truth?
-    OpenStruct.new(
-      :partners_kind => founders ? "Founding Partners"                     : "Supporters"                     ,
-      :partners      => founders ?  ORGANIZATION_FIND_BY_FOUNDING_PARTNERS :  ORGANIZATION_FIND_BY_SUPPORTERS
-      # TODO (dscott) replace constants above with new Organization.find_by_foundering_partners, .find_by_supporters
-    )
+    [OpenStruct.new(
+      :partners_kind => "Founding Partners",
+      :partners      => ORGANIZATION_FIND_BY_FOUNDING_PARTNERS
+    ),
+     OpenStruct.new(
+      :partners_kind => "Supporters",
+      :partners      => ORGANIZATION_FIND_BY_SUPPORTERS
+    )]
   end
   
   def random_truth?

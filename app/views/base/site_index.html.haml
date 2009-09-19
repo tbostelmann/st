@@ -9,17 +9,27 @@
   .top{:style => "width: 900px; float: left;"}
     #question{:style => "float: left; width: 70%;"}
       =image_tag image_path('graphics/what-if-you-had-the-economic-power-to-break-poverty.jpg'), {:alt => 'what if you had the economic power to break povery?'}
-    #success-story{:style => "float: right; width: 220px;"}
-      #image{:style => "width: 220px; border: 1px dashed #bbbbbb;"}
-        = link_to((image_tag @successful_saver.avatar_photo_url(:small), {:alt => @successful_saver.display_name, :style => "width: 210px; margin: 5px;"}), saver_path(@successful_saver))
-      .display-name
-        =link_to @successful_saver.display_name, saver_path(@successful_saver)
-      %p
-        =truncate @successful_saver.description, :length => 200, :omission => "&hellip;"
+    #success-stories{:style => "float: right; width: 220px;"}
+      .success-story#fadeOn
+        .image{:style => "width: 220px; border: 1px dashed #bbbbbb;"}
+          = link_to((image_tag @successful_savers[0].avatar_photo_url(:small), {:alt => @successful_savers[0].display_name, :style => "width: 210px; margin: 5px;"}), saver_path(@successful_savers[0]))
+        .display-name
+          =link_to @successful_savers[0].display_name, saver_path(@successful_savers[0])
+        %p
+          =truncate @successful_savers[0].description, :length => 200, :omission => "&hellip;"
+
+      - (1..(@successful_savers.size - 1)).each do |index|
+        .success-story{:style => "display: none;"}
+          .image{:style => "width: 220px; border: 1px dashed #bbbbbb;"}
+            = link_to((image_tag @successful_savers[index].avatar_photo_url(:small), {:alt => @successful_savers[index].display_name, :style => "width: 210px; margin: 5px;"}), saver_path(@successful_savers[index]))
+          .display-name
+            =link_to @successful_savers[index].display_name, saver_path(@successful_savers[index])
+          %p
+            =truncate @successful_savers[index].description, :length => 200, :omission => "&hellip;"
     .explain{:style => "float: left; width: 635px;"}
       #one{:style => "float: left; width: 183px;"}
         =image_tag image_path('graphics/they-save.jpg'), {:alt => 'they save'}
-        .explanation
+        .info-block
           .tagline
             ="For the things that matter most."
           %p
@@ -33,7 +43,7 @@
             ="Your contribution provides a dollar-for-dollar match and is matched again by a non-profit organization."
       #three{:style => "float: left; width: 249px;"}
         =image_tag image_path('graphics/together-we-prosper.jpg'), {:alt => 'together we prosper'}
-        .explanation
+        .info-block
           .tagline
             ="Build a poverty-free future."
           %p
@@ -70,7 +80,7 @@
 
     .panel{:style => "width: 224px; height: 100%; float: left; border-right: 1px dashed #bbbbbb;"}
       .info{:style => "width: 204px; margin: 10px;"}
-        = render :partial => "base/site_index/info_panels/featured_donor", :locals => {:donor => @featured_donor}
+        = render :partial => "base/site_index/info_panels/featured_donor", :locals => {:donors => @featured_donors}
 
     .panel{:style => "width: 214px; height: 100%; float: left; border-right: 1px dashed #bbbbbb;"}
       .info{:style => "width: 194px; margin: 10px;"}

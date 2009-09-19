@@ -1,6 +1,14 @@
-%h2
-  =partner_list.partners_kind
-%ul
-  -partner_list.partners.each do |partner|
-    %li
-      =link_to partner.display_name, partner.organization_path
+.partner-list#plFadeOn
+  %h2
+    =partner_list[0].partners_kind
+  %ul
+    -partner_list[0].partners.each do |partner|
+      %li
+        =link_to partner.display_name, partner.organization_path
+.partner-list{:style => "display: none;"}
+  %h2
+    =partner_list[1].partners_kind
+  %ul
+    -partner_list[1].partners.each do |partner|
+      %li
+        =link_to partner.display_name, partner.organization_path

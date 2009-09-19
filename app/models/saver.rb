@@ -67,8 +67,8 @@ class Saver < Party
   validates_presence_of :requested_match_cents
   validates_presence_of :asset_type
 
-  def self.find_successful_saver
-    self.find_random(:all, :limit => 1)[0]
+  def self.find_successful_savers(*args)
+    self.find_random(*args)
   end
 
   def match_percent
