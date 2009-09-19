@@ -26,8 +26,8 @@
             =link_to @successful_savers[index].display_name, saver_path(@successful_savers[index])
           %p
             =truncate @successful_savers[index].description, :length => 200, :omission => "&hellip;"
-    .explain{:style => "float: left; width: 635px;"}
-      #one{:style => "float: left; width: 183px;"}
+    .explain{:style => "float: left; width: 675px;"}
+      #one{:style => "float: left; width: 223px;"}
         =image_tag image_path('graphics/they-save.jpg'), {:alt => 'they save'}
         .info-block
           .tagline
@@ -41,7 +41,7 @@
             ="To multiply the impact."
           %p
             ="Your contribution provides a dollar-for-dollar match and is matched again by a non-profit organization."
-      #three{:style => "float: left; width: 249px;"}
+      #three{:style => "float: left; width: 219px;"}
         =image_tag image_path('graphics/together-we-prosper.jpg'), {:alt => 'together we prosper'}
         .info-block
           .tagline
@@ -49,7 +49,7 @@
           %p
             ="By helping low-wage workers who are helping themselves, we break poverty and create economic opportunity for all."
   %br
-  .middle{:style => "width: 900px; border-top: 1px dashed #bbbbbb; float: left; margin-top: 10px; margin-bottom: 10px;"}
+  .middle{:style => "width: 900px; border-top: 1px dashed #bbbbbb; float: left; margin-top: 5px;"}
 
     .title{:style => "width: 100%; margin-top: 10px;"}
       %h2
@@ -76,7 +76,7 @@
         .text
           =link_to image_tag(image_path('buttons/get-started.jpg'), {:alt => 'get started', :style => "float: right; margin-top: 10px;"}), match_savers_path
 
-  .bottom{:style => "width: 900px; border-top: 1px dashed #bbbbbb; float: left; margin-top: 10px;"}
+  .bottom{:style => "width: 900px; height: 300px; border-top: 1px dashed #bbbbbb; float: left; margin-top: 5px;"}
 
     .panel{:style => "width: 224px; height: 100%; float: left; border-right: 1px dashed #bbbbbb;"}
       .info{:style => "width: 204px; margin: 10px;"}

@@ -228,7 +228,7 @@ textarea {
   width: 100%;
 	padding-bottom: 30px;
 	/* margin-top: 15px; DSCOTT - Use this if breadcrumbs are enabled */
-	margin-top: 25px;
+	margin-top: 15px;
 }
 .content H1, .content H2, .content H3, .content P {
 	padding: 0;
@@ -378,7 +378,7 @@ textarea {
 	margin-top: 10px;
 	color: #0a0a0a;
 	font-size: 14px;
-	line-height: 150%;
+	line-height: 120%;
 }
 .content P.large-text {
 	font-size: 12px;
