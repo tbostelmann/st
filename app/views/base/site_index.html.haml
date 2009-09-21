@@ -15,7 +15,7 @@
           = link_to((image_tag @successful_savers[0].avatar_photo_url(:small), {:alt => @successful_savers[0].display_name, :style => "width: 210px; margin: 5px;"}), saver_path(@successful_savers[0]))
         .display-name
           =link_to @successful_savers[0].display_name, saver_path(@successful_savers[0])
-        %p
+        %p.large-text
           =truncate @successful_savers[0].description, :length => 200, :omission => "&hellip;"
 
       - (1..(@successful_savers.size - 1)).each do |index|
@@ -24,7 +24,7 @@
             = link_to((image_tag @successful_savers[index].avatar_photo_url(:small), {:alt => @successful_savers[index].display_name, :style => "width: 210px; margin: 5px;"}), saver_path(@successful_savers[index]))
           .display-name
             =link_to @successful_savers[index].display_name, saver_path(@successful_savers[index])
-          %p
+          %p.large-text
             =truncate @successful_savers[index].description, :length => 200, :omission => "&hellip;"
     .explain{:style => "float: left; width: 675px;"}
       #one{:style => "float: left; width: 223px;"}
@@ -32,21 +32,21 @@
         .info-block
           .tagline
             ="For the things that matter most."
-          %p
+          %p.large-text
             ="A qualified individual or family works hard to save for a life-changing goal such as a higher education, home or small business."
       #two{:style => "float: left; width: 203px;"}
         =image_tag image_path('graphics/you-match.jpg'), {:alt => 'you match'}
         .info-block
           .tagline
             ="To multiply the impact."
-          %p
+          %p.large-text
             ="Your contribution provides a dollar-for-dollar match and is matched again by a non-profit organization."
       #three{:style => "float: left; width: 219px;"}
         =image_tag image_path('graphics/together-we-prosper.jpg'), {:alt => 'together we prosper'}
         .info-block
           .tagline
             ="Build a poverty-free future."
-          %p
+          %p.large-text
             ="By helping low-wage workers who are helping themselves, we break poverty and create economic opportunity for all."
   %br
   .middle{:style => "width: 900px; border-top: 1px dashed #bbbbbb; float: left; margin-top: 5px;"}
@@ -63,7 +63,7 @@
           .info-block
             .display-name
               =link_to saver.display_name, saver_path(saver)
-            %p
+            %p.large-text
               - if saver.short_description?
                 =truncate saver.short_description, :length => 120, :omission => "&hellip;"
               - else

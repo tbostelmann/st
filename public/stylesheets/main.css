@@ -194,10 +194,12 @@ textarea {
     color: #ec972c;
     height: 2em;
     font-weight: bold;
+    margin-bottom: 5px;
 }
 
 .display-name {
     margin-top: 5px;
+    margin-bottom: 5px;
 }
 .display-name a {
     color: #ec972c;
