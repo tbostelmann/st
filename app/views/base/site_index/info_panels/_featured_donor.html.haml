@@ -2,25 +2,25 @@
   ="Featured Donor"
 #featured-donors{:style => "width: 100%; float: left;"}
   .featured-donor#fdDisplay
-    .image{:style => "width: 165px; height: 165px; border: 1px dashed #bbbbbb;"}
-      = link_to((image_tag donors[0].avatar_photo_url(:mini), {:alt => donors[0].display_name, :style => "width: 155px; height: 155px; margin: 5px;"}), donor_path(donors[0]))
+    .image{:style => "width: 165px; height: 150px; border: 1px dashed #bbbbbb;"}
+      = link_to((image_tag donors[0].avatar_photo_url(:mini), {:alt => donors[0].display_name, :style => "width: 155px; height: 140px; margin: 5px;"}), donor_path(donors[0]))
     .info-block
       .display-name
         =link_to donors[0].display_name, donor_path(donors[0])
       %p
         - if donors[0].short_description?
-          =truncate donors[0].short_description, :length => 120, :omission => "&hellip;"
+          =truncate donors[0].short_description, :length => 80, :omission => "&hellip;"
         - else
-          =truncate donors[0].description, :length => 120, :omission => "&hellip;"
+          =truncate donors[0].description, :length => 80, :omission => "&hellip;"
   - (1..(donors.size - 1)).each do |index|
     .featured-donor{:style => "display: none;"}
-      .image{:style => "width: 165px; height: 165px; border: 1px dashed #bbbbbb;"}
-        = link_to((image_tag donors[index].avatar_photo_url(:mini), {:alt => donors[index].display_name, :style => "width: 155px; height: 155px; margin: 5px;"}), donor_path(donors[index]))
+      .image{:style => "width: 165px; height: 150px; border: 1px dashed #bbbbbb;"}
+        = link_to((image_tag donors[index].avatar_photo_url(:mini), {:alt => donors[index].display_name, :style => "width: 155px; height: 140px; margin: 5px;"}), donor_path(donors[index]))
       .info-block
         .display-name
           =link_to donors[index].display_name, donor_path(donors[index])
         %p
           - if donors[index].short_description?
-            =truncate donors[index].short_description, :length => 120, :omission => "&hellip;"
+            =truncate donors[index].short_description, :length => 80, :omission => "&hellip;"
           - else
-            =truncate donors[index].description, :length => 120, :omission => "&hellip;"
+            =truncate donors[index].description, :length => 80, :omission => "&hellip;"
