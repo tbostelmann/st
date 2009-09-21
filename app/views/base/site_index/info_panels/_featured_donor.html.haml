@@ -7,7 +7,7 @@
     .info-block
       .display-name
         =link_to donors[0].display_name, donor_path(donors[0])
-      %p.large-text
+      %p
         - if donors[0].short_description?
           =truncate donors[0].short_description, :length => 120, :omission => "&hellip;"
         - else
@@ -19,7 +19,7 @@
       .info-block
         .display-name
           =link_to donors[index].display_name, donor_path(donors[index])
-        %p.large-text
+        %p
           - if donors[index].short_description?
             =truncate donors[index].short_description, :length => 120, :omission => "&hellip;"
           - else

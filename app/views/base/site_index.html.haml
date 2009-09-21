@@ -8,15 +8,15 @@
 .content
   .top{:style => "width: 900px; float: left;"}
     #question{:style => "float: left; width: 70%;"}
-      =image_tag image_path('graphics/what-if-you-had-the-economic-power-to-break-poverty.jpg'), {:alt => 'what if you had the economic power to break povery?'}
+      =image_tag image_path('graphics/what-if-you-had-the-economic-power-to-break-poverty.jpg'), {:alt => 'what if you had the economic power to break povery?', :style => "width: 550px; margin-left: 50px; margin-bottom: -10px;"}
     #success-stories{:style => "float: right; width: 220px;"}
       .success-story#fadeOn
         .image{:style => "width: 220px; border: 1px dashed #bbbbbb;"}
           = link_to((image_tag @successful_savers[0].avatar_photo_url(:small), {:alt => @successful_savers[0].display_name, :style => "width: 210px; margin: 5px;"}), saver_path(@successful_savers[0]))
         .display-name
           =link_to @successful_savers[0].display_name, saver_path(@successful_savers[0])
-        %p.large-text
-          =truncate @successful_savers[0].description, :length => 200, :omission => "&hellip;"
+        %p
+          =truncate @successful_savers[0].description, :length => 150, :omission => "&hellip;"
 
       - (1..(@successful_savers.size - 1)).each do |index|
         .success-story{:style => "display: none;"}
@@ -24,29 +24,29 @@
             = link_to((image_tag @successful_savers[index].avatar_photo_url(:small), {:alt => @successful_savers[index].display_name, :style => "width: 210px; margin: 5px;"}), saver_path(@successful_savers[index]))
           .display-name
             =link_to @successful_savers[index].display_name, saver_path(@successful_savers[index])
-          %p.large-text
-            =truncate @successful_savers[index].description, :length => 200, :omission => "&hellip;"
+          %p
+            =truncate @successful_savers[index].description, :length => 150, :omission => "&hellip;"
     .explain{:style => "float: left; width: 675px;"}
       #one{:style => "float: left; width: 223px;"}
         =image_tag image_path('graphics/they-save.jpg'), {:alt => 'they save'}
         .info-block
           .tagline
             ="For the things that matter most."
-          %p.large-text
+          %p
             ="A qualified individual or family works hard to save for a life-changing goal such as a higher education, home or small business."
       #two{:style => "float: left; width: 203px;"}
         =image_tag image_path('graphics/you-match.jpg'), {:alt => 'you match'}
         .info-block
           .tagline
             ="To multiply the impact."
-          %p.large-text
+          %p
             ="Your contribution provides a dollar-for-dollar match and is matched again by a non-profit organization."
       #three{:style => "float: left; width: 219px;"}
         =image_tag image_path('graphics/together-we-prosper.jpg'), {:alt => 'together we prosper'}
         .info-block
           .tagline
             ="Build a poverty-free future."
-          %p.large-text
+          %p
             ="By helping low-wage workers who are helping themselves, we break poverty and create economic opportunity for all."
   %br
   .middle{:style => "width: 900px; border-top: 1px dashed #bbbbbb; float: left; margin-top: 5px;"}
@@ -63,13 +63,16 @@
           .info-block
             .display-name
               =link_to saver.display_name, saver_path(saver)
-            %p.large-text
+            %p
               - if saver.short_description?
                 =truncate saver.short_description, :length => 120, :omission => "&hellip;"
               - else
                 =truncate saver.description, :length => 120, :omission => "&hellip;"
-            %div{:style =>"float:left;"}
-              =render :partial => "savers/shared/ask_control", :locals => {:saver => saver}
+            .info{:style =>"float:left;"}
+              %table{:width => "100%", :height => "100%", :border => "0", :cellpadding => "2"}
+                %tr
+                  %td{:colspan => "2"}
+                    = render(:partial => "savers/match_box/control", :locals => {:saver => saver})
       .panel.match-now{:style => "float: left; width: 245px; height: 100%"}
         %h2{:style => "float: right; margin-top: 75px;"}
           ="Help Break the Cycle"
@@ -82,12 +85,12 @@
       .info{:style => "width: 204px; margin: 10px;"}
         = render :partial => "base/site_index/info_panels/featured_donor", :locals => {:donors => @featured_donors}
 
-    .panel{:style => "width: 214px; height: 100%; float: left; border-right: 1px dashed #bbbbbb;"}
-      .info{:style => "width: 194px; margin: 10px;"}
+    .panel{:style => "width: 194px; height: 100%; float: left; border-right: 1px dashed #bbbbbb;"}
+      .info{:style => "width: 174px; margin: 10px;"}
         = render :partial => "base/site_index/info_panels/news"
 
-    .panel{:style => "width: 224px; height: 100%; float: left; border-right: 1px dashed #bbbbbb;"}
-      .info{:style => "width: 204px; margin: 10px;"}
+    .panel{:style => "width: 234px; height: 100%; float: left; border-right: 1px dashed #bbbbbb;"}
+      .info{:style => "width: 214px; margin: 10px;"}
         = render :partial => "base/site_index/info_panels/policy_advocacy"
 
     .panel{:style => "width: 234px; height: 100%; float: left;"}

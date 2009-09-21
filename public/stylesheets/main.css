@@ -151,7 +151,7 @@ textarea {
 }
 .menu UL LI {
 	display: inline;
-	font-size: 16px;
+	font-size: 14px;
 }
 .menu UL LI A {
 	color: #fff;
@@ -190,11 +190,11 @@ textarea {
     margin-left: 5px;
 }
 .tagline {
-    font-size: 18px;
+    font-size: 14px;
     color: #ec972c;
     height: 2em;
     font-weight: bold;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
 }
 
 .display-name {
@@ -379,7 +379,7 @@ textarea {
 .content P {
 	margin-top: 10px;
 	color: #0a0a0a;
-	font-size: 14px;
+	font-size: 12px;
 	line-height: 120%;
 }
 .content P.large-text {
