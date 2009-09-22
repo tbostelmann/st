@@ -167,15 +167,6 @@ textarea {
 	position: relative;
 }
 
-.impact-meter {
-    color: #fff;
-    font-size: 20px;
-    font-weight: bold;
-    float: right;
-    margin-right: 20px;
-    margin-top: 5px;
-}
-
 .text-box {
 	float: right;
 	width: 205px;
