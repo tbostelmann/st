@@ -43,7 +43,7 @@
           .block.no-border
             .indent
               %h3
-                Let your Congressional representatives know you support these proposals by allowing us to send them a supportive note with your endorsement below
+                = "Let your congressional representative know you support these proposals by adding your contact information below."
               .indent.text12
                 %div{:style => "display: block;"}
 
@@ -76,9 +76,8 @@
                         %em
                           %b
                             = "Note:"
-                          = "you will be adding you voice to a list that is maintained by our partner, CFED."
-                          = "  For questions about how your name will be used click "
-                          %a{:href => "http://savetogether.cfed.org/signup/"}= "here."
+                          = "You will be adding your name to a list that is maintained by CFED. To change your contact preferences or learn more contact "
+                          %a{:href => "http://savetogether.cfed.org/signup/"}= "CFED"
                     %tr
                       %td
                       %td
@@ -86,8 +85,32 @@
           .block.no-border
             %h2
               Did You Know?
-            .block.no-border
+            .take-action-quote#quoteFadeOn
               .indent
                 %em
-                  "Federal and State governments spend more than half a trillion dollars each year on incentives for Americans to save for education, homes, businesses and retirement."
+                  = 'Federal and State governments spend more than half a trillion dollars each year on incentives for Americans to save for education, homes, businesses and retirement.'
+            .take-action-quote{:style => "display: none;"}
+              .indent
+                %em
+                  = 'Forty five percent of these incentives accrue to the benefit of the richest 45% of Americans, those making more than $1.25 million a year.'
+            .take-action-quote{:style => "display: none;"}
+              .indent
+                %em
+                  = 'Only 3% of the half trillion annual expenditure on savings incentives reaches the bottom 60% of American households who make less than $60,000 per year.'
+            .take-action-quote{:style => "display: none;"}
+              .indent
+                %em
+                  = 'The richest 1% of Americans receive an average saving and asset-building tax incentive of $169,000 while the poorest 20% receive $3.'
+            .take-action-quote{:style => "display: none;"}
+              .indent
+                %em
+                  = 'The richest Americans receive the equivalent of a Mercedes a year in savings incentives, while the poorest 20% get a cup of coffee.'
+            .take-action-quote{:style => "display: none;"}
+              .indent
+                %em
+                  = 'The annual Federal incentive for savings for education, home, business and retirement averages out to more than $1500 for every man, woman and child in America, but 80% of Americans get a fraction of this.'
+            .take-action-quote{:style => "display: none;"}
+              .indent
+                %em
+                  = 'For the last several years, the rate of new retirement savings actually was less than the government provided in retirement saving incentives.'
     
