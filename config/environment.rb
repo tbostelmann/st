@@ -1,17 +1,18 @@
 # Be sure to restart your server when you modify this file
 
 # Specifies gem version of Rails to use when vendor/rails is not present
-RAILS_GEM_VERSION = '2.3.2' unless defined? RAILS_GEM_VERSION
+RAILS_GEM_VERSION = '2.3.4' unless defined? RAILS_GEM_VERSION
 
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
-require File.join(File.dirname(__FILE__), '../vendor/plugins/engines/boot')
 require File.join(File.dirname(__FILE__), 'savetogether.rb')
+
+require 'desert'
 
 Rails::Initializer.run do |config|
   #resource_hacks required here to ensure routes like /:login_slug work
-  config.plugins = [:engines, :community_engine, :white_list, :all]
-  config.plugin_paths += ["#{RAILS_ROOT}/vendor/plugins/community_engine/engine_plugins"]
+  config.plugins = [:community_engine, :white_list, :all]
+  config.plugin_paths += ["#{RAILS_ROOT}/vendor/plugins/community_engine/plugins"]
 
   # Settings in config/environments/* take precedence over those specified here.
   # Application configuration should go into files in config/initializers
@@ -21,20 +22,22 @@ Rails::Initializer.run do |config|
   # config.load_paths += %W( #{RAILS_ROOT}/extras )
 
   # Specify gems that this application depends on and have them installed with rake gems:install
-  # config.gem "bj"
-  # config.gem "hpricot", :version => '0.6', :source => "http://code.whytheluckystiff.net"
-  # config.gem "sqlite3-ruby", :lib => "sqlite3"
-  # config.gem "aws-s3", :lib => "aws/s3"
-  config.gem "hpricot", :version => '0.8.1'
-  config.gem "haml", :version => '2.0.9'
-  config.gem "htmlentities", :version => '4.0.0'
-  config.gem "money", :version => '2.1.3'
-  config.gem "RedCloth", :version => '4.1.9'
-  config.gem "activemerchant", :lib => "active_merchant", :version => "1.4.2"
-  config.gem "populator", :version => "0.2.5"
+  config.gem "calendar_date_select", :version => "1.15"
+  config.gem "desert", :version => "0.5.2"
   config.gem "faker", :version => "0.3.1"
-  config.gem "ruport"
+  config.gem "haml", :version => '2.2.5'
+  config.gem "hpricot", :version => '0.8.1'
+  config.gem "htmlentities", :version => '4.2.0'
+  config.gem "icalendar", :version => "1.1.0"
+  config.gem "populator", :version => "0.2.5"
+  config.gem "money", :version => '2.1.4'
+  config.gem "rake" , :version => "0.8.7"
+  config.gem "ruport", :version => "1.6.1"
 
+  config.action_controller.session = {
+    :key    => '_your_app_session',
+    :secret => 'secret'
+  }
   # Only load the plugins named here, in the order given (default is alphabetical).
   # :all can be used as a placeholder for all plugins not explicitly named
   # config.plugins = [ :exception_notification, :ssl_requirement, :all ]
@@ -54,7 +57,7 @@ Rails::Initializer.run do |config|
   # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}')]
   # config.i18n.default_locale = :de
 end# Include your application configuration below
-require "#{RAILS_ROOT}/vendor/plugins/community_engine/engine_config/boot.rb"
+require "#{RAILS_ROOT}/vendor/plugins/community_engine/config/boot.rb"
 
 APP_URL = AppConfig.app_url
 

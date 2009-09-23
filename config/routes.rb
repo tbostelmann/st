@@ -67,7 +67,7 @@ ActionController::Routing::Routes.draw do |map|
   # map.signup_after '/signup/:pledge_id',     :controller => 'donors',  :action => 'new'
 
   # Any route ST app-specific should come before the community engine routes
-  map.from_plugin :community_engine
+  map.routes_from_plugin :community_engine
 
   # Install the default routes as the lowest priority.
   # Note: These default routes make all actions in every controller accessible via GET requests. You should
