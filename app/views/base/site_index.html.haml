@@ -70,7 +70,7 @@
                 =truncate saver.description, :length => 120, :omission => "&hellip;"
             .info{:style =>"float:left; font-size: 12px;"}
               = render(:partial => "savers/match_box/control", :locals => {:saver => saver})
-      .panel.match-now{:style => "float: left; width: 235px; height: 100%"}
+      .panel.match-now{:style => "float: left; width: 235px; height: 90%"}
         %span{:style => "float: right; margin-top: 25px; line-height: 130%; color: #7ca13e;"}
           %em{:style => "font-size: 14px;"}
             ="We must lay a new foundation for growth and prosperity – a foundation that will move us from an era of borrow and spend to one where we "
@@ -81,6 +81,8 @@
           ="- President Barack Obama"
         .text
           =link_to image_tag(image_path('buttons/get-started.jpg'), {:alt => 'get started', :style => "float: right; margin-top: 10px;"}), match_savers_path
+      .panel{:style => "margin-top: 90px;"}
+        = link_to "<< See All Savers", match_savers_path
 
   .bottom{:style => "width: 900px; height: 250px; border-top: 1px dashed #bbbbbb; float: left; margin-top: 5px;"}
 
