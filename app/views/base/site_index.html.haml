@@ -7,8 +7,8 @@
 
 .content
   .top{:style => "width: 900px; float: left;"}
-    #question{:style => "float: left; width: 70%; height: 80px; margin-top: 20px;"}
-      =image_tag image_path('graphics/what-if-you-had-the-economic-power-to-break-poverty.jpg'), {:alt => 'what if you had the economic power to break povery?', :style => "width: 350px; margin-left: 150px; margin-bottom: -10px;"}
+    #question{:style => "float: left; width: 70%;"}
+      =image_tag image_path('graphics/what-if-you-had-the-economic-power-to-break-poverty.jpg'), {:alt => 'what if you had the economic power to break povery?', :style => "margin-left: 25px; margin-bottom: -10px;"}
     #success-stories{:style => "float: right; width: 220px; height: 340px;"}
       .success-story#fadeOn
         .image{:style => "width: 220px; border: 1px dashed #bbbbbb;"}
@@ -27,21 +27,21 @@
           %p
             =truncate @successful_savers[index].description, :length => 150, :omission => "&hellip;"
     .explain{:style => "float: left; width: 675px;"}
-      #one{:style => "float: left; width: 223px;"}
-        =image_tag image_path('graphics/they-save.jpg'), {:alt => 'they save'}
+      #one{:style => "float: left; width: 223px; margin-top: 10px;"}
+        =image_tag image_path('graphics/they-save.jpg'), {:alt => 'they save', :style => "margin-top: 25px;"}
         .info-block
           .tagline
             ="For the things that matter most."
           %p
             ="A qualified individual or family works hard to save for a life-changing goal such as a higher education, home or small business."
-      #two{:style => "float: left; width: 203px;"}
+      #two{:style => "float: left; width: 203px; margin-top: 10px;"}
         =image_tag image_path('graphics/you-match.jpg'), {:alt => 'you match'}
         .info-block
           .tagline
             ="To multiply the impact."
           %p
             ="Your contribution provides a dollar-for-dollar match and is matched again by a non-profit organization."
-      #three{:style => "float: left; width: 219px;"}
+      #three{:style => "float: left; width: 219px; margin-top: 10px;"}
         =image_tag image_path('graphics/together-we-prosper.jpg'), {:alt => 'together we prosper'}
         .info-block
           .tagline
