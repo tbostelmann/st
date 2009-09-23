@@ -25,7 +25,7 @@ Rails::Initializer.run do |config|
   config.gem "calendar_date_select", :version => "1.15"
   config.gem "desert", :version => "0.5.2"
   config.gem "faker", :version => "0.3.1"
-  config.gem "haml", :version => '2.2.5'
+  config.gem "haml", :version => '2.2.3'
   config.gem "hpricot", :version => '0.8.1'
   config.gem "htmlentities", :version => '4.2.0'
   config.gem "icalendar", :version => "1.1.0"
