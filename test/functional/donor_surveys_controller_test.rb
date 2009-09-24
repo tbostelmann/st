@@ -20,7 +20,7 @@ class DonorSurveysControllerTest < ActionController::TestCase
             :zip_code => "55406"}}
 
     assert_response :redirect
-    assert_redirected_to :action => :show
+    assert_redirected_to :controller => :donor_surveys, :action => :show
     
     assert assigns['donor_survey']
 
@@ -36,7 +36,7 @@ class DonorSurveysControllerTest < ActionController::TestCase
             :zip_code => "55406"}}
 
     assert_response :redirect
-    assert_redirected_to :action => :show
+    assert_redirected_to :controller => :donor_surveys, :action => :show
 
     assert assigns['donor_survey']
     assert flash[:thank_you_for_donor_survey]

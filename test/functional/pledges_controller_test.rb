@@ -216,7 +216,7 @@ class PledgesControllerTest < ActionController::TestCase
       :auth => 'ZYTlDZ4v57sLTuL7WyZ6m2yqSuVYbjpLtndecieoKRVQMBLnqoLGzVeW0fLuVGIo2x3RJtPa-bB-i7--'
     }
 
-    assert_redirected_to :controller => :donor_surveys, :action => :show
+    assert_redirected_to :controller => "donor_surveys", :action => "show", :thank_you_for_pledge => true
     assert_not_nil assigns['pledge']
     assert flash[:thank_you_for_pledge]
 

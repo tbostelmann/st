@@ -53,7 +53,7 @@ class OrganizationsControllerTest < ActionController::TestCase
     org = users(:earn)
     login_as(:donor)
     get :edit, {:id => org.id}
-    assert_redirected_to :action => :show
+    assert_redirected_to :controller => :organizations, :action => :show
   end
 
   test "update an organization profile" do
