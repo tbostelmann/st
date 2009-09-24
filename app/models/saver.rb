@@ -61,20 +61,36 @@ class Saver < Party
               :converter => Proc.new { |value| value.to_money }
 
   validates_presence_of :first_name
-  validates_presence_of :last_name
 
   validates_presence_of :organization
-  validates_presence_of :requested_match_cents
   validates_presence_of :asset_type
 
-  def self.find_successful_savers(*args)
-    self.find_random(*args)
+  def self.find_active(*args)
+    with_scope(:find => {:conditions => ["requested_match_cents > 0 AND profile_public is true"]}) do
+      find(*args)
+    end
   end
 
-  def match_percent
+  def self.find_random_active(*args)
+    with_scope(:find => {:conditions => ["requested_match_cents > 0 AND profile_public is true"], :order => 'rand()'}) do
+      find(*args)
+    end
+  end
+
+  def self.find_random_successful_savers(*args)
+    with_scope(:find => {:conditions => ["requested_match_cents = 0 AND profile_public is true"], :order => 'rand()'}) do
+      find(*args)
+    end
+  end
+
+  def is_successful_saver?
+    return requested_match_cents <= 0
+  end
+
+  def match_percentage
     balance = matched_amount_cents
     if balance > 0
-      return balance.to_f / requested_match_cents.to_f
+      return [((balance.to_f / requested_match_cents.to_f) * 100).round, 100].min
     else
       return 0
     end

@@ -1,7 +1,7 @@
 class BaseController < ApplicationController
   def site_index
-    @successful_savers = Saver.find_successful_savers(:all, :limit => 5)
-    @featured_savers  = Saver.find_random(:all, :limit => 3)
+    @successful_savers = Saver.find_random_successful_savers(:all, :limit => 5)
+    @featured_savers  = Saver.find_random_active(:all, :limit => 3)
     @partner_list     = random_partner_list
     @featured_donors   = Donor.find_featured_donor(3)
 

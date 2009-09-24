@@ -42,8 +42,8 @@ namespace :import do
         end
         photo = Photo.new(
                 :name => "#{org_data['first_name']} Logo",
-                :uploaded_data => ActionController::TestUploadedFile.new("#{RAILS_ROOT}/test/files/import/#{org_data['image_file']}", org_data['image_file_type']),
-                :user => org)
+                :uploaded_data => ActionController::TestUploadedFile.new("#{RAILS_ROOT}/test/files/import/#{org_data['image_file']}", org_data['image_file_type']))
+        photo.user = org
         photo.save
         org.avatar = photo
         org.save
@@ -78,6 +78,7 @@ namespace :import do
           :login_confirmation => saver_data['login'],
           :first_name => saver_data['first_name'],
           :last_name => saver_data['last_name'],
+          :short_description => saver_data['short_description'],
           :description => saver_data['description'].gsub(/\n/, "<br>"),
           :salt => "7e3041ebc2fc05a40c60028e2c4901a81035d3cd",
           :crypted_password => "00742970dc9e6319f8019fd54864d3ea740f04b1", # test
@@ -92,11 +93,15 @@ namespace :import do
         saver.activate
         photo = Photo.new(
                 :name => saver_data['first_name'],
-                :uploaded_data => ActionController::TestUploadedFile.new("#{RAILS_ROOT}/test/files/import/#{saver_data['image_file']}", 'image/jpg'),
-                :user => saver)
-        photo.save
+                :uploaded_data => ActionController::TestUploadedFile.new("#{RAILS_ROOT}/test/files/import/#{saver_data['image_file']}", 'image/jpg', false))
+        photo.user = saver
+        unless photo.save
+          raise "Photo did not save!"
+        end
         saver.avatar = photo
-        saver.save
+        unless saver.save
+          raise "Saver did not save!"
+        end
       end
     end
   end

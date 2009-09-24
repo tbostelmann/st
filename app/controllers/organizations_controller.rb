@@ -72,6 +72,6 @@ class OrganizationsController < BaseController
       redirect_to home_path
     end
     @photos = @org.photos.find(:all, :limit => 5)
-    @savers = @org.savers.find(:all, :page => {:current => params[:page], :size => 20})
+    @savers = @org.savers.find_active(:all, :page => {:current => params[:page], :size => 20})
   end
 end

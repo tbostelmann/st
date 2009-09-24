@@ -86,7 +86,7 @@ class SaversController < BaseController
     end
 
     cond, @search, @metro_areas, @states, @asset_types = Saver.paginated_users_conditions_with_search(params)
-    @savers = Saver.find(:all,
+    @savers = Saver.find_active(:all,
       :conditions => cond.to_sql,
       :include => [:tags],
       :page => {:current => params[:page], :size => 20},

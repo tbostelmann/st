@@ -13,7 +13,7 @@
     
       -# Match Info
       =render :partial => "savers/shared/property", :locals => {:name => "#{:match_request.l}:", :value => mini_saver.requested_match_amount.format(:no_cents)}
-      =render :partial => "savers/shared/property", :locals => {:name => "#{:match_committed.l}:", :value => "#{mini_saver.matched_amount.format(:no_cents)} (#{(mini_saver.match_percent*100).round}%)"}
+      =render :partial => "savers/shared/property", :locals => {:name => "#{:match_committed.l}:", :value => "#{mini_saver.matched_amount.format(:no_cents)} (#{mini_saver.match_percentage}%)"}
     
       -# Progress Bar
       =render :partial => "savers/shared/progress_bar", :locals => {:saver => mini_saver, :style => "progress-bar"}

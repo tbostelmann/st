@@ -62,7 +62,7 @@ saver:
   state: washington
   metro_area: seattle
   profile_public: true
-  login_slug: saver
+  login_slug: saver@example.com
   birthday: <%= 25.years.ago.to_s :db %>
   gender: F
   activities_count: 0
@@ -71,7 +71,31 @@ saver:
   organization: earn
   requested_match_cents: 200000
   type: Saver
-  
+
+saver_success_story:
+  login: saver_success_story@example.com
+  email: saver_success_story@example.com
+  first_name: Super
+  short_description: I am a short saver
+  description: I am a saver
+  salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
+  crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
+  created_at: <%= 6.days.ago.to_s :db %>
+  activated_at: <%= 6.days.ago.to_s :db %>
+  activation_code:
+  state: washington
+  metro_area: seattle
+  profile_public: true
+  login_slug: saver_success_story@example.com
+  birthday: <%= 25.years.ago.to_s :db %>
+  gender: F
+  activities_count: 0
+  role_id: 3
+  asset_type: education
+  organization: earn
+  requested_match_cents: 0
+  type: Saver
+
 saver2:
   login: saver2@example.com
   first_name: Super

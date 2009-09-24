@@ -3,6 +3,14 @@ require 'benchmark'
 include Benchmark
 
 class SaverTest < ActiveSupport::TestCase
+  test "successful_saver?" do
+    saver = users(:saver_success_story)
+    assert saver.is_successful_saver?
+
+    saver = users(:saver)
+    assert !saver.is_successful_saver?
+  end
+
   test "get the list of donations_received" do
     saver = users(:saver)
     assert saver.all_donations_received.size == 1
@@ -28,13 +36,13 @@ class SaverTest < ActiveSupport::TestCase
 
   test "get saver matched percentage" do
     saver = users(:saver)
-    assert saver.match_percent > 0
+    assert saver.match_percentage > 0
 
     saver2 = users(:saver2)
-    assert saver2.match_percent == 0
+    assert saver2.match_percentage == 0
 
     saver3 = users(:saver3)
-    assert saver3.match_percent == 0
+    assert saver3.match_percentage == 0
   end
   
   test "more than 4 featured savers can be requested" do  

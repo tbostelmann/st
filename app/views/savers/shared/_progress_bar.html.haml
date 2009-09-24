@@ -3,7 +3,7 @@
     %table{:class => "#{style}", :cellspacing => "0"}
       %tbody
         %tr
-          - progress = [(saver.match_percent * 100).round, 100].min
+          - progress = [saver.match_percentage, 100].min
           - remainder = 100 - progress
           - if (progress != 0)
             %td{:class => "progress-pct", :width => "#{progress}%", :colspan => "#{progress == 100 ? 2 : 1}"}
