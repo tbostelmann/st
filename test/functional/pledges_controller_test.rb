@@ -19,8 +19,8 @@ class PledgesControllerTest < ActionController::TestCase
   end
 
   test "go to savetogether ask page logged in" do
-    login_as(:donor4)
-    pledge = invoices(:pledge)
+    login_as(:donor3)
+    pledge = invoices(:pledge4)
     session[:pledge_id] = pledge.id
 
     get :savetogether_ask
