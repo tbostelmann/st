@@ -62,7 +62,7 @@
         %span{:style => "font-size: 16px; font-weight: normal;"}
           = link_to '(See All Savers &raquo;)', match_savers_path
 
-    .featured-savers
+    .featured-savers{:style => "margin-top: 15px;"}
       -@featured_savers.each do |saver|
         .featured{:style => "width: 215px; height: 100%; float: left;"}
           .image{:style => "width: 165px; height: 165px; border: 1px dashed #bbbbbb; margin-left: 5px; margin-right: 5px"}

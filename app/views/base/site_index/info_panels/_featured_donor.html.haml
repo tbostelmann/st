@@ -1,6 +1,6 @@
 %h2
   ="Featured Donor"
-#featured-donors{:style => "width: 100%; float: left;"}
+#featured-donors{:style => "width: 100%; float: left; margin-top: 6px;"}
   .featured-donor#fdDisplay
     .image{:style => "width: 165px; height: 150px; border: 1px dashed #bbbbbb;"}
       = link_to((image_tag donors[0].avatar_photo_url(:mini), {:alt => donors[0].display_name, :style => "width: 155px; height: 140px; margin: 5px;"}), donor_path(donors[0]))
