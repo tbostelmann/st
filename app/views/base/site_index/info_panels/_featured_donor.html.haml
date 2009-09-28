@@ -7,11 +7,6 @@
     .info-block
       .display-name
         =link_to donors[0].display_name, donor_path(donors[0])
-      %p
-        - if donors[0].short_description?
-          =truncate donors[0].short_description, :length => 80, :omission => "&hellip;"
-        - else
-          =truncate donors[0].description, :length => 80, :omission => "&hellip;"
   - (1..(donors.size - 1)).each do |index|
     .featured-donor{:style => "display: none;"}
       .image{:style => "width: 165px; height: 150px; border: 1px dashed #bbbbbb;"}
@@ -19,8 +14,3 @@
       .info-block
         .display-name
           =link_to donors[index].display_name, donor_path(donors[index])
-        %p
-          - if donors[index].short_description?
-            =truncate donors[index].short_description, :length => 80, :omission => "&hellip;"
-          - else
-            =truncate donors[index].description, :length => 80, :omission => "&hellip;"

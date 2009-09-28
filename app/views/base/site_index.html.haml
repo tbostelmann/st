@@ -14,18 +14,23 @@
         .image{:style => "width: 220px; border: 1px dashed #bbbbbb;"}
           = link_to((image_tag @successful_savers[0].avatar_photo_url(:small), {:alt => @successful_savers[0].display_name, :style => "width: 210px; margin: 5px;"}), saver_path(@successful_savers[0]))
         .display-name
-          =link_to @successful_savers[0].display_name, saver_path(@successful_savers[0])
+          =link_to 'A Success Story...', saver_path(@successful_savers[0])
         %p
-          =truncate @successful_savers[0].description, :length => 150, :omission => "&hellip;"
-
+          - if @successful_savers[0].short_description?
+            =truncate @successful_savers[0].short_description, :length => 150, :omission => "&hellip;"
+          - else
+            =truncate @successful_savers[0].description, :length => 150, :omission => "&hellip;"
       - (1..(@successful_savers.size - 1)).each do |index|
         .success-story{:style => "display: none;"}
           .image{:style => "width: 220px; border: 1px dashed #bbbbbb;"}
             = link_to((image_tag @successful_savers[index].avatar_photo_url(:small), {:alt => @successful_savers[index].display_name, :style => "width: 210px; margin: 5px;"}), saver_path(@successful_savers[index]))
           .display-name
-            =link_to @successful_savers[index].display_name, saver_path(@successful_savers[index])
+            =link_to 'A Success Story...', saver_path(@successful_savers[index])
           %p
-            =truncate @successful_savers[index].description, :length => 150, :omission => "&hellip;"
+            - if @successful_savers[index].short_description?
+              =truncate @successful_savers[index].short_description, :length => 150, :omission => "&hellip;"
+            - else
+              =truncate @successful_savers[index].description, :length => 150, :omission => "&hellip;"
     .explain{:style => "float: left; width: 675px;"}
       #one{:style => "float: left; width: 223px; margin-top: 10px;"}
         =image_tag image_path('graphics/they-save.jpg'), {:alt => 'they save', :style => "margin-top: 25px;"}
@@ -33,27 +38,29 @@
           .tagline
             ="For the things that matter most."
           %p
-            ="A qualified individual or family works hard to save for a life-changing goal such as a higher education, home or small business."
+            ="Qualified individuals work hard to save for life-changing goals such as a higher education, home or small business."
       #two{:style => "float: left; width: 203px; margin-top: 10px;"}
         =image_tag image_path('graphics/you-match.jpg'), {:alt => 'you match'}
         .info-block
           .tagline
             ="To multiply the impact."
           %p
-            ="Your contribution provides a dollar-for-dollar match and is matched again by a non-profit organization."
+            ="Your tax-deductible contribution provides a dollar-for-dollar match and is matched again by one of our non-profit organizations."
       #three{:style => "float: left; width: 219px; margin-top: 10px;"}
         =image_tag image_path('graphics/together-we-prosper.jpg'), {:alt => 'together we prosper'}
         .info-block
           .tagline
-            ="Build a poverty-free future."
+            ="With a poverty-free future."
           %p
-            ="By helping low-wage workers who are helping themselves, we break poverty and create economic opportunity for all."
+            ="By helping people who are helping themselves, we create a world where any individual can save and invest in their own future."
   %br
   .middle{:style => "width: 900px; border-top: 1px dashed #bbbbbb; float: left; margin-top: 5px;"}
 
     .title{:style => "width: 100%; margin-top: 10px;"}
       %h2
-        ="Help Break Poverty Now!"
+        = "Featured Savers "
+        %span{:style => "font-size: 16px; font-weight: normal;"}
+          = link_to '(See All Savers &raquo;)', match_savers_path
 
     .featured-savers
       -@featured_savers.each do |saver|
@@ -65,26 +72,39 @@
               =link_to saver.display_name, saver_path(saver)
             %p
               - if saver.short_description?
-                =truncate saver.short_description, :length => 120, :omission => "&hellip;"
+                =truncate saver.short_description, :length => 105, :omission => "&hellip;"
               - else
-                =truncate saver.description, :length => 120, :omission => "&hellip;"
+                =truncate saver.description, :length => 105, :omission => "&hellip;"
+              =link_to "more &raquo;", saver_path(saver)
             .info{:style =>"float:left; font-size: 12px;"}
               = render(:partial => "savers/match_box/control", :locals => {:saver => saver})
       .panel.match-now{:style => "float: left; width: 235px; height: 90%"}
-        %span{:style => "float: right; margin-top: 25px; line-height: 130%; color: #7ca13e;"}
-          %em{:style => "font-size: 14px;"}
-            ="We must lay a new foundation for growth and prosperity – a foundation that will move us from an era of borrow and spend to one where we "
-          %em{:style => "font-size: 16px; font-weight: bold;"}
-            ="save and invest."
-        %br
-        %em{:style => "float: right; font-size: 12px; color: #7ca13e;"}
-          ="- President Barack Obama"
-        .text
-          =link_to image_tag(image_path('buttons/get-started.jpg'), {:alt => 'get started', :style => "float: right; margin-top: 10px;"}), match_savers_path
-      .panel{:style => "margin-top: 90px;"}
-        = link_to "<< See All Savers", match_savers_path
+        .donor-quotes{:style => "height: 9em;"}
+          .donor-quote#displayedQuote
+            %span{:style => "float: right; margin-top: 25px; line-height: 130%; color: #7ca13e;"}
+              %em{:style => "font-size: 14px;"}
+                = "I am excited to be part of a community that is working hard to break the cycle of poverty via a culture of disciplined saving and investment."
+            %em{:style => "float: right; font-size: 12px; color: #7ca13e;"}
+              = "- Kate, a SaveTogether donor"
+          .donor-quote{:style => "display: none;"}
+            %span{:style => "float: right; margin-top: 25px; line-height: 130%; color: #7ca13e;"}
+              %em{:style => "font-size: 14px;"}
+                ="We must lay a new foundation for growth and prosperity – a foundation that will move us from an era of borrow and spend to one where we "
+              %em{:style => "font-size: 16px; font-weight: bold;"}
+                ="save and invest."
+            %br
+            %em{:style => "float: right; font-size: 12px; color: #7ca13e;"}
+              ="- President Barack Obama"
+          .donor-quote{:style => "display: none;"}
+            %span{:style => "float: right; margin-top: 25px; line-height: 130%; color: #7ca13e;"}
+              %em{:style => "font-size: 14px;"}
+                = "Once someone sees the power of saving a little each month - they can create a new kind of financial mind set that allows them to attain goal after goal."
+            %em{:style => "float: right; font-size: 12px; color: #7ca13e;"}
+              = "- Leslie, a SaveTogether donor"
+      .text
+        =link_to image_tag(image_path('buttons/get-started.jpg'), {:alt => 'get started', :style => "float: right; margin-top: 10px;"}), match_savers_path
 
-  .bottom{:style => "width: 900px; height: 250px; border-top: 1px dashed #bbbbbb; float: left; margin-top: 5px;"}
+  .bottom{:style => "width: 900px; height: 200px; border-top: 1px dashed #bbbbbb; float: left; margin-top: 5px;"}
 
     .panel{:style => "width: 224px; height: 100%; float: left; border-right: 1px dashed #bbbbbb;"}
       .info{:style => "width: 204px; margin: 10px;"}

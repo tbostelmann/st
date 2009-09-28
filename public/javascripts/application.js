@@ -21,6 +21,11 @@ var t4;
 var l4;
 var quoteList;
 
+var i5 = 0;
+var t5;
+var l5;
+var quoteList2;
+
 window.onload=function iterate_fade_inout() {
     successStories = document.getElementsByClassName('success-story');
     l = successStories.length;
@@ -34,10 +39,14 @@ window.onload=function iterate_fade_inout() {
     quoteList = document.getElementsByClassName('take-action-quote');
     l4 = quoteList.length;
 
+    quoteList2 = document.getElementsByClassName('donor-quote');
+    l5 = quoteList2.length;
+
     if (l > 0) {fade_inout();}
     if (l2 > 0) {fd_fade_inout();}
     if (l3 > 0) {pl_fade_inout();}
     if (l4 > 0) {quote_fade_inout();}
+    if (l5 > 0) {fp_quote_fade_inout();}
 }
 
 function fade_inout() {
@@ -65,6 +74,15 @@ function pl_fade_inout() {
     partnerList[(i3 % l3)].id = 'plFadeOn'
     new Effect.Appear('plFadeOn', {queue: {scope: 'two', position: 'end'}})
     t3 = setTimeout("pl_fade_inout()",10000);
+}
+
+function fp_quote_fade_inout() {
+    new Effect.Fade('displayedQuote', {queue: {scope: 'three'}})
+    quoteList2[(i5 % l5)].id = ''
+    i5++;
+    quoteList2[(i5 % l5)].id = 'displayedQuote'
+    new Effect.Appear('displayedQuote', {queue: {scope: 'three', position: 'end'}})
+    t5 = setTimeout("fp_quote_fade_inout()",10000);
 }
 
 function quote_fade_inout() {
