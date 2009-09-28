@@ -2,12 +2,30 @@
 
 .content
 
-  = render :partial => 'users/search_options'
-
   %h1
-    =:savers.l.titleize
+    ="Match a Saver - It's Easy!"
 
   .single-column
+    .block.no-border
+      %div{:style => "float: left;"}
+        = image_tag "#{image_path('icons/one.gif')}"
+      %h2.numbered
+        ="Find a Saver Whose Goal Resonates With You"
+
+      %br
+      %div{:style => "float: left;"}
+        = image_tag "#{image_path('icons/two.gif')}"
+      %h2.numbered
+        Make a Matching Contribution
+
+      %br
+      %div{:style => "float: left;"}
+        = image_tag "#{image_path('icons/three.gif')}"
+      %h2.numbered
+        Track Their Progress
+
+    .block{:style => "margin-top: 20px;"}
+      = render :partial => 'users/search_options'
 
     .pagination.upper
       = paginating_links @savers, :params => params if @savers.page_count > 1

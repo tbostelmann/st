@@ -6,12 +6,12 @@
     .do-more
       .two-column-layout.wide
         .tcl-column.left
-          %h2
-            Match Millions
           .block.no-border
+            %h2
+              Match Millions
             .indent
               %p
-                Each year Federal and state governments provide $500 billion in tax incentives for higher education, home ownership, business and retirement savings.  The lion’s share of these tax incentives flow to the top 20% of tax payers, while less that 3% reaches the bottom 3/5 of American families.  Yet we know from 20 years of rigorously evaluated demonstrations that given the opportunity, low-inome and even very poor families will save, learn, work and invest and ultimately, go to college, start businesses, buy homes, save for retirement and craft economic futures for their families and their country.
+                Each year Federal and state governments provide $500 billion in tax incentives for higher education, home ownership, business and retirement savings.  The lion’s share of these tax incentives flow to the top 20% of tax payers, while less that 3% reaches the bottom 3/5 of American families.  Yet, we know from 20 years of rigorously evaluated demonstrations that given the opportunity, low-income and even very poor families will save, learn, work and invest and ultimately, go to college, start businesses, buy homes, save for retirement and craft economic futures for their families and their country.
 
               %p
                 Four legislative proposals with bipartisan support are being considered in Congress, each of which would extend matched savings opportunities to millions of working American Families:
@@ -24,7 +24,7 @@
               %h4
                 = link_to "The ASPIRE Act", 'http://www.cfed.org/imageManager/_documents/policy/Childrens_Savings_Accounts_Final.pdf', :popup => true
               %p
-                Which would create an account at birth for each of the 4 million children born each year, with a $500 deposit for every child, and an additional $500 for the poorest third of kids.  What difference would it make if every child grew up knowing she or he had a nest egg for college, business or a home?
+                This legislation would create an account at birth for each of the 4 million children born each year, with a $500 deposit for every child, and an additional $500 for the poorest third of kids.  What difference would it make if every child grew up knowing she or he had a nest egg for college, business or a home?
 
               %h4
                 = link_to "Expanding the Savers Credit", 'http://www.cfed.org/imageManager/_documents/policy/Savers%20Credit%20Expansion%20One%20Pager%207_16_09.pdf', :popup => true
@@ -38,9 +38,41 @@
 
 
         .tcl-column.right
-          %h2
-            Add My Voice
           .block.no-border
+            %h2
+              Did You Know?
+            .take-action-quotes{:style => "height: 6em;"}
+              .take-action-quote#quoteFadeOn
+                .indent
+                  %em
+                    = 'Federal and State governments spend more than half a trillion dollars each year on incentives for Americans to save for education, homes, businesses and retirement.'
+              .take-action-quote{:style => "display: none;"}
+                .indent
+                  %em
+                    = 'Forty five percent of these incentives accrue to the benefit of the richest 45% of Americans, those making more than $1.25 million a year.'
+              .take-action-quote{:style => "display: none;"}
+                .indent
+                  %em
+                    = 'Only 3% of the half trillion annual expenditure on savings incentives reaches the bottom 60% of American households who make less than $60,000 per year.'
+              .take-action-quote{:style => "display: none;"}
+                .indent
+                  %em
+                    = 'The richest 1% of Americans receive an average saving and asset-building tax incentive of $169,000 while the poorest 20% receive $3.'
+              .take-action-quote{:style => "display: none;"}
+                .indent
+                  %em
+                    = 'The richest Americans receive the equivalent of a Mercedes a year in savings incentives, while the poorest 20% get a cup of coffee.'
+              .take-action-quote{:style => "display: none;"}
+                .indent
+                  %em
+                    = 'The annual Federal incentive for savings for education, home, business and retirement averages out to more than $1500 for every man, woman and child in America, but 80% of Americans get a fraction of this.'
+              .take-action-quote{:style => "display: none;"}
+                .indent
+                  %em
+                    = 'For the last several years, the rate of new retirement savings actually was less than the government provided in retirement saving incentives.'
+          .block.no-border
+            %h2
+              Add My Voice
             .indent
               %h3
                 = "Let your congressional representative know you support these proposals by adding your contact information below."
@@ -77,40 +109,8 @@
                           %b
                             = "Note:"
                           = "You will be adding your name to a list that is maintained by CFED. To change your contact preferences or learn more contact "
-                          %a{:href => "http://savetogether.cfed.org/signup/"}= "CFED"
+                          %a{:href => "http://savetogether.cfed.org/signup/"}= "CFED."
                     %tr
                       %td
                       %td
                         = image_submit_tag "#{image_path('buttons/signup-small.gif')}", :value => "Go", :alt => :signup.l
-          .block.no-border
-            %h2
-              Did You Know?
-            .take-action-quote#quoteFadeOn
-              .indent
-                %em
-                  = 'Federal and State governments spend more than half a trillion dollars each year on incentives for Americans to save for education, homes, businesses and retirement.'
-            .take-action-quote{:style => "display: none;"}
-              .indent
-                %em
-                  = 'Forty five percent of these incentives accrue to the benefit of the richest 45% of Americans, those making more than $1.25 million a year.'
-            .take-action-quote{:style => "display: none;"}
-              .indent
-                %em
-                  = 'Only 3% of the half trillion annual expenditure on savings incentives reaches the bottom 60% of American households who make less than $60,000 per year.'
-            .take-action-quote{:style => "display: none;"}
-              .indent
-                %em
-                  = 'The richest 1% of Americans receive an average saving and asset-building tax incentive of $169,000 while the poorest 20% receive $3.'
-            .take-action-quote{:style => "display: none;"}
-              .indent
-                %em
-                  = 'The richest Americans receive the equivalent of a Mercedes a year in savings incentives, while the poorest 20% get a cup of coffee.'
-            .take-action-quote{:style => "display: none;"}
-              .indent
-                %em
-                  = 'The annual Federal incentive for savings for education, home, business and retirement averages out to more than $1500 for every man, woman and child in America, but 80% of Americans get a fraction of this.'
-            .take-action-quote{:style => "display: none;"}
-              .indent
-                %em
-                  = 'For the last several years, the rate of new retirement savings actually was less than the government provided in retirement saving incentives.'
-    
