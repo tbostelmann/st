@@ -4,10 +4,7 @@
   %head
     %meta{:content => "text/html; charset=ISO-8859-1"}
     -# default meta tags, define a @meta_page to replace entries or add new ones
-    - @meta_page = {                                     |
-      :description => AppConfig.meta_description,        |
-      :keywords    => AppConfig.meta_keywords,           |
-      }                                                  |
+    - @meta_page = {:description => AppConfig.meta_description, :keywords    => AppConfig.meta_keywords}
     - @meta_page.merge!(@meta) unless @meta == nil
     - @meta_page.each do |key|
       %meta{:name=> key[0], :content => key[1]}

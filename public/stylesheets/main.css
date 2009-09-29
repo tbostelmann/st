@@ -129,7 +129,7 @@ textarea {
 .menu, .menu-left, .menu-right {
 	float: left;
 	width: 100%;
-	font-family: Arial, Helvetica, sans-serif;
+	font-family: Tahoma, Arial, Helvetica, sans-serif;
 	background: url("../images/bg/menu-bg.jpg") repeat-x left top;
 }
 .menu {
@@ -223,7 +223,7 @@ textarea {
   padding-right: 5px;
 }
 .bread-crumb-links .sep {
-  color: #4D4A43;
+  color: #000;
 }
 /*Content*/
 .content {
@@ -350,7 +350,7 @@ textarea {
 }
 .pagination .pagination_info {
 	font-size: 14px;
-	color: #4d4a43;
+	color: #000;
 }
 .pagination A {
 	font-size: 14px;
@@ -379,13 +379,13 @@ textarea {
 }
 .content P {
 	margin-top: 10px;
-	color: #0a0a0a;
+	color: #000;
 	font-size: 12px;
 	line-height: 120%;
 }
 .content P.large-text {
 	font-size: 12px;
-	color: #4d4a43;
+	color: #000;
 	margin-top: 0;
 	font-weight: bold;
 }
@@ -395,7 +395,7 @@ textarea {
 }
 .content P.small-text {
 	font-size: 10px;
-	color: #4d4a43;
+	color: #000;
 	margin-top: 0;
 }
 .with-img {
@@ -538,7 +538,7 @@ textarea {
   padding-right: 2%;
 }
 .content .two-column-layout .tcl-column.right {
-  width: 45%;
+  width: 48%;
   padding-left: 2%;
   padding-right: 0px;
 }
@@ -567,7 +567,7 @@ textarea {
 }
 .content .block P {
 	font-size: 12px;
-	color: #4d4a43;
+	color: #000;
 	margin-top:0px;
 	margin-bottom: 6px;
 	font-weight: normal;
@@ -614,7 +614,7 @@ textarea {
 }
 .content .block UL {
 	font-size: 12px;
-	color: #4d4a43;
+	color: #000;
 }
 .content .block UL.horiz {
     margin-top: 10px;
@@ -691,7 +691,7 @@ textarea {
 .footer {
   float: left;
   width: 100%;
-	font-family: Arial, Helvetica, sans-serif;
+	font-family: Tahoma, Arial, Helvetica, sans-serif;
 	padding-bottom: 5px;
 	text-align: center;
 }
@@ -721,7 +721,7 @@ textarea {
 /* Invoice */
 .text12 {
 	font-size: 12px;
-	color: #4d4a43;
+	color: #000;
 	margin-top: 0;
 	font-weight: normal;
 	line-height: 130%;
@@ -773,7 +773,7 @@ textarea {
 }
 .errorExplanation P {
   font-size: 12px;
-  color: #4D4A43;
+  color: #000;
 }
 /* About Us - Deltas */
 .content .about-us .thumbnail {

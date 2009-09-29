@@ -30,15 +30,16 @@
   %h1
     = :do_more.l.titleize
 
-  .single-column
+  .block{:style => "margin-top: 10px;"}
+    .single-column
 
-    .block.no-border
-    
-      = render :partial => 'donor_surveys/invite'
-      
-      %div{:class => "block", :style => "margin-top: 25px"}
-        = render :partial => 'donor_surveys/web20'
+      .block.no-border
 
-      %div{:class => "block", :style => "margin-top: 25px; float: left; width: 800px;"}
-        = render :partial => 'donor_surveys/survey_form'
+        = render :partial => 'donor_surveys/invite'
+
+        %div{:class => "block", :style => "margin-top: 25px"}
+          = render :partial => 'donor_surveys/web20'
+
+        %div{:class => "block", :style => "margin-top: 25px; float: left; width: 800px;"}
+          = render :partial => 'donor_surveys/survey_form'
 

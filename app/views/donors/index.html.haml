@@ -5,13 +5,15 @@
   %h1
     =:donor_community.l.titleize
 
-  .single-column
+  .block{:style => "margin-top: 10px;"}
 
-    .pagination.upper
-      = paginating_links @donors, :params => params if @donors.page_count > 1
-  
-    = render :partial => "donors/community", :locals => {:donors => @donors}
-  
-    .pagination.lower
-      = paginating_links @donors, :params => params if @donors.page_count > 1
+    .single-column
+
+      .pagination.upper
+        = paginating_links @donors, :params => params if @donors.page_count > 1
+
+      = render :partial => "donors/community", :locals => {:donors => @donors}
+
+      .pagination.lower
+        = paginating_links @donors, :params => params if @donors.page_count > 1
   

@@ -2,17 +2,21 @@
 
 .content
 
-  .two-column-layout
-    
-    / Signup form
-    .tcl-column.left
+  %h1
+    = "Sign Up or Log In"
 
-      = render :partial => "donors/signup_form"
-      = render :partial => "donors/signup_sidebar", :locals => {:standalone => false}
+  .block{:style => "margin-top: 10px;"}
+    .two-column-layout
 
-    / Login form
-    .tcl-column.right
+      / Signup form
+      .tcl-column.left
 
-      = render :partial => "sessions/login_form", :locals => {:title => :or_log_in.l}
-      = render :partial => 'sessions/login_sidebar', :locals => {:standalone => false, :offer_password_change => true}
+        = render :partial => "donors/signup_form", :locals => {:title => :sign_up.l}
+        = render :partial => "donors/signup_sidebar", :locals => {:standalone => false}
+
+      / Login form
+      .tcl-column.right
+
+        = render :partial => "sessions/login_form", :locals => {:title => :log_in.l}
+        = render :partial => 'sessions/login_sidebar', :locals => {:standalone => false, :offer_password_change => true}
 

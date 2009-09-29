@@ -2,7 +2,7 @@
   %tr
     %td{:class => "text12", :valign => "top", :height => "36", :colspan => "2"}
       %span.text12GreenTitle
-        =:sign_up.l
+        ="#{title}"
   - form_for :donor, :url => donors_path, :method => :post, :html => {:class => 'MainForm'} do |f|
     = hidden_field_tag 'donation_id', "#{params[:donation_id]}"
     %tr

@@ -7,7 +7,7 @@
   %h1= @saver.display_name
 
   .single-column
-  
+
     -# Photo
     .photo
 
@@ -49,7 +49,7 @@
 
               %td
                 = render(:partial => "savers/match_box/control", :locals => {:saver => @saver})
-    
+
       -# About Saver
       .about-party
         %h3= :about_user.l :user_name => @saver.display_name
@@ -57,13 +57,13 @@
           %p.no-margin
             = @saver.description
         - if @saver.is_successful_saver?
-          .text{:style => "margin-top: 40px; margin-right: 140px;"}
+          .text{:style => "margin-top: 40px; margin-right: 10px;"}
             =link_to image_tag(image_path('buttons/get-started.jpg'), {:alt => 'get started', :style => "float: right; margin-top: 10px;"}), match_savers_path
 
     -# Saver's Donors
     -unless @donors.size == 0
       .relax='&nbsp;'
-  
+
       %h2{:style => "margin-top: 30px;"}
         =:people_who_have_contributed_to_this_saver.l
 

@@ -6,29 +6,45 @@
   %h1
     =:how_it_works.l.titleize
 
-    %div{:class => "two-column-layout", :style => "height: 240px;"}
-      .tcl-column.left.two-thirds
+    .block{:style => "margin-top: 10px;"}
+      .two-column-layout{:style => "height: 240px;"}
+        .tcl-column.left.two-thirds
 
-        .block.no-border
-          %h3
-            How SaveTogether Works
-          %h4
-            THEY SAVE
-          %p
-            Participants from carefully selected matched savings programs work hard to put away some of their income each month towards a specified savings goal.
-          %h4
-            YOU MATCH
-          %p
-            You select a saver whose story and unique aspirations inspire you and agree to match all or a portion of the amount they have committed to saving. Each dollar you donate will be further matched by the matched savings program that supports the saver.
-          %h4 
-            TOGETHER, WE PROSPER
-          %p
-            When the savers successfully reach their savings goal, they will have access to their savings plus the combined matching funds to use towards purchasing their investment.
+          .block.no-border
+            %h3
+              How SaveTogether Works
+            %h4
+              THEY SAVE
+            %p
+              Low-wage workers save their own money toward a specified goal, such as higher education, a home, or a small business. We feature their stories and photos to inspire other real people, like you, who can help them realize their dreams.
+            %h4
+              YOU MATCH
+            %p
+              We leverage the economic power of everyday people like you to triple the participant’s savings. Each dollar you donate is matched again by a non-profit organization increasing the impact.
+            %h4
+              TOGETHER, WE PROSPER
+            %p
+              By supporting low-wage workers and providing financial education, we build economic stability for all.
 
-      .tcl-column.right.one-third
+        .tcl-column.right.one-third
 
-        %div{:style => "float:right; margin: 15px 25px 0px 5px;"}
-          =image_tag "#{image_path('graphics/how_it_works.jpg')}"
+          %div{:style => "float:right; margin: 15px 25px 0px 5px;"}
+            =image_tag "#{image_path('graphics/how_it_works.jpg')}"
+
+    .single-column
+      .block.no-border{:style => "margin-top:20px;"}
+        %div{:style => "float:left; margin-top: 20px; margin-right: 15px;"}
+          =image_tag "#{image_path('graphics/investment.jpg')}"
+
+        %h3
+          How are Savers Selected
+        %p
+          SaveTogether identifies leading non-profit organizations throughout the United States that are offering matching savings programs for low-wage workers. After completing a due diligence process, we collaborate with these organizations to identify savers to post onto our platform. The savers are real people who are working hard to put away some of their income each month toward their specified goal.
+
+        %h3
+          How To Get Started
+        %p
+          You choose a saver whose story and aspirations inspire you, and agree to make a donation to match some or all of the savings goal. For as little as $25, you become a partner in their success. You can follow the saver’s progress on our site. Your secure, tax-deductible donation is matched again by the participating non-profit organization, so the saver can earn two more dollars for every dollar they save.
 
     .single-column
     
@@ -36,48 +52,27 @@
         %div{:style => "float:right; margin: 0px 20px 15px 5px;"}
           =image_tag "#{image_path('graphics/commitment.jpg')}"
         %h3
-          How a Matched Savings Programs Works
-        %h4
-          COMMITMENT
+          How Non-Profits Match the Savings of Low-Wage Workers
         %p
-          It begins with a hard-working saver who is determined to improve her life and gain financial independence for herself and her family. The saver hears about a nonprofit community organization that offers matched savings accounts to people like her who are struggling to get ahead. She knows that it will improve her chances of success and help keep her on track if she can receive a match for every dollar saved. She applies for a matched savings account by submitting detailed financial records to show that her household income is below the maximum level for eligibility, and that she has minimal assets.
+          For over 20 years, non-profit organizations have offered matched savings programs and proven that when given the opportunity, low-wage workers will work, learn, and save to buy homes, start businesses or pursue higher education. A matched savings program provides secured savings accounts, along with matching incentives and financial education classes, for low-wage workers. All savings and matching funds—including 100 percent of your donation—are held in trust until the saver reaches their goal and completes the financial education.
+        %h4
+          COMMITMENT TO A DREAM
+        %p
+          Participants in matched savings programs are already working hard toward a goal that will increase their financial independence. They might be saving for college tuition, a home for their family, or an investment in a small business. By joining the program, the saver can earn a match for every dollar saved toward their dream.
+        %p
+          Each matched savings program is a little different. They vary in savings limits, match ratios, program length, and eligibility criteria, but generally, eligibility is based on the federal poverty level and median incomes for the area. Once the saver is accepted to a matched-savings program, they make deposits every month to a restricted account—where only the program administrator can approve withdrawals.
         %div{:style => "float:left; margin: 25px 10px 25px 0;"}
           =image_tag "#{image_path('graphics/education.jpg')}"
         %h4
-          EDUCATION
+          EDUCATION FOR LONG-TERM SUCCESS
         %p
-          While making deposits every month into a restricted account (only the matched savings program administrators can approve withdrawals), she is required to attend financial education classes to help her save more on her modest income, learn household budgeting skills, understand how to build her credit, and help her plan for the investment she intends to make.
-        %div{:style => "float:right; margin: 0px 20px 0px 10px;"}
-          =image_tag "#{image_path('graphics/investment.jpg')}"
+          All matched savings programs provide financial education and counseling classes. Savers get help with planning for the investment they intend to make, and they learn critical budgeting and savings skills they can apply toward short-term and long-term success.
         %h4
-          INVESTMENT
+          INVESTMENT IN A POVERTY-FREE FUTURE
         %p
-          When she has saved for at least six months and completed the training requirements, she can begin to invest her savings and the matches she has earned. Each matched savings program is a little different: some have different upper limits on how much can be saved (often $2,000), different match ratios (a saver may earn a 1:1 match, or a 2:1 match, or even higher), different lengths of time to complete the program, and different eligibility criteria.
+          When the saver has participated for at least six months and completed all training requirements, they can begin to invest their savings—along with the matched funds they have earned—to realize their dream. The matched savings organization delivers funds straight to the vendor, and advises the saver on choosing responsible investments, helping to ensure that the plan will succeed.
         %p
-          The checks are cut straight from the matched savings program to approved vendors so there is no chance for misuse of funds. Program staff advise the saver on making the most responsible investments with her funds, helping to make sure that her education, small business or home ownership plan is right for her.
-        %p
-          More questions? Click
+          More questions? Visit our
           %a{:href => "#{faq_path}"}
-            here
-          to visit our FAQ page.
-      %div{:class => "block", :style => "margin-top:20px;"}
-        %h3
-          How it Worked – Success Stories
-        %div{:style => "float: left; display: inline; width: 25%; margin-left: 95px;"}
-          %a{:href => "#{success_stories_path}\#gilma"}
-            %h4
-              EDUCATION - GILMA
-            .thumbnail.smidge
-              =image_tag "#{image_path('thumbnails/gilma.png')}"
-        %div{:style => "float: left; display: inline; width: 30%"}
-          %a{:href => "#{success_stories_path}\#wally"}
-            %h4
-              STARTING A BUSINESS - WALLY
-            .thumbnail.nudge
-              =image_tag "#{image_path('thumbnails/wally.png')}"
-        %div{:style => "float: left; display: inline"}
-          %a{:href => "#{success_stories_path}\#sunshine"}
-            %h4
-              HOME PURCHASE - SUNSHINE
-            .thumbnail.nudge
-              =image_tag "#{image_path('thumbnails/sunshine.png')}"
+            FAQ
+          page.

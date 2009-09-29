@@ -1,8 +1,5 @@
 -# Home page only: Google Webmaster verification string and robots.txt pointer
-- @meta = {                                                     |
-  :robots     => AppConfig.robots_meta_list_content,            |
-  "verify-v1" => "qUbzpZfuULUTf2nSxp3he3j3jq8yYp1MhbbCFG+i524=" |
-  }                                                             |
+- @meta = {:robots => AppConfig.robots_meta_list_content, "verify-v1" => "qUbzpZfuULUTf2nSxp3he3j3jq8yYp1MhbbCFG+i524="}
 - @page_title = :savetogether_motto.l
 
 .content
@@ -14,23 +11,23 @@
         .image{:style => "width: 220px; border: 1px dashed #bbbbbb;"}
           = link_to((image_tag @successful_savers[0].avatar_photo_url(:small), {:alt => @successful_savers[0].display_name, :style => "width: 210px; margin: 5px;"}), saver_path(@successful_savers[0]))
         .display-name
-          =link_to 'A Success Story...', saver_path(@successful_savers[0])
+          =link_to "#{@successful_savers[0].display_name}: A Success Story", saver_path(@successful_savers[0])
         %p
           - if @successful_savers[0].short_description?
-            =truncate @successful_savers[0].short_description, :length => 150, :omission => "&hellip;"
+            =truncate @successful_savers[0].short_description, :length => 160, :omission => "&hellip;"
           - else
-            =truncate @successful_savers[0].description, :length => 150, :omission => "&hellip;"
+            =truncate @successful_savers[0].description, :length => 160, :omission => "&hellip;"
       - (1..(@successful_savers.size - 1)).each do |index|
         .success-story{:style => "display: none;"}
           .image{:style => "width: 220px; border: 1px dashed #bbbbbb;"}
             = link_to((image_tag @successful_savers[index].avatar_photo_url(:small), {:alt => @successful_savers[index].display_name, :style => "width: 210px; margin: 5px;"}), saver_path(@successful_savers[index]))
           .display-name
-            =link_to 'A Success Story...', saver_path(@successful_savers[index])
+            =link_to "#{@successful_savers[index].display_name}: A Success Story", saver_path(@successful_savers[index])
           %p
             - if @successful_savers[index].short_description?
-              =truncate @successful_savers[index].short_description, :length => 150, :omission => "&hellip;"
+              =truncate @successful_savers[index].short_description, :length => 160, :omission => "&hellip;"
             - else
-              =truncate @successful_savers[index].description, :length => 150, :omission => "&hellip;"
+              =truncate @successful_savers[index].description, :length => 160, :omission => "&hellip;"
     .explain{:style => "float: left; width: 675px;"}
       #one{:style => "float: left; width: 223px; margin-top: 10px;"}
         =image_tag image_path('graphics/they-save.jpg'), {:alt => 'they save', :style => "margin-top: 25px;"}
@@ -38,14 +35,14 @@
           .tagline
             ="For the things that matter most."
           %p
-            ="Qualified individuals work hard to save for life-changing goals such as a higher education, home or small business."
+            ="Hard-working individuals save for life-changing goals such as a higher education, home or small business."
       #two{:style => "float: left; width: 203px; margin-top: 10px;"}
         =image_tag image_path('graphics/you-match.jpg'), {:alt => 'you match'}
         .info-block
           .tagline
             ="To multiply the impact."
           %p
-            ="Your tax-deductible contribution provides a dollar-for-dollar match and is matched again by one of our non-profit organizations."
+            ="You match to help a saver reach their goal.  This tax-deductible contribution is doubled by a partner non-profit organization."
       #three{:style => "float: left; width: 219px; margin-top: 10px;"}
         =image_tag image_path('graphics/together-we-prosper.jpg'), {:alt => 'together we prosper'}
         .info-block
@@ -76,10 +73,10 @@
               - else
                 =truncate saver.description, :length => 105, :omission => "&hellip;"
               =link_to "more &raquo;", saver_path(saver)
-            .info{:style =>"float:left; font-size: 12px;"}
-              = render(:partial => "savers/match_box/control", :locals => {:saver => saver})
+            .info{:style =>"float:left; width: 90%; font-size: 12px;"}
+              = render(:partial => "savers/match_box/control_no_select_list", :locals => {:saver => saver})
       .panel.match-now{:style => "float: left; width: 235px; height: 90%"}
-        .donor-quotes{:style => "height: 9em;"}
+        .donor-quotes{:style => "height: 10em;"}
           .donor-quote#displayedQuote
             %span{:style => "float: right; margin-top: 25px; line-height: 130%; color: #7ca13e;"}
               %em{:style => "font-size: 14px;"}

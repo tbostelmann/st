@@ -1,16 +1,20 @@
 -@page_title= :about_us.l.titleize
 
 .content
-  .about-us
+  %h1
+    ="About Us"
+
+  .block{:style => "margin-top: 10px;"}
+
     .single-column{:style => "margin-bottom: 40px;"}
-      %h1= "Our Vision and Mission"
+      %h2= "Our Vision and Mission"
 
       %p.indent{:style => "margin-left: 20px; line-spacing: 130%;"}
         ="SaveTogether envisions a world where savings incentives and long-term financial stability are available to everyone. We are collaborating with carefully-screened non-profit organizations to build a community dedicated to matching the savings goals of the low-wage workers and helping them save toward economic stability. We invite you to join our nationwide community of everyday philanthropists, transforming lives one dream at a time."
     .two-column-layout.wide
       .tcl-column.left
 
-        %h1= "Team and Board"
+        %h2= "Team and Board"
 
         .block
           %h3
@@ -85,7 +89,7 @@
 
       .tcl-column.right
 
-        %h1= "Partners and Supporters"
+        %h2= "Partners and Supporters"
 
         .block
           %h3
@@ -204,7 +208,7 @@
             %li
               Rochelle Watson
             %li
-              Eric Weaver 
+              Eric Weaver
           %ul.horiz
             %li
               Cathy Barsukoff

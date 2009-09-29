@@ -1,5 +1,9 @@
 -@page_title= :sign_up.l.titleize
 
 .content
-  = render :partial => 'donors/signup', :locals => {:standalone => true}
+  %h1
+    ="Signup!"
+
+  .block{:style => "margin-top: 10px;"}
+    = render :partial => 'donors/signup', :locals => {:standalone => true}
   
