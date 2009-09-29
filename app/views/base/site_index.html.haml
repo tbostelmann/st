@@ -13,7 +13,7 @@
     #success-stories{:style => "float: right; width: 220px; height: 340px;"}
       .success-story#fadeOn
         .image{:style => "width: 220px; border: 1px dashed #bbbbbb;"}
-          = link_to((image_tag @successful_savers[0].avatar_photo_url(:small), {:alt => @successful_savers[0].display_name, :style => "width: 210px; margin: 5px;"}), saver_path(@successful_savers[0]))
+          = link_to((image_tag @successful_savers[0].avatar_photo_url(:small), {:alt => @successful_savers[0].display_name, :style => "width: 210px; height: 210px; margin: 5px;"}), saver_path(@successful_savers[0]))
         .display-name
           =link_to "#{@successful_savers[0].display_name}: A Success Story", saver_path(@successful_savers[0])
         %p
