@@ -89,7 +89,7 @@ class SaversController < BaseController
     @savers = Saver.find_active(:all,
       :conditions => cond.to_sql,
       :include => [:tags],
-      :page => {:current => params[:page], :size => 20},
+      :page => {:current => params[:page], :size => 10},
       :include => [:asset_type, :metro_area],
       :order => "#{@order_by} #{@order}"
       )    
