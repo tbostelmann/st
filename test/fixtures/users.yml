@@ -189,7 +189,7 @@ saver5:
   type: Saver
 
 saver6:
-  login: saver5@example.com
+  login: saver6@example.com
   first_name: Super
   last_name: Saver6
   description: I am an friggin awesome gal of a certain age
@@ -210,6 +210,31 @@ saver6:
   organization: earn
   requested_match_cents: 400000
   type: Saver
+
+unfeaturedSaver:
+  login: unfeaturedSaver@example.com
+  first_name: Super
+  last_name: unfeaturedSaver
+  description: I am an friggin awesome gal of a certain age
+  salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
+  crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
+  created_at: <%= 5.days.ago.to_s :db %>
+  activated_at: <%= 5.days.ago.to_s :db %>
+  activation_code:
+  state: california
+  metro_area: sanfrancisco
+  profile_public: true
+  featured_user: false
+  login_slug: unfeaturedSaver@example.com
+  birthday: <%= 40.years.ago.to_s :db %>
+  gender: F
+  activities_count: 0
+  role_id: 3
+  asset_type: home
+  organization: earn
+  requested_match_cents: 400000
+  type: Saver
+
 
 <% for i in 1..7 %>
 deserving_saver_<%= i %>:

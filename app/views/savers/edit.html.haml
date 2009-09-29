@@ -21,7 +21,7 @@
                 =:choose_a_photo_for_your_profile.l
           %tr
             %td{:class => "text12", :width => "72%", :height => "36"}
-              = file_field :avatar, :uploaded_data, :size => "33"
+              = file_field :avatar, :uploaded_data, :size => "25"
 
       .party-info
         .box.wide
@@ -41,19 +41,25 @@
               %td{:align => "right"}
                 %p.large-text
                   = "Short Description:"
+              %td{:align => "left"}
+                = text_area :saver, :short_description, :style => "width:91%; height: 3em; margin: 10px 0 10px 0;"
+            %tr
               %td{:align => "right"}
-                = text_field :saver, :short_description, :size => "100"
+                %p.large-text
+                  = "Featured:"
+              %td{:align => "left"}
+                = check_box :saver, :featured_user
             %tr
               %td{:align => "right"}
                 %p.large-text
                   = "Requested Match:"
-              %td{:align => "right"}
+              %td{:align => "left"}
                 = text_field :saver, :requested_match
             %tr
               %td{:align => "right"}
                 %p.large-text
                   ="Goal:"
-              %td{:align => "right"}
+              %td{:align => "left"}
                 = select :saver, :asset_type_id, AssetType.all.collect {|p| [ p.asset_name, p.id ] }, { :include_blank => true }
             %tr
               %td{:align => "right"}

@@ -3,6 +3,12 @@ require 'benchmark'
 include Benchmark
 
 class SaverTest < ActiveSupport::TestCase
+  test "find_random_featured" do
+    Saver.find_random_featured(:all).each do |saver|
+      assert saver.featured_user
+    end
+  end
+
   test "successful_saver?" do
     saver = users(:saver_success_story)
     assert saver.is_successful_saver?

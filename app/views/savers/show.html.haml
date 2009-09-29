@@ -21,6 +21,10 @@
       %h3
         %table{:cellpadding => "5"}
           %tr
+            %td{:colspan => 2}
+              .text{:style => "font-style: italic; font-size: 16px; color: #000; font-weight: normal;"}
+                = @saver.short_description
+          %tr
             %td{:width => "32%"}
               = "#{:program.l}:"
             %td
