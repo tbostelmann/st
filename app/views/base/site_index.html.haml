@@ -24,7 +24,7 @@
       - (1..(@successful_savers.size - 1)).each do |index|
         .success-story{:style => "display: none;"}
           .image{:style => "width: 220px; border: 1px dashed #bbbbbb;"}
-            = link_to((image_tag @successful_savers[index].avatar_photo_url(:small), {:alt => @successful_savers[index].display_name, :style => "width: 210px; margin: 5px;"}), saver_path(@successful_savers[index]))
+            = link_to((image_tag @successful_savers[index].avatar_photo_url(:small), {:alt => @successful_savers[index].display_name, :style => "width: 210px; height: 210px; margin: 5px;"}), saver_path(@successful_savers[index]))
           .display-name
             =link_to "#{@successful_savers[index].display_name}: A Success Story", saver_path(@successful_savers[index])
           %p
