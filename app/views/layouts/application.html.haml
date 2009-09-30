@@ -49,7 +49,7 @@
               %a{:href => "http://www.addthis.com/bookmark.php?v=250", :onmouseover => "return addthis_open(this, '', '[URL]', '[TITLE]')", :onmouseout => "addthis_close()", :onclick => "return addthis_sendto()", :tabindex => "6"}
                 %img{:src => "#{@add_this_protocol}://s7.addthis.com/static/btn/lg-share-en.gif", :width => "125", :height => "16", :alt => "Bookmark and Share", :style => "border:0"}
               / AddThis Button END
-            %a{:href=> "/feedback", :tabindex => "5"}=:feedback.l
+            %a{:href=> "/feedback", :tabindex => "5"}=:contact_us.l
 
         / Banner Image
         =link_to((image_tag "#{image_path('logotype.jpg')}", :alt => 'SaveTogether'), home_path)
