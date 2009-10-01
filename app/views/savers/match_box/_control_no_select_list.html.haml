@@ -7,10 +7,9 @@
     %td{:align => "center"}
       = :amount_raised.l :amount => "#{saver.match_percentage}%"
   - if saver.match_amount_left_cents > 0
-    - form_for :donation, :url => { :controller => :pledges, :action => :add_to_pledge } do |f|
-      %tr
-        %td{:align => "center"}
-          = image_submit_tag 'match.gif'
+    %tr
+      %td{:align => "center"}
+        = link_to(image_tag('match.gif', {:alt => 'match'}), saver_path(saver))
   - else
     %tr
       %td{:align => "center"}
