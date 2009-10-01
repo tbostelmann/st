@@ -4,7 +4,10 @@
     = link_to((image_tag party.avatar_photo_url(:thumb), :alt => party.display_name), bene_path)
   %td{:class => "text12", :valign => "middle", :align => "left"}
     %span.text12GreenBold
-      = link_to(party.display_name.capitalize, bene_path) unless party.organization == nil
+      - if party.class == Organization
+        = link_to(party.display_name, organization_path(party))
+      - else
+        = link_to(party.display_name, saver_path(party))
   %td{:class => "text12", :valign => "middle", :align => "left"}
     - unless party.organization == nil
       = party.organization.display_name

@@ -98,4 +98,8 @@ class Organization < Party
   def to_param
     self.id.to_s
   end
+
+  def display_name
+    first_name
+  end  
 end
