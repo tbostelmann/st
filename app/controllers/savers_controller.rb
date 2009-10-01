@@ -15,7 +15,7 @@ class SaversController < BaseController
       if !params[:avatar].nil? && !params[:avatar][:uploaded_data].blank?
         @avatar       = Photo.new(params[:avatar])
         @avatar.user  = @saver
-        @user.avatar  = @avatar if @avatar.save
+        @saver.avatar  = @avatar if @avatar.save
       end
 
 
