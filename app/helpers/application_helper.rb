@@ -25,6 +25,12 @@ module ApplicationHelper
 
   def select_pledge_amounts_cents_values(max=30000)
     pledge_amounts = Array.new
+    if max >= 500
+      pledge_amounts << [(:donation_amount.l :amount => 5), 500]
+    end
+    if max >= 1000
+      pledge_amounts << [(:donation_amount.l :amount => 10), 1000]
+    end
     2500.step(max, 2500) do |amt|
       # Map amount string (in dollars) to amount integer (in cents)
       pledge_amounts << [(:donation_amount.l :amount => amt/100), amt]
