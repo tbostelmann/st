@@ -5,7 +5,7 @@ module BaseHelper
   unless defined?(ORGANIZATION_FIND_BY_FOUNDING_PARTNERS)
     ::ORGANIZATION_FIND_BY_FOUNDING_PARTNERS = [
       OpenStruct.new(
-        :display_name      => "CFED / American Dream Match Fund",
+        :display_name      => "CFED / American Dream Match Funds",
         :organization_path => "http://www.savetogether.org/organizations/74"),
       OpenStruct.new(
         :display_name      => "EARN",
