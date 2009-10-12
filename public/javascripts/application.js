@@ -30,9 +30,6 @@ window.onload=function iterate_fade_inout() {
     successStories = document.getElementsByClassName('success-story');
     l = successStories.length;
 
-    featuredDonors = document.getElementsByClassName('featured-donor');
-    l2 = featuredDonors.length;
-
     partnerList = document.getElementsByClassName('partner-list');
     l3 = partnerList.length;
 
