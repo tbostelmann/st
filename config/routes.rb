@@ -51,6 +51,7 @@ ActionController::Routing::Routes.draw do |map|
   map.terms_of_use    '/terms-of-use',    :controller => 'base',   :action => 'terms_of_use'
   map.privacy_policy  '/privacy-policy',  :controller => 'base',   :action => 'privacy_policy'
   map.take_action     '/take-action',     :controller => 'base',   :action => 'take_action'
+  map.press_center    '/press-center',    :controller => 'base',   :action => 'press_center'
   # map.resources gives us RESTful routes to these models
   # Run rake routes to see the list (these will be the first listed)
   map.resources :savers
