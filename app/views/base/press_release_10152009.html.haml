@@ -1,4 +1,4 @@
--@page_title= :press_release.l.upcase
+-@page_title= :press_release.l
 
 .content
 
@@ -14,7 +14,7 @@
       =link_to "www.SaveTogether.org", "http://www.SaveTogether.org", :popup => true
       =").  SaveTogether encourages responsible savings and investment by matching the savings of eligible low-wage workers with the contributions of online donors.  No other platform like this exists in the United States."
 
-    %ul{:type => "DISC"}
+    %ul{:type => "DISC", :style => "font-size: 12px;"}
       %li
         %b
           %u
@@ -63,3 +63,7 @@
       =link_to "www.cfed.org", "http://www.cfed.org", :popup => true
       =")."
 
+    %p
+      = "More information is available on SaveTogether’s website: "
+      = link_to "www.savetogether.org", "http://www.savetogether.org/"
+      = "."
