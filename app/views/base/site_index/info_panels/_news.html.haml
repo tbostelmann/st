@@ -2,11 +2,12 @@
   ="News"
   %span{:style => "font-size: 12px; font-weight: normal;"}
     = link_to '(Press Center&raquo;)', press_center_path
-%p
+
+%div{:style => "font-size: 12px; margin-top: 10px;"}
   ="SaveTogether announces our public "
   =link_to "launch.", :controller => 'base', :action => "press_release_10152009"
-%p
+%div{:style => "font-size: 12px; margin-top: 10px;"}
   ="Read about us in the "
-  =link_to "Seattle Times.", "http://seattletimes.nwsource.com/html/thebusinessofgiving/2010004271_new_local_non-profit_focuses_o.html", :popup => true
-%p
+  =link_to(image_tag("http://www.seattletimescompany.com/advertise/images/logo2.gif", :style => "margin-top: 0px; margin-bottom: 0px;"), "http://seattletimes.nwsource.com/html/thebusinessofgiving/2010004271_new_local_non-profit_focuses_o.html", :popup => true)
+%div{:style => "font-size: 12px;"}
   ="SaveTogether to be profiled at CFED’s 30th anniversary party in Washington, DC on October 29th."
