@@ -4,6 +4,13 @@
 
   %h1
     =:donor_community.l.titleize
+    #follow-us{:style => "float: right; height: 32px;"}
+      =link_to image_tag(image_path('icons/linkedin_32.png'), {:alt => 'linkedin', :style => "float: right; height: 32px; margin-left: 5px; margin-right: 5px"}), "http://www.linkedin.com/groups?gid=1622727"
+      =link_to image_tag(image_path('icons/facebook_32.png'), {:alt => 'facebook', :style => "float: right; height: 32px; margin-left: 0px;"}), "http://www.facebook.com/pages/SaveTogether/201523205283"
+      =link_to image_tag(image_path('icons/Twitter_32.png'), {:alt => 'twitter', :style => "float: right; height: 32px;"}), "http://www.twitter.com/savetogether"
+      %span{:style => "float: left; height: 32px;font-size: 14px; font-weight: bold; color: #5B930D;"}
+        ="Follow SaveTogether.org:"
+    
 
   .block{:style => "margin-top: 10px;"}
 
