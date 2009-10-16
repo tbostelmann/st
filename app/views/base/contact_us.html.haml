@@ -5,20 +5,25 @@
   %h1
     =:contact_us.l.titleize
 
-  .single-column
-
-    .block.no-border
-
-      %p
-        To help us make this service better, we want to hear from you. Please click
+  .block{:style => "height: 200px;"}
+    .single-column
+      %h3{:style => "margin-bottom: 15px;"}
+        = "Email: "
+        %a{:href => "mailto:info@savetogether.org?Subject=Contact SaveTogether"}= "info@savetogether.org"
+      %h3{:style => "margin-bottom: 15px;"}
+        = "Feedback: "
         %a{:href => "http://www.surveymonkey.com/s.aspx?sm=7k5ubSScp98pJb9d1Y22pQ_3d_3d"}
-          here
-        to take a five-question survey that will help us improve this service.
-      %p
-        -# succeed "string" do {proc} is the haml helper to take care of these situations where
-        -# a following string, usually punctuation, would otherwise be separated from preceding
-        -# text by a space. precede is the analog for similar conditions at the beginning of a string.
-        -# See http://haml-lang.com/docs/yardoc/Haml/Helpers.html for more info.
-        ="If you have any other questions or just want to contact us, send an email to"
-        = succeed "." do
-          %a{:href => "mailto:info@savetogether.org?Subject=Contact SaveTogether"}= "info@savetogether.org"
+          = "(Survey)"
+      %h3{:style => "margin-bottom: 15px;"}
+        = "Twitter: "
+        %a{:href => "http://www.twitter.com/savetogether"}
+          ="http://www.twitter.com/savetogether"
+      %h3{:style => "margin-bottom: 15px;"}
+        = "Facebook: "
+        %a{:href => "http://www.facebook.com/pages/SaveTogether/201523205283"}
+          ="http://www.facebook.com/pages/SaveTogether/201523205283"
+      %h3
+        = "LinkedIn: "
+        %a{:href => "http://www.linkedin.com/groups?gid=1622727"}
+          ="http://www.linkedin.com/groups?gid=1622727"
+
