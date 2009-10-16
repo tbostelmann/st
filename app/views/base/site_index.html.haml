@@ -79,7 +79,7 @@
               =link_to "more &raquo;", saver_path(saver)
             .info{:style =>"float:left; width: 90%; font-size: 12px;"}
               = render(:partial => "savers/match_box/control_no_select_list", :locals => {:saver => saver})
-      .panel.match-now{:style => "float: left; width: 235px; height: 90%"}
+      .panel.match-now{:style => "float: left; width: 245px; height: 90%"}
         .donor-quotes{:style => "height: 10em;"}
           .donor-quote#displayedQuote
             %span{:style => "float: right; margin-top: 25px; line-height: 130%; color: #7ca13e;"}
@@ -102,8 +102,14 @@
                 = "Once someone sees the power of saving a little each month - they can create a new kind of financial mind set that allows them to attain goal after goal."
             %em{:style => "float: right; font-size: 12px; color: #7ca13e;"}
               = "- Leslie, a SaveTogether donor"
-      .text
+      .text{:style => "float: right; width: 245px;"}
         =link_to image_tag(image_path('buttons/get-started.jpg'), {:alt => 'get started', :style => "float: right; margin-top: 10px;"}), match_savers_path
+      #follow-us{:style => "float: right; width: 245px; margin-top: 90px; height: 32px;"}
+        =link_to image_tag(image_path('icons/linkedin_32.png'), {:alt => 'linkedin', :style => "float: right; height: 32px; margin-left: 5px;"}), "http://www.linkedin.com/groups?gid=1622727"
+        =link_to image_tag(image_path('icons/facebook_32.png'), {:alt => 'facebook', :style => "float: right; height: 32px; margin-left: 0px;"}), "http://www.facebook.com/pages/SaveTogether/201523205283"
+        =link_to image_tag(image_path('icons/Twitter_32.png'), {:alt => 'twitter', :style => "float: right; height: 32px;"}), "http://www.twitter.com/savetogether"
+        %span{:style => "float: left; height: 32px; width: 140px; font-size: 14px; font-weight: bold; color: #5B930D;"}
+          ="Follow SaveTogether.org:"
 
   .bottom{:style => "width: 900px; height: 200px; border-top: 1px dashed #bbbbbb; float: left; margin-top: 5px;"}
 

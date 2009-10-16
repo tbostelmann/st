@@ -46,7 +46,7 @@ ActionController::Routing::Routes.draw do |map|
   # New base actions
   map.how_it_works    '/how-it-works',    :controller => 'base',   :action => 'how_it_works'
   map.success_stories '/success-stories', :controller => 'base',   :action => 'success_stories'
-  map.feedback        '/feedback',        :controller => 'base',   :action => 'feedback' 
+  map.contact_us        '/contact-us',    :controller => 'base',   :action => 'contact_us' 
   map.about_us        '/about-us',        :controller => 'base',   :action => 'about_us'
   map.terms_of_use    '/terms-of-use',    :controller => 'base',   :action => 'terms_of_use'
   map.privacy_policy  '/privacy-policy',  :controller => 'base',   :action => 'privacy_policy'
