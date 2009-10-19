@@ -61,6 +61,7 @@ class Organization < Party
 
   PAYPAL_LOGIN = 'paypal@savetogether.org'
   SAVETOGETHER_LOGIN = 'storg@savetogether.org'
+  CFED_LOGIN = 'cfed@savetogether.org'
 
   def self.find_savetogether_org
     find_by_login(SAVETOGETHER_LOGIN)
@@ -71,7 +72,7 @@ class Organization < Party
   end
 
   def self.find_partners
-    find_public(:all, :conditions => ["login != ? AND login != ?", SAVETOGETHER_LOGIN, PAYPAL_LOGIN])
+    find_public(:all, :conditions => ["login != ? AND login != ? AND login != ?", SAVETOGETHER_LOGIN, PAYPAL_LOGIN, CFED_LOGIN])
   end
 
   def self.find_random(count=4)
