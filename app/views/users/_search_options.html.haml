@@ -8,7 +8,7 @@
           = select_tag(:asset_type_id, '<option></option>' + options_from_collection_for_select(AssetType.find(:all), "id", "asset_name", @search['asset_type_id'].to_i))
         %li
           = :Region
-          = select_tag(:metro_area_id, '<option></option>' + options_from_collection_for_select(MetroArea.find(:all), "id", "name", @search['metro_area_id'].to_i), {:style => "width:100px"})
+          = select_tag(:metro_area_id, '<option></option>' + options_from_collection_for_select(find_searchable_metro_areas, "id", "name", @search['metro_area_id'].to_i), {:style => "width:100px"})
         %li
           = :Program
           = select_tag(:organization_id, '<option></option>' + options_from_collection_for_select(Organization.find_partners, "id", "display_name", @search['organization_id'].to_i))        

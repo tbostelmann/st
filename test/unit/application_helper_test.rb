@@ -5,6 +5,17 @@ include ApplicationHelper
 class ApplicationHelperTest < ActiveSupport::TestCase
   
   CENTS_IN_DOLLAR = 100
+
+  test "find_searchable_metro_areas" do
+    metro_areas = find_searchable_metro_areas
+    all_ma = MetroArea.find(:all)
+
+    assert metro_areas.size <= all_ma.size
+
+    metro_areas.each do |metro_area|
+      assert Saver.find(:all, :conditions => {:metro_area_id => metro_area.id}).size > 0
+    end
+  end
   
   test "Savers pledge menu min is $5" do
     min_spec = 5 * CENTS_IN_DOLLAR
