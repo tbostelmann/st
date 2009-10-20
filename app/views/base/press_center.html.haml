@@ -18,10 +18,24 @@
     %h2
       =:press_releases.l.titleize
 
-    .block
+    .block{:style => "float: left; margin-bottom: 20px;"}
 
       %h4
         = link_to "SaveTogether Launches Unique Website to Fight Poverty in the U.S.", :controller => 'base', :action => "press_release_10152009"
       %br
       %p
         ="SEATTLE, WA—October 15, 2009— SaveTogether, a nonprofit organization that taps the power of matched savings to fight poverty and increase economic opportunity in the United States, announced the official launch of its website today (www.SaveTogether.org)."
+
+    %br
+    %h2
+      =:other.l.titleize
+
+    .block{:style => "float: left; margin-bottom: 20px;"}
+
+      %div{:style => "float: left;"}
+        = image_tag "http://blogtalk.vo.llnwd.net/o23/picts/hostpics/no_image.jpg", :alt => "The Seattle Times", :size => "150x150"
+      %div{:style => "float:left; margin-top: 40px; margin-left: 20px;"}
+        %h4
+          ="Blogtalkradio, September 9th, 2009"
+        =link_to "Open Call with Peter Deitz of Social Actions and Dylan Higgins of SaveTogether.", "http://www.blogtalkradio.com/Social-Actions/2009/09/09/Dylan-Higgins-of-SaveTogether", :popup => true
+      
