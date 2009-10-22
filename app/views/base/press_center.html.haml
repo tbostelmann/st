@@ -6,19 +6,37 @@
     %h2
       =:press.l.titleize
 
-    .block{:style => "margin-bottom: 20px;"}
+    .block{:style => "float: left; margin-bottom: 20px; width: 100%;"}
 
-      %div{:style => "float: left;"}
-        = image_tag "http://www.seattletimescompany.com/images/left_logo.gif", :alt => "The Seattle Times"
-      %h4
-        = "The Seattle Times, October 5, 2009"
-      =link_to "Would you help a stranger save money?", "http://seattletimes.nwsource.com/html/thebusinessofgiving/2010004271_new_local_non-profit_focuses_o.html", :popup => true
+      %div{:style => "float: left; width: 100%; margin-bottom: 20px; height: 70px;"}
+        = image_tag "http://www.seattletimescompany.com/images/left_logo.gif", :alt => "The Seattle Times", :style => "float: left;"
+        %h4{:style => "margin-left: 20px;"}
+          = "The Seattle Times, October 5, 2009"
+        =link_to "Would you help a stranger save money?", "http://seattletimes.nwsource.com/html/thebusinessofgiving/2010004271_new_local_non-profit_focuses_o.html", :popup => true
+
+      %div{:style => "float: left; width: 100%; height: 70px;"}
+        = image_tag image_path('logos/slate_logo.jpg'), :alt => "Slate", :size => "150x50", :style => "float: left; margin-left: 20px; margin-right: 20px; margin-top: 10px"
+        %h4{:style => "margin-left: 20px;"}
+          ="Slate, October 21, 2009"
+        =link_to "Brother, Can You Lend a Dime?", "http://www.slate.com/id/2233017/", :popup => true
+
+    %br
+    %h2
+      =:other.l.titleize
+
+    .block{:style => "float: left; margin-bottom: 20px; width: 100%;"}
+
+      %div{:style => "float: left; width: 100%; height: 70px;"}
+        = image_tag image_path('logos/blogtalkradio_logo.jpg'), :alt => "Blogtalkradio", :style => "float: left; margin-left: 20px; margin-right: 20px; margin-top: 15px"
+        %h4{:style => "margin-left: 20px;"}
+          ="Blogtalkradio, September 9th, 2009"
+        =link_to "Open Call with Peter Deitz of Social Actions and Dylan Higgins of SaveTogether", "http://www.blogtalkradio.com/Social-Actions/2009/09/09/Dylan-Higgins-of-SaveTogether", :popup => true
 
     %br
     %h2
       =:press_releases.l.titleize
 
-    .block{:style => "float: left; margin-bottom: 20px;"}
+    .block{:style => "float: left; margin-bottom: 20px; width: 100%;"}
 
       %h4
         = link_to "SaveTogether Launches Unique Website to Fight Poverty in the U.S.", :controller => 'base', :action => "press_release_10152009"
@@ -26,16 +44,3 @@
       %p
         ="SEATTLE, WA—October 15, 2009— SaveTogether, a nonprofit organization that taps the power of matched savings to fight poverty and increase economic opportunity in the United States, announced the official launch of its website today (www.SaveTogether.org)."
 
-    %br
-    %h2
-      =:other.l.titleize
-
-    .block{:style => "float: left; margin-bottom: 20px;"}
-
-      %div{:style => "float: left;"}
-        = image_tag "http://blogtalk.vo.llnwd.net/o23/picts/hostpics/no_image.jpg", :alt => "The Seattle Times", :size => "150x150"
-      %div{:style => "float:left; margin-top: 40px; margin-left: 20px;"}
-        %h4
-          ="Blogtalkradio, September 9th, 2009"
-        =link_to "Open Call with Peter Deitz of Social Actions and Dylan Higgins of SaveTogether.", "http://www.blogtalkradio.com/Social-Actions/2009/09/09/Dylan-Higgins-of-SaveTogether", :popup => true
-      
