@@ -109,4 +109,63 @@ class ActiveSupport::TestCase
     assert donor.all_donations_given.size >= 2
     assert donor.pledges.size > 0
   end
+
+  def create_ipn(pledge)
+    create_notification(pledge, {
+            :payment_fee => '1.90',
+            :mc_fee => '1.90',
+            :payment_type => 'instant',
+            })
+  end
+
+  def create_notification(pledge, add_params = {})
+    donor = pledge.donor
+    notification = {
+      :mc_gross => "#{pledge.total_amount_for_donations}",
+      :invoice => "#{pledge.id}",
+      :protection_eligibility => 'Ineligible',
+      :payer_id => 'YMQMYSZ5LYANL',
+      :tax => '0.00',
+      :payment_date => '11-20-07 May 27, 2009 PDT',
+      :payment_status => 'Completed',
+      :charset => 'windows-1252',
+      :mc_shipping => '0.00',
+      :mc_handling => '0.00',
+      :first_name => "#{donor.first_name}",
+      :notify_version => '2.8',
+      :custom => '',
+      :payer_status => 'verified',
+      :business => 'tom@savetogether.org',
+      :payer_email => "#{donor.email}",
+      :verify_sign => 'AREFmIS0FirenwdngMCN-lqksBYNA668VwpM1h4AHQvdR7JzWkCS4nJ0',
+      :txn_id => '86J700648N228641Y',
+      :last_name => "#{donor.last_name}",
+      :receiver_email => 'tom@savetogether.org',
+      :receiver_id => 'ZK62HKKPR4NTE',
+      :txn_type => 'cart',
+      :mc_currency => 'USD',
+      :residence_country => 'US',
+      :test_ipn => '1',
+      :transaction_subject => 'Shopping Cart',
+      :payment_gross => "#{pledge.total_amount_for_donations}",
+      :merchant_return_link => 'Return to SaveTogether',
+      :auth => 'ZYTlDZ4v57sLTuL7WyZ6m2yqSuVYbjpLtndecieoKRVQMBLnqoLGzVeW0fLuVGIo2x3RJtPa-bB-i7--'
+    }
+    if pledge.donations
+      i = 1
+      notification['num_cart_items'] = "#{pledge.donations.size}"
+      pledge.donations.each do |donation|
+        notification["item_number#{i}"] = "#{donation.to_user.id}"
+        notification["tax#{i}"] = '0.00'
+        notification["mc_handling#{i}"] = '0.00'
+        notification["mc_shipping#{i}"] = '0.00'
+        notification["item_name#{i}"] = "#{donation.to_user.display_name}"
+        notification["quantity#{i}"] = '1'
+        notification["mc_gross_#{i}"] = "#{donation.amount.to_s}"
+        i = i + 1
+      end
+    end
+
+    return notification.merge(add_params)
+  end
 end

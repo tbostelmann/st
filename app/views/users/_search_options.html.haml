@@ -11,7 +11,7 @@
           = select_tag(:metro_area_id, '<option></option>' + options_from_collection_for_select(find_searchable_metro_areas, "id", "name", @search['metro_area_id'].to_i), {:style => "width:100px"})
         %li
           = :Program
-          = select_tag(:organization_id, '<option></option>' + options_from_collection_for_select(Organization.find_partners, "id", "display_name", @search['organization_id'].to_i))        
+          = select_tag(:organization_id, '<option></option>' + options_from_collection_for_select(Organization.find_partners(:all), "id", "display_name", @search['organization_id'].to_i))        
         %li
           =image_submit_tag "#{image_path('buttons/search.gif')}", :alt => :Search, :class => "search-button"
           

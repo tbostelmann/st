@@ -23,7 +23,7 @@ Rails::Initializer.run do |config|
 
   # Specify gems that this application depends on and have them installed with rake gems:install
   config.gem "calendar_date_select", :version => "1.15"
-  config.gem "desert", :version => "0.5.2"
+  config.gem "desert", :version => "0.5.3"
   config.gem "faker", :version => "0.3.1"
   config.gem "haml", :version => '2.2.3'
   config.gem "hpricot", :version => '0.8.1'

@@ -71,8 +71,10 @@ class Organization < Party
     find_by_login(PAYPAL_LOGIN)
   end
 
-  def self.find_partners
-    find_public(:all, :conditions => ["login != ? AND login != ? AND login != ?", SAVETOGETHER_LOGIN, PAYPAL_LOGIN, CFED_LOGIN])
+  def self.find_partners(*args)
+    with_scope(:find => {:conditions => ["login != ? AND login != ? AND login != ?", SAVETOGETHER_LOGIN, PAYPAL_LOGIN, CFED_LOGIN]}) do
+      find(*args)
+    end
   end
 
   def self.find_random(count=4)

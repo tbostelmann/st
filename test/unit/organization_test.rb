@@ -22,10 +22,11 @@ class OrganizationTest < ActiveSupport::TestCase
   end
   
   test "get collection of partners" do
-    partners = Organization.find_partners
+    partners = Organization.find_partners(:all)
     partners.each do |p|
       assert p.login != Organization::SAVETOGETHER_LOGIN
       assert p.login != Organization::PAYPAL_LOGIN
+      assert p.login != Organization::CFED_LOGIN
     end
   end
 

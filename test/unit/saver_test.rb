@@ -3,6 +3,11 @@ require 'benchmark'
 include Benchmark
 
 class SaverTest < ActiveSupport::TestCase
+  test "create factory saver" do
+    saver = Factory(:saver)
+    assert !saver.nil?
+  end
+
   test "find_random_featured" do
     Saver.find_random_featured(:all).each do |saver|
       assert saver.featured_user
