@@ -115,18 +115,20 @@ class Pledge < Invoice
       raise "Reported LineItem count does not match Invoice Donation count"
     end
 
-    # Add reported Fee if it hasn't been reported already'
+    # Add reported Fee if it hasn't been reported already
     amount = notify.fee
-    paypal = Organization.find_paypal_org
-    fee = self.fees.find(:first, :conditions => {:to_user_id => paypal})
-    if fee.nil?
-      storg = Organization.find_savetogether_org
-      self.fees << Fee.new(:from_user => storg, :to_user => paypal,
-              :amount => amount, :status => notify.status)
-    elsif fee.amount.to_s.to_f != amount.to_f
-      raise "Fee amount has changed since last notification"
-    else
-      fee.status = notify.status
+    unless amount.nil?
+      paypal = Organization.find_paypal_org
+      fee = self.fees.find(:first, :conditions => {:to_user_id => paypal})
+      if fee.nil?
+        storg = Organization.find_savetogether_org
+        self.fees << Fee.new(:from_user => storg, :to_user => paypal,
+                :amount => amount, :status => notify.status)
+      elsif fee.amount.to_s.to_f != amount.to_f
+        raise "Fee amount has changed since last notification"
+      else
+        fee.status = notify.status
+      end
     end
   end
 end

@@ -110,16 +110,13 @@ class PledgesControllerTest < ActionController::TestCase
 
   test "complete a pledge when returning to st site" do
     pledge = invoices(:pledge2)
-    saver = users(:saver2)
-    storg = Organization.find_savetogether_org
     donor = users(:donor2)
     login_as(:donor2)
 
     completed_donations = donor.donations_given.size
     li_count = pledge.line_items.size
 
-    notif = create_ipn(pledge)
-    get :done, notif
+    get :done, create_ipn(pledge)
 
     assert_redirected_to :controller => "donor_surveys", :action => "show", :thank_you_for_pledge => true
     assert_not_nil assigns['pledge']
@@ -131,6 +128,31 @@ class PledgesControllerTest < ActionController::TestCase
     donor = Donor.find(donor.id)
     assert donor.donations_given.size > completed_donations
     
+    assert_equal 1, @emails.size
+    assert_equal "[SaveTogether] Thank you for your donation!", @emails[0].subject
+  end
+
+  test "handle an ipn with no fee" do
+    pledge = invoices(:pledge2)
+    donor = users(:donor2)
+    login_as(:donor2)
+
+    completed_donations = donor.donations_given.size
+    li_count = pledge.line_items.size
+
+    get :done, create_notification(pledge)
+
+    assert_redirected_to :controller => "donor_surveys", :action => "show", :thank_you_for_pledge => true
+    assert_not_nil assigns['pledge']
+    assert flash[:thank_you_for_pledge]
+
+    pledge = Pledge.find(pledge.id)
+    # Make sure there weren't any added line_items - fees
+    assert pledge.line_items.size == li_count
+
+    donor = Donor.find(donor.id)
+    assert donor.donations_given.size > completed_donations
+
     assert_equal 1, @emails.size
     assert_equal "[SaveTogether] Thank you for your donation!", @emails[0].subject
   end
