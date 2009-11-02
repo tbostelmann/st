@@ -10,12 +10,12 @@ module ApplicationHelper
     # logger.debug("request is over SSL ? : #{request.ssl?}")
     request.ssl?
   end
-  
+
   def is_production?
     # logger.debug{"is_production?: env is #{RAILS_ENV}"}
     return RAILS_ENV.eql?('production')
   end
-  
+
   def current_request_protocol
     is_ssl? ?  'https' : 'http'
   end
@@ -55,22 +55,22 @@ module ApplicationHelper
         total_cents = total_cents + d.cents
       else
         st_ask_cents = d.cents
-      end  
-    end  
+      end
+    end
 
     factors.each_with_index do |f, i|
       opts << savetogether_donation_menu_entry(factored_cents(total_cents, f), percent_from_factor(f))
     end
-    
+
     if (st_ask_cents > 0) then
       opts << savetogether_donation_menu_entry(st_ask_cents, percent_from_factor(st_ask_cents.to_f/total_cents.to_f))
       opts.uniq!
       opts = opts.sort{|this, that| this[1] <=> that[1]}
     end
-        
+
     return opts
   end
-  
+
   # If many more String methods show up, they should probably be moved
   # to a plugin that adds the methods to the String class. Seems overkill
   # for this one method.
@@ -86,7 +86,7 @@ private
   def factored_cents(cents, factor)
     (cents.to_f * factor).to_i
   end
-  
+
   def percent_from_factor(factor)
     factor * 100.to_f
   end

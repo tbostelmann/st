@@ -29,28 +29,31 @@ class ApplicationController < ActionController::Base
 
 
   # --------------------------------------------------------------------------
-  # create a customized rescue_action_in_public style handler 
+  # create a customized rescue_action_in_public style handler
 
   PRODUCTION_LIKE_ENVIRONMENTS = [ 'production', 'demo' ]
 
   def rescue_action ( exception )
     deliverer = self.class.exception_data
     data = case deliverer
-      when nil then {}
-      when Symbol then send(deliverer)
-      when Proc then deliverer.call(self)
+      when nil then
+        {}
+      when Symbol then
+        send(deliverer)
+      when Proc then
+        deliverer.call(self)
     end
 
     logger.debug{" RESCUE : #{exception.inspect}"}
     ExceptionNotifier.deliver_exception_notification(exception, self,
-      request, data)
+                                                     request, data)
 
     if PRODUCTION_LIKE_ENVIRONMENTS.include?(RAILS_ENV)
       # show only a pretty error page
       render :template => "common/general_error.html.erb" and return false
     else
       # show the normal stacktrace to aid in debugging
-      super exception 
+      super exception
     end
 
     return false
@@ -63,7 +66,7 @@ class ApplicationController < ActionController::Base
     @request_guid = ActiveSupport::SecureRandom.base64(32)
     if logger.respond_to?('prefix')
       logger.prefix = @request_guid
-    end  
+    end
     super
   end
 
@@ -77,7 +80,7 @@ class ApplicationController < ActionController::Base
   # --------------------------------------------------------------------------
   def force_non_ssl
     was_ssl = request.ssl?
-    if was_ssl 
+    if was_ssl
       logger.debug{"Request was SSL, bouncing back to non-ssl ..."}
       # TODO: this loses all params after ? - so don't use it for now!
       redirect_to :protocol => "http"

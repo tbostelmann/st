@@ -35,7 +35,7 @@ class ActiveSupport::TestCase
   fixtures :all
 
   # Add more helper methods to be used by all tests here...
-  
+
   # This clever idea courtesy of
   # http://alexbrie.net/1526/functional-tests-with-login-in-rails/
   #
@@ -44,18 +44,18 @@ class ActiveSupport::TestCase
   # one to get a login against the sessions controller so that
   # a valid, authorized session exists in the request. Then, restricted
   # actions can be tested against. (See DonorSurveysControllerTest#invite)
-  
+
   # It's a good thought, currently can't get it to work. Not sure if the forgery
   # protection stuff is getting the way (the login form also passes an authenticity
   # based on session, but can't find out enough docs to know if that's the problem here)
   def login(login = 'gennydonor@example.com', password =' test')
     old_controller = @controller
-    
+
     @controller = SessionsController.new
     post :login, :login => login, :password => password
     # assert_redirected_to :controller => tsap, :action=>'overview'
     assert_not_nil(session[:user])
-    
+
     @controller = old_controller
   end
 
@@ -72,7 +72,7 @@ class ActiveSupport::TestCase
             :amount => "5.00",
             :to_user_id => stOrg.id
             }
-          }    
+          }
   end
 
   def invalid_pledge_params(saver)
@@ -116,7 +116,7 @@ class ActiveSupport::TestCase
             :mc_fee => '1.90',
             :payment_type => 'instant',
             })
-  end
+end
 
   def create_notification(pledge, add_params = {})
     donor = pledge.donor

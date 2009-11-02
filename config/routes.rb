@@ -31,6 +31,7 @@ ActionController::Routing::Routes.draw do |map|
   #   end
 
   # You can have the root of your site routed with map.root -- just remember to delete public/index.html.
+  # map.root :controller => "welcome"
 
   # See how all your routes lay out with "rake routes"
 
@@ -42,11 +43,11 @@ ActionController::Routing::Routes.draw do |map|
   map.do_more         '/do-more',          :controller => 'donor_surveys', :action => 'show'
   map.invite          '/do-more/invite',   :controller => 'donor_surveys', :action => 'invite'
   map.survey          '/do-more/survey',   :controller => 'donor_surveys', :action => 'create'
-  
+
   # New base actions
   map.how_it_works    '/how-it-works',    :controller => 'base',   :action => 'how_it_works'
   map.success_stories '/success-stories', :controller => 'base',   :action => 'success_stories'
-  map.contact_us        '/contact-us',    :controller => 'base',   :action => 'contact_us' 
+  map.contact_us        '/contact-us',    :controller => 'base',   :action => 'contact_us'
   map.about_us        '/about-us',        :controller => 'base',   :action => 'about_us'
   map.terms_of_use    '/terms-of-use',    :controller => 'base',   :action => 'terms_of_use'
   map.privacy_policy  '/privacy-policy',  :controller => 'base',   :action => 'privacy_policy'
