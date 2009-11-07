@@ -6,7 +6,9 @@ class SessionsController < BaseController
   # case we want to redirect after to the user's requested page (the profile) but
   # can't with this logic, and too late to fix for 1.0
   before_filter :store_current_location
-  
+
+  skip_before_filter :verify_authenticity_token
+
   def create
     
     self.current_user = User.authenticate(params[:login], params[:password])
