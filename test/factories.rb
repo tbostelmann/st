@@ -1,7 +1,7 @@
 require 'populator'
 require 'faker'
 
-Factory.define :saver do |s|
+Factory.define :user do |s|
   s.first_name Faker::Name.first_name
   s.last_name Faker::Name.last_name
   s.login Faker::Internet.email
@@ -19,7 +19,40 @@ Factory.define :saver do |s|
   s.profile_public true
   s.metro_area {|ma| MetroArea.find(:first, :order => 'rand()')}
   s.state {|a| a.metro_area.state}
+end
+
+Factory.define :saver, :parent => :user, :class => Saver do |s|
   s.organization {|a| Organization.find_partners(:first, :order => 'rand()')}
   s.requested_match_cents [100000, 150000, 200000].rand
   s.asset_type {|a| AssetType.find(:first, :order => 'rand()')}
+end
+
+Factory.define :donor, :parent => :user, :class => Donor do |d|
+end
+
+Factory.define :line_item do |li|
+  li.cents [100, 500, 1000, 2500, 5000].rand
+  li.status [LineItem::STATUS_DENIED, LineItem::STATUS_EXPIRED, LineItem::STATUS_FAILED,
+             LineItem::STATUS_PENDING, LineItem::STATUS_REFUNDED, LineItem::STATUS_REVERSED,
+             LineItem::STATUS_PROCESSED, LineItem::STATUS_VOIDED, LineItem::STATUS_COMPLETED,
+             LineItem::STATUS_CANCELED_REVERSAL].rand
+end
+
+Factory.define :donation, :parent => :line_item, :class => Donation do |d|
+  d.association :from_user, :factory => :donor
+  d.association :to_user, :factory => :saver
+end
+
+Factory.define :fee, :parent => :line_item, :class => Fee do |f|
+  f.from_user {|st| Organization.find_savetogether_org}
+  f.to_user {|pp| Organization.find_paypal_org}
+end
+
+Factory.define :gift, :parent => :line_item, :class => Gift do |g|
+end
+
+Factory.define :new_pledge, :class => Pledge do |p|
+  p.association :donor, :factory => :donor
+  p.donations {|donations| [donations.association(:donation, :from_user => donations.donor)]}
+  p.fees {|fees| [fees.association(:fee, :status => fees.donations[0].status)]}
 end

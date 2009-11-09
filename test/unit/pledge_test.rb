@@ -2,6 +2,11 @@ require File.dirname(__FILE__) + '/../test_helper'
 require 'money'
 
 class PledgeTest < ActiveSupport::TestCase
+  test "create factory pledge" do
+    pledge = Factory(:new_pledge)
+    assert !pledge.nil?
+  end
+
   test "find donation with same to_user_id" do
     pledge = invoices(:pledge)
     donation = pledge.donations[0]
