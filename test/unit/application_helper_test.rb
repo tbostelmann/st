@@ -17,8 +17,8 @@ class ApplicationHelperTest < ActiveSupport::TestCase
     end
   end
   
-  test "Savers pledge menu min is $5" do
-    min_spec = 5 * CENTS_IN_DOLLAR
+  test "Savers pledge menu min is $1" do
+    min_spec = 1 * CENTS_IN_DOLLAR
     min_entry = select_pledge_amounts_cents_values.min{|a, b| a[1] <=> b[1]}
     assert_equal min_spec, min_entry[1]
   end
@@ -43,20 +43,20 @@ class ApplicationHelperTest < ActiveSupport::TestCase
   end
   
   test "Saver pledge menu can be built for single entry" do
-    max_spec = 5 * CENTS_IN_DOLLAR
+    max_spec = 1 * CENTS_IN_DOLLAR
     entries = select_pledge_amounts_cents_values(max_spec)
     assert_equal 1, entries.size
   end
   
   test "Lower boundary condition: a max amount less than the increment size results in single element of max value" do
-    max_spec = 4 * CENTS_IN_DOLLAR
+    max_spec = 40
     entries = select_pledge_amounts_cents_values(max_spec)
     assert_equal 1, entries.size
     assert_equal max_spec, entries[0][1]
   end
   
   test "Upper boundary condition: a max amount not modulo(increment_amount) results in last element of max value" do
-    max_spec = 6 * CENTS_IN_DOLLAR
+    max_spec = 2 * CENTS_IN_DOLLAR
     entries = select_pledge_amounts_cents_values(max_spec)
     assert_equal 2, entries.size
     assert_equal max_spec, entries.last[1]
