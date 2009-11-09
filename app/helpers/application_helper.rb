@@ -30,6 +30,9 @@ module ApplicationHelper
 
   def select_pledge_amounts_cents_values(max=30000)
     pledge_amounts = Array.new
+    if max >= 100
+      pledge_amounts << [(:donation_amount.l :amount => 1), 100]
+    end
     if max >= 500
       pledge_amounts << [(:donation_amount.l :amount => 5), 500]
     end
