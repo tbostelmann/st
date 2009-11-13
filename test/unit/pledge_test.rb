@@ -2,15 +2,39 @@ require File.dirname(__FILE__) + '/../test_helper'
 require 'money'
 
 class PledgeTest < ActiveSupport::TestCase
-  test "create factory pledge" do
-    pledge = Factory(:new_pledge)
-    assert !pledge.nil?
+  test "create pending factory pledge" do
+    pledge = Factory(:pending_pledge)
+    assert pledge.line_items.size > 0
+    assert pledge.donations.size > 0
+    pledge.line_items.each do |li|
+      assert li.status == LineItem::STATUS_PENDING
+    end
+  end
+
+  test "create completed factory pledge" do
+    pledge = Factory(:completed_pledge)
+    assert pledge.line_items.size > 0
+    assert pledge.donations.size > 0
+    assert pledge.fees.size > 0
+    pledge.line_items.each do |li|
+      assert li.status == LineItem::STATUS_COMPLETED
+    end
+  end
+
+  test "create pending factory pledge with gift" do
+    pledge = Factory(:pending_pledge_with_gift)
+    assert pledge.line_items.size > 0
+    assert pledge.donations.size > 0
+    assert pledge.gifts.size > 0
+    pledge.line_items.each do |li|
+      assert li.status == LineItem::STATUS_PENDING
+    end
   end
 
   test "find donation with same to_user_id" do
     pledge = invoices(:pledge)
     donation = pledge.donations[0]
-    d = pledge.find_donation_with_to_user_id(donation.to_user_id)
+    d = pledge.find_line_item_with_to_user_id(donation.to_user_id)
     assert d.to_user_id == donation.to_user_id    
   end
 
@@ -19,7 +43,7 @@ class PledgeTest < ActiveSupport::TestCase
     donation = pledge.donations[0]
     donation.amount = "500.00"
     pledge.add_donation(donation)
-    d = pledge.find_donation_with_to_user_id(donation.to_user_id)
+    d = pledge.find_line_item_with_to_user_id(donation.to_user_id)
     assert d.amount = donation.amount
   end
   
@@ -34,7 +58,7 @@ class PledgeTest < ActiveSupport::TestCase
     pledge = invoices(:pledge)
     donation = pledge.donations[0]
     pledge.remove_donation_with_to_user_id(donation.to_user_id)
-    assert !pledge.find_donation_with_to_user_id(donation.to_user_id)
+    assert !pledge.find_line_item_with_to_user_id(donation.to_user_id)
   end
 
   test "get total amount of donations from pledge" do

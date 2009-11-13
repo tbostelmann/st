@@ -20,12 +20,20 @@ module ApplicationHelper
     is_ssl? ?  'https' : 'http'
   end
 
-  def find_pledge
+  def get_or_init_pledge
     if session[:pledge_id].nil?
       pledge = Pledge.create!
       session[:pledge_id] = pledge.id
     end
-    pledge = Pledge.find(session[:pledge_id])
+    return Pledge.find(session[:pledge_id])
+  end
+
+  def get_pledge
+    if !session[:pledge_id].nil?
+      return Pledge.find(session[:pledge_id])
+    else
+      return
+    end
   end
 
   def select_pledge_amounts_cents_values(max=30000)
@@ -53,7 +61,7 @@ module ApplicationHelper
     total_cents = 0
     st_ask_cents = 0
     storg_id = Organization.find_savetogether_org.id
-    find_pledge.donations.each do |d|
+    get_or_init_pledge.donations.each do |d|
       unless d.to_user_id == storg_id
         total_cents = total_cents + d.cents
       else

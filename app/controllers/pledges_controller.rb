@@ -20,8 +20,8 @@ class PledgesController < BaseController
   end
 
   def render_show_or_edit
-    @pledge = find_pledge
-    if @pledge.find_donation_with_to_user_id(Organization.find_savetogether_org.id)
+    @pledge = get_or_init_pledge
+    if @pledge.find_line_item_with_to_user_id(Organization.find_savetogether_org.id)
       show
     else
       edit
@@ -41,8 +41,8 @@ class PledgesController < BaseController
   end
 
   def update_donation_amount
-    @pledge = find_pledge
-    donation = @pledge.find_donation_with_to_user_id(params[:donation][:to_user_id])
+    @pledge = get_or_init_pledge
+    donation = @pledge.find_line_item_with_to_user_id(params[:donation][:to_user_id])
     donation.cents = params[:donation][:cents]
     donation.save!
 
@@ -50,7 +50,7 @@ class PledgesController < BaseController
   end
 
   def remove_from_pledge
-    @pledge = find_pledge
+    @pledge = get_or_init_pledge
     @pledge.remove_donation_with_to_user_id(params[:to_user_id])
     @pledge.save!
 
@@ -58,18 +58,18 @@ class PledgesController < BaseController
   end
   
   def edit
-    @pledge = find_pledge
+    @pledge = get_or_init_pledge
 
     render 'edit'
   end
 
   def show
-    @pledge = find_pledge
+    @pledge = get_or_init_pledge
     if current_user
       @user = current_user
       @pledge.set_donor_id(@user.id)
       @pledge.save
-      @pledge = find_pledge
+      @pledge = get_or_init_pledge
     end 
 
     render 'show'
@@ -78,10 +78,10 @@ class PledgesController < BaseController
   def savetogether_ask
     if current_user.nil?
       redirect_to signup_or_login_path
-    elsif find_pledge.find_donation_with_to_user_id(Organization.find_savetogether_org.id)
+    elsif get_or_init_pledge.find_line_item_with_to_user_id(Organization.find_savetogether_org.id)
       show
     else
-      @pledge = find_pledge
+      @pledge = get_or_init_pledge
       @storg = Organization.find_savetogether_org
       @donation = Donation.suggest_percentage_of(current_user.id, @storg.id, 0.15, @pledge.total_amount_for_donations)
     end
@@ -138,12 +138,12 @@ class PledgesController < BaseController
   private
 
   def add_donation_to_pledge
-    @pledge = find_pledge
+    @pledge = get_or_init_pledge
     if params[:donation]
       donation = Donation.new(params[:donation])
       @pledge.add_donation(donation)
       @pledge.save!
-      @pledge = find_pledge
+      @pledge = get_or_init_pledge
     end
   end
 

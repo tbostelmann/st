@@ -121,6 +121,8 @@ en:
   #en: are_you_sure_you_want_to_permanently_delete_this_user: Are you sure you want to permanently delete this user?
   are_you_sure_you_want_to_permanently_delete_this_user: Are you sure you want to permanently delete this user?
   #en: assume_id: Assume ID
+  argument_error_no_class_params_supplied: "No class parameters were supplied"
+  argument_error_gift_not_in_current_pledge: "Gift with supplied id {{id}} not in current pledge"
   assume_id: Assume ID
   #en: assume_user_id: "Assume this user's ID"
   assume_user_id: "Assume this user's ID"
@@ -1061,6 +1063,7 @@ en:
   rss_feed: RSS feed
   #en: run: Run
   run: Run
+  runtime_error_no_pledge_in_session: No pledge is present in the session
   #en: save: Save
   save: Save
   #en: saver: Saver
@@ -1101,6 +1104,7 @@ en:
   search_users: Search Users
   #en: searching_for: Searching for
   searching_for: Searching for
+  security_error_trying_to_update_processed_gift: "Trying to update gift with id {{id}} that is no longer editable"
   #en: see_all: SEE ALL
   see_all: SEE ALL
   #en: see_all_activity: See all activity

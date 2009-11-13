@@ -15,7 +15,8 @@
 #
 
 class Donation < LineItem
-  
+  validates_presence_of :to_user
+
   def self.suggest_percentage_of(from, to, percentage, amount)
     suggested_amount = (amount.cents.to_f * percentage).to_i
     Donation.new(:from_user_id => from, :to_user_id => to, :cents => "#{suggested_amount}")

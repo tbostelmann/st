@@ -41,7 +41,7 @@ class PledgesControllerTest < ActionController::TestCase
     assert_template 'show'
 
     pledge = Pledge.find(pledge.id)
-    d = pledge.find_donation_with_to_user_id(Organization.find_savetogether_org.id)
+    d = pledge.find_line_item_with_to_user_id(Organization.find_savetogether_org.id)
     assert !d.nil?
     assert d.cents.to_s == "125"
   end
@@ -61,7 +61,7 @@ class PledgesControllerTest < ActionController::TestCase
     assert_template 'show'
 
     pledge = Pledge.find(session[:pledge_id])
-    d = pledge.find_donation_with_to_user_id(donation.to_user_id)
+    d = pledge.find_line_item_with_to_user_id(donation.to_user_id)
     assert !d.nil?
     assert d.cents != donation.cents
     assert d.cents == c
@@ -78,7 +78,7 @@ class PledgesControllerTest < ActionController::TestCase
     assert_template 'edit'
 
     pledge = Pledge.find(session[:pledge_id])
-    d = pledge.find_donation_with_to_user_id(donation.to_user_id)
+    d = pledge.find_line_item_with_to_user_id(donation.to_user_id)
     assert d.nil?
   end  
   

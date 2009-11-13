@@ -1,6 +1,9 @@
 require 'populator'
 require 'faker'
 
+##
+# Users
+##
 Factory.define :user do |s|
   s.first_name Faker::Name.first_name
   s.last_name Faker::Name.last_name
@@ -30,29 +33,49 @@ end
 Factory.define :donor, :parent => :user, :class => Donor do |d|
 end
 
-Factory.define :line_item do |li|
-  li.cents [100, 500, 1000, 2500, 5000].rand
-  li.status [LineItem::STATUS_DENIED, LineItem::STATUS_EXPIRED, LineItem::STATUS_FAILED,
-             LineItem::STATUS_PENDING, LineItem::STATUS_REFUNDED, LineItem::STATUS_REVERSED,
-             LineItem::STATUS_PROCESSED, LineItem::STATUS_VOIDED, LineItem::STATUS_COMPLETED,
-             LineItem::STATUS_CANCELED_REVERSAL].rand
-end
 
-Factory.define :donation, :parent => :line_item, :class => Donation do |d|
-  d.association :from_user, :factory => :donor
+##
+# LineItems
+##
+Factory.define :donation, :class => Donation do |d|
+  d.cents [100, 500, 1000, 2500, 5000].rand
   d.association :to_user, :factory => :saver
 end
 
-Factory.define :fee, :parent => :line_item, :class => Fee do |f|
+Factory.define :donation_to_savetogether, :class => Donation do |d|
+  d.to_user {|st| Organization.find_savetogether_org}
+end
+
+Factory.define :fee, :class => Fee do |f|
   f.from_user {|st| Organization.find_savetogether_org}
   f.to_user {|pp| Organization.find_paypal_org}
 end
 
-Factory.define :gift, :parent => :line_item, :class => Gift do |g|
+Factory.define :gift, :class => Gift do |g|
 end
 
-Factory.define :new_pledge, :class => Pledge do |p|
+
+##
+# Invoices
+##
+Factory.define :unpaid_pledge, :class => Pledge do |p|
+  p.donations {|a| [a.association(:donation, :from_user => [nil, a.donor].rand),
+                    a.association(:donation, :from_user => [nil, a.donor].rand, :to_user => Organization.find_savetogether_org)]}
+end
+
+Factory.define :pending_pledge, :class => Pledge do |p|
   p.association :donor, :factory => :donor
-  p.donations {|donations| [donations.association(:donation, :from_user => donations.donor)]}
-  p.fees {|fees| [fees.association(:fee, :status => fees.donations[0].status)]}
+  p.donations {|a| [a.association(:donation, :from_user => a.donor, :status => LineItem::STATUS_PENDING)]}
+end
+
+Factory.define :pending_pledge_with_gift, :class => Pledge do |pwg|
+  pwg.association :donor, :factory => :donor
+  pwg.donations {|a| [a.association(:donation, :from_user => a.donor, :status => LineItem::STATUS_PENDING)]}
+  pwg.gifts {|a| [a.association(:gift, :from_user => a.donor, :status => a.donations[0].status)]}
+end
+
+Factory.define :completed_pledge, :class => Pledge do |p|
+  p.association :donor, :factory => :donor
+  p.donations {|a| [a.association(:donation, :from_user => a.donor, :status => LineItem::STATUS_COMPLETED)]}
+  p.fees {|a| [a.association(:fee, :status => a.donations[0].status)]}
 end

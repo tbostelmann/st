@@ -30,13 +30,22 @@ class Pledge < Invoice
     end
   end
 
-  def find_donation_with_to_user_id(to_user_id)
-    donations.each do |d|
+  def find_line_item_with_to_user_id (to_user_id)
+    line_items.each do |d|
       if d.to_user_id == to_user_id.to_i
         return d
       end
     end
-    return nil
+    return
+  end
+
+  def find_line_item_with_id(id)
+    line_items.each do |d|
+      if d.id == id.to_i
+        return d
+      end
+    end
+    return
   end
   
   # Sort donations so that ST ask is alway at end of list
