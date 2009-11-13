@@ -124,10 +124,10 @@ class Pledge < Invoice
         storg = Organization.find_savetogether_org
         self.fees << Fee.new(:from_user => storg, :to_user => paypal,
                 :amount => amount, :status => notify.status)
-      elsif fee.amount.to_s.to_f != amount.to_f
-        raise "Fee amount has changed since last notification"
       else
+        fee.amount = amount
         fee.status = notify.status
+        fee.save!
       end
     end
   end
