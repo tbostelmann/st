@@ -4,10 +4,14 @@ require 'faker'
 ##
 # Users
 ##
+Factory.sequence :login do |a|
+  Faker::Internet.email
+end
+
 Factory.define :user do |s|
   s.first_name Faker::Name.first_name
   s.last_name Faker::Name.last_name
-  s.login Faker::Internet.email
+  s.login { Factory.next(:login) }
   s.login_slug {|saver| saver.login}
   s.description Populator.sentences(2..10)
   s.short_description Populator.sentences(1..2)
@@ -38,29 +42,36 @@ end
 # LineItems
 ##
 Factory.define :donation, :class => Donation do |d|
-  d.cents [100, 500, 1000, 2500, 5000].rand
+  d.cents [1000, 5000, 10000, 25000, 50000].rand
   d.association :to_user, :factory => :saver
 end
 
 Factory.define :donation_to_savetogether, :class => Donation do |d|
+  d.cents [100, 500, 1000, 2500, 5000].rand
   d.to_user {|st| Organization.find_savetogether_org}
 end
 
 Factory.define :fee, :class => Fee do |f|
+  f.cents [5, 10, 200, 500, 750].rand
+  f.status [LineItem::STATUS_DENIED, LineItem::STATUS_EXPIRED, LineItem::STATUS_FAILED,
+             LineItem::STATUS_PENDING, LineItem::STATUS_REFUNDED, LineItem::STATUS_REVERSED,
+             LineItem::STATUS_PROCESSED, LineItem::STATUS_VOIDED, LineItem::STATUS_COMPLETED,
+             LineItem::STATUS_CANCELED_REVERSAL].rand  
   f.from_user {|st| Organization.find_savetogether_org}
   f.to_user {|pp| Organization.find_paypal_org}
 end
 
-Factory.define :gift, :class => Gift do |g|
+Factory.define :anonymous_unpaid_gift, :class => Gift do |g|
+  g.cents [100, 500, 1000, 2500, 5000].rand
 end
 
 
 ##
 # Invoices
 ##
-Factory.define :unpaid_pledge, :class => Pledge do |p|
-  p.donations {|a| [a.association(:donation, :from_user => [nil, a.donor].rand),
-                    a.association(:donation, :from_user => [nil, a.donor].rand, :to_user => Organization.find_savetogether_org)]}
+Factory.define :anonymous_unpaid_pledge, :class => Pledge do |p|
+  p.donations {|a| [a.association(:donation, :status => nil),
+                    a.association(:donation_to_savetogether, :status => nil)]}
 end
 
 Factory.define :pending_pledge, :class => Pledge do |p|
@@ -71,11 +82,11 @@ end
 Factory.define :pending_pledge_with_gift, :class => Pledge do |pwg|
   pwg.association :donor, :factory => :donor
   pwg.donations {|a| [a.association(:donation, :from_user => a.donor, :status => LineItem::STATUS_PENDING)]}
-  pwg.gifts {|a| [a.association(:gift, :from_user => a.donor, :status => a.donations[0].status)]}
+  pwg.gifts {|a| [a.association(:anonymous_unpaid_gift, :from_user => a.donor, :status => a.donations[0].status)]}
 end
 
 Factory.define :completed_pledge, :class => Pledge do |p|
   p.association :donor, :factory => :donor
+  p.fees {|a| [a.association(:fee, :status => LineItem::STATUS_COMPLETED)]}
   p.donations {|a| [a.association(:donation, :from_user => a.donor, :status => LineItem::STATUS_COMPLETED)]}
-  p.fees {|a| [a.association(:fee, :status => a.donations[0].status)]}
 end

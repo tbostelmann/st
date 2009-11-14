@@ -4,7 +4,7 @@ class PledgesController < BaseController
   include ApplicationHelper
   include ActiveMerchant::Billing::Integrations
 
-  protect_from_forgery :except => [:notify]
+  protect_from_forgery :except => [:notify, :done]
 
   # GET /pledges/new/{:saver_id}
   def new
@@ -21,7 +21,7 @@ class PledgesController < BaseController
 
   def render_show_or_edit
     @pledge = get_or_init_pledge
-    if @pledge.find_line_item_with_to_user_id(Organization.find_savetogether_org.id)
+    if @pledge.find_donation_with_to_user_id(Organization.find_savetogether_org.id)
       show
     else
       edit
@@ -42,7 +42,7 @@ class PledgesController < BaseController
 
   def update_donation_amount
     @pledge = get_or_init_pledge
-    donation = @pledge.find_line_item_with_to_user_id(params[:donation][:to_user_id])
+    donation = @pledge.find_donation_with_to_user_id(params[:donation][:to_user_id])
     donation.cents = params[:donation][:cents]
     donation.save!
 
@@ -78,7 +78,7 @@ class PledgesController < BaseController
   def savetogether_ask
     if current_user.nil?
       redirect_to signup_or_login_path
-    elsif get_or_init_pledge.find_line_item_with_to_user_id(Organization.find_savetogether_org.id)
+    elsif get_or_init_pledge.find_donation_with_to_user_id(Organization.find_savetogether_org.id)
       show
     else
       @pledge = get_or_init_pledge
@@ -88,25 +88,29 @@ class PledgesController < BaseController
   end
 
   def done
-    session[:pledge_id] = nil
+    if get_pledge.nil?
+      logger.warn "Expecting pledge to be present in session but was not"
+    end
+
+    if current_user.nil?
+      logger.warn "Expecting a user session to be present but was not"
+    end
+
     pn = PaymentNotification.create(:raw_data => request.query_string)
     notification = pn.notification
 
     @pledge = Pledge.find(notification.invoice)
+    session[:pledge_id] = nil
     if @pledge.nil?
-      raise "Invoice not found"
-    elsif @pledge.donor.id != current_user.id
-      raise "Invoice is not owned by this user"
+      raise ArgumentError, :argument_error_invoice_with_id_not_found.l(:id => notification.invoice)
     end
 
-    if ENV['RAILS_ENV'] == 'test' || notification.acknowledge
-      @pledge.process_paypal_notification(notification)
-      @pledge.save!
-    else
-      # We're assuming that a notification that is not acknowledged will be sent again.
+    if !current_user.nil? && @pledge.donor.id != current_user.id
+      logger.warn "User with id #{current_user.id} trying to update a pledge with donor #{@pledge.donor.id}"
     end
 
-    UserNotifier.deliver_donation_thanks_notification(current_user, @pledge)
+    handle_notification(@pledge, notification)
+
     flash[:thank_you_for_pledge] = true
     redirect_to :protocol => 'http', :controller => :donor_surveys, :action => :show, :thank_you_for_pledge => true
   end
@@ -115,27 +119,31 @@ class PledgesController < BaseController
     pn = PaymentNotification.create(:raw_data => request.raw_post)
     notification = pn.notification
 
-    pledge = Pledge.find(notification.invoice)
-    if pledge.nil?
-      raise "Invoice not found"
+    @pledge = Pledge.find(notification.invoice)
+    if @pledge.nil?
+      raise ArgumentError, :argument_error_invoice_with_id_not_found.l(:id => notification.invoice)
     end
 
-    if ENV['RAILS_ENV'] == 'test' || notification.acknowledge
-      pledge.process_paypal_notification(notification)
-      pledge.save!
-    else
-      # We're assuming that a notification that is not acknowledged will be sent again.
-    end
+    handle_notification(@pledge, notification)
 
     render :nothing => true
   end
 
 
   def cancel
-    
   end
 
   private
+
+  def handle_notification(pledge, notification)
+    Pledge.transaction do
+      pledge.process_paypal_notification(notification)
+      pledge.save!
+      unless ENV['RAILS_ENV'] == 'test' || notification.acknowledge
+        raise RuntimeError, :runtime_error_notification_acknowledge_failed.l
+      end
+    end
+  end
 
   def add_donation_to_pledge
     @pledge = get_or_init_pledge
@@ -143,7 +151,7 @@ class PledgesController < BaseController
       donation = Donation.new(params[:donation])
       @pledge.add_donation(donation)
       @pledge.save!
-      @pledge = get_or_init_pledge
+      @pledge = get_pledge
     end
   end
 

@@ -15,7 +15,7 @@ class PledgeStoriesTest < ActionController::IntegrationTest
     assert_template :show
 
     post "/pledges/add_to_pledge",
-        :donation => Factory.attributes_for(:donation, :to_user_id => saver.id)
+        :donation => {:cents => "10000", :to_user_id => saver.id}
     assert_response :success
     assert_template :edit
   end

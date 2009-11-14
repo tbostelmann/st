@@ -30,8 +30,8 @@ class Pledge < Invoice
     end
   end
 
-  def find_line_item_with_to_user_id (to_user_id)
-    line_items.each do |d|
+  def find_donation_with_to_user_id (to_user_id)
+    donations.each do |d|
       if d.to_user_id == to_user_id.to_i
         return d
       end
@@ -39,15 +39,6 @@ class Pledge < Invoice
     return
   end
 
-  def find_line_item_with_id(id)
-    line_items.each do |d|
-      if d.id == id.to_i
-        return d
-      end
-    end
-    return
-  end
-  
   # Sort donations so that ST ask is alway at end of list
   def donations_sorted_for_display
     storg_id = Organization.find_savetogether_org.id
@@ -102,26 +93,18 @@ class Pledge < Invoice
     while item_number = notify.params["item_number#{index}"]
       saver = User.find(item_number)
       if saver.nil?
-        raise "Beneficiary of Donation with id=#{saver.id}, referenced in the payment notification, is not found"
+        raise ArgumentError, :argument_error_beneficiary_with_id_in_notification_not_found.l(:id => item_number)
       end
 
       amount = notify.params["mc_gross_#{index}"]
       line_item = self.donations.find(:first, :conditions => {:to_user_id => saver.id})
       if (line_item.nil?)
         raise "LineItem for user #{saver.id} not found"
-      elsif (amount.to_f != line_item.amount.to_s.to_f)
-        raise "LineItem.amount=#{line_item.amount} does not equal reported amount of #{amount}"
       end
 
       line_item.status = notify.status
       line_item.save!
       index = index + 1
-    end
-
-    # Verify that the reported number of LineItems matches Invoice's Donation size
-    reported_size = index - 1   # Remove trailing increase of index
-    unless reported_size == self.billable_donations.size
-      raise "Reported LineItem count does not match Invoice Donation count"
     end
 
     # Add reported Fee if it hasn't been reported already
@@ -133,11 +116,15 @@ class Pledge < Invoice
         storg = Organization.find_savetogether_org
         self.fees << Fee.new(:from_user => storg, :to_user => paypal,
                 :amount => amount, :status => notify.status)
-      elsif fee.amount.to_s.to_f != amount.to_f
-        raise "Fee amount has changed since last notification"
       else
+        fee.amount = amount
         fee.status = notify.status
+        fee.save!
       end
+    end
+
+    if notify.status == LineItem::STATUS_COMPLETED
+      UserNotifier.deliver_donation_thanks_notification(donor, self)      
     end
   end
 end
