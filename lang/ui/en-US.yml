@@ -120,6 +120,8 @@ en:
   are_you_sure_you_want_to_permanently_delete_this_comment: "Are you sure you want to permanently delete this comment?"
   #en: are_you_sure_you_want_to_permanently_delete_this_user: Are you sure you want to permanently delete this user?
   are_you_sure_you_want_to_permanently_delete_this_user: Are you sure you want to permanently delete this user?
+  argument_error_invoice_with_id_not_found: "Invoice {{id}} not found"
+  argument_error_beneficiary_with_id_in_notification_not_found: "Beneficiary of Donation with id {{id}}, referenced in the payment notification, is not found"
   #en: assume_id: Assume ID
   assume_id: Assume ID
   #en: assume_user_id: "Assume this user's ID"
@@ -1061,6 +1063,7 @@ en:
   rss_feed: RSS feed
   #en: run: Run
   run: Run
+  runtime_error_notification_acknowledge_failed: Notification acknowledgement failed
   #en: save: Save
   save: Save
   #en: saver: Saver
