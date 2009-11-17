@@ -58,6 +58,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :savers
   map.resources :donors
   map.resources :organizations
+  map.resources :gifts
   # map.resources :donor_surveys
 
 #  map.resources  :pledges

@@ -1,0 +1,33 @@
+-# Gift Data
+%tr.gift
+
+  -# Saver photo or Organization logo
+  %td{:valign => "middle", :align => "left"}
+    = "<GIFT IMAGE>"
+
+  -# TODO: This should probably be the email address of recipient/giftee
+  %td{:class => "text12", :valign => "middle", :align => "left"}
+    %span.text12GreenBold
+      = :gift_card.l
+
+  -# TODO: What needs to go here?
+  %td{:class => "text12", :valign => "middle", :align => "left"}
+    = :gift_card.l
+
+  -# TODO: What needs to go here?
+  %td{:class => "text12", :valign => "middle", :align => "left"}
+    = :gift_card.l
+
+  -# Gift amount controls
+  %td{:class => "text12", :valign => "middle", :align => "left"}
+    = render :partial => 'pledges/invoice/gift/amount', :locals => {:gift => gift}
+
+  -# Update and optional Delete controls
+  %td{:class => "text12", :valign => "middle", :align => "center"}
+    = render :partial => 'pledges/invoice/gift/controls', :locals => {:gift => gift}
+
+-# Spacer Row
+%tr{:valign => "top", :align => "left"}
+  %td{:height => "2", :valign => "middle", :background => "#{image_path('bg/dotted_line.gif')}", :style => "background-repeat: repeat-x;", :colspan => "6"}
+    %span{:style => "background-repeat: repeat-x;"}
+      %img{:height => "2", :width => "2", :src => "#{image_path('icons/spacer.gif')}"}

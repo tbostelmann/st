@@ -74,6 +74,12 @@ Factory.define :anonymous_unpaid_pledge, :class => Pledge do |p|
                     a.association(:donation_to_savetogether, :status => nil)]}
 end
 
+Factory.define :anonymous_unpaid_pledge_with_gift, :class => Pledge do |p|
+  p.donations {|a| [a.association(:donation, :status => nil),
+                    a.association(:donation_to_savetogether, :status => nil)]}
+  p.gifts {|a| [a.association(:anonymous_unpaid_gift, :from_user => a.donor, :status => a.donations[0].status)]}
+end
+
 Factory.define :pending_pledge, :class => Pledge do |p|
   p.association :donor, :factory => :donor
   p.donations {|a| [a.association(:donation, :from_user => a.donor, :status => LineItem::STATUS_PENDING)]}
@@ -89,4 +95,17 @@ Factory.define :completed_pledge, :class => Pledge do |p|
   p.association :donor, :factory => :donor
   p.fees {|a| [a.association(:fee, :status => LineItem::STATUS_COMPLETED)]}
   p.donations {|a| [a.association(:donation, :from_user => a.donor, :status => LineItem::STATUS_COMPLETED)]}
+end
+
+##
+# Gift Cards
+##
+
+Factory.define :gift_card do |gc|
+  gc.first_name Faker::Name.first_name
+  gc.last_name Faker::Name.last_name
+  gc.login { Factory.next(:login) }
+  gc.login_slug {|saver| saver.login}
+  gc.description Populator.sentences(2..10)
+  gc.association :gift, :factory => :anonymous_unpaid_gift
 end

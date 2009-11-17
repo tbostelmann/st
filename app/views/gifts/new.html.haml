@@ -1,0 +1,56 @@
+-@page_title= :gift_card.l
+
+.content
+
+  %h1
+    = "Gift Card"
+
+  .block{:style => "margin-top: 10px;"}
+    .two-column-layout
+
+      .tcl-column.left
+
+        %table{:width => "100%", :cellspacing => "0", :cellpadding => "0", :border => "0"}
+          - form_for :gift_card, :controller => :gifts, :action => :create, :html => {:class => 'MainForm'} do |f|
+            %tr
+              %td{:class => "text12", :width => "45%", :height => "36"}
+                %label{"for"=>"donor_first_name"}
+                  =:first_name.l
+              %td{:class => "text12", :width => "55%", :height => "36"}
+                = f.text_field :first_name, :size => 30
+
+            %tr
+              %td{:class => "text12", :width => "45%", :height => "36"}
+                %label{"for"=>"donor_last_name"}
+                  =:last_name.l
+              %td{:class => "text12", :width => "55%", :height => "36"}
+                = f.text_field :last_name, :size => 30
+
+            %tr
+              %td{:class => "text12", :width => "45%", :height => "36"}
+                %label{"for"=>"email_address"}
+                  =:e_mail_address.l
+              %td{:class => "text12", :width => "55%", :height => "36"}
+                = f.text_field :email, :size => 30
+
+            %tr
+              %td{:class => "text12", :width => "45%", :height => "36"}
+                %label{"for"=>"email_confirmation"}
+                  =:re_enter_e_mail_address_to_confirm.l
+              %td{:class => "text12", :width => "55%", :height => "36"}
+                = f.text_field :email_confirmation, :size => 30
+
+            %tr
+              %td{:class => "text12", :width => "45%", :height => "36"}
+                %label{"for"=>"amount"}
+                  =:amount.l
+              %td{:class => "text12", :width => "55%", :height => "36"}
+                = f.select :cents, select_pledge_amounts_cents_values
+
+            %tr
+              %td
+              %td
+                = image_submit_tag "#{image_path('buttons/continue.gif')}", :alt => :continue.l
+
+      .tcl-column.right
+

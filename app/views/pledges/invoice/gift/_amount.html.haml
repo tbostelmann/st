@@ -1,0 +1,3 @@
+- form_for gift, :url => { :controller => :gifts, :action => :update } do |form|
+  = form.hidden_field :id
+  = form.select :cents, select_pledge_amounts_cents_values, {}, {:onchange => "this.form.submit();"}

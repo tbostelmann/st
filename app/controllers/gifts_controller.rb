@@ -1,4 +1,4 @@
-class GiftController < BaseController
+class GiftsController < BaseController
   include ApplicationHelper
 
   def create
@@ -13,15 +13,20 @@ class GiftController < BaseController
     if gift.save
       pledge.add_line_item(gift)
       if !pledge.save
-        logger.error("Tried to save a pledge unsuccessfully", pledge.errors)
+        logger.error("Tried to save a pledge unsuccessfully")
+        pledge.errors.each do |error|
+          logger.error(error.to_s)
+        end
+        render :new
+      else
+        redirect_to :controller => :pledges, :action => :render_show_or_edit
       end
     else
       # This shouldn't happen if we're only allowing select fields or
       # pre-filled ones that aren't editable
       logger.error("Tried to save a gift unsuccessfully", gift.errors)
+      render :new
     end
-
-    redirect_to :controller => :pledges, :action => :render_show_or_edit
   end
 
   def update
@@ -72,5 +77,9 @@ class GiftController < BaseController
     end
 
     redirect_to :controller => :pledges, :action => :render_show_or_edit
+  end
+
+  def new
+    
   end
 end

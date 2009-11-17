@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class GiftControllerTest < ActionController::TestCase
+class GiftsControllerTest < ActionController::TestCase
   include ApplicationHelper
 
   # Replace this with your real tests.
