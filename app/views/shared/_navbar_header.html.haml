@@ -18,6 +18,9 @@
   %li
     = link_to :about_us.l.upcase, about_us_path
     = image_tag 'separator.gif'
+  %li
+    = link_to :press_center.l.upcase, press_center_path
+    = image_tag 'separator.gif'
   - if current_user
     %li
       - if current_user.class == Saver
