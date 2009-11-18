@@ -37,7 +37,7 @@
             %p="#{:title.l}:"
 
         -# Put title inline with textarea tag or otherwise introduce whitespace inside the control
-        %textarea{:name => "title", :cols => "90", :rows => "1"}= (params[:title] ||= "Match $25 to change lives through SaveTogether")
+        %textarea{:name => "title", :cols => "90", :rows => "1"}= (params[:title] ||= "Donate just $1 to change lives through SaveTogether")
 
         %div{:style => "clear: both; margin-top: 10px;"}
           %label{"for"=>"message"}

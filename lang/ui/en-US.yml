@@ -176,6 +176,7 @@ en:
   by: by
   #en: by_looking_at_the: by looking at the
   by_looking_at_the: by looking at the
+  by_signing_up: "By signing up, you will receive quarterly newsletters and other important updates.  You will also have the opportunity to create a profile where you can tell our community why saving is important to you."
   #en: cancel: Cancel
   cancel: Cancel
   #en: cancel_and_go_back_to: cancel and go back to
@@ -1053,7 +1054,7 @@ en:
   #en: required_your_username_must_not_contain_numerals_spaces_or_special_characters: "(Required: Your username must not contain numerals, spaces or special characters.)"
   required_your_username_must_not_contain_numerals_spaces_or_special_characters: "(Required: Your username must not contain numerals, spaces or special characters.)"
   #en: required_your_email_address_will_identify_you_to_save_together: "(Required: Your email address will identify you to SaveTogether.)"
-  required_your_email_address_will_identify_you_to_save_together: "(Required: Your email address will identify you to SaveTogether.)"
+  required_your_email_address_will_identify_you_to_save_together: "(Required: Your email address will be your login.)"
   #en: resend_my_activation_e_mail: Resend my activation e-mail
   resend_my_activation_e_mail: Resend my activation e-mail
   #en: resend_your_activation_e_mail: Resend your activation e-mail
@@ -1092,6 +1093,7 @@ en:
   save_post_as: "Save post as:"
   #en: save_reply: Save reply
   save_reply: Save reply
+  savetogether_community: "SaveTogether Community"
   #en: save_together_page_title_template: "SaveTogether | {{page_title}}"
   savetogether_page_title_template: "SaveTogether | {{page_title}}"
   #en: savetogether_motto: Building Savings. Transforming Lives.

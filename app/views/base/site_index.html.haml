@@ -39,21 +39,27 @@
           .tagline
             ="For the things that matter most."
           %p
-            ="Hard-working individuals, who have been pre-screened for eligibility, save for life-changing goals such as a higher education, home or small business."
+            ="Hard-working individuals, who have been "
+            = link_to "pre-screened", how_it_works_path 
+            = " for eligibility, save for life-changing goals such as a higher education, home or small business."
       #two{:style => "float: left; width: 203px; margin-top: 10px;"}
         =image_tag image_path('graphics/you-match.jpg'), {:alt => 'you match'}
         .info-block
           .tagline
             ="To help them reach their goal."
           %p
-            ="You match their savings.  This tax-deductible contribution is doubled by a partner non-profit organization."
+            ="You "
+            = link_to "match", match_savers_path
+            = " their savings.  This tax-deductible contribution is doubled by a partner non-profit organization."
       #three{:style => "float: left; width: 219px; margin-top: 10px;"}
         =image_tag image_path('graphics/together-we-prosper.jpg'), {:alt => 'together we prosper'}
         .info-block
           .tagline
             ="And multiply the impact."
           %p
-            ="By helping people who are helping themselves, we create a world where any individual can save and invest in their own future. "
+            ="By helping people who are helping themselves, we "
+            = link_to "create a world", about_us_path
+            = " where any individual can save and invest in their own future. "
   %br
   .middle{:style => "width: 900px; border-top: 1px dashed #bbbbbb; float: left; margin-top: 5px;"}
 
@@ -102,6 +108,12 @@
                 = "Once someone sees the power of saving a little each month - they can create a new kind of financial mind set that allows them to attain goal after goal."
             %em{:style => "float: right; font-size: 12px; color: #7ca13e;"}
               = "- Leslie, a SaveTogether donor"
+          .donor-quote{:style => "display: none;"}
+            %span{:style => "float: right; margin-top: 25px; line-height: 130%; color: #7ca13e;"}
+              %em{:style => "font-size: 14px;"}
+                = " I hope we'll be just as excited about helping people save as we are about helping people spend."
+            %em{:style => "float: right; font-size: 12px; color: #7ca13e;"}
+              = "- Sandy Stonesifer, Slate.com"
       .text{:style => "float: right; width: 245px;"}
         =link_to image_tag(image_path('buttons/get-started.jpg'), {:alt => 'get started', :style => "float: right; margin-top: 10px;"}), match_savers_path
       #follow-us{:style => "float: right; width: 245px; margin-top: 90px; height: 32px;"}

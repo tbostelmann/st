@@ -56,7 +56,10 @@
 
       -# About Saver
       .about-party
-        %h3= :about_user.l :user_name => @saver.display_name
+        %h3
+          = :about_user.l :user_name => @saver.display_name
+          %span{:style => "font-weight: normal;"}
+            = link_to "(How Savers Are Selected)", how_it_works_path
         .story
           %p.no-margin
             = @saver.description

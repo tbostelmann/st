@@ -32,6 +32,8 @@
       .about-party
         %h3
           = :about_user.l :user_name => @org.display_name
+          %span{:style => "font-weight: normal;"}
+            = link_to "(How Programs are Selected)", how_it_works_path
         .story.org
           %p.no-margin
             = @org.description
