@@ -1,4 +1,5 @@
 require 'test_helper'
+require 'faker'
 
 class GiftsControllerTest < ActionController::TestCase
   include ApplicationHelper
@@ -31,7 +32,10 @@ class GiftsControllerTest < ActionController::TestCase
     pledge = Factory(:anonymous_unpaid_pledge)
     assert pledge.gifts.nil? || pledge.gifts.size == 0
     session[:pledge_id] = pledge.id
-    post :create, :gift => {:cents => "2000"}
+    email = Faker::Internet.email
+    post :create, :gift => {:cents => "2000"}, :gift_card =>
+            {:first_name => Faker::Name.first_name, :last_name => Faker::Name.last_name, :email => email,
+             :email_confirmation => email, :message => Populator.sentences(2..10)}
     assert_redirected_to :controller => :pledges, :action => :render_show_or_edit
     pledge = Pledge.find(pledge.id)
     assert pledge.gifts.size == 1

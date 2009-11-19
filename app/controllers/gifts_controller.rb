@@ -9,6 +9,8 @@ class GiftsController < BaseController
     pledge = get_or_init_pledge
 
     gift = Gift.new(params[:gift])
+    gift_card = GiftCard.new(params[:gift_card])
+    gift.gift_card = gift_card
 
     if gift.save
       pledge.add_line_item(gift)

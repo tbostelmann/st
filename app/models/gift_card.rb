@@ -1,5 +1,20 @@
+# == Schema Information
+# Schema version: 20091117074908
+#
+# Table name: gift_cards
+#
+#  id           :integer(4)      not null, primary key
+#  first_name   :string(255)
+#  last_name    :string(255)
+#  email        :string(255)
+#  message      :string(255)
+#  line_item_id :integer(4)
+#  created_at   :datetime
+#  updated_at   :datetime
+#
+
 class GiftCard < ActiveRecord::Base
-  belongs_to :gift
+  belongs_to :gift, :class_name => 'Gift', :foreign_key => :line_item_id
 
   validates_presence_of :first_name
   validates_presence_of :last_name

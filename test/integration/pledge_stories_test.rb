@@ -1,4 +1,5 @@
 require 'test_helper'
+require 'faker'
 
 class PledgeStoriesTest < ActionController::IntegrationTest
   include ApplicationHelper
@@ -29,7 +30,10 @@ class PledgeStoriesTest < ActionController::IntegrationTest
     # Create a new gift card
     # TODO: add first_name, last_name, email, message to giftee
     assert get_pledge.nil?
-    post "/gifts/create", :gift => {:first_name => "FirstName", :last_name => "LastName", :email => "foo@foo.com", :cents => "10000"}
+    email = Faker::Internet.email
+    post "/gifts/create", :gift => {:cents => "2000"}, :gift_card =>
+            {:first_name => Faker::Name.first_name, :last_name => Faker::Name.last_name, :email => email,
+             :email_confirmation => email, :message => Populator.sentences(2..10)}
     assert_redirected_to :controller => :pledges, :action => :render_show_or_edit
     follow_redirect!
     assert_response :success

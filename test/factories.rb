@@ -4,14 +4,14 @@ require 'faker'
 ##
 # Users
 ##
-Factory.sequence :login do |a|
+Factory.sequence :email do |a|
   Faker::Internet.email
 end
 
 Factory.define :user do |s|
   s.first_name Faker::Name.first_name
   s.last_name Faker::Name.last_name
-  s.login { Factory.next(:login) }
+  s.login { Factory.next(:email) }
   s.login_slug {|saver| saver.login}
   s.description Populator.sentences(2..10)
   s.short_description Populator.sentences(1..2)
@@ -37,6 +37,17 @@ end
 Factory.define :donor, :parent => :user, :class => Donor do |d|
 end
 
+##
+# Gift Cards
+##
+
+Factory.define :gift_card do |gc|
+  gc.first_name Faker::Name.first_name
+  gc.last_name Faker::Name.last_name
+  gc.email { Factory.next(:email) }
+  gc.email_confirmation { |g| g.email }
+  gc.message Populator.sentences(2..10)
+end
 
 ##
 # LineItems
@@ -63,6 +74,7 @@ end
 
 Factory.define :anonymous_unpaid_gift, :class => Gift do |g|
   g.cents [100, 500, 1000, 2500, 5000].rand
+  g.gift_card Factory(:gift_card)
 end
 
 
@@ -97,15 +109,3 @@ Factory.define :completed_pledge, :class => Pledge do |p|
   p.donations {|a| [a.association(:donation, :from_user => a.donor, :status => LineItem::STATUS_COMPLETED)]}
 end
 
-##
-# Gift Cards
-##
-
-Factory.define :gift_card do |gc|
-  gc.first_name Faker::Name.first_name
-  gc.last_name Faker::Name.last_name
-  gc.login { Factory.next(:login) }
-  gc.login_slug {|saver| saver.login}
-  gc.description Populator.sentences(2..10)
-  gc.association :gift, :factory => :anonymous_unpaid_gift
-end

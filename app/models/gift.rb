@@ -12,10 +12,10 @@
 #  type         :string(255)
 #  created_at   :datetime
 #  updated_at   :datetime
-#  first_name   :string(255)
-#  last_name    :string(255)
-#  email        :string(255)
 #
 
 class Gift < LineItem
+  has_one :gift_card, :class_name => 'GiftCard', :foreign_key => :line_item_id, :autosave => true
+  
+  validates_presence_of :gift_card
 end
