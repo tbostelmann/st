@@ -21,7 +21,7 @@ class PledgesController < BaseController
 
   def render_show_or_edit
     @pledge = get_or_init_pledge
-    if @pledge.find_donation_with_to_user_id(Organization.find_savetogether_org.id)
+    if @pledge.find_line_item_with_to_user_id(Organization.find_savetogether_org.id)
       show
     else
       edit
@@ -41,8 +41,8 @@ class PledgesController < BaseController
   end
 
   def update_donation_amount
-    @pledge = get_or_init_pledge
-    donation = @pledge.find_donation_with_to_user_id(params[:donation][:to_user_id])
+    @pledge = get_pledge
+    donation = @pledge.find_line_item_with_to_user_id(params[:donation][:to_user_id])
     donation.cents = params[:donation][:cents]
     donation.save!
 
@@ -50,7 +50,7 @@ class PledgesController < BaseController
   end
 
   def remove_from_pledge
-    @pledge = get_or_init_pledge
+    @pledge = get_pledge
     @pledge.remove_donation_with_to_user_id(params[:to_user_id])
     @pledge.save!
 
@@ -78,7 +78,7 @@ class PledgesController < BaseController
   def savetogether_ask
     if current_user.nil?
       redirect_to signup_or_login_path
-    elsif get_or_init_pledge.find_donation_with_to_user_id(Organization.find_savetogether_org.id)
+    elsif get_or_init_pledge.find_line_item_with_to_user_id(Organization.find_savetogether_org.id)
       show
     else
       @pledge = get_or_init_pledge

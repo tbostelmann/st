@@ -44,34 +44,28 @@ class GiftsController < BaseController
     gift = pledge.find_line_item_with_id(params[:gift][:id])
     if gift.nil?
       raise ArgumentError, :argument_error_gift_not_in_current_pledge.l(:id => params[:gift][:id])
-    elsif !gift.status.nil?
+    elsif gift.status
       raise SecurityError, :security_error_trying_to_update_processed_gift.l(:id => params[:gift][:id])
     end
 
-    gift.update_attributes = params[:gift]
+    gift.update_attributes(params[:gift])
 
     if gift.save!
       redirect_to :controller => :pledges, :action => :render_show_or_edit
-    else
-      logger.error("Tried to save a gift unsuccessfully", gift.errors)
     end
   end
 
   def delete
-    if params[:gift].nil?
-      raise ArgumentError, :argument_error_no_class_params_supplied.l
-    end
-
     pledge = get_pledge
     if pledge.nil?
       raise RuntimeError, :runtime_error_no_pledge_in_session.l
     end
 
-    gift = pledge.find_line_item_with_id(params[:gift][:id])
+    gift = pledge.find_line_item_with_id(params[:id])
     if gift.nil?
-      raise ArgumentError, :argument_error_gift_not_in_current_pledge.l(:id => params[:gift][:id])
+      raise ArgumentError, :argument_error_gift_not_in_current_pledge.l(:id => params[:id])
     elsif !gift.status.nil?
-      raise SecurityError, :security_error_trying_to_update_processed_gift.l(:id => params[:gift][:id])
+      raise SecurityError, :security_error_trying_to_update_processed_gift.l(:id => params[:id])
     end
 
     unless pledge.line_items.delete(gift)

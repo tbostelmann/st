@@ -46,7 +46,7 @@ class PledgeTest < ActiveSupport::TestCase
   test "find donation with same to_user_id" do
     pledge = invoices(:pledge)
     donation = pledge.donations[0]
-    d = pledge.find_donation_with_to_user_id(donation.to_user_id)
+    d = pledge.find_line_item_with_to_user_id(donation.to_user_id)
     assert d.to_user_id == donation.to_user_id    
   end
 
@@ -55,7 +55,8 @@ class PledgeTest < ActiveSupport::TestCase
     donation = pledge.donations[0]
     donation.amount = "500.00"
     pledge.add_donation(donation)
-    d = pledge.find_donation_with_to_user_id(donation.to_user_id)
+    pledge = Pledge.find(pledge.id)
+    d = pledge.find_line_item_with_to_user_id(donation.to_user_id)
     assert d.amount = donation.amount
   end
   
@@ -70,7 +71,7 @@ class PledgeTest < ActiveSupport::TestCase
     pledge = invoices(:pledge)
     donation = pledge.donations[0]
     pledge.remove_donation_with_to_user_id(donation.to_user_id)
-    assert !pledge.find_donation_with_to_user_id(donation.to_user_id)
+    assert !pledge.find_line_item_with_to_user_id(donation.to_user_id)
   end
 
   test "get total amount of donations from pledge" do

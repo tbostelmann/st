@@ -15,7 +15,7 @@
 #
 
 class Gift < LineItem
-  has_one :gift_card, :class_name => 'GiftCard', :foreign_key => :line_item_id, :autosave => true
+  has_one :gift_card, :class_name => 'GiftCard', :foreign_key => :line_item_id, :dependent => :destroy
   
   validates_presence_of :gift_card
 end

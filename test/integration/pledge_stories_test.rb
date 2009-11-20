@@ -1,4 +1,4 @@
-require 'test_helper'
+require File.dirname(__FILE__) + '/../test_helper'
 require 'faker'
 
 class PledgeStoriesTest < ActionController::IntegrationTest
@@ -28,10 +28,44 @@ class PledgeStoriesTest < ActionController::IntegrationTest
     assert_template :new
 
     # Create a new gift card
-    # TODO: add first_name, last_name, email, message to giftee
     assert get_pledge.nil?
     email = Faker::Internet.email
-    post "/gifts/create", :gift => {:cents => "2000"}, :gift_card =>
+    post "/gifts", :gift => {:cents => "100"}, :gift_card =>
+            {:first_name => Faker::Name.first_name, :last_name => Faker::Name.last_name, :email => email,
+             :email_confirmation => email, :message => Populator.sentences(2..10)}
+    assert_redirected_to :controller => :pledges, :action => :render_show_or_edit
+    follow_redirect!
+    assert_response :success
+    assert_template :edit
+    assert_number_gifts(1)
+    assert_select "tr.gift", :count => 1
+
+    # update gift amount to a higher value
+    put "/gifts/#{get_pledge.gifts[0].id}", :gift => {:cents => "1000", :id => get_pledge.gifts[0].id.to_s}
+    assert_redirected_to :controller => :pledges, :action => :render_show_or_edit
+    follow_redirect!
+    assert_response :success
+    assert_template :edit
+    assert_number_gifts(1)
+    assert_select "tr.gift", :count => 1
+
+    # remove gift from pledge
+    post "/gifts/delete/#{get_pledge.gifts[0].id.to_s}"
+    assert_redirected_to :controller => :pledges, :action => :render_show_or_edit
+    follow_redirect!
+    assert_response :success
+    assert_template :edit
+    assert_number_gifts(0)
+    assert_select "tr.gift", :count => 0
+
+    # Go back and create one again
+    get "/gifts/new"
+    assert_response :ok
+    assert_template :new
+
+    # Add a gift-card
+    email = Faker::Internet.email
+    post "/gifts", :gift => {:cents => "100"}, :gift_card =>
             {:first_name => Faker::Name.first_name, :last_name => Faker::Name.last_name, :email => email,
              :email_confirmation => email, :message => Populator.sentences(2..10)}
     assert_redirected_to :controller => :pledges, :action => :render_show_or_edit
@@ -39,15 +73,16 @@ class PledgeStoriesTest < ActionController::IntegrationTest
     assert_response :success
     assert_template :edit
 
-    # Check that the gift was added to the pledge
-    pledge = get_pledge
-    assert !pledge.nil?
-    assert pledge.gifts.size == 1
-
-    # Check that the tag was tag was rendered
-    assert_select "tr.gift", :count => 1
-    
     # Click 'continue' on pledge page
+    post "/pledges/savetogether_ask"
+    # Should redirect user to signup or login
+    assert_redirected_to :controller => :donors, :action => :signup_or_login
+    follow_redirect!
+    assert_template :signup_or_login
+
+    # Check that the gift was added to the pledge
+    assert_number_gifts(1)
+
     # should respond with savetogether_ask
 
     # Add savetogether donation

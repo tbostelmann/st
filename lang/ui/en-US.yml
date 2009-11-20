@@ -124,6 +124,7 @@ en:
   argument_error_beneficiary_with_id_in_notification_not_found: "Beneficiary of Donation with id {{id}}, referenced in the payment notification, is not found"
   argument_error_no_class_params_supplied: "No class parameters were supplied"
   argument_error_gift_not_in_current_pledge: "Gift with supplied id {{id}} not in current pledge"
+  argument_error_unable_to_save_donation: "Could not save donation"
   #en: assume_id: Assume ID
   assume_id: Assume ID
   #en: assume_user_id: "Assume this user's ID"

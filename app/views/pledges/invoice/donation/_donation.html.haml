@@ -25,8 +25,7 @@
 
   -# Update and optional Delete controls
   %td{:class => "text12", :valign => "middle", :align => "center"}
-    - form_for donation, :url => { :controller => :pledges, :action => :remove_from_pledge } do |f|
-      = render :partial => 'pledges/invoice/donation/controls', :locals => {:to_user => donation.to_user}
+    = link_to image_tag('icons/delete.gif'), donation, :confirm => "Are you sure?", :method => :delete
 
 -# Spacer Row
 %tr{:valign => "top", :align => "left"}

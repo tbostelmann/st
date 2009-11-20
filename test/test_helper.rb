@@ -116,7 +116,7 @@ class ActiveSupport::TestCase
             :mc_fee => '1.90',
             :payment_type => 'instant',
             })
-end
+  end
 
   def create_notification(pledge, add_params = {})
     donor = pledge.donor
@@ -167,5 +167,12 @@ end
     end
 
     return notification.merge(add_params)
+  end
+
+  def assert_number_gifts(num = 1)
+    pledge = get_pledge
+    assert !pledge.nil?
+    assert !pledge.gifts.nil?
+    assert pledge.gifts.size == num
   end
 end
