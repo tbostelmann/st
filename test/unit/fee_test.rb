@@ -3,7 +3,8 @@ require 'money'
 
 class FeeTest < ActiveSupport::TestCase
   test "all fees at this point are charged to SaveTogether and go to Paypal" do
-    fee = Factory(:fee)
+    pledge = Factory(:completed_pledge)
+    fee = pledge.fees[0]
     assert !fee.nil?
     assert !fee.status.nil?
     assert fee.from_user.id == Organization.find_savetogether_org.id

@@ -19,7 +19,7 @@
     = render :partial => 'pledges/invoice/donation/goal_description', :locals => {:to_user => donation.to_user}
 
   -# Donation amounts controls
-  - form_for donation, :url => { :controller => :pledges, :action => :update_donation_amount } do |f|
+  - form_for donation do |f|
     %td{:class => "text12", :valign => "middle", :align => "left"}
       = render :partial => 'pledges/invoice/donation/amount', :locals => {:to_user => donation.to_user, :form => f}
 

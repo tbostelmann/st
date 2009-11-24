@@ -16,8 +16,10 @@ class PledgeStoriesTest < ActionController::IntegrationTest
     assert_response :success
     assert_template :show
 
-    post "/pledges/add_to_pledge",
+    post "/donations/create",
         :donation => {:cents => "10000", :to_user_id => saver.id}
+    assert_redirected_to :controller => :pledges, :action => :render_show_or_edit
+    follow_redirect!
     assert_response :success
     assert_template :edit
   end

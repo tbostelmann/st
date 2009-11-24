@@ -8,21 +8,12 @@ class GiftsController < BaseController
 
     pledge = get_or_init_pledge
 
-    gift = Gift.new(params[:gift])
+    gift = Gift.new(params[:gift].merge(:invoice_id => pledge.id))
     gift_card = GiftCard.new(params[:gift_card])
     gift.gift_card = gift_card
 
     if gift.save
-      pledge.add_line_item(gift)
-      if !pledge.save
-        logger.error("Tried to save a pledge unsuccessfully")
-        pledge.errors.each do |error|
-          logger.error(error.to_s)
-        end
-        render :new
-      else
-        redirect_to :controller => :pledges, :action => :render_show_or_edit
-      end
+      redirect_to :controller => :pledges, :action => :render_show_or_edit
     else
       # This shouldn't happen if we're only allowing select fields or
       # pre-filled ones that aren't editable

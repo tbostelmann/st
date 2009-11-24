@@ -81,31 +81,34 @@ end
 ##
 # Invoices
 ##
+Factory.define :pledge do |p|
+end
+
 Factory.define :anonymous_unpaid_pledge, :class => Pledge do |p|
-  p.donations {|a| [a.association(:donation, :status => nil),
-                    a.association(:donation_to_savetogether, :status => nil)]}
+  p.donations {|a| [a.association(:donation, :status => nil, :invoice_id => a.id),
+                    a.association(:donation_to_savetogether, :status => nil, :invoice_id => a.id)]}
 end
 
 Factory.define :anonymous_unpaid_pledge_with_gift, :class => Pledge do |p|
-  p.donations {|a| [a.association(:donation, :status => nil),
-                    a.association(:donation_to_savetogether, :status => nil)]}
-  p.gifts {|a| [a.association(:anonymous_unpaid_gift, :from_user => a.donor, :status => a.donations[0].status)]}
+  p.donations {|a| [a.association(:donation, :status => nil, :invoice_id => a.id),
+                    a.association(:donation_to_savetogether, :status => nil, :invoice_id => a.id)]}
+  p.gifts {|a| [a.association(:anonymous_unpaid_gift, :from_user => a.donor, :status => a.donations[0].status, :invoice_id => a.id)]}
 end
 
 Factory.define :pending_pledge, :class => Pledge do |p|
   p.association :donor, :factory => :donor
-  p.donations {|a| [a.association(:donation, :from_user => a.donor, :status => LineItem::STATUS_PENDING)]}
+  p.donations {|a| [a.association(:donation, :from_user => a.donor, :status => LineItem::STATUS_PENDING, :invoice_id => a.id)]}
 end
 
 Factory.define :pending_pledge_with_gift, :class => Pledge do |pwg|
   pwg.association :donor, :factory => :donor
-  pwg.donations {|a| [a.association(:donation, :from_user => a.donor, :status => LineItem::STATUS_PENDING)]}
-  pwg.gifts {|a| [a.association(:anonymous_unpaid_gift, :from_user => a.donor, :status => a.donations[0].status)]}
+  pwg.donations {|a| [a.association(:donation, :from_user => a.donor, :status => LineItem::STATUS_PENDING, :invoice_id => a.id)]}
+  pwg.gifts {|a| [a.association(:anonymous_unpaid_gift, :from_user => a.donor, :status => a.donations[0].status, :invoice_id => a.id)]}
 end
 
 Factory.define :completed_pledge, :class => Pledge do |p|
   p.association :donor, :factory => :donor
-  p.fees {|a| [a.association(:fee, :status => LineItem::STATUS_COMPLETED)]}
-  p.donations {|a| [a.association(:donation, :from_user => a.donor, :status => LineItem::STATUS_COMPLETED)]}
+  p.fees {|a| [a.association(:fee, :status => LineItem::STATUS_COMPLETED, :invoice_id => a.id)]}
+  p.donations {|a| [a.association(:donation, :from_user => a.donor, :status => LineItem::STATUS_COMPLETED, :invoice_id => a.id)]}
 end
 

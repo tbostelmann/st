@@ -8,11 +8,9 @@ class DonationsController < ApplicationController
 
     pledge = get_or_init_pledge
 
-    donation = Donation.new(params[:donation].merge(:pledge => pledge))
+    donation = Donation.create!(params[:donation].merge(:invoice => pledge))
 
-    if donation.save!
-      redirect_to :controller => :pledges, :action => :render_show_or_edit
-    end
+    redirect_to :controller => :pledges, :action => :render_show_or_edit
   end
 
   def update

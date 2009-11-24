@@ -43,13 +43,11 @@ class GiftsControllerTest < ActionController::TestCase
 
   test "delete existing gift in pledge should work" do
     pledge = Factory(:anonymous_unpaid_pledge)
-    gift = Factory(:anonymous_unpaid_gift)
-    pledge.add_line_item(gift)
-    pledge.save!
+    gift = Factory(:anonymous_unpaid_gift, :invoice => pledge)
     pledge = Pledge.find(pledge.id)
     assert pledge.gifts.size == 1
     session[:pledge_id] = pledge.id
-    post :delete, :gift => {:id => gift.id}
+    post :delete, :id => gift.id
     assert_redirected_to :controller => :pledges, :action => :render_show_or_edit
     pledge = Pledge.find(pledge.id)
     assert pledge.gifts.size == 0
@@ -75,7 +73,7 @@ class GiftsControllerTest < ActionController::TestCase
     pledge = Factory(:pending_pledge_with_gift)
     session[:pledge_id] = pledge.id
     assert_raise(SecurityError, :security_error_trying_to_update_processed_gift.l(:id => pledge.gifts[0].id)) {
-      post :delete, :gift => {:id => pledge.gifts[0].id}}
+      post :delete, :id => pledge.gifts[0].id}
   end
 
   test "delete gift with no pledge should not work RuntimeError" do

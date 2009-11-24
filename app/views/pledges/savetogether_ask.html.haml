@@ -15,7 +15,7 @@
     -# Spacer Row
     = render :partial => 'pledges/invoice/top_spacer_row'
 
-    - form_for @donation, :url => { :controller => :pledges, :action => :add_savetogether_to_pledge } do |f|
+    - form_for @donation do |f|
       -# SaveTogether Donation
       %tr
         %td{:valign => "middle", :align => "left"}

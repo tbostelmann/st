@@ -12,7 +12,7 @@ class DonorNotifierTest < ActiveSupport::TestCase
     })
     @donor.save!
     
-    @pledge = Pledge.new(:donor => @donor)
+    @pledge = Pledge.create!(:donor => @donor)
     @pledge.donations << Donation.new(:from_user => @donor, :to_user => users(:deserving_saver_1), :cents => "5000")
     @pledge.donations << Donation.new(:from_user => @donor, :to_user => Organization.find_savetogether_org, :cents => "500")
     @pledge.save!

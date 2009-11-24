@@ -1,5 +1,6 @@
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
+
   def find_searchable_metro_areas
     MetroArea.find(:all, :include => :users,
                    :conditions => ["metro_areas.id = users.metro_area_id AND users.type = 'Saver'"])

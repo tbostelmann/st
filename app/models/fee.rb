@@ -15,4 +15,6 @@
 #
 
 class Fee < LineItem
+  validates_presence_of :from_user_id
+  validates_presence_of :to_user_id
 end

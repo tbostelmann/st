@@ -70,6 +70,7 @@ class LineItem < ActiveRecord::Base
 
   validates_presence_of :cents
   validates_presence_of :from_user, :unless => Proc.new {|item| item.status.nil?}
+  validates_presence_of :invoice_id
 
   # The following validations enforce the following business rules:
   # - Donations to Savers > 0
