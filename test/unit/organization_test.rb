@@ -20,6 +20,12 @@ class OrganizationTest < ActiveSupport::TestCase
     assert !storg.nil?
     assert storg.login == Organization::SAVETOGETHER_LOGIN
   end
+
+  test "check find_giftcard_org" do
+    gcorg = Organization.find_giftcard_org
+    assert !gcorg.nil?
+    assert gcorg.login == Organization::GIFTCARD_LOGIN
+  end
   
   test "get collection of partners" do
     partners = Organization.find_partners(:all)
@@ -27,6 +33,7 @@ class OrganizationTest < ActiveSupport::TestCase
       assert p.login != Organization::SAVETOGETHER_LOGIN
       assert p.login != Organization::PAYPAL_LOGIN
       assert p.login != Organization::CFED_LOGIN
+      assert p.login != Organization::GIFTCARD_LOGIN
     end
   end
 

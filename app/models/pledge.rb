@@ -49,13 +49,15 @@ class Pledge < Invoice
   
   # Filter out any $0 donations
   def billable_donations
-    donations_sorted_for_display.reject{|d| d.amount.zero?}
+    line_items.reject{|d| d.amount.zero? || d.class == Fee}
   end
 
-  def total_amount_for_donations
+  def total_amount
     total = Money.new(0)
-    donations.each do |d|
-      total = total + d.amount
+    line_items.each do |d|
+      unless d.class == Fee
+        total = total + d.amount
+      end
     end
     return total
   end

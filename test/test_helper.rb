@@ -121,7 +121,7 @@ class ActiveSupport::TestCase
   def create_notification(pledge, add_params = {})
     donor = pledge.donor
     notification = {
-      :mc_gross => "#{pledge.total_amount_for_donations}",
+      :mc_gross => "#{pledge.total_amount}",
       :invoice => "#{pledge.id}",
       :protection_eligibility => 'Ineligible',
       :payer_id => 'YMQMYSZ5LYANL',
@@ -147,7 +147,7 @@ class ActiveSupport::TestCase
       :residence_country => 'US',
       :test_ipn => '1',
       :transaction_subject => 'Shopping Cart',
-      :payment_gross => "#{pledge.total_amount_for_donations}",
+      :payment_gross => "#{pledge.total_amount}",
       :merchant_return_link => 'Return to SaveTogether',
       :auth => 'ZYTlDZ4v57sLTuL7WyZ6m2yqSuVYbjpLtndecieoKRVQMBLnqoLGzVeW0fLuVGIo2x3RJtPa-bB-i7--'
     }
@@ -169,10 +169,89 @@ class ActiveSupport::TestCase
     return notification.merge(add_params)
   end
 
-  def assert_number_gifts(num = 1)
+  def assert_number_gifts_in_pledge(num)
     pledge = get_pledge
     assert !pledge.nil?
     assert !pledge.gifts.nil?
     assert pledge.gifts.size == num
+  end
+
+  def assert_number_gifts_in_template(num)
+    assert_select "tr.gift", :count => num
+  end
+
+  def assert_number_donations_in_pledge(num)
+    pledge = get_pledge
+    assert !pledge.nil?
+    assert !pledge.donations.nil?
+    assert pledge.donations.size == num
+  end
+
+  def assert_number_donations_in_template(num)
+    assert_select "tr.donation", :count => num
+  end
+
+  def assert_response_new_template(type)
+    assert_response :success
+    assert_template :new
+    assert_select "form[action=/#{type}][method=post]"
+  end
+
+  def assert_redirect_show_or_edit_then_edit_template(args = {})
+    assert_redirected_to :controller => :pledges, :action => :render_show_or_edit
+    follow_redirect!
+    assert_response :success
+    assert_template :edit
+    assert_select "a[href=/match-savers/]"
+    assert_select "form[action=/pledges/savetogether_ask][method=post]"
+    if args[:gifts]
+      assert_number_gifts_in_pledge(args[:gifts])
+      assert_number_gifts_in_template(args[:gifts])
+    end
+    if args[:donations]
+      assert_number_donations_in_pledge(args[:donations])
+      assert_number_donations_in_template(args[:donations])
+    end
+  end
+
+  def assert_redirect_show_or_edit_then_show_template(args = {})
+    assert_redirected_to :controller => :pledges, :action => :render_show_or_edit
+    follow_redirect!
+    assert_response :success
+    assert_template :show
+    assert_select "a[href=/match-savers/]"
+    assert_select "form[action=#{AppConfig.paypal_url.to_s}][method=post]"
+    if args[:gifts]
+      assert_number_gifts_in_pledge(args[:gifts])
+      assert_number_gifts_in_template(args[:gifts])
+    end
+    if args[:donations]
+      assert_number_donations_in_pledge(args[:donations])
+      assert_number_donations_in_template(args[:donations])
+    end
+    pledge = get_pledge
+    assert_select "form[action=#{AppConfig.paypal_url.to_s}][method=post] input[name=?]", /amount_\d/, :count => pledge.line_items.size
+  end
+
+  def assert_redirect_savetogether_ask_template(args = {})
+    assert_redirected_to :controller => :pledges, :action => :savetogether_ask
+    follow_redirect!
+    assert_response :success
+    assert_template :savetogether_ask
+    assert_select "form[action=/donations][method=post]"
+    if args[:gifts]
+      assert_number_gifts_in_pledge(args[:gifts])
+    end
+    if args[:donations]
+      assert_number_donations_in_pledge(args[:donations])
+    end
+  end
+
+  def assert_redirect_signup_or_login_template
+    assert_redirected_to :controller => :donors, :action => :signup_or_login
+    follow_redirect!
+    assert_template :signup_or_login
+    assert_select "form[action=/sessions][method=post]"
+    assert_select "form[action=/donors][method=post]"
   end
 end

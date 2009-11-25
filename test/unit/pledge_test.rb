@@ -51,36 +51,21 @@ class PledgeTest < ActiveSupport::TestCase
     assert d.to_user_id == donation.to_user_id    
   end
 
-#  test "adding nil donation should not fail" do
-#    pledge = invoices(:pledge)
-#    assert_nothing_raised(NoMethodError) {
-#      pledge.add_donation(nil)
-#    }
-#  end
-#
-  test "remove donation from pledge" do
-    pledge = invoices(:pledge)
-    donation = pledge.donations[0]
-    pledge.remove_donation_with_to_user_id(donation.to_user_id)
-    assert !pledge.find_line_item_with_to_user_id(donation.to_user_id)
-  end
-
-  test "get total amount of donations from pledge" do
+  test "test total amount of donations from pledge" do
     saver = users(:saver)
-    donor = users(:donor)
-    pledge = Pledge.create!(:donor => donor)
-    amount = "10.00"
-    donation = Donation.new(:invoice => pledge, :from_user => donor,
-                            :to_user => saver, :amount => amount)
-    pledge.donations << donation
-    pledge.save!
-    pledge = Pledge.find(pledge.id)
+    pledge = Factory(:anonymous_unpaid_pledge_with_gift)
+    sa = pledge.total_amount.cents
+    assert sa > 0
 
-    total = pledge.total_amount_for_donations.to_s.to_f
-    assert pledge.total_amount_for_donations.to_s.to_f == amount.to_f
+    gift = Factory(:anonymous_unpaid_gift, :invoice => pledge)
+    ga = gift.cents
+    assert ga > 0
+
+    pledge = Pledge.find(pledge.id)
+    assert pledge.total_amount.cents == sa + ga
   end
 
-  test "create initial pending pledge" do
+  test "create initial pledge with no status" do
     donor = users(:donor4)
     saver = users(:saver4)
     pledge = Pledge.create!(:donor => donor)
@@ -102,33 +87,6 @@ class PledgeTest < ActiveSupport::TestCase
 
     test_pledge_no_fees(d_pledge)
   end
-
-#  test "create initial, pending pledge using donation_attribures=" do
-#    donor = users(:donor4)
-#    saver = users(:saver4)
-#    pledge = Pledge.create(:donor => donor)
-#    pledge.donation_attributes= pledge_params(saver)
-#    pledge.donations.each do |donation|
-#      donation.from_user = donor
-#    end
-#    saved = pledge.save
-#    assert saved
-#    pledge = Pledge.find(pledge.id)
-#
-#    # Reload pledge and assert it's values
-#    pledge = Pledge.find(pledge.id)
-#    assert !pledge.nil?
-#
-#    test_pledge_no_fees(pledge)
-#
-#    # Use donor to find pledge and assert they're the same
-#    donor = Donor.find(donor.id)
-#    assert !donor.pledges.empty?
-#    d_pledge = donor.pledges[0]
-#    d_pledge.id == pledge.id
-#
-#    test_pledge_no_fees(d_pledge)
-#  end
 
   test "applying a payment_notification to a pending invoice" do
     pledge = invoices(:pledge2)

@@ -69,6 +69,7 @@ class LineItem < ActiveRecord::Base
               :converter => Proc.new { |value| value.to_money }
 
   validates_presence_of :cents
+  validates_presence_of :to_user
   validates_presence_of :from_user, :unless => Proc.new {|item| item.status.nil?}
   validates_presence_of :invoice_id
 

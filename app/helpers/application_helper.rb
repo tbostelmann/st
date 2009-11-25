@@ -62,7 +62,7 @@ module ApplicationHelper
     total_cents = 0
     st_ask_cents = 0
     storg_id = Organization.find_savetogether_org.id
-    get_or_init_pledge.donations.each do |d|
+    get_or_init_pledge.line_items.each do |d|
       unless d.to_user_id == storg_id
         total_cents = total_cents + d.cents
       else

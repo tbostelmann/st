@@ -7,6 +7,6 @@
       = image_submit_tag "#{image_path('buttons/continue.gif')}", :alt => :continue.l
   %td{:valign => "middle", :align => "left", "colspan" => "2"}
     %span.pledge-total
-      = "Total=#{@pledge.total_amount_for_donations.format(:html)}"
+      = "Total=#{@pledge.total_amount.format(:html)}"
     %span
       ="*"

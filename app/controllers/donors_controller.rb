@@ -1,4 +1,6 @@
 class DonorsController < BaseController
+  include ApplicationHelper
+
   uses_tiny_mce(:options => AppConfig.default_mce_options.merge({:editor_selector => "rich_text_editor"}),
     :only => [:new, :create, :update, :edit, :welcome_about])
   uses_tiny_mce(:options => AppConfig.simple_mce_options, :only => [:show])
@@ -116,7 +118,7 @@ class DonorsController < BaseController
       #create_friendship_with_inviter(@user, params)
       flash[:notice] = :email_signup_thanks.l_with_args(:email => @donor.email)
 
-      if session[:pledge_id]
+      if get_pledge
         redirect_to :controller => :pledges, :action => :savetogether_ask
       else
         redirect_to donor_path(@donor)

@@ -25,7 +25,7 @@
 
   -# Update and optional Delete controls
   %td{:class => "text12", :valign => "middle", :align => "center"}
-    = link_to image_tag('icons/delete.gif'), donation, :confirm => "Are you sure?", :method => :delete
+    = link_to image_tag('icons/delete.gif'), {:controller => :donations, :action => :delete, :id => donation.id}, :confirm => "Are you sure?"
 
 -# Spacer Row
 %tr{:valign => "top", :align => "left"}

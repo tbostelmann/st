@@ -3,7 +3,7 @@
 
   -# Saver photo or Organization logo
   %td{:valign => "middle", :align => "left"}
-    = "<GIFT IMAGE>"
+    = image_tag('gift_card_image.jpg', :alt => "gift-card-image")
 
   -# TODO: This should probably be the email address of recipient/giftee
   %td{:class => "text12", :valign => "middle", :align => "left"}
@@ -24,7 +24,7 @@
 
   -# Update and optional Delete controls
   %td{:class => "text12", :valign => "middle", :align => "center"}
-    = render :partial => 'pledges/invoice/gift/controls', :locals => {:gift => gift}
+    = link_to image_tag('icons/delete.gif'), {:controller => :gifts, :action => :delete, :id => gift.id}, :confirm => "Are you sure?"
 
 -# Spacer Row
 %tr{:valign => "top", :align => "left"}

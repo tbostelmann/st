@@ -123,8 +123,8 @@ en:
   argument_error_invoice_with_id_not_found: "Invoice {{id}} not found"
   argument_error_beneficiary_with_id_in_notification_not_found: "Beneficiary of Donation with id {{id}}, referenced in the payment notification, is not found"
   argument_error_no_class_params_supplied: "No class parameters were supplied"
-  argument_error_gift_not_in_current_pledge: "Gift with supplied id {{id}} not in current pledge"
-  argument_error_unable_to_save_donation: "Could not save donation"
+  argument_error_line_item_not_in_current_pledge: "LineItem with supplied id {{id}} not in current pledge"
+  argument_error_unable_to_save_line_item: "Could not save LineItem"
   #en: assume_id: Assume ID
   assume_id: Assume ID
   #en: assume_user_id: "Assume this user's ID"
@@ -1111,7 +1111,7 @@ en:
   search_users: Search Users
   #en: searching_for: Searching for
   searching_for: Searching for
-  security_error_trying_to_update_processed_gift: "Trying to update gift with id {{id}} that is no longer editable"
+  security_error_trying_to_update_processed_line_item: "Trying to update LineItem with id {{id}} with status {{status}}"
   #en: see_all: SEE ALL
   see_all: SEE ALL
   #en: see_all_activity: See all activity

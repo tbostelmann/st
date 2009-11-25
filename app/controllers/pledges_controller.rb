@@ -81,7 +81,7 @@ class PledgesController < BaseController
     else
       @pledge = get_or_init_pledge
       @storg = Organization.find_savetogether_org
-      @donation = Donation.suggest_percentage_of(current_user.id, @storg.id, 0.15, @pledge.total_amount_for_donations)
+      @donation = Donation.suggest_percentage_of(current_user.id, @storg.id, 0.15, @pledge.total_amount)
     end
   end
 

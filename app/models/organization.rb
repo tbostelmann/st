@@ -64,6 +64,7 @@ class Organization < Party
   PAYPAL_LOGIN = 'paypal@savetogether.org'
   SAVETOGETHER_LOGIN = 'storg@savetogether.org'
   CFED_LOGIN = 'cfed@savetogether.org'
+  GIFTCARD_LOGIN = 'storg+giftcard@savetogether.org'
 
   def self.find_savetogether_org
     find_by_login(SAVETOGETHER_LOGIN)
@@ -73,8 +74,12 @@ class Organization < Party
     find_by_login(PAYPAL_LOGIN)
   end
 
+  def self.find_giftcard_org
+    find_by_login(GIFTCARD_LOGIN)
+  end
+
   def self.find_partners(*args)
-    with_scope(:find => {:conditions => ["login != ? AND login != ? AND login != ?", SAVETOGETHER_LOGIN, PAYPAL_LOGIN, CFED_LOGIN]}) do
+    with_scope(:find => {:conditions => ["login != ? AND login != ? AND login != ? AND login != ?", SAVETOGETHER_LOGIN, PAYPAL_LOGIN, CFED_LOGIN, GIFTCARD_LOGIN]}) do
       find(*args)
     end
   end

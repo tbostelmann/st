@@ -32,7 +32,7 @@ class DonorNotifierTest < ActiveSupport::TestCase
     assert_equal "[SaveTogether] Thank you for your donation!", notification.subject
     assert_equal @donor.login, notification.to[0]
     assert_match /Hi #{@donor.first_name},/, notification.body
-    assert_match /Thank you for your donation of \$#{@pledge.total_amount_for_donations}/, notification.body
+    assert_match /Thank you for your donation of \$#{@pledge.total_amount}/, notification.body
     assert_match /SaveTogether is a 501\(c\)\(3\) non-profit organization/, notification.body
     assert_match /non-profit organization in good standing with the Internal Revenue Service/, notification.body
     assert_match /no goods or services were provided in exchange for your contribution/, notification.body
@@ -42,7 +42,7 @@ class DonorNotifierTest < ActiveSupport::TestCase
     # For some reason localization isn't accessible within the ActiveSupport::Test class, not sure what to do about it.
     #formatted_date = l @pledge.created_at, :format => :just_date
     #assert_match /Date: #{formatted_date}/, notification.body
-    assert_match /Donation Amount: \$#{@pledge.total_amount_for_donations}/, notification.body
+    assert_match /Donation Amount: \$#{@pledge.total_amount}/, notification.body
     assert_match /\*This email serves as your acknowledgment letter for IRS purposes./, notification.body
   end
   
