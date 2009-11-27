@@ -28,35 +28,6 @@ class PledgesController < BaseController
     end
   end
 
-#  def add_to_pledge
-#    add_donation_to_pledge
-#
-#    render_show_or_edit
-#  end
-
-#  def add_savetogether_to_pledge
-#    add_donation_to_pledge
-#
-#    show
-#  end
-#
-#  def update_donation_amount
-#    @pledge = get_pledge
-#    donation = @pledge.find_line_item_with_to_user_id(params[:donation][:to_user_id])
-#    donation.cents = params[:donation][:cents]
-#    donation.save!
-#
-#    render_show_or_edit
-#  end
-
-#  def remove_from_pledge
-#    @pledge = get_pledge
-#    @pledge.remove_donation_with_to_user_id(params[:to_user_id])
-#    @pledge.save!
-#
-#    render_show_or_edit
-#  end
-  
   def edit
     unless set_donor_in_pledge?
       @pledge = get_or_init_pledge
