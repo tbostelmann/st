@@ -75,6 +75,7 @@ end
 Factory.define :anonymous_unpaid_gift, :class => Gift do |g|
   g.cents [100, 500, 1000, 2500, 5000].rand
   g.gift_card Factory(:gift_card)
+  g.to_user {|a| Organization.find_giftcard_org}
 end
 
 

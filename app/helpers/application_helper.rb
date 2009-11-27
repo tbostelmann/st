@@ -30,7 +30,7 @@ module ApplicationHelper
   end
 
   def get_pledge
-    if !session[:pledge_id].nil?
+    unless session[:pledge_id].nil?
       return Pledge.find(session[:pledge_id])
     else
       return

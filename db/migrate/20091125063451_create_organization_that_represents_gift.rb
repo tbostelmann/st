@@ -3,34 +3,31 @@ class CreateOrganizationThatRepresentsGift < ActiveRecord::Migration
     require 'action_controller'
     require 'action_controller/test_process.rb'
 
-    Organization.transaction do
-      giftCard = Organization.create(
-        :first_name => 'GiftCard',
-        :login => "storg+giftcard4@savetogether.org",
-        :login_confirmation => "storg+giftcard4@savetogether.org",
-        :description => "<p>Organization that represents a gift</p>",
-        :salt => "7e3041ebc2fc05a40c60028e2c4901a81035d3cd",
-        :crypted_password => "00742970dc9e6319f8019fd54864d3ea740f04b1", # test
-        :birthday => 30.years.ago,
-        :activities_count => 0,
-        :profile_public => false,
-        :role => Role[:member])
-      giftCard.activate
-      photo = Photo.new(
-              :name => "GiftCard Logo",
-              :uploaded_data => ActionController::TestUploadedFile.new("#{RAILS_ROOT}/test/files/GiftCard.jpg", "image/jpg"),
-              :user => giftCard)
-      photo.save
-      giftCard.avatar = photo
-      giftCard.save
-    end
+    stOrg = Organization.create!(
+      :first_name => 'SaveTogether',
+      :login => "storg+giftcard@savetogether.org",
+      :login_confirmation => "storg+giftcard@savetogether.org",
+      :description => "<p>SaveTogether description.</p>",
+      :salt => "7e3041ebc2fc05a40c60028e2c4901a81035d3cd",
+      :crypted_password => "00742970dc9e6319f8019fd54864d3ea740f04b1", # test
+      :birthday => 30.years.ago,
+      :activities_count => 0,
+      :profile_public => true,
+      :role => Role[:member])
+    stOrg.activate
+    photo = Photo.new(
+            :name => "SaveTogether Logo",
+            :uploaded_data => ActionController::TestUploadedFile.new("#{RAILS_ROOT}/test/files/SaveTogetherLogoLeaf.jpg", "image/jpg"))
+    photo.user = stOrg
+    photo.save!
+    stOrg.avatar = photo
+    stOrg.save!
   end
 
   def self.down
-    giftCard = Organization.find_by_login("storg+giftcard3@savetogether.org")
-    if giftCard.nil?
-      raise "GiftCard does not exist!"
+    giftCard = Organization.find_by_login("storg+giftcard@savetogether.org")
+    unless giftCard.nil?
+      giftCard.delete
     end
-    giftCard.delete
   end
 end

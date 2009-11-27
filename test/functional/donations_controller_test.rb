@@ -7,7 +7,7 @@ class DonationsControllerTest < ActionController::TestCase
   # Replace this with your real tests.
   test "update donation with no pledge should throw RuntimeError" do
     assert_raise(RuntimeError, :runtime_error_no_pledge_in_session.l) {
-        post :update, :donation => {:id => "999999", :cents => "200"}}
+        post :update, :id => "999999", :donation => {:cents => "200"}}
   end
 
   test "update a donation with no parameter values should throw ArgumentError" do
@@ -18,14 +18,14 @@ class DonationsControllerTest < ActionController::TestCase
   test "update donation that is not in current pledge should throw ArgumentError" do
     get_or_init_pledge
     assert_raise(ArgumentError, :argument_error_line_item_not_in_current_pledge.l(:id => "999999")) {
-      post :update, :donation => {:id => "999999", :cents => "200"}}
+      post :update, :id => "999999", :donation => {:cents => "200"}}
   end
 
   test "update donation that doesnt have status of null should throw SecurityError" do
     pledge = Factory(:pending_pledge)
     session[:pledge_id] = pledge.id
     assert_raise(SecurityError, :security_error_trying_to_update_processed_line_item.l(:id => pledge.donations[0].id, :status => pledge.donations[0].status)) {
-      post :update, :donation => {:id => pledge.donations[0].id, :cents => "20000"}}
+      post :update, :id => pledge.donations[0].id, :donation => {:cents => "20000"}}
   end
 
   test "create donation with no pledge should work" do
@@ -74,6 +74,6 @@ class DonationsControllerTest < ActionController::TestCase
 
   test "delete donation with no pledge should not work RuntimeError" do
     assert_raise(RuntimeError, :runtime_error_no_pledge_in_session.l) {
-        post :delete, :donation => {:id => "999999"}}
+        post :delete, :id => "999999"}
   end
 end

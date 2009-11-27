@@ -4,7 +4,7 @@ class GiftsController < BaseController
   def create
     @pledge = get_or_init_pledge
 
-    @gift = Gift.new(params[:gift].merge(:invoice_id => @pledge.id))
+    @gift = Gift.new(params[:gift].merge(:invoice_id => @pledge.id, :to_user_id => Organization.find_giftcard_org.id))
     @gift_card = GiftCard.new(params[:gift_card])
     @gift.gift_card = @gift_card
 
@@ -31,7 +31,7 @@ class GiftsController < BaseController
       raise SecurityError, :security_error_trying_to_update_processed_line_item.l(:id => params[:id], :status => @gift.status)
     end
 
-    @gift.update_attributes(params[:gift])
+    @gift.update_attributes(params[:gift].merge(:to_user_id => Organization.find_giftcard_org.id))
 
     if @gift.save!
       redirect_to :controller => :pledges, :action => :render_show_or_edit
@@ -59,5 +59,9 @@ class GiftsController < BaseController
   end
 
   def new
+    @gift = Gift.new(:to_user => Organization.find_giftcard_org)
+    if current_user
+      @gift.from_user = current_user
+    end
   end
 end

@@ -5,7 +5,18 @@ class PledgeTest < ActiveSupport::TestCase
 
   test "create unpaid factory pledge" do
     pledge = Factory(:anonymous_unpaid_pledge)
-    pledge = Pledge.find(pledge.id)
+    pledge.line_items.size == 2
+    pledge.donations.size == 2
+    pledge.line_items.each do |li|
+      assert li.status.nil?
+    end
+  end
+
+  test "create unpaid factory pledge with a gift" do
+    pledge = Factory(:anonymous_unpaid_pledge_with_gift)
+    pledge.line_items.size == 3
+    pledge.donations.size == 2
+    pledge.gifts.size == 1
     pledge.line_items.each do |li|
       assert li.status.nil?
     end
