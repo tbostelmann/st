@@ -254,4 +254,24 @@ class ActiveSupport::TestCase
     assert_select "form[action=/sessions][method=post]"
     assert_select "form[action=/donors][method=post]"
   end
+
+  def assert_donation_notification_sent
+    wasmailed = false
+    ActionMailer::Base.deliveries.each do |message|
+      if message.header['subject'].to_s =~ /#{:notification_donation_thanks_subject.l.to_s}$/
+        wasmailed = true
+      end
+    end
+    assert wasmailed
+  end
+
+  def assert_donation_notification_sent
+    wasmailed = false
+    ActionMailer::Base.deliveries.each do |message|
+      if message.header['subject'].to_s =~ /#{:notification_giftcard_subject.l.to_s}$/
+        wasmailed = true
+      end
+    end
+    assert wasmailed
+  end
 end

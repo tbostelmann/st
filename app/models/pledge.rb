@@ -112,7 +112,12 @@ class Pledge < Invoice
     end
 
     if notify.status == LineItem::STATUS_COMPLETED
-      UserNotifier.deliver_donation_thanks_notification(donor, self)      
+      UserNotifier.deliver_donation_thanks_notification(donor, self)
+      if gifts.size > 0
+        gifts.each do |gift|
+          UserNotifier.deliver_giftcard_notification(donor, gift)
+        end
+      end
     end
   end
 end

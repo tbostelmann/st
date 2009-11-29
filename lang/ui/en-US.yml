@@ -854,6 +854,8 @@ en:
   notify_of_comments: Notify of comments
   #en: notify_of_friend_requests: Notify of friend requests
   notify_of_friend_requests: Notify of friend requests
+  notification_donation_thanks_subject: "Thank you for your donation!"
+  notification_giftcard_subject: "You have received a SaveTogether gift card!"
   #en: number_of_donations: Number of Donations
   number_of_donations: Number of Donations
   #en: offering_was_successfully_created: Offering was successfully created.
