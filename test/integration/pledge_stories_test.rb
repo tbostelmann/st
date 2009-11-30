@@ -70,23 +70,25 @@ class PledgeStoriesTest < ActionController::IntegrationTest
         :donation => {:from_user_id => user.id, :cents => "10000", :to_user_id => Organization.find_savetogether_org.id}
     assert_redirect_show_or_edit_then_show_template :gifts => 1, :donations => 1
 
-    # skip over paypal stuff..
-    # post instant payment notification stuff for pledge to done
-    # should respond with thank you page
-
-    # thank you message should be sent to donor
-
-    # gift card message should be sent to giftee
+    pledge = get_pledge
+    get "/pledges/done", create_ipn(pledge)
+    assert_redirect_thank_you_template
+    assert_donation_notification_sent
+    assert_giftcard_notification_sent
   end
 
   test "Giftee returns to site by clicking on link in email" do
     # giftee clicks on link in email
-    # pledge should be created and gift should be added to pledge
-    # TODO: do we need to guide the user through the site?
+    # New session created should include a reference to giftcard
+    # signup_or_login with special message should show up asking user to sign up or login to we can associate giftcard
+
+    # If user logs in an invoice is created that subtracts from giftcard_org and adds to user's account
+    # If user creates account the same thing should happen
+    # Thank you for signing up message should include something about having a gift card associated with account
 
     # giftee chooses a saver
     # should respond with showing pledge page
-    # amount from gift should negate from gift
+    # amount from user's account should negate from gift
 
     # click 'continue' on pledge page
     # should respond with pledge page that includes paypal link

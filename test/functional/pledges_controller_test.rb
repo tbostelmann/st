@@ -27,60 +27,6 @@ class PledgesControllerTest < ActionController::TestCase
     assert_response :success
     assert_template :savetogether_ask
   end
-
-#  test "add savetogether donation" do
-#    login_as(:donor4)
-#    pledge = invoices(:pledge)
-#    session[:pledge_id] = pledge.id
-#
-#    post :add_savetogether_to_pledge, {:donation => {
-#            :to_user_id => Organization.find_savetogether_org.id,
-#            :cents => "125"}}
-#
-#    assert_response :success
-#    assert_template 'show'
-#
-#    pledge = Pledge.find(pledge.id)
-#    d = pledge.find_line_item_with_to_user_id(Organization.find_savetogether_org.id)
-#    assert !d.nil?
-#    assert d.cents.to_s == "125"
-#  end
-
-#  test "add donation to pledge" do
-#    pledge = invoices(:pledge)
-#    session[:pledge_id] = pledge.id
-#    donation = pledge.donations[0]
-#    c = donation.cents
-#    c = c + 10000
-#
-#    post :add_to_pledge, {:donation => {
-#            :to_user_id => donation.to_user.id,
-#            :cents => c.to_s}}
-#
-#    assert_response :success
-#    assert_template 'show'
-#
-#    pledge = Pledge.find(session[:pledge_id])
-#    d = pledge.find_line_item_with_to_user_id(donation.to_user_id)
-#    assert !d.nil?
-#    assert d.cents != donation.cents
-#    assert d.cents == c
-#  end
-#
-#  test "remove donation from pledge" do
-#    pledge = invoices(:pledge)
-#    session[:pledge_id] = pledge.id
-#    donation = pledge.donations[0]
-#
-#    post :remove_from_pledge, {:to_user_id => donation.to_user.id}
-#
-#    assert_response :success
-#    assert_template 'edit'
-#
-#    pledge = Pledge.find(session[:pledge_id])
-#    d = pledge.find_line_item_with_to_user_id(donation.to_user_id)
-#    assert d.nil?
-#  end
   
   test "get cancel" do
     get :cancel

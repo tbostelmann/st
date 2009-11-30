@@ -151,10 +151,10 @@ class ActiveSupport::TestCase
       :merchant_return_link => 'Return to SaveTogether',
       :auth => 'ZYTlDZ4v57sLTuL7WyZ6m2yqSuVYbjpLtndecieoKRVQMBLnqoLGzVeW0fLuVGIo2x3RJtPa-bB-i7--'
     }
-    if pledge.donations
+    if pledge.line_items
       i = 1
-      notification['num_cart_items'] = "#{pledge.donations.size}"
-      pledge.donations.each do |donation|
+      notification['num_cart_items'] = "#{pledge.line_items.size}"
+      pledge.line_items.each do |donation|
         notification["item_number#{i}"] = "#{donation.to_user.id}"
         notification["tax#{i}"] = '0.00'
         notification["mc_handling#{i}"] = '0.00'
@@ -255,6 +255,12 @@ class ActiveSupport::TestCase
     assert_select "form[action=/donors][method=post]"
   end
 
+  def assert_redirect_thank_you_template
+    assert_redirected_to :controller => :donor_surveys, :action => :show
+    follow_redirect!
+    assert_template :show
+  end
+
   def assert_donation_notification_sent
     wasmailed = false
     ActionMailer::Base.deliveries.each do |message|
@@ -265,7 +271,7 @@ class ActiveSupport::TestCase
     assert wasmailed
   end
 
-  def assert_donation_notification_sent
+  def assert_giftcard_notification_sent
     wasmailed = false
     ActionMailer::Base.deliveries.each do |message|
       if message.header['subject'].to_s =~ /#{:notification_giftcard_subject.l.to_s}$/

@@ -85,7 +85,7 @@ class Pledge < Invoice
       end
 
       amount = notify.params["mc_gross_#{index}"]
-      line_item = self.donations.find(:first, :conditions => {:to_user_id => saver.id})
+      line_item = self.line_items.find(:first, :conditions => {:to_user_id => saver.id})
       if (line_item.nil?)
         raise "LineItem for user #{saver.id} not found"
       end
