@@ -250,9 +250,18 @@ class ActiveSupport::TestCase
   def assert_redirect_signup_or_login_template
     assert_redirected_to :controller => :donors, :action => :signup_or_login
     follow_redirect!
+    assert_signup_or_login_template
+  end
+
+  def assert_signup_or_login_template(args = {})
     assert_template :signup_or_login
     assert_select "form[action=/sessions][method=post]"
     assert_select "form[action=/donors][method=post]"
+    if args[:gift_card_id]
+      gc = GiftCard.find(args[:gift_card_id])
+      assert_select "span.text12.gift-card", :you_have_a_gift_card_message.l(:amount => gc.gift.amount)
+      assert_select "input[type=hidden][name=gift_card_id]"
+    end
   end
 
   def assert_redirect_thank_you_template

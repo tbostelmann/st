@@ -5,6 +5,6 @@ class GiftTest < ActiveSupport::TestCase
     pledge = Factory(:pledge)
     gift = Factory(:anonymous_unpaid_gift, :invoice => pledge)
     gift = Gift.find(gift.id)
-    assert !gift.gift_card.nil?
+    assert !gift.from_gift_card.nil?
   end
 end

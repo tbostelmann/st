@@ -1475,6 +1475,7 @@ en:
   you_could_tag_yourself: You could tag yourself
   #en: you_have: You have
   you_have: You have
+  you_have_a_gift_card_message: "You have a gift card for: {{amount}}"
   #en: you_have_already_voted: You have already voted.
   you_have_already_voted: You have already voted.
   #en: you_have_created: You have created

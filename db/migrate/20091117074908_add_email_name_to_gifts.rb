@@ -5,7 +5,9 @@ class AddEmailNameToGifts < ActiveRecord::Migration
       t.string :last_name
       t.string :email
       t.string :message
-      t.integer :line_item_id
+      t.integer :line_item_from_id
+      t.integer :line_item_to_id
+      t.string :status
       t.timestamps
     end
   end

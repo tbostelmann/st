@@ -3,6 +3,10 @@
     %td
       %span.text12GreenTitle
         =:tips.l
+      - if @gift_card
+        %p{:style => "margin-top: 10px;"}
+          %span.text12.gift-card
+            =:you_have_a_gift_card_message.l(:amount => @gift_card.gift_from.amount)
       %p{:style => "margin-top: 10px;"}
         %span.text12
           =:by_signing_up.l

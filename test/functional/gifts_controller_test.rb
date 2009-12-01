@@ -33,7 +33,7 @@ class GiftsControllerTest < ActionController::TestCase
     gifts = pledge.gifts
     assert !gifts.nil?
     assert gifts.size == 1
-    assert gifts[0].gift_card.email == email
+    assert gifts[0].from_gift_card.email == email
   end
 
   test "create gift forces to_user to be giftcard_org" do

@@ -74,7 +74,7 @@ end
 
 Factory.define :anonymous_unpaid_gift, :class => Gift do |g|
   g.cents [100, 500, 1000, 2500, 5000].rand
-  g.gift_card Factory(:gift_card)
+  g.from_gift_card Factory(:gift_card)
   g.to_user {|a| Organization.find_giftcard_org}
 end
 
@@ -113,3 +113,9 @@ Factory.define :completed_pledge, :class => Pledge do |p|
   p.donations {|a| [a.association(:donation, :from_user => a.donor, :status => LineItem::STATUS_COMPLETED, :invoice_id => a.id)]}
 end
 
+Factory.define :completed_pledge_with_gift, :class => Pledge do |p|
+  p.association :donor, :factory => :donor
+  p.fees {|a| [a.association(:fee, :status => LineItem::STATUS_COMPLETED, :invoice_id => a.id)]}
+  p.donations {|a| [a.association(:donation, :from_user => a.donor, :status => LineItem::STATUS_COMPLETED, :invoice_id => a.id)]}
+  p.gifts {|a| [a.association(:anonymous_unpaid_gift, :from_user => a.donor, :status => a.donations[0].status, :invoice_id => a.id)]}
+end

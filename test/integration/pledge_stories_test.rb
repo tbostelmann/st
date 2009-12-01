@@ -79,9 +79,17 @@ class PledgeStoriesTest < ActionController::IntegrationTest
 
   test "Giftee returns to site by clicking on link in email" do
     # giftee clicks on link in email
-    # New session created should include a reference to giftcard
+    pledge = Factory(:completed_pledge_with_gift)
+    gc_id = pledge.gifts[0].from_gift_card.id.to_s
+    get '/signup-or-login', :gift_card_id => gc_id
     # signup_or_login with special message should show up asking user to sign up or login to we can associate giftcard
+    assert_signup_or_login_template :gift_card_id => gc_id
 
+    email = Faker::Internet.email
+    password = "randomepassword"
+    post "/donors", :donor => {:first_name => Faker::Name.first_name, :last_name => Faker::Name.last_name,
+                                :login => email, :login_confirmation => email,
+                                :password => password, :password_confirmation => password, :profile_public => true}
     # If user logs in an invoice is created that subtracts from giftcard_org and adds to user's account
     # If user creates account the same thing should happen
     # Thank you for signing up message should include something about having a gift card associated with account

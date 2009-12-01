@@ -6,7 +6,7 @@ class GiftsController < BaseController
 
     @gift = Gift.new(params[:gift].merge(:invoice_id => @pledge.id, :to_user_id => Organization.find_giftcard_org.id))
     @gift_card = GiftCard.new(params[:gift_card])
-    @gift.gift_card = @gift_card
+    @gift.from_gift_card = @gift_card
 
     if @gift.save
       redirect_to :controller => :pledges, :action => :render_show_or_edit
@@ -61,7 +61,7 @@ class GiftsController < BaseController
   def new
     @gift = Gift.new(:to_user => Organization.find_giftcard_org)
     if current_user
-      @gift.from_user = current_user
+      @gift.from_user_id = current_user.id
     end
   end
 end

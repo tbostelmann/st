@@ -14,7 +14,11 @@
 #
 
 class GiftCard < ActiveRecord::Base
-  belongs_to :gift, :class_name => 'Gift', :foreign_key => :line_item_id
+  # A payment has been completed
+  STATUS_COMPLETED = 'Completed'
+
+  belongs_to :gift_from, :class_name => 'Gift', :foreign_key => :line_item_from_id
+  belongs_to :gift_to, :class_name => 'Gift', :foreign_key => :line_item_to_id
 
   validates_presence_of :first_name
   validates_presence_of :last_name

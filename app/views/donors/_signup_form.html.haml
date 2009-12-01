@@ -5,6 +5,8 @@
         ="#{title}"
   - form_for :donor, :url => donors_path, :method => :post, :html => {:class => 'MainForm'} do |f|
     = hidden_field_tag 'donation_id', "#{params[:donation_id]}"
+    - if @gift_card
+      = hidden_field_tag 'gift_card_id', @gift_card.id
     %tr
       %td{:class => "text12", :width => "32%", :height => "36"}
         %label{"for"=>"donor_first_name"}
