@@ -79,7 +79,7 @@ textarea {
     background: url("../images/buttons/header-button.gif") no-repeat left top;}
 
 .column {
-    width: 150px;
+    width: 120px;
     float: left;
     display: inline;
     margin-right: 15px;}
@@ -87,9 +87,9 @@ textarea {
 .column INPUT {
     padding: 4px 0 4px 3px;
     background: #ffffff;
-    width: 147px;
-    _width: 150px;
-    _height: 23px;
+    width: 115px;
+    _width: 120px;
+    _height: 14px;
     margin-top: 3px;
     font-size: 11px;
     border: 1px dashed #bbbbbb;
@@ -431,6 +431,10 @@ textarea {
             .footer UL LI A:HOVER {
                 text-decoration: underline;}
 
+.gift-card {
+    float: right;
+}
+
 .header {
     float: left;
     width: 100%;
@@ -442,7 +446,7 @@ textarea {
 
 .header-form {
     float: right;
-    width: 356px;}
+    width: 500px;}
 
     .header-form A {
         font-size: 11px;}
