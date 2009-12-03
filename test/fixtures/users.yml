@@ -321,24 +321,6 @@ savetogether:
   role_id: 3
   type: Organization
 
-giftcard:
-  first_name: GiftCard
-  login: storg+giftcard@savetogether.org
-  description: <p>Gift Card functionality.</p>
-  salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
-  crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
-  created_at: <%= 5.days.ago.to_s :db %>
-  activated_at: <%= 5.days.ago.to_s :db %>
-  activation_code:
-  state: 2
-  metro_area: seattle
-  profile_public: false
-  login_slug: storg_giftcard_savetogether_org
-  birthday: <%= 15.years.ago.to_s :db %>
-  activities_count: 0
-  role_id: 3
-  type: Organization
-
 paypal:
   first_name: Paypal
   login: paypal@savetogether.org

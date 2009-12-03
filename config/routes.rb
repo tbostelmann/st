@@ -58,7 +58,6 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :savers
   map.resources :donors
   map.resources :organizations
-  map.resources :gifts, :except => [:index, :show, :edit]
   map.resources :donations, :except => [:index, :show, :edit]
   # map.resources :donor_surveys
 

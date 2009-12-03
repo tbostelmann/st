@@ -555,7 +555,6 @@ en:
   get_started_tell_us_about_yourself: "Get Started: Tell us about yourself"
   #en: get_started_upload_a_profile_photo: "Get Started: Upload a profile photo"
   get_started_upload_a_profile_photo: "Get Started: Upload a profile photo"
-  gift_card: Gift Card
   #en: go: Go
   go: Go
   #en: go2: Go
@@ -855,7 +854,6 @@ en:
   #en: notify_of_friend_requests: Notify of friend requests
   notify_of_friend_requests: Notify of friend requests
   notification_donation_thanks_subject: "Thank you for your donation!"
-  notification_giftcard_subject: "You have received a SaveTogether gift card!"
   #en: number_of_donations: Number of Donations
   number_of_donations: Number of Donations
   #en: offering_was_successfully_created: Offering was successfully created.
@@ -1475,7 +1473,6 @@ en:
   you_could_tag_yourself: You could tag yourself
   #en: you_have: You have
   you_have: You have
-  you_have_a_gift_card_message: "You have a gift card for: {{amount}}"
   #en: you_have_already_voted: You have already voted.
   you_have_already_voted: You have already voted.
   #en: you_have_created: You have created

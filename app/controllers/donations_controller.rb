@@ -25,7 +25,7 @@ class DonationsController < ApplicationController
 
     @donation = @pledge.find_line_item_with_id(params[:id])
     if @donation.nil?
-      raise ArgumentError, :argument_error_gift_not_in_current_pledge.l(:id => params[:id])
+      raise ArgumentError, :argument_error_line_item_not_in_current_pledge.l(:id => params[:id])
     elsif @donation.status
       raise SecurityError, :security_error_trying_to_update_processed_line_item.l(:id => params[:id], :status => @donation.status)
     end
@@ -35,7 +35,7 @@ class DonationsController < ApplicationController
     if @donation.save!
       redirect_to :controller => :pledges, :action => :render_show_or_edit
     else
-      logger.error("Tried to save a gift unsuccessfully", @donation.errors)
+      logger.error("Tried to save a donation unsuccessfully", @donation.errors)
     end
   end
 
@@ -47,13 +47,13 @@ class DonationsController < ApplicationController
 
     @donation = @pledge.find_line_item_with_id(params[:id])
     if @donation.nil?
-      raise ArgumentError, :argument_error_gift_not_in_current_pledge.l(:id => params[:id])
+      raise ArgumentError, :argument_error_line_item_not_in_current_pledge.l(:id => params[:id])
     elsif @donation.status
       raise SecurityError, :security_error_trying_to_update_processed_line_item.l(:id => params[:id], :status => @donation.status)
     end
 
     unless @pledge.line_items.delete(@donation)
-      logger.error("Could not delete gift from pledge #{@pledge.id}", @pledge.errors)
+      logger.error("Could not delete donation from pledge #{@pledge.id}", @pledge.errors)
     end
 
     redirect_to :controller => :pledges, :action => :render_show_or_edit

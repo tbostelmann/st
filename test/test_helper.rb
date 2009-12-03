@@ -169,17 +169,6 @@ class ActiveSupport::TestCase
     return notification.merge(add_params)
   end
 
-  def assert_number_gifts_in_pledge(num)
-    pledge = get_pledge
-    assert !pledge.nil?
-    assert !pledge.gifts.nil?
-    assert pledge.gifts.size == num
-  end
-
-  def assert_number_gifts_in_template(num)
-    assert_select "tr.gift", :count => num
-  end
-
   def assert_number_donations_in_pledge(num)
     pledge = get_pledge
     assert !pledge.nil?
@@ -204,10 +193,6 @@ class ActiveSupport::TestCase
     assert_template :edit
     assert_select "a[href=/match-savers/]"
     assert_select "form[action=/pledges/savetogether_ask][method=post]"
-    if args[:gifts]
-      assert_number_gifts_in_pledge(args[:gifts])
-      assert_number_gifts_in_template(args[:gifts])
-    end
     if args[:donations]
       assert_number_donations_in_pledge(args[:donations])
       assert_number_donations_in_template(args[:donations])
@@ -221,10 +206,6 @@ class ActiveSupport::TestCase
     assert_template :show
     assert_select "a[href=/match-savers/]"
     assert_select "form[action=#{AppConfig.paypal_url.to_s}][method=post]"
-    if args[:gifts]
-      assert_number_gifts_in_pledge(args[:gifts])
-      assert_number_gifts_in_template(args[:gifts])
-    end
     if args[:donations]
       assert_number_donations_in_pledge(args[:donations])
       assert_number_donations_in_template(args[:donations])
@@ -239,9 +220,6 @@ class ActiveSupport::TestCase
     assert_response :success
     assert_template :savetogether_ask
     assert_select "form[action=/donations][method=post]"
-    if args[:gifts]
-      assert_number_gifts_in_pledge(args[:gifts])
-    end
     if args[:donations]
       assert_number_donations_in_pledge(args[:donations])
     end
@@ -257,11 +235,6 @@ class ActiveSupport::TestCase
     assert_template :signup_or_login
     assert_select "form[action=/sessions][method=post]"
     assert_select "form[action=/donors][method=post]"
-    if args[:gift_card_id]
-      gc = GiftCard.find(args[:gift_card_id])
-      assert_select "span.text12.gift-card", :you_have_a_gift_card_message.l(:amount => gc.gift.amount)
-      assert_select "input[type=hidden][name=gift_card_id]"
-    end
   end
 
   def assert_redirect_thank_you_template
@@ -274,16 +247,6 @@ class ActiveSupport::TestCase
     wasmailed = false
     ActionMailer::Base.deliveries.each do |message|
       if message.header['subject'].to_s =~ /#{:notification_donation_thanks_subject.l.to_s}$/
-        wasmailed = true
-      end
-    end
-    assert wasmailed
-  end
-
-  def assert_giftcard_notification_sent
-    wasmailed = false
-    ActionMailer::Base.deliveries.each do |message|
-      if message.header['subject'].to_s =~ /#{:notification_giftcard_subject.l.to_s}$/
         wasmailed = true
       end
     end

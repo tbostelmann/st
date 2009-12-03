@@ -14,10 +14,6 @@
     - @pledge.donations_sorted_for_display.each do |donation|
       = render :partial => 'pledges/invoice/donation/donation', :locals => {:donation => donation}
       
-    -# Gifts Table
-    - @pledge.gifts.each do |gift|
-      = render :partial => 'pledges/invoice/gift/gift', :locals => {:gift => gift}
-
     -# Footer row - Controls and Total
     = render :partial => 'pledges/invoice/summary_row_to_pp.html.haml'
     

@@ -15,7 +15,6 @@ class Invoice < ActiveRecord::Base
   has_many :line_items, :foreign_key => :invoice_id
   has_many :donations, :foreign_key => :invoice_id
   has_many :fees, :foreign_key => :invoice_id
-  has_many :gifts, :foreign_key => :invoice_id
 
   def find_line_item_with_id (id)
     line_items.each do |d|

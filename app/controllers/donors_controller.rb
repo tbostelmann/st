@@ -104,13 +104,6 @@ class DonorsController < BaseController
   end
 
   def signup_or_login
-    id = params[:gift_card_id]
-    if id
-      gc = GiftCard.find(id.to_i)
-      if !gc.nil? && (gc.status.nil? || gc.status != GiftCard::STATUS_COMPLETE)
-        @gift_card = gc
-      end
-    end
     @donor = Donor.new
   end
   
@@ -124,10 +117,6 @@ class DonorsController < BaseController
       self.current_user = Donor.authenticate(@donor.login, params[:donor][:password])
       #create_friendship_with_inviter(@user, params)
       flash[:notice] = :email_signup_thanks.l_with_args(:email => @donor.email)
-
-      if params[:gift_card_id]
-        
-      end
 
       if get_pledge
         redirect_to :controller => :pledges, :action => :savetogether_ask

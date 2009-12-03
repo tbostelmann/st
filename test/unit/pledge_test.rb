@@ -12,16 +12,6 @@ class PledgeTest < ActiveSupport::TestCase
     end
   end
 
-  test "create unpaid factory pledge with a gift" do
-    pledge = Factory(:anonymous_unpaid_pledge_with_gift)
-    pledge.line_items.size == 3
-    pledge.donations.size == 2
-    pledge.gifts.size == 1
-    pledge.line_items.each do |li|
-      assert li.status.nil?
-    end
-  end
-
   test "create pending factory pledge" do
     pledge = Factory(:pending_pledge)
     pledge = Pledge.find(pledge.id)
@@ -44,36 +34,11 @@ class PledgeTest < ActiveSupport::TestCase
     end
   end
 
-  test "create pending factory pledge with gift" do
-    pledge = Factory(:pending_pledge_with_gift)
-    pledge = Pledge.find(pledge.id)
-    assert pledge.line_items.size > 0
-    assert pledge.donations.size > 0
-    assert pledge.gifts.size > 0
-    pledge.line_items.each do |li|
-      assert li.status == LineItem::STATUS_PENDING
-    end
-  end
-
   test "find donation with same to_user_id" do
     pledge = invoices(:pledge)
     donation = pledge.donations[0]
     d = pledge.find_line_item_with_to_user_id(donation.to_user_id)
     assert d.to_user_id == donation.to_user_id    
-  end
-
-  test "test total amount of donations from pledge" do
-    saver = users(:saver)
-    pledge = Factory(:anonymous_unpaid_pledge_with_gift)
-    sa = pledge.total_amount.cents
-    assert sa > 0
-
-    gift = Factory(:anonymous_unpaid_gift, :invoice => pledge)
-    ga = gift.cents
-    assert ga > 0
-
-    pledge = Pledge.find(pledge.id)
-    assert pledge.total_amount.cents == sa + ga
   end
 
   test "create initial pledge with no status" do
