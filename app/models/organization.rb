@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 20090701201617
+# Schema version: 20091117074908
 #
 # Table name: users
 #
@@ -45,6 +45,8 @@
 #  web_site_url              :string(255)
 #  phone_number              :string(255)
 #  notify_advocacy           :boolean(1)
+#  short_description         :string(255)
+#  featured_user             :boolean(1)      default(TRUE)
 #
 
 class Organization < Party
@@ -62,7 +64,7 @@ class Organization < Party
   PAYPAL_LOGIN = 'paypal@savetogether.org'
   SAVETOGETHER_LOGIN = 'storg@savetogether.org'
   CFED_LOGIN = 'cfed@savetogether.org'
-
+  
   def self.find_savetogether_org
     find_by_login(SAVETOGETHER_LOGIN)
   end

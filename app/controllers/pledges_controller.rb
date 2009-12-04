@@ -21,56 +21,25 @@ class PledgesController < BaseController
 
   def render_show_or_edit
     @pledge = get_or_init_pledge
-    if @pledge.find_donation_with_to_user_id(Organization.find_savetogether_org.id)
+    if @pledge.find_line_item_with_to_user_id(Organization.find_savetogether_org.id)
       show
     else
       edit
     end
   end
 
-  def add_to_pledge
-    add_donation_to_pledge
-
-    render_show_or_edit
-  end
-
-  def add_savetogether_to_pledge
-    add_donation_to_pledge
-
-    show
-  end
-
-  def update_donation_amount
-    @pledge = get_or_init_pledge
-    donation = @pledge.find_donation_with_to_user_id(params[:donation][:to_user_id])
-    donation.cents = params[:donation][:cents]
-    donation.save!
-
-    render_show_or_edit
-  end
-
-  def remove_from_pledge
-    @pledge = get_or_init_pledge
-    @pledge.remove_donation_with_to_user_id(params[:to_user_id])
-    @pledge.save!
-
-    render_show_or_edit
-  end
-  
   def edit
-    @pledge = get_or_init_pledge
+    unless set_donor_in_pledge?
+      @pledge = get_or_init_pledge
+    end
 
     render 'edit'
   end
 
   def show
-    @pledge = get_or_init_pledge
-    if current_user
-      @user = current_user
-      @pledge.set_donor_id(@user.id)
-      @pledge.save
+    unless set_donor_in_pledge?
       @pledge = get_or_init_pledge
-    end 
+    end
 
     render 'show'
   end
@@ -78,12 +47,12 @@ class PledgesController < BaseController
   def savetogether_ask
     if current_user.nil?
       redirect_to signup_or_login_path
-    elsif get_or_init_pledge.find_donation_with_to_user_id(Organization.find_savetogether_org.id)
+    elsif get_or_init_pledge.find_line_item_with_to_user_id(Organization.find_savetogether_org.id)
       show
     else
       @pledge = get_or_init_pledge
       @storg = Organization.find_savetogether_org
-      @donation = Donation.suggest_percentage_of(current_user.id, @storg.id, 0.15, @pledge.total_amount_for_donations)
+      @donation = Donation.suggest_percentage_of(current_user.id, @storg.id, 0.15, @pledge.total_amount)
     end
   end
 
@@ -151,7 +120,7 @@ class PledgesController < BaseController
       donation = Donation.new(params[:donation])
       @pledge.add_donation(donation)
       @pledge.save!
-      @pledge = get_or_init_pledge
+      @pledge = get_pledge
     end
   end
 
@@ -188,5 +157,16 @@ class PledgesController < BaseController
     end
 
     return redirect_params
+  end
+
+  def set_donor_in_pledge?
+    if current_user
+      @user = current_user
+      @pledge.set_donor_id(@user.id)
+      @pledge.save
+      @pledge = get_pledge
+      return true
+    end
+    return false
   end
 end

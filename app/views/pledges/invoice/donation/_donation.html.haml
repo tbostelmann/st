@@ -1,5 +1,5 @@
 -# Saver Data
-%tr
+%tr.donation
 
   -# Saver photo or Organization logo
   %td{:valign => "middle", :align => "left"}
@@ -19,14 +19,13 @@
     = render :partial => 'pledges/invoice/donation/goal_description', :locals => {:to_user => donation.to_user}
 
   -# Donation amounts controls
-  - form_for donation, :url => { :controller => :pledges, :action => :update_donation_amount } do |f|
+  - form_for donation do |f|
     %td{:class => "text12", :valign => "middle", :align => "left"}
       = render :partial => 'pledges/invoice/donation/amount', :locals => {:to_user => donation.to_user, :form => f}
 
   -# Update and optional Delete controls
   %td{:class => "text12", :valign => "middle", :align => "center"}
-    - form_for donation, :url => { :controller => :pledges, :action => :remove_from_pledge } do |f|
-      = render :partial => 'pledges/invoice/donation/controls', :locals => {:to_user => donation.to_user}
+    = link_to image_tag('icons/delete.gif'), {:controller => :donations, :action => :delete, :id => donation.id}, :confirm => "Are you sure?"
 
 -# Spacer Row
 %tr{:valign => "top", :align => "left"}

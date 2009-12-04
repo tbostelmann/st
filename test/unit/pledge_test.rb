@@ -2,85 +2,52 @@ require File.dirname(__FILE__) + '/../test_helper'
 require 'money'
 
 class PledgeTest < ActiveSupport::TestCase
+
+  test "create unpaid factory pledge" do
+    pledge = Factory(:anonymous_unpaid_pledge)
+    pledge.line_items.size == 2
+    pledge.donations.size == 2
+    pledge.line_items.each do |li|
+      assert li.status.nil?
+    end
+  end
+
+  test "create pending factory pledge" do
+    pledge = Factory(:pending_pledge)
+    pledge = Pledge.find(pledge.id)
+    assert pledge.line_items.size > 0
+    assert pledge.donations.size > 0
+    pledge.line_items.each do |li|
+      assert li.status == LineItem::STATUS_PENDING
+    end
+  end
+
+  test "create completed factory pledge" do
+    pledge = Factory(:completed_pledge)
+    pledge = Pledge.find(pledge.id)
+    li = pledge.line_items
+    assert pledge.line_items.size > 0
+    assert pledge.donations.size > 0
+    assert pledge.fees.size > 0
+    pledge.line_items.each do |li|
+      assert li.status == LineItem::STATUS_COMPLETED
+    end
+  end
+
   test "find donation with same to_user_id" do
     pledge = invoices(:pledge)
     donation = pledge.donations[0]
-    d = pledge.find_donation_with_to_user_id(donation.to_user_id)
+    d = pledge.find_line_item_with_to_user_id(donation.to_user_id)
     assert d.to_user_id == donation.to_user_id    
   end
 
-  test "add donation to pledge" do
-    pledge = invoices(:pledge)
-    donation = pledge.donations[0]
-    donation.amount = "500.00"
-    pledge.add_donation(donation)
-    d = pledge.find_donation_with_to_user_id(donation.to_user_id)
-    assert d.amount = donation.amount
-  end
-  
-  test "cannot add nil donation to pledge" do
-    pledge = invoices(:pledge)
-    assert_nothing_raised(NoMethodError) {
-      pledge.add_donation(nil)
-    }
-  end
-
-  test "remove donation from pledge" do
-    pledge = invoices(:pledge)
-    donation = pledge.donations[0]
-    pledge.remove_donation_with_to_user_id(donation.to_user_id)
-    assert !pledge.find_donation_with_to_user_id(donation.to_user_id)
-  end
-
-  test "get total amount of donations from pledge" do
-    saver = users(:saver)
-    donor = users(:donor)
-    pledge = Pledge.new(:donor => donor)
-    amount = "10.00"
-    donation = Donation.new(:invoice => pledge, :from_user => donor,
-                            :to_user => saver, :amount => amount)
-    pledge.donations << donation
-    pledge.save!
-    pledge = Pledge.find(pledge.id)
-
-    ftotal = pledge.total_amount_for_donations.to_s.to_f
-    assert pledge.total_amount_for_donations.to_s.to_f == amount.to_f
-  end
-
-  test "create initial, pending pledge" do
+  test "create initial pledge with no status" do
     donor = users(:donor4)
     saver = users(:saver4)
-    pledge = Pledge.new(:donor => donor)
+    pledge = Pledge.create!(:donor => donor)
     pledge.donations << Donation.new(:from_user => donor, :to_user => saver, :amount => "50")
     pledge.donations << Donation.new(:from_user => donor, :to_user => Organization.find_savetogether_org, :amount => "5")  
     pledge.save
-
-    # Reload pledge and assert it's values
-    pledge = Pledge.find(pledge.id)
-    assert !pledge.nil?
-
-    test_pledge_no_fees(pledge)
-
-    # Use donor to find pledge and assert they're the same
-    donor = Donor.find(donor.id)
-    assert !donor.pledges.empty?
-    d_pledge = donor.pledges[0]
-    d_pledge.id == pledge.id
-
-    test_pledge_no_fees(d_pledge)
-  end
-
-  test "create initial, pending pledge using donation_attribures=" do
-    donor = users(:donor4)
-    saver = users(:saver4)
-    pledge = Pledge.create(:donor => donor)
-    pledge.donation_attributes= pledge_params(saver)
-    pledge.donations.each do |donation|
-      donation.from_user = donor
-    end
-    saved = pledge.save
-    assert saved
-    pledge = Pledge.find(pledge.id)
 
     # Reload pledge and assert it's values
     pledge = Pledge.find(pledge.id)
@@ -183,14 +150,15 @@ class PledgeTest < ActiveSupport::TestCase
     @saver4 = users(:saver4)
     @storg  = users(:savetogether)
     
-    pledge = Pledge.new
-    pledge.add_donation Donation.suggest_percentage_of(@donor.id, @storg.id,  100.0, Money.new(st_ask))
-    pledge.add_donation Donation.suggest_percentage_of(@donor.id, @saver1.id, 100.0, Money.new(100))
-    pledge.add_donation Donation.suggest_percentage_of(@donor.id, @saver2.id, 100.0, Money.new(100))
-    pledge.add_donation Donation.suggest_percentage_of(@donor.id, @saver3.id, 100.0, Money.new(100))
-    pledge.add_donation Donation.suggest_percentage_of(@donor.id, @saver4.id, 100.0, Money.new(100))
+    pledge = Pledge.create!
+    pledge.donations << Donation.suggest_percentage_of(@donor.id, @storg.id,  100.0, Money.new(st_ask))
+    pledge.donations << Donation.suggest_percentage_of(@donor.id, @saver1.id, 100.0, Money.new(100))
+    pledge.donations << Donation.suggest_percentage_of(@donor.id, @saver2.id, 100.0, Money.new(100))
+    pledge.donations << Donation.suggest_percentage_of(@donor.id, @saver3.id, 100.0, Money.new(100))
+    pledge.donations << Donation.suggest_percentage_of(@donor.id, @saver4.id, 100.0, Money.new(100))
     
-    pledge
+    pledge.save!
+    return pledge
   end
   
 end

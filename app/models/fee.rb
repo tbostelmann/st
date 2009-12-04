@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 20090701201617
+# Schema version: 20091117074908
 #
 # Table name: line_items
 #
@@ -8,11 +8,13 @@
 #  invoice_id   :integer(4)
 #  from_user_id :integer(4)
 #  to_user_id   :integer(4)
-#  status       :string(255)     default("Pending")
+#  status       :string(255)
 #  type         :string(255)
 #  created_at   :datetime
 #  updated_at   :datetime
 #
 
 class Fee < LineItem
+  validates_presence_of :from_user_id
+  validates_presence_of :to_user_id
 end

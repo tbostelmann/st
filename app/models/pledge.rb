@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 20090701201617
+# Schema version: 20091117074908
 #
 # Table name: invoices
 #
@@ -14,14 +14,6 @@
 class Pledge < Invoice
   belongs_to :donor 
 
-  def add_donation(donation)
-    unless donation == nil
-      remove_donation_with_to_user_id(donation.to_user_id)
-      donation.invoice = self
-      donations << donation
-    end
-  end
-
   def remove_donation_with_to_user_id(to_user_id)
     donations.each do |d|
       if d.to_user_id == to_user_id.to_i
@@ -30,15 +22,15 @@ class Pledge < Invoice
     end
   end
 
-  def find_donation_with_to_user_id(to_user_id)
-    donations.each do |d|
+  def find_line_item_with_to_user_id (to_user_id)
+    line_items.each do |d|
       if d.to_user_id == to_user_id.to_i
         return d
       end
     end
-    return nil
+    return
   end
-  
+
   # Sort donations so that ST ask is alway at end of list
   def donations_sorted_for_display
     storg_id = Organization.find_savetogether_org.id
@@ -57,33 +49,29 @@ class Pledge < Invoice
   
   # Filter out any $0 donations
   def billable_donations
-    donations_sorted_for_display.reject{|d| d.amount.zero?}
+    line_items.reject{|d| d.amount.zero? || d.class == Fee}
   end
 
-  def total_amount_for_donations
+  def total_amount
     total = Money.new(0)
-    donations.each do |d|
-      total = total + d.amount
+    line_items.each do |d|
+      unless d.class == Fee
+        total = total + d.amount
+      end
     end
     return total
   end
 
   def set_donor_id(id)
+    if line_items && line_items[0].status
+      raise ArgumentError, "Should not be altering pledge with state"
+    end
     self.donor_id = id
-    donations.each do |d|
+    line_items.each do |d|
       d.from_user_id = id
       d.save
     end
     save
-  end
-
-  def donation_attributes=(d_attributes)
-    d_attributes.each do |index, attributes|
-      amount = attributes[:amount]
-      unless amount.blank? || amount == "0"
-        donation = donations.build(attributes)
-      end
-    end
   end
 
   def process_paypal_notification(notify)
@@ -97,7 +85,7 @@ class Pledge < Invoice
       end
 
       amount = notify.params["mc_gross_#{index}"]
-      line_item = self.donations.find(:first, :conditions => {:to_user_id => saver.id})
+      line_item = self.line_items.find(:first, :conditions => {:to_user_id => saver.id})
       if (line_item.nil?)
         raise "LineItem for user #{saver.id} not found"
       end
@@ -124,7 +112,7 @@ class Pledge < Invoice
     end
 
     if notify.status == LineItem::STATUS_COMPLETED
-      UserNotifier.deliver_donation_thanks_notification(donor, self)      
+      UserNotifier.deliver_donation_thanks_notification(donor, self)
     end
   end
 end

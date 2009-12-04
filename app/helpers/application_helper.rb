@@ -1,5 +1,6 @@
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
+
   def find_searchable_metro_areas
     MetroArea.find(:all, :include => :users,
                    :conditions => ["metro_areas.id = users.metro_area_id AND users.type = 'Saver'"])
@@ -25,11 +26,11 @@ module ApplicationHelper
       pledge = Pledge.create!
       session[:pledge_id] = pledge.id
     end
-    pledge = Pledge.find(session[:pledge_id])
+    return Pledge.find(session[:pledge_id])
   end
 
   def get_pledge
-    if session[:pledge_id]
+    unless session[:pledge_id].nil?
       return Pledge.find(session[:pledge_id])
     else
       return
@@ -61,7 +62,7 @@ module ApplicationHelper
     total_cents = 0
     st_ask_cents = 0
     storg_id = Organization.find_savetogether_org.id
-    get_or_init_pledge.donations.each do |d|
+    get_or_init_pledge.line_items.each do |d|
       unless d.to_user_id == storg_id
         total_cents = total_cents + d.cents
       else

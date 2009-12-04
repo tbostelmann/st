@@ -1,3 +1,15 @@
+# == Schema Information
+# Schema version: 20091117074908
+#
+# Table name: invitations
+#
+#  id              :integer(4)      not null, primary key
+#  email_addresses :string(255)
+#  message         :string(255)
+#  user_id         :integer(4)
+#  created_at      :datetime
+#
+
 class Invitation
   
   attr_accessor :title, :message, :friends, :limit
