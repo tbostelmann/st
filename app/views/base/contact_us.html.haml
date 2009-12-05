@@ -5,16 +5,23 @@
   %h1
     =:contact_us.l.titleize
 
-  .block{:style => "height: 200px;"}
+  .block{:style => "height: 250px;"}
     .single-column
       %h3{:style => "margin-bottom: 15px;"}
         = "Email: "
         %a{:href => "mailto:info@savetogether.org?Subject=Contact SaveTogether"}= "info@savetogether.org"
       %h3{:style => "margin-bottom: 15px;"}
-        = "Phone: (206) 414-9793"
+        = "Phone: "
+        %span{:style => "color: #5b930d;"}
+          = "(206) 414-9793"
       %h3{:style => "margin-bottom: 15px;"}
-        = "Mail: 2701 California Ave. S.W, #247, Seattle, WA 98116-2405"
-      %h3{:style => "margin-bottom: 15px;"}
+        = "Mail: "
+        %span{:style => "color: #5b930d;"}
+          = "2701 California Ave. S.W, #247"
+      %h3{:style => "margin-left: 37px; margin-bottom: 15px;"}
+        %span{:style => "color: #5b930d;"}
+          = "Seattle, WA 98116-2405"
+      %h3{:style => "margin-botto=m: 15px;"}
         = "Feedback: "
         %a{:href => "http://www.surveymonkey.com/s.aspx?sm=7k5ubSScp98pJb9d1Y22pQ_3d_3d"}
           = "(Survey)"
