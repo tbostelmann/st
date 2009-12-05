@@ -84,6 +84,21 @@ textarea {
     display: inline;
     margin-right: 15px;}
 
+.column2 {
+    width: 20px;
+    float: left;
+    display: inline;
+    margin-right: 15px;}
+
+.column2 .button {
+    float: left;
+    width: 26px;
+    height: 26px;
+    border: none;
+    cursor: pointer;
+    margin-top: 15px;
+    background: url("../images/buttons/header-button.gif") no-repeat left top;}
+
 .column INPUT {
     padding: 4px 0 4px 3px;
     background: #ffffff;
