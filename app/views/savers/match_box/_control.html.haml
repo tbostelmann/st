@@ -7,7 +7,7 @@
     %td{:colspan => "2", :align => "center"}
       = :amount_raised.l :amount => "#{saver.match_percentage}%"
   - if saver.match_amount_left_cents > 0
-    - form_for :donation do |f|
+    - form_for Donation.new do |f|
       %tr
         %td{:width => "50%", :align => "right"}
           = f.select :cents, select_pledge_amounts_cents_values(saver.match_amount_left_cents)
