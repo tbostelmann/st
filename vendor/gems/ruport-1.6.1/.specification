@@ -1,0 +1,177 @@
+--- !ruby/object:Gem::Specification 
+name: ruport
+version: !ruby/object:Gem::Version 
+  version: 1.6.1
+platform: ruby
+authors: 
+- Gregory Brown
+autorequire: 
+bindir: bin
+cert_chain: 
+date: 2008-04-13 00:00:00 -07:00
+default_executable: 
+dependencies: 
+- !ruby/object:Gem::Dependency 
+  name: fastercsv
+  type: :runtime
+  version_requirement: 
+  version_requirements: !ruby/object:Gem::Requirement 
+    requirements: 
+    - - "="
+      - !ruby/object:Gem::Version 
+        version: 1.2.3
+    version: 
+- !ruby/object:Gem::Dependency 
+  name: pdf-writer
+  type: :runtime
+  version_requirement: 
+  version_requirements: !ruby/object:Gem::Requirement 
+    requirements: 
+    - - "="
+      - !ruby/object:Gem::Version 
+        version: 1.1.8
+    version: 
+description: Ruby Reports is a software library that aims to make the task of reporting less tedious and painful. It provides tools for data acquisition, database interaction, formatting, and parsing/munging.
+email: "  gregory.t.brown@gmail.com"
+executables: []
+
+extensions: []
+
+extra_rdoc_files: 
+- README
+- LICENSE
+- AUTHORS
+files: 
+- examples/anon.rb
+- examples/btree
+- examples/centered_pdf_text_box.rb
+- examples/data
+- examples/example.csv
+- examples/line_plotter.rb
+- examples/pdf_report_with_common_base.rb
+- examples/png_embed.rb
+- examples/roadmap.png
+- examples/row_renderer.rb
+- examples/RWEmerson.jpg
+- examples/simple_pdf_lines.rb
+- examples/simple_templating_example.rb
+- examples/tattle_ruby_version.rb
+- examples/tattle_rubygems_version.rb
+- examples/trac_ticket_status.rb
+- examples/btree/commaleon
+- examples/btree/commaleon/commaleon.rb
+- examples/btree/commaleon/sample_data
+- examples/btree/commaleon/sample_data/ticket_count.csv
+- examples/btree/commaleon/sample_data/ticket_count2.csv
+- examples/data/tattle.dump
+- lib/ruport
+- lib/ruport.rb
+- lib/uport.rb
+- lib/ruport/controller
+- lib/ruport/controller.rb
+- lib/ruport/data
+- lib/ruport/data.rb
+- lib/ruport/extensions.rb
+- lib/ruport/formatter
+- lib/ruport/formatter.rb
+- lib/ruport/controller/grouping.rb
+- lib/ruport/controller/table.rb
+- lib/ruport/data/feeder.rb
+- lib/ruport/data/grouping.rb
+- lib/ruport/data/record.rb
+- lib/ruport/data/table.rb
+- lib/ruport/formatter/csv.rb
+- lib/ruport/formatter/html.rb
+- lib/ruport/formatter/pdf.rb
+- lib/ruport/formatter/template.rb
+- lib/ruport/formatter/text.rb
+- test/controller_test.rb
+- test/csv_formatter_test.rb
+- test/data_feeder_test.rb
+- test/grouping_test.rb
+- test/helpers.rb
+- test/html_formatter_test.rb
+- test/pdf_formatter_test.rb
+- test/record_test.rb
+- test/samples
+- test/table_pivot_test.rb
+- test/table_test.rb
+- test/template_test.rb
+- test/text_formatter_test.rb
+- test/samples/addressbook.csv
+- test/samples/data.csv
+- test/samples/data.tsv
+- test/samples/dates.csv
+- test/samples/erb_test.sql
+- test/samples/query_test.sql
+- test/samples/ruport_test.sql
+- test/samples/test.sql
+- test/samples/test.yaml
+- test/samples/ticket_count.csv
+- util/bench/data
+- util/bench/formatter
+- util/bench/samples
+- util/bench/data/record
+- util/bench/data/table
+- util/bench/data/record/bench_as_vs_to.rb
+- util/bench/data/record/bench_constructor.rb
+- util/bench/data/record/bench_indexing.rb
+- util/bench/data/record/bench_reorder.rb
+- util/bench/data/record/bench_to_a.rb
+- util/bench/data/table/bench_column_manip.rb
+- util/bench/data/table/bench_dup.rb
+- util/bench/data/table/bench_init.rb
+- util/bench/data/table/bench_manip.rb
+- util/bench/formatter/bench_csv.rb
+- util/bench/formatter/bench_html.rb
+- util/bench/formatter/bench_pdf.rb
+- util/bench/formatter/bench_text.rb
+- util/bench/samples/tattle.csv
+- Rakefile
+- README
+- LICENSE
+- AUTHORS
+has_rdoc: true
+homepage: http://rubyreports.org
+licenses: []
+
+post_install_message: 
+rdoc_options: 
+- --title
+- Ruport Documentation
+- --main
+- README
+- -q
+require_paths: 
+- lib
+required_ruby_version: !ruby/object:Gem::Requirement 
+  requirements: 
+  - - ">"
+    - !ruby/object:Gem::Version 
+      version: 0.0.0
+  version: 
+required_rubygems_version: !ruby/object:Gem::Requirement 
+  requirements: 
+  - - ">="
+    - !ruby/object:Gem::Version 
+      version: "0"
+  version: 
+requirements: []
+
+rubyforge_project: ruport
+rubygems_version: 1.3.5
+signing_key: 
+specification_version: 1
+summary: A generalized Ruby report generation and templating engine.
+test_files: 
+- test/controller_test.rb
+- test/csv_formatter_test.rb
+- test/data_feeder_test.rb
+- test/grouping_test.rb
+- test/html_formatter_test.rb
+- test/pdf_formatter_test.rb
+- test/record_test.rb
+- test/table_pivot_test.rb
+- test/table_test.rb
+- test/template_test.rb
+- test/text_formatter_test.rb
