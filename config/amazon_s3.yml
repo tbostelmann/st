@@ -11,7 +11,7 @@ test:
   use_persistent: false
 
 production:
-  bucket_name: st-production
+  bucket_name: st-development
   access_key_id: 'AKIAJZS4BCGWJZXJZJVQ'
   secret_access_key: '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'
   use_persistent: false
