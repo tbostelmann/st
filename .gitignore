@@ -7,8 +7,6 @@
 .rakeTasks
 db/schema.rb
 db/schema.sql
-config/application.yml
-config/amazon_s3.yml
 config/database.yml
 config/newrelic.yml
 config/active_resource.yml
