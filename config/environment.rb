@@ -33,7 +33,6 @@ Rails::Initializer.run do |config|
   config.gem "money", :version => '2.1.5'
   config.gem "rake"
   config.gem "ruport", :version => '1.6.1'
-  config.gem "rubyzip", :version => '0.9.1'
 
   config.action_controller.session = {
     :key    => '_your_app_session',
