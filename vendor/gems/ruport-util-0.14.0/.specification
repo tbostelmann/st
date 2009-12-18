@@ -1,0 +1,159 @@
+--- !ruby/object:Gem::Specification 
+name: ruport-util
+version: !ruby/object:Gem::Version 
+  version: 0.14.0
+platform: ruby
+authors: 
+- Gregory Brown
+autorequire: 
+bindir: bin
+cert_chain: 
+date: 2008-04-01 00:00:00 -07:00
+default_executable: 
+dependencies: 
+- !ruby/object:Gem::Dependency 
+  name: ruport
+  type: :runtime
+  version_requirement: 
+  version_requirements: !ruby/object:Gem::Requirement 
+    requirements: 
+    - - ">="
+      - !ruby/object:Gem::Version 
+        version: 1.6.0
+    version: 
+- !ruby/object:Gem::Dependency 
+  name: mailfactory
+  type: :runtime
+  version_requirement: 
+  version_requirements: !ruby/object:Gem::Requirement 
+    requirements: 
+    - - ">="
+      - !ruby/object:Gem::Version 
+        version: 1.2.3
+    version: 
+- !ruby/object:Gem::Dependency 
+  name: rubyzip
+  type: :runtime
+  version_requirement: 
+  version_requirements: !ruby/object:Gem::Requirement 
+    requirements: 
+    - - ">="
+      - !ruby/object:Gem::Version 
+        version: 0.9.1
+    version: 
+description: ruport-util provides a number of utilities and helper libs for Ruby Reports
+email: "  gregory.t.brown@gmail.com"
+executables: 
+- rope
+- csv2ods
+extensions: []
+
+extra_rdoc_files: 
+- INSTALL
+files: 
+- example/data
+- example/data/amline_settings.xml
+- example/data/blank.xlsx
+- example/data/amline_graph.xml
+- example/data/blank.ods
+- example/draw_graph.rb
+- example/form.rb
+- example/gruff_report.rb
+- example/ods.rb
+- example/invoice_report.rb
+- example/managed_report.rb
+- example/mailer.rb
+- example/graph_report.rb
+- lib/ruport
+- lib/ruport/util
+- lib/ruport/util/graph
+- lib/ruport/util/graph/scruffy.rb
+- lib/ruport/util/graph/amline.rb
+- lib/ruport/util/graph/o_f_c.rb
+- lib/ruport/util/graph/gruff.rb
+- lib/ruport/util/pdf
+- lib/ruport/util/pdf/form.rb
+- lib/ruport/util/bench.rb
+- lib/ruport/util/graph.rb
+- lib/ruport/util/ods.rb
+- lib/ruport/util/query.rb
+- lib/ruport/util/report_manager.rb
+- lib/ruport/util/generator.rb
+- lib/ruport/util/xls.rb
+- lib/ruport/util/mailer.rb
+- lib/ruport/util/report.rb
+- lib/ruport/util/invoice.rb
+- lib/ruport/util/xls_table.rb
+- lib/ruport/util/ods_table.rb
+- lib/ruport/util.rb
+- lib/open_flash_chart.rb
+- test/helper
+- test/helper/layout.rb
+- test/helper/wrap.rb
+- test/samples
+- test/samples/data.csv
+- test/samples/foo.rtxt
+- test/samples/people.ods
+- test/samples/people.xls
+- test/test_format_xls.rb
+- test/helper.rb
+- test/test_hpricot_traverser.rb
+- test/test_query.rb
+- test/test_report_manager.rb
+- test/test_graph_renderer.rb
+- test/test_graph_ofc.rb
+- test/test_mailer.rb
+- test/test_report.rb
+- test/test_invoice.rb
+- test/test_format_ods.rb
+- test/test_ods_table.rb
+- test/test_xls_table.rb
+- bin/csv2ods
+- bin/rope
+- Rakefile
+- INSTALL
+has_rdoc: true
+homepage: http://code.rubyreports.org
+licenses: []
+
+post_install_message: 
+rdoc_options: 
+- --title
+- ruport-util Documentation
+- --main
+- INSTALL
+- -q
+require_paths: 
+- lib
+required_ruby_version: !ruby/object:Gem::Requirement 
+  requirements: 
+  - - ">"
+    - !ruby/object:Gem::Version 
+      version: 0.0.0
+  version: 
+required_rubygems_version: !ruby/object:Gem::Requirement 
+  requirements: 
+  - - ">="
+    - !ruby/object:Gem::Version 
+      version: "0"
+  version: 
+requirements: []
+
+rubyforge_project: ruport
+rubygems_version: 1.3.5
+signing_key: 
+specification_version: 1
+summary: A set of tools and helper libs for Ruby Reports
+test_files: 
+- test/test_format_xls.rb
+- test/test_hpricot_traverser.rb
+- test/test_query.rb
+- test/test_report_manager.rb
+- test/test_graph_renderer.rb
+- test/test_graph_ofc.rb
+- test/test_mailer.rb
+- test/test_report.rb
+- test/test_invoice.rb
+- test/test_format_ods.rb
+- test/test_ods_table.rb
+- test/test_xls_table.rb
