@@ -1,0 +1,17 @@
+development:
+  bucket_name: st-development
+  access_key_id: '15H5W8BJ6ZG2CMVKQNR2'
+  secret_access_key: 'm2uo1cRsun1sgHfYWPsjvWW9giZ111qpkuefwLnZ'
+  use_persistent: true
+
+test:
+  bucket_name: st-development
+  access_key_id: '15H5W8BJ6ZG2CMVKQNR2'
+  secret_access_key: 'm2uo1cRsun1sgHfYWPsjvWW9giZ111qpkuefwLnZ'
+  use_persistent: false
+
+production:
+  bucket_name: st-production
+  access_key_id: '15H5W8BJ6ZG2CMVKQNR2'
+  secret_access_key: 'm2uo1cRsun1sgHfYWPsjvWW9giZ111qpkuefwLnZ'
+  use_persistent: false
