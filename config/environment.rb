@@ -24,14 +24,14 @@ Rails::Initializer.run do |config|
   # Specify gems that this application depends on and have them installed with rake gems:install
   config.gem "calendar_date_select"
   config.gem "desert"
-  config.gem "faker"
-  config.gem "haml"
-  config.gem "hpricot"
-  config.gem "htmlentities"
+  #config.gem "faker"
+  #config.gem "haml"
+  #config.gem "hpricot"
+  #config.gem "htmlentities"
   config.gem "icalendar"
-  config.gem "populator"
-  config.gem "money"
-  config.gem "rake"
+  #config.gem "populator"
+  #config.gem "money"
+  #config.gem "rake"
   config.gem "ruport"
 
   config.action_controller.session = {
