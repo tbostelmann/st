@@ -24,14 +24,14 @@ Factory.define :user do |s|
   s.role {|role| Role.find_by_name('member') }
   s.activated_at {|saver| Populator.value_in_range(saver.created_at..saver.updated_at)}
   s.profile_public true
-  s.metro_area {|ma| MetroArea.find(:first, :order => 'rand()')}
+  s.metro_area {|ma| MetroArea.find(:first, :order => 'random()')}
   s.state {|a| a.metro_area.state}
 end
 
 Factory.define :saver, :parent => :user, :class => Saver do |s|
-  s.organization {|a| Organization.find_partners(:first, :order => 'rand()')}
+  s.organization {|a| Organization.find_partners(:first, :order => 'random()')}
   s.requested_match_cents [100000, 150000, 200000].rand
-  s.asset_type {|a| AssetType.find(:first, :order => 'rand()')}
+  s.asset_type {|a| AssetType.find(:first, :order => 'random()')}
 end
 
 Factory.define :donor, :parent => :user, :class => Donor do |d|

@@ -64,7 +64,7 @@ class Party < User
   end
 
   def self.find_random(*args)
-    with_scope(:find => {:conditions => {:profile_public => true}, :order => 'rand()'}) do
+    with_scope(:find => {:conditions => {:profile_public => true}, :order => 'random()'}) do
       find(*args)
     end
   end

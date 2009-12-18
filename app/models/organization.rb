@@ -80,11 +80,11 @@ class Organization < Party
   end
 
   def self.find_random(count=4)
-    find_public(:all, :limit => count, :order => 'rand()')
+    find_public(:all, :limit => count, :order => 'random()')
   end
 
   def find_random_savers(count=3)
-    self.savers.find_public(:all, :limit => count, :order => 'rand()')
+    self.savers.find_public(:all, :limit => count, :order => 'random()')
   end
 
   def find_random_saver
