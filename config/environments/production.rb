@@ -1,5 +1,9 @@
 # Settings specified here will take precedence over those in config/environment.rb
 
+config.after_initialize do
+  EnginesHelper.autoload_assets = false
+end
+
 # =============================================================================
 require "#{RAILS_ROOT}/lib/message_logger.rb"
 logger = MessageLogger.new(RAILS_ENV, File.join( 'log/', RAILS_ENV + ".log"))

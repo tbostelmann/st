@@ -27,3 +27,4 @@ photo:
     storage: 's3'
     content_type: ['image/jpg', 'image/jpeg', 'image/pjpeg', 'image/gif', 'image/png', 'image/x-png']
     path_prefix: 'public/system/photos'
+    processor: 'rmagick'
