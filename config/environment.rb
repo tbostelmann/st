@@ -22,17 +22,17 @@ Rails::Initializer.run do |config|
   # config.load_paths += %W( #{RAILS_ROOT}/extras )
 
   # Specify gems that this application depends on and have them installed with rake gems:install
-  config.gem "calendar_date_select"
-  config.gem "desert"
-  config.gem "faker"
-  config.gem "haml"
+  config.gem "calendar_date_select", :version => '1.15'
+  config.gem "desert", :version => '0.5.3'
+  config.gem "faker", :version => '0.3.1'
+  config.gem "haml", :version => '2.2.3'
   config.gem "hpricot"
-  config.gem "htmlentities"
-  config.gem "icalendar"
-  config.gem "populator"
-  config.gem "money"
+  config.gem "htmlentities", :version => '4.2.0'
+  config.gem "icalendar", :version => '1.1.0'
+  config.gem "populator", :version => '0.2.5'
+  config.gem "money", :version => '2.1.5'
   config.gem "rake"
-  config.gem "ruport"
+  config.gem "ruport", :version => '1.6.1'
 
   config.action_controller.session = {
     :key    => '_your_app_session',
