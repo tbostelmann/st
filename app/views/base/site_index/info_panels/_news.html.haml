@@ -8,7 +8,7 @@
   =link_to(image_tag('logos/SFChronicle_logo.gif', :style => "margin-top: 0px; margin-bottom: 0px;"), "http://www.sfgate.com/cgi-bin/blogs/bmangan/detail?blogid=149&entry_id=52759", :popup => true)
 %div{:style => "font-size: 12px; margin-top: 10px;"}
   ="Now in "
-  =link_to "Washington D.C.", organization_path(152)
+  =link_to "Washington D.C.", organization_path(Organization.find_by_email('caab@savetogether.org').id)
 %div{:style => "font-size: 12px; margin-top: 10px;"}
   ="Read about us in the "
   =link_to(image_tag("http://www.seattletimescompany.com/advertise/images/logo2.gif", :style => "margin-top: 0px; margin-bottom: 0px;"), "http://seattletimes.nwsource.com/html/thebusinessofgiving/2010004271_new_local_non-profit_focuses_o.html", :popup => true)
