@@ -1,0 +1,50 @@
+= TODO
+* haml/sass propagation (desert)
+* upgrade documentation/rake tasks to fix old migrations
+
+= 1.0.3
+* complete private messages integration, allow sending messages to multiple recipients
+* upgrades to Event functionality, including RSVPs (eksatx)
+* Photo albums, Static pages and messages controller tests (juafrlo, eksatx)
+* calendar_date_select, icalendar gems now required
+* added ability to unsubscribe from comment notifications for anonymous comments
+* ical format output for Events to allow subscriptions
+
+= 1.0.2
+* Rails 2.3 compatibility
+* RedCloth no longer required
+* fixed swfupload to work with 2.3 and use Rack middleware
+* use Desert plugin for code mixing and plugin migrations instead of Engines
+* allow moderators/activity owners to delete activities
+* only track login activity once per day
+* allow anonymous commenters to choose whether they want to receive follow-up comment notices by e-mail
+* refactor views to use 'box' helper for logical content modules, allowing better flexibility when trying to customize layouts
+
+= 1.0.1
+* fixed error when cropping photos using file system storage
+* fixed error on messages#delete
+
+
+= 1.0.0
+* postgres compatibility (thanks Johannes)
+* Some SEO improvements to page titles and urls for showing tags
+* Fixed a security vulnerability
+* updated to newest attachment_fu plugin (note new cropping in geometry strings for photo in application.yml)
+    - this attachment fu requires ImageMagick 6.4 or greater
+* updated swfupload to fix flash 10 compatibility
+* added ability to crop profile photo to better fit dimensions (/username/crop_profile_photo)
+* updated TinyMCE scripts
+* updated to newest Prototype and scriptaculous, and removed unused javascript files
+
+= 0.10.8
+
+* Updating CE for Rails 2.2.2 compatibility
+* Removed Globalite in favor of Rails' native I18n API. Ce localization should work without modification
+* renamed dozens of files to use Rails 2.0 conventions (ie. .html.haml)
+* updated truncate calls to use new options hash format
+
+
+= 0.10.7
+
+* Updating CE to be compatible with Rails 2.1.2
+* Lots of il8n refactoring, mainly using symbol tokens instead of string for localization in views. 
