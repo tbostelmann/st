@@ -3,6 +3,33 @@ require 'test_helper'
 class OrganizationsControllerTest < ActionController::TestCase
   include AuthenticatedTestHelper
 
+  test "create organization" do
+    post :create, :organization => min_organization_props
+
+    assert_response :success
+    assert_template :show
+    org = assigns['org']
+    assert_not_nil org
+    assert org.errors.size == 0
+    assert_not_nil session[:user]
+  end
+
+  test "create invalid organization should show correct error" do
+    post :create, :organization => min_organization_props(:login_confirmation => 'invalid@foo.com')
+
+    assert_response :success
+    assert_template :new
+    org = assigns['org']
+    assert_not_nil org
+    assert org.errors.size > 0
+  end
+
+  test "get new organization page" do
+    get :new
+
+    assert_response :success
+  end
+
   test "get organization index page" do
     get :index
 
@@ -78,5 +105,19 @@ class OrganizationsControllerTest < ActionController::TestCase
     org2 = Organization.find(org.id)
     new_ce = org2.organization_survey.contact_email.to_s
     assert old_ce == new_ce
+  end
+
+  protected
+
+  def min_organization_props(options = {})
+    {
+
+      :login => "a@b.com",
+      :first_name => "Min",
+      :login_confirmation => "a@b.com",
+      :password => "foo2thebar",
+      :password_confirmation => "foo2thebar"
+    }.merge(options)
+
   end
 end

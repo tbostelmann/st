@@ -74,4 +74,20 @@ class OrganizationsController < BaseController
     @photos = @org.photos.find(:all, :limit => 5)
     @savers = @org.savers.find_active(:all, :page => {:current => params[:page], :size => 20})
   end
+
+  def create
+    @org       = Organization.new(params[:organization])
+    @org.role  = Role[:member]
+    @org.birthday = 18.years.ago
+
+    if (!AppConfig.require_captcha_on_signup || verify_recaptcha(@org)) && @org.save
+      @org.activate
+      self.current_user = Organization.authenticate(@org.login, params[:organization][:password])
+      flash[:notice] = :email_signup_thanks.l_with_args(:email => @org.email)
+
+      render :action => 'show'
+    else
+      render :action => 'new'
+    end
+  end
 end

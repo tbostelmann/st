@@ -1,0 +1,20 @@
+%table{:width => "100%", :cellspacing => "0", :cellpadding => "0", :border => "0"}
+  %tr
+    %td
+      %span.text12GreenTitle
+        =:tips.l
+      %p{:style => "margin-top: 10px;"}
+        %span.text12
+          =:by_signing_up.l
+      %p{:style => "margin-top: 10px;"}
+        %span.text12
+          =:after_signing_up_youll_receive_an_e_mail_confirmation_message.l
+      %p
+        %span.text12
+          = link_to :already_have_an_account.l, "/login"
+
+  / Errors
+  %tr
+    %td{:class => "text12", :valign => "top", :height => "36", :colspan => "2"}
+      %br/
+      = error_messages_for :organization 
