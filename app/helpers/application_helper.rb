@@ -1,5 +1,12 @@
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
+  def functional_url(url)
+    if (url)
+      url.starts_with?('http') ? url : "http://#{url}"
+    else
+      ''
+    end
+  end
 
   def find_searchable_metro_areas
     MetroArea.find(:all, :include => :users,

@@ -75,6 +75,11 @@ class OrganizationsController < BaseController
     @savers = @org.savers.find_active(:all, :page => {:current => params[:page], :size => 20})
   end
 
+  def new
+    @org = Organization.new
+    @org.organization_survey = OrganizationSurvey.new
+  end
+
   def create
     @org       = Organization.new(params[:organization])
     @org.role  = Role[:member]

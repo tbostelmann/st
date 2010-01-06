@@ -272,6 +272,7 @@ en:
   confirm_donation: Confirm Donation
   #en: confirm_password: Confirm Password
   confirm_password: Confirm Password
+  contact_e_mail: Contact Email
   contact_us: Contact Us
   #en: contest_was_successfully_created: Contest was successfully created.
   contest_was_successfully_created: Contest was successfully created.
@@ -880,12 +881,15 @@ en:
   organization: Organization
   organizations: Organizations
   organization_description: Description
+  organization_name: Partner Name
   #en: page: page
   page: page
   #en: pages: "Pages:"
   pages: "Pages:"
+  partner_by_signing_up: "By signing up as an organization, we will keep you informed as we continue to assess market demand and announce expansion plans.  By providing a link to your website, we can also refer potential donors to your organization.   If you have any questions, please email us at info@savetogether.org"
   #en: partners: Partners
   partners: Partners
+  partner_sign_up: Partner Sign Up
   #en: password: Password
   password: Password
   #en: pending: pending
@@ -904,6 +908,7 @@ en:
   permanently_delete_this_event: Permanently delete this event?
   #en: permanently_delete_this_post: Permanently delete this post?
   permanently_delete_this_post: Permanently delete this post?
+  phone_number: Phone Number
   #en: photo: Photo
   photo: Photo
   #en: photo_comments: Photo Comments
@@ -1423,6 +1428,7 @@ en:
   watching_topic: Watching topic
   #en: we_just_sent_an_e_mail_to: "We just sent an e-mail to:"
   we_just_sent_an_e_mail_to: "We just sent an e-mail to:"
+  web_site_url: Website URL
   #en: we_need_you: We need you
   we_need_you: We need you
   #en: welcome_message: Welcome! {{login_link}} or {{signup_link}}

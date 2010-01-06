@@ -11,15 +11,35 @@
             -# and builds a relative link to the organization, even tho' the url property is specified
             %a{:href => "http://#{@org.web_site_url}"}
               =@org.web_site_url
-  - if !organization_survey.nil?
-    %tr
-      %td
-        %p.large-text
-          ="Email Contact:"
-      %td{:align => "right"}
-        %p.large-text
-          %em
-            = organization_survey.contact_email
+  - if organization_survey
+    - if organization_survey.contact_email
+      %tr
+        %td
+          %p.large-text
+            ="Email Contact:"
+        %td{:align => "right"}
+          %p.large-text
+            %em
+              = organization_survey.contact_email
+    - if organization_survey.location_city
+      %tr
+        %td
+          %p.large-text
+            ="City:"
+        %td{:align => "right"}
+          %p.large-text
+            %em
+              = organization_survey.location_city
+    - if organization_survey.location_state
+      %tr
+        %td
+          %p.large-text
+            ="State:"
+        %td{:align => "right"}
+          %p.large-text
+            %em
+              = organization_survey.location_state
+
   - if !@org.phone_number.nil? && !@org.phone_number.blank?
     %tr
       %td

@@ -3,8 +3,14 @@ require 'test_helper'
 class OrganizationsControllerTest < ActionController::TestCase
   include AuthenticatedTestHelper
 
+  def setup
+    # allows you to inspect email notifications
+    @emails = ActionMailer::Base.deliveries
+    @emails.clear
+  end
+
   test "create organization" do
-    post :create, :organization => min_organization_props
+    post :create, :organization => min_organization_props(:organization_survey_attributes => {:location_state => "WA", :location_city => "Seattle"})
 
     assert_response :success
     assert_template :show
@@ -12,10 +18,17 @@ class OrganizationsControllerTest < ActionController::TestCase
     assert_not_nil org
     assert org.errors.size == 0
     assert_not_nil session[:user]
+    assert_equal 1, @emails.size
+    assert_equal "[SaveTogether] Your SaveTogether account has been activated!", @emails[0].subject
+    org = assigns['org']
+    assert_equal org.login, @emails[0].to[0]
+    assert_match /Dear #{org.first_name},/, @emails[0].body
   end
 
   test "create invalid organization should show correct error" do
-    post :create, :organization => min_organization_props(:login_confirmation => 'invalid@foo.com')
+    post :create, :organization => min_organization_props(:login_confirmation => 'invalid@foo.com',
+                                                          :organization_survey_attributes => {:location_state => "WA",
+                                                                                   :location_city => "Seattle"})
 
     assert_response :success
     assert_template :new

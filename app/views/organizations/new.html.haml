@@ -1,29 +1,26 @@
--# Reusable Signup
--@page_title= :sign_up.l.titleize
+-@page_title= :partner_sign_up.l.titleize
 
 .content
   %h1
-    ="Signup!"
+    =:partner_sign_up.l
 
   .block{:style => "margin-top: 10px;"}
     .two-column-layout
 
-      / Signup form
       .tcl-column.left
-
         %table{:width => "100%", :cellspacing => "0", :cellpadding => "0", :border => "0"}
-          - form_for :organization, :url => organizations_path, :method => :post, :html => {:class => 'MainForm'} do |f|
+          - form_for @org, :url => organizations_path, :method => :post, :html => {:class => 'MainForm'} do |f|
             %tr
               %td{:class => "text12", :width => "32%", :height => "36"}
-                %label{"for"=>"name"}
-                  =:name.l
+                %label{"for"=>"organization_name"}
+                  =:organization_name.l
               %td{:class => "text12", :width => "68%", :height => "36"}
                 = f.text_field :first_name, :size => 35
 
             %tr
               %td{:class => "text12", :width => "32%", :height => "36"}
                 %label{"for"=>"login"}
-                  =:e_mail_address.l
+                  =:contact_e_mail.l
               %td{:class => "text12", :width => "68%", :height => "36"}
                 = f.text_field :login, :size => 35
 
@@ -55,6 +52,28 @@
                   =:re_type_your_password_to_confirm.l
               %td{:class => "text12", :width => "68%", :height => "36"}
                 = f.password_field :password_confirmation, :size => 35
+
+            %tr
+              %td{:class => "text12", :width => "32%", :height => "36"}
+                %label{"for"=>"web_site_url"}
+                  =:web_site_url.l
+              %td{:class => "text12", :width => "68%", :height => "36"}
+                = f.text_field :web_site_url, :size => 35
+
+            - f.fields_for :organization_survey do |os_fields|
+              %tr
+                %td{:class => "text12", :width => "32%", :height => "36"}
+                  %label{"for"=>"city"}
+                    =:city.l
+                %td{:class => "text12", :width => "68%", :height => "36"}
+                  = os_fields.text_field :location_city, :size => 35
+
+              %tr
+                %td{:class => "text12", :width => "32%", :height => "36"}
+                  %label{"for"=>"state"}
+                    =:state.l
+                %td{:class => "text12", :width => "68%", :height => "36"}
+                  = os_fields.text_field :location_state, :size => 2
 
             %tr
               %td

@@ -4,6 +4,8 @@
 
   %h1
     =:contact_us.l.titleize
+    %span{:style => "font-size: 16px; font-weight: normal;"}
+      = link_to '(Partner Signup&raquo;)', new_organization_path
 
   .block{:style => "height: 250px;"}
     .single-column
@@ -21,20 +23,13 @@
       %h3{:style => "margin-left: 37px; margin-bottom: 15px;"}
         %span{:style => "color: #5b930d;"}
           = "Seattle, WA 98116-2405"
-      %h3{:style => "margin-botto=m: 15px;"}
+      %h3{:style => "margin-bottom: 15px;"}
         = "Feedback: "
         %a{:href => "http://www.surveymonkey.com/s.aspx?sm=7k5ubSScp98pJb9d1Y22pQ_3d_3d"}
           = "(Survey)"
       %h3{:style => "margin-bottom: 15px;"}
-        = "Twitter: "
-        %a{:href => "http://www.twitter.com/savetogether"}
-          ="http://www.twitter.com/savetogether"
-      %h3{:style => "margin-bottom: 15px;"}
-        = "Facebook: "
-        %a{:href => "http://www.facebook.com/pages/SaveTogether/201523205283"}
-          ="http://www.facebook.com/pages/SaveTogether/201523205283"
-      %h3
-        = "LinkedIn: "
-        %a{:href => "http://www.linkedin.com/groups?gid=1622727"}
-          ="http://www.linkedin.com/groups?gid=1622727"
+        ="Follow Us:"
+        =link_to image_tag(image_path('icons/linkedin_32.png'), {:alt => 'linkedin', :style => "height: 32px; margin-left: 5px; margin-right: 5px"}), "http://www.linkedin.com/groups?gid=1622727"
+        =link_to image_tag(image_path('icons/facebook_32.png'), {:alt => 'facebook', :style => "height: 32px; margin-left: 0px;"}), "http://www.facebook.com/pages/SaveTogether/201523205283"
+        =link_to image_tag(image_path('icons/Twitter_32.png'), {:alt => 'twitter', :style => "right; height: 32px;"}), "http://www.twitter.com/savetogether"
 
