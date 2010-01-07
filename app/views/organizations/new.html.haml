@@ -73,7 +73,7 @@
                   %label{"for"=>"state"}
                     =:state.l
                 %td{:class => "text12", :width => "68%", :height => "36"}
-                  = os_fields.text_field :location_state, :size => 2
+                  = select_tag 'organization[organization_survey_attributes][location_state]', options_for_select(%w(AL AK AZ AR CA CO CT DE DC FL GA HI ID IL IN IA KS KY LA ME MD MA MI MN MS MO MT NE NV NH NJ NM NY NC ND OH OK OR PA RI SC SD TN TX UT VT VA WA WV WI WY))
 
             %tr
               %td
