@@ -18,6 +18,7 @@ class OrganizationsControllerTest < ActionController::TestCase
     assert_not_nil org
     assert org.errors.size == 0
     assert_not_nil session[:user]
+    assert !org.profile_public
     assert_equal 1, @emails.size
     assert_equal "[SaveTogether] Your SaveTogether account has been activated!", @emails[0].subject
     org = assigns['org']

@@ -68,7 +68,7 @@ class OrganizationsController < BaseController
 
   def show
     @org = Organization.find(params[:id])
-    if !@org.profile_public
+    if !@org.profile_public && current_user != @org
       redirect_to home_path
     end
     @photos = @org.photos.find(:all, :limit => 5)
@@ -84,6 +84,7 @@ class OrganizationsController < BaseController
     @org       = Organization.new(params[:organization])
     @org.role  = Role[:member]
     @org.birthday = 18.years.ago
+    @org.profile_public = false
 
     if (!AppConfig.require_captcha_on_signup || verify_recaptcha(@org)) && @org.save
       @org.activate
