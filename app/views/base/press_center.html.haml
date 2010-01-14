@@ -9,6 +9,12 @@
     .block{:style => "float: left; margin-bottom: 20px; width: 100%;"}
 
       %div{:style => "float: left; width: 100%; height: 70px;"}
+        = image_tag image_path('logos/Washington_Post_logo.JPG'), :alt => "Washington Post", :style => "float: left; margin-right: 28px; margin-top: 12px"
+        %h4{:style => "margin-left: 20px;"}
+          ="Washington Post, January 14, 2010"
+        =link_to "Savers get a boost for college, housing and businesses", "http://www.washingtonpost.com/wp-dyn/content/article/2010/01/12/AR2010011203302.html", :popup => true
+
+      %div{:style => "float: left; width: 100%; height: 70px;"}
         = image_tag image_path('logos/chronicle_of_philanthropy.png'), :alt => "Chronicle of Philanthropy", :style => "float: left; margin-right: 49px; margin-top: 5px"
         %h4{:style => "margin-left: 20px;"}
           ="Chronicle of Philanthropy, January 11, 2010"
