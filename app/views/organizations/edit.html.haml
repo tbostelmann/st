@@ -6,7 +6,7 @@
     =:profile_photo.l
 
   .single-column
-    - form_for @user, :method => 'put', :multipart =>true, :class => 'MainForm' do |org_form|
+    - form_tag organization_url(@user), :method => 'put', :multipart =>true, :class => 'MainForm' do
 
       = error_messages_for :user
 
@@ -34,7 +34,7 @@
         .block.no-border
           .indent
             %h3= :about_user.l :user_name => @user.display_name
-            = org_form.text_area :description, :class => "rich_text_editor", :style => "width:91%; height:232px; margin: 10px 0 10px 0;"
+            = text_area :organization, :description, :class => "rich_text_editor", :style => "width:91%; height:232px; margin: 10px 0 10px 0;"
 
           %table{:width => "91%", :cellspacing => "0", :cellpadding => "0", :border => "0"}
             %tr
@@ -42,13 +42,13 @@
                 %p.large-text
                   = "Web Site URL:"
               %td{:align => "right"}
-                = org_form.text_field :web_site_url
+                = text_field :organization, :web_site_url
             %tr
               %td{:align => "right"}
                 %p.large-text
                   ="Phone Number:"
               %td{:align => "right"}
-                = org_form.text_field :phone_number
+                = text_field :organization, :phone_number
             - if @user.organization_survey
               = hidden_field_tag 'organization[organization_survey_attributes][id]', @user.organization_survey.id
               %tr
