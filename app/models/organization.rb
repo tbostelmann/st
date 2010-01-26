@@ -74,7 +74,7 @@ class Organization < Party
   end
 
   def self.find_partners(*args)
-    with_scope(:find => {:conditions => ["login != ? AND login != ? AND login != ?", SAVETOGETHER_LOGIN, PAYPAL_LOGIN, CFED_LOGIN]}) do
+    with_scope(:find => {:conditions => ["profile_public is true AND login != ? AND login != ? AND login != ?", SAVETOGETHER_LOGIN, PAYPAL_LOGIN, CFED_LOGIN]}) do
       find(*args)
     end
   end
