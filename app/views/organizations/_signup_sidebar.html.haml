@@ -1,0 +1,14 @@
+%table{:width => "100%", :cellspacing => "0", :cellpadding => "0", :border => "0"}
+  %tr
+    %td
+      %span.text12GreenTitle
+        =:tips.l
+      %p{:style => "margin-top: 10px;"}
+        %span.text12
+          =:partner_by_signing_up.l
+
+  / Errors
+  %tr
+    %td{:class => "text12", :valign => "top", :height => "36", :colspan => "2"}
+      %br/
+      = error_messages_for :org 

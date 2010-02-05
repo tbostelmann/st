@@ -3,6 +3,9 @@
 .content
   %h1
     ="Signup!"
+    %span{:style => "font-size: 16px; font-weight: normal;"}
+      = link_to '(Partner Signup&raquo;)', new_organization_path
+    
 
   .block{:style => "margin-top: 10px;"}
     = render :partial => 'donors/signup', :locals => {:standalone => true}

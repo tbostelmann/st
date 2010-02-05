@@ -1,0 +1,87 @@
+-@page_title= :partner_sign_up.l.titleize
+
+.content
+  %h1
+    =:partner_sign_up.l
+
+  .block{:style => "margin-top: 10px;"}
+    .two-column-layout
+
+      .tcl-column.left
+        %table{:width => "100%", :cellspacing => "0", :cellpadding => "0", :border => "0"}
+          - form_for @org, :url => organizations_path, :method => :post, :html => {:class => 'MainForm'} do |f|
+            %tr
+              %td{:class => "text12", :width => "32%", :height => "36"}
+                %label{"for"=>"organization_name"}
+                  =:organization_name.l
+              %td{:class => "text12", :width => "68%", :height => "36"}
+                = f.text_field :first_name, :size => 35
+
+            %tr
+              %td{:class => "text12", :width => "32%", :height => "36"}
+                %label{"for"=>"login"}
+                  =:contact_e_mail.l
+              %td{:class => "text12", :width => "68%", :height => "36"}
+                = f.text_field :login, :size => 35
+
+            %tr
+              %td{:class => "text12", :colspan => "2", :height => "36"}
+                %em=:required_your_email_address_will_identify_you_to_save_together.l
+
+            %tr
+              %td{:class => "text12", :width => "32%", :height => "36"}
+                %label{"for"=>"login_confirmation"}
+                  =:re_enter_e_mail_address_to_confirm.l
+              %td{:class => "text12", :width => "68%", :height => "36"}
+                = f.text_field :login_confirmation, :size => 35
+
+            %tr
+              %td{:class => "text12", :colspan => "2", :height => "36"}
+                %em=:required_we_will_send_a_confirmation_e_mail_to_the_address_you_enter.l
+
+            %tr
+              %td{:class => "text12", :width => "32%", :height => "36"}
+                %label{"for"=>"password"}
+                  =:type_your_password.l
+              %td{:class => "text12", :width => "68%", :height => "36"}
+                = f.password_field :password, :size => 35
+
+            %tr
+              %td{:class => "text12", :width => "32%", :height => "36"}
+                %label{"for"=>"password_confirmation"}
+                  =:re_type_your_password_to_confirm.l
+              %td{:class => "text12", :width => "68%", :height => "36"}
+                = f.password_field :password_confirmation, :size => 35
+
+            %tr
+              %td{:class => "text12", :width => "32%", :height => "36"}
+                %label{"for"=>"web_site_url"}
+                  =:web_site_url.l
+              %td{:class => "text12", :width => "68%", :height => "36"}
+                = f.text_field :web_site_url, :size => 35
+
+            - f.fields_for :organization_survey do |os_fields|
+              %tr
+                %td{:class => "text12", :width => "32%", :height => "36"}
+                  %label{"for"=>"city"}
+                    =:city.l
+                %td{:class => "text12", :width => "68%", :height => "36"}
+                  = os_fields.text_field :location_city, :size => 35
+
+              %tr
+                %td{:class => "text12", :width => "32%", :height => "36"}
+                  %label{"for"=>"state"}
+                    =:state.l
+                %td{:class => "text12", :width => "68%", :height => "36"}
+                  = select_tag 'organization[organization_survey_attributes][location_state]', options_for_select(%w(AL AK AZ AR CA CO CT DE DC FL GA HI ID IL IN IA KS KY LA ME MD MA MI MN MS MO MT NE NV NH NJ NM NY NC ND OH OK OR PA RI SC SD TN TX UT VT VA WA WV WI WY))
+
+            %tr
+              %td
+              %td
+                = image_submit_tag "#{image_path('buttons/signup.gif')}", :alt => :sign_up.l
+
+
+      / Help text
+      .tcl-column.right
+
+        = render :partial => "organizations/signup_sidebar"

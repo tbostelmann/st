@@ -25,14 +25,12 @@ class OrganizationsController < BaseController
 
   def update
     @user = current_user
-    @user.update_attributes params['organization']
+    @user.attributes      = params[:organization]
 
-    if !params[:avatar].nil? && !params[:avatar][:uploaded_data].blank?
-      @avatar       = Photo.new(params[:avatar])
-      @avatar.user  = @user
-      @user.avatar  = @avatar if @avatar.save
-    end
+    @avatar       = Photo.new(params[:avatar])
+    @avatar.user  = @user
 
+    @user.avatar  = @avatar if @avatar.save
 
     if @user.save!
       @user.track_activity(:updated_profile)
@@ -68,10 +66,32 @@ class OrganizationsController < BaseController
 
   def show
     @org = Organization.find(params[:id])
-    if !@org.profile_public
+    if !@org.profile_public && current_user != @org
       redirect_to home_path
     end
     @photos = @org.photos.find(:all, :limit => 5)
     @savers = @org.savers.find_active(:all, :page => {:current => params[:page], :size => 20})
+  end
+
+  def new
+    @org = Organization.new
+    @org.organization_survey = OrganizationSurvey.new
+  end
+
+  def create
+    @org       = Organization.new(params[:organization])
+    @org.role  = Role[:member]
+    @org.birthday = 18.years.ago
+    @org.profile_public = false
+
+    if (!AppConfig.require_captcha_on_signup || verify_recaptcha(@org)) && @org.save
+      @org.activate
+      self.current_user = Organization.authenticate(@org.login, params[:organization][:password])
+      flash[:notice] = :email_signup_thanks.l_with_args(:email => @org.email)
+
+      render :action => 'show'
+    else
+      render :action => 'new'
+    end
   end
 end
