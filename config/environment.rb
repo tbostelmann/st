@@ -67,9 +67,9 @@ unless ENV['RAILS_ENV'] == 'production'
 end
 PAYPAL_ACCOUNT = AppConfig.paypal_account
 
-error_email = AppConfig.exception_notification_email
-ExceptionNotifier.exception_recipients = error_email
-ExceptionNotifier.sender_address = AppConfig.support_email
+#error_email = AppConfig.exception_notification_email
+#ExceptionNotifier.exception_recipients = error_email
+#ExceptionNotifier.sender_address = AppConfig.support_email
 
 I18n.reload!
 require "ruport"
