@@ -47,7 +47,7 @@ config.log_level = :warn
 # Enable threaded mode
 # config.threadsafe!
 
-ActionMailer::Base.delivery_method = :sendmail
+#ActionMailer::Base.delivery_method = :sendmail
 
 # ST-specific configuration entries
 config.notifications.donors        = true
