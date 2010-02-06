@@ -8,9 +8,9 @@ meta_keywords: 'Savings, working families, low-income, poverty, microfinance, mi
 #sections_enabled: ['photos']
 exception_notification_email: "tom@savetogether.org"
 paypal_account: "paypal@savetogether.org"
-app_url: "http://localhost:3000"
+app_url: "http://demo.savetogether.org"
 paypal_url: "https://www.sandbox.paypal.com/cgi-bin/webscr"
-paypal_return_protocol: "http"
+paypal_return_protocol: "https"
 enable_optify: true
 
 photo:
