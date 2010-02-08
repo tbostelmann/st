@@ -59,16 +59,16 @@ Rails::Initializer.run do |config|
 end# Include your application configuration below
 require "#{RAILS_ROOT}/vendor/plugins/community_engine/config/boot.rb"
 
-APP_URL = AppConfig.app_url
+APP_URL = ENV['APP_URL']
 
-unless ENV['RAILS_ENV'] == 'production'
+if ENV['PAYPAL_ENV'] == 'test'
   ActiveMerchant::Billing::Base.mode = :test
 end
-PAYPAL_ACCOUNT = AppConfig.paypal_account
+PAYPAL_ACCOUNT = ENV['PAYPAL_ACCOUNT']
 
 error_email = AppConfig.exception_notification_email
 ExceptionNotifier.exception_recipients = error_email
-ExceptionNotifier.sender_address = AppConfig.support_email
+ExceptionNotifier.sender_address = ENV['SUPPORT_EMAIL']
 
 I18n.reload!
 require "ruport"

@@ -33,31 +33,31 @@ class ApplicationController < ActionController::Base
 
   PRODUCTION_LIKE_ENVIRONMENTS = [ 'production', 'demo' ]
 
-  def rescue_action ( exception )
-    deliverer = self.class.exception_data
-    data = case deliverer
-      when nil then
-        {}
-      when Symbol then
-        send(deliverer)
-      when Proc then
-        deliverer.call(self)
-    end
-
-    logger.debug{" RESCUE : #{exception.inspect}"}
-    ExceptionNotifier.deliver_exception_notification(exception, self,
-                                                     request, data)
-
-    if PRODUCTION_LIKE_ENVIRONMENTS.include?(RAILS_ENV)
-      # show only a pretty error page
-      render :template => "common/general_error.html.erb" and return false
-    else
-      # show the normal stacktrace to aid in debugging
-      super exception
-    end
-
-    return false
-  end
+#  def rescue_action ( exception )
+#    deliverer = self.class.exception_data
+#    data = case deliverer
+#      when nil then
+#        {}
+#      when Symbol then
+#        send(deliverer)
+#      when Proc then
+#        deliverer.call(self)
+#    end
+#
+#    logger.debug{" RESCUE : #{exception.inspect}"}
+#    ExceptionNotifier.deliver_exception_notification(exception, self,
+#                                                     request, data)
+#
+#    if PRODUCTION_LIKE_ENVIRONMENTS.include?(RAILS_ENV)
+#      # show only a pretty error page
+#      render :template => "common/general_error.html.erb" and return false
+#    else
+#      # show the normal stacktrace to aid in debugging
+#      super exception
+#    end
+#
+#    return false
+#  end
 
   # --------------------------------------------------------------------------
   # overide the base action to add logging set handy vars

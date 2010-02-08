@@ -4,7 +4,7 @@ development:
   database: st_development
   username: root
   password: save.together
-  socket: /var/lib/mysql/mysql.sock
+  socket: /var/run/mysqld/mysqld.sock
   timeout: 5000
 
 # Warning: The database defined as "test" will be erased and
@@ -16,7 +16,7 @@ test:
   database: st_test
   username: root
   password: save.together
-  socket: /var/lib/mysql/mysql.sock
+  socket: /var/run/mysqld/mysqld.sock
   timeout: 5000
 
 production:
@@ -25,6 +25,6 @@ production:
   database: st_production
   username: root
   password: save.together
-  socket: /var/lib/mysql/mysql.sock
+  socket: /var/run/mysqld/mysqld.sock
   timeout: 5000
 

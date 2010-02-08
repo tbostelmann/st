@@ -3,19 +3,19 @@
   %td{:valign => "top", :align => "right", :colspan => "2"}
     = link_to((image_tag "#{image_path('buttons/more.gif')}", :alt => :add_more_savers.l), match_savers_path)
   %td{:valign => "top", :align => "center"}
-    %form{:action => AppConfig.paypal_url.to_s, :id => "payment-form", :method => "post", :class => "MainForm"}
+    %form{:action => ENV['PAYPAL_URL'], :id => "payment-form", :method => "post", :class => "MainForm"}
       = hidden_field_tag :cancel_return, url_for(:only_path => false, :action => 'cancel')
       = hidden_field_tag :bn, "ActiveMerchant"
       = hidden_field_tag :redirect_cmd, "_cart"
       = hidden_field_tag :cmd, "_cart"
       = hidden_field_tag :upload, "1"
-      = hidden_field_tag :notify_url, url_for(:only_path => false, :action => 'notify', :protocol => AppConfig.paypal_return_protocol.to_s)
+      = hidden_field_tag :notify_url, url_for(:only_path => false, :action => 'notify', :protocol => ENV['SECURE_PROTOCOL'])
       = hidden_field_tag :charset, "utf-8"
-      = hidden_field_tag :return, url_for(:only_path => false, :action => 'done', :protocol => AppConfig.paypal_return_protocol.to_s)
+      = hidden_field_tag :return, url_for(:only_path => false, :action => 'done', :protocol => ENV['SECURE_PROTOCOL'])
       = hidden_field_tag :invoice, @pledge.id
 
       = hidden_field_tag :tax, "0.00"
-      = hidden_field_tag :business, AppConfig.paypal_account.to_s
+      = hidden_field_tag :business, ENV['PAYPAL_ACCOUNT']
       = hidden_field_tag :address_override, "0"
       = hidden_field_tag :shipping, "0.00"
       = hidden_field_tag :no_note, "1"
