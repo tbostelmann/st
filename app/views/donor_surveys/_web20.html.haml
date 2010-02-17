@@ -9,17 +9,12 @@
         Share information about us there.
 
       %div{:style => "display: block; margin-top: 25px;"}
-        / Twitter badge START
-        %div{:style => "float: left;"}
-          %object{:classid => "clsid:d27cdb6e-ae6d-11cf-96b8-444553540000", :codebase => "http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,124,0", :width => "290", :height => "350", :id => "TwitterWidget", :align => "middle"}
-            %param{:name => "allowScriptAccess", :value => "always"}
-            %param{:name => "allowFullScreen", :value => "false"}
-            %param{:name => "movie", :value => "http://static.twitter.com/flash/widgets/profile/TwitterWidget.swf"}
-            %param{:name => "quality", :value => "high"}
-            %param{:name => "bgcolor", :value => "#000000"}
-            %param{:name => "FlashVars", :value => "userID=19210829&styleURL=http://static.twitter.com/flash/widgets/profile/smooth.xml"}
-            %embed{:src => "http://static.twitter.com/flash/widgets/profile/TwitterWidget.swf", :quality => "high", :bgcolor => "#000000", :width => "290", :height => "366", :name => "TwitterWidget", :align => "middle", :allowScriptAccess => "sameDomain", :allowFullScreen => "false", :type => "application/x-shockwave-flash", :pluginspage => "http://www.macromedia.com/go/getflashplayer", :FlashVars => "userID=19210829&styleURL=http://static.twitter.com/flash/widgets/profile/smooth.xml"}
-        / Twitter badge END
+        %div{:style => "float: left; margin-left: 35px;"}
+          / Twitter badge START
+          %script{ :src => "http://widgets.twimg.com/j/2/widget.js" }
+          %script
+            = "new TWTR.Widget({version: 2, type: 'profile', rpp: 4, interval: 6000, width: 250, height: 300, theme: { shell: { background: '#333333', color: '#ffffff' }, tweets: { background: '#ffffff', color: '#575457', links: '5b92ed4' } }, features: { scrollbar: false, loop: false, live: false, hashtags: true, timestamp: true, avatars: false, behavior: 'all' }}).render().setUser('SaveTogether').start();"
+          / Twitter badge END
 
         %div{:style => "float: left; margin-left: 35px;"}
           / Facebook badge START
