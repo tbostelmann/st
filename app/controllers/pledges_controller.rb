@@ -143,7 +143,7 @@ class PledgesController < BaseController
       :return => url_for(:only_path => false, :action => 'done'),
       :invoice => @pledge.id,
       :tax => "0.00",
-      :business => ENV['PAYPAL_ACCOUNT'],
+      :business => AppConfig.paypal_account,
       :address_override => "0",
       :shipping => "0.00",
       :no_note => "1",
