@@ -1,16 +1,17 @@
 %h2
   ="Featured Donor"
 #featured-donors{:style => "width: 100%; float: left; margin-top: 6px;"}
-  .featured-donor#fdDisplay
-    .image{:style => "width: 165px; height: 150px; border: 1px dashed #bbbbbb;"}
-      = link_to((image_tag donors[0].avatar_photo_url(:mini), {:alt => donors[0].display_name, :style => "width: 155px; height: 140px; margin: 5px;"}), donor_path(donors[0]))
-    .info-block
-      .display-name
-        =link_to donors[0].display_name, donor_path(donors[0])
-  - (1..(donors.size - 1)).each do |index|
-    .featured-donor{:style => "display: none;"}
+  - if donors[0]
+    .featured-donor#fdDisplay
       .image{:style => "width: 165px; height: 150px; border: 1px dashed #bbbbbb;"}
-        = link_to((image_tag donors[index].avatar_photo_url(:mini), {:alt => donors[index].display_name, :style => "width: 155px; height: 140px; margin: 5px;"}), donor_path(donors[index]))
+        = link_to((image_tag donors[0].avatar_photo_url(:mini), {:alt => donors[0].display_name, :style => "width: 155px; height: 140px; margin: 5px;"}), donor_path(donors[0]))
       .info-block
         .display-name
-          =link_to donors[index].display_name, donor_path(donors[index])
+          =link_to donors[0].display_name, donor_path(donors[0])
+    - (1..(donors.size - 1)).each do |index|
+      .featured-donor{:style => "display: none;"}
+        .image{:style => "width: 165px; height: 150px; border: 1px dashed #bbbbbb;"}
+          = link_to((image_tag donors[index].avatar_photo_url(:mini), {:alt => donors[index].display_name, :style => "width: 155px; height: 140px; margin: 5px;"}), donor_path(donors[index]))
+        .info-block
+          .display-name
+            =link_to donors[index].display_name, donor_path(donors[index])
