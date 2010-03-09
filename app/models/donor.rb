@@ -59,6 +59,12 @@ class Donor < Party
            :source => :to_user,
            :conditions => "users.type = 'Saver'",
            :uniq => true
+  belongs_to :referred_by_donor,
+                    :class_name => "Donor",
+                    :foreign_key => "referred_by_donor_id"
+  has_many :referrees,
+                  :class_name => "Donor",
+                  :foreign_key => "referred_by_donor_id"
   
   validates_presence_of :first_name
   validates_presence_of :last_name
@@ -84,4 +90,33 @@ class Donor < Party
     self.activation_code = nil
     save
   end
+  
+  def total_donation_amount
+    return self.donations_given.inject( Money.new( 0 ) ) { | sum, donation | sum += donation.amount }
+  end
+  
+  def pyramid_total( ancestors = Array.new )
+    ancestors << self
+    refs = ( self.referrees.select { | each_referree | !ancestors.include?( each_referree ) } )
+    return refs.inject( self.total_donation_amount ) { | sum, e | sum += e.pyramid_total( ancestors ) }
+  end
+  
+  def set_up_referrer_from_email( referral_email )
+    referrer = Donor.find_donor_with_email_address( referral_email )
+    if referrer then self.referred_by_donor = referrer end
+  end
+  
+  def self.find_donor_with_email_address( email )
+    Donor.find_by_email( email )
+  end
+  
+  def referrer_name
+    donor = self.referred_by_donor
+    if donor
+      return donor.display_name
+    else
+      return ''
+    end
+  end
+  
 end

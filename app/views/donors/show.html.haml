@@ -6,6 +6,10 @@
 
   %h1
     = @donor.display_name
+    %p
+      %label{"for"=>"pyramid_total"} 
+        = :total_pyramid_of_giving.l
+      = ": " + @donor.pyramid_total.format(:html)
 
   .single-column
 
@@ -32,6 +36,8 @@
             = @donor.description
 
     .relax='&nbsp;'
+
+    %h3= :referred_by.l + ": " + @donor.referrer_name
 
     %h2{:style => "margin-top: 30px; margin-bottom: 15px;"}
       =:savers_i_have_contributed_to.l

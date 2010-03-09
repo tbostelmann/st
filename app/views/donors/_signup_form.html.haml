@@ -54,6 +54,13 @@
           =:re_type_your_password_to_confirm.l
       %td{:class => "text12", :width => "68%", :height => "36"}     
         = f.password_field :password_confirmation, :size => 35
+        
+    %tr
+      %td{:class => "text12", :width => "32%", :height => "36"}
+        %label{"for"=>"referral_email"} 
+          =:referral_email.l
+      %td{:class => "text12", :width => "68%", :height => "36"}     
+        = text_field_tag( :referral_email, params[ :referral_email ], :size => 35 )
 
     %tr
       %td{:class => "text12", :colspan => "2", :height => "36"} 

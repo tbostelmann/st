@@ -1017,6 +1017,10 @@ en:
   recent_posts: Recent Posts
   #en: recommended_posts: Recommended Posts
   recommended_posts: Recommended Posts
+  #en: referral_email: Referred by (email address of referrer)
+  referral_email: Referred by (email address of referrer)
+  #en: referred_by: Referred by
+  referred_by: Referred by
   #en: region: Region
   region: Region
   #en: related_clippings_all_members: Related Clippings (all members)
@@ -1328,6 +1332,8 @@ en:
   total_users: Total users
   #en: total_votes: Total votes
   total_votes: Total votes
+  #en: total_pyramid_of_giving: Total Pyramid of Giving
+  total_pyramid_of_giving: Total Pyramid of Giving
   #en: type_a_username: Type a username
   type_a_username: Type a username
   #en: type_your_password: "Type your password:"

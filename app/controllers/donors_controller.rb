@@ -111,6 +111,9 @@ class DonorsController < BaseController
     @donor       = Donor.new(params[:donor])
     @donor.role  = Role[:member]
     @donor.birthday = 18.years.ago
+    if params[ :referral_email ]
+      @donor.set_up_referrer_from_email( params[ :referral_email ] )
+    end
 
     if (!AppConfig.require_captcha_on_signup || verify_recaptcha(@donor)) && @donor.valid?
       @donor.activate
