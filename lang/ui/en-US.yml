@@ -202,6 +202,8 @@ en:
   category_was_successfully_created: Category was successfully created.
   #en: choices: Choices
   choices: Choices
+  #en: change_referred_by: Change who referred you by entering a new email address below
+  change_referred_by: Change who referred you by entering a new email address below
   #en: choose_a_photo_for_your_profile: "Choose a photo for your profile:"
   choose_a_photo_for_your_profile: "Choose a photo for your profile:"
   #en: choose_a_photo_to_upload: "Choose a photo to upload:"

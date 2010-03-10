@@ -37,7 +37,7 @@
 
     .relax='&nbsp;'
 
-    %h3= :referred_by.l + ": " + @donor.referrer_name
+    %h3= :referred_by.l + ": " + ( link_to @donor.referrer_name, :action => :show, :id => @donor.referred_by_donor)
 
     %h2{:style => "margin-top: 30px; margin-bottom: 15px;"}
       =:savers_i_have_contributed_to.l

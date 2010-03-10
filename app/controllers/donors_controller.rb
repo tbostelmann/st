@@ -56,6 +56,11 @@ class DonorsController < BaseController
     @avatar.user  = @user
 
     @user.avatar  = @avatar if @avatar.save
+    
+    if params[ :referral_email ]
+      @user.set_up_referrer_from_email( params[ :referral_email ] )
+    end
+
 
     if @user.save!
       @user.track_activity(:updated_profile)
@@ -74,7 +79,7 @@ class DonorsController < BaseController
   def update_account
     @user             = current_user
     @user.attributes  = params[:user]
-
+    
     if @user.save
       flash[:notice] = :your_changes_were_saved.l
       respond_to do |format|
