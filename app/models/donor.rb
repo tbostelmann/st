@@ -95,6 +95,21 @@ class Donor < Party
     return self.donations_given.inject( Money.new( 0 ) ) { | sum, donation | sum += donation.amount }
   end
   
+  def pyramid_of_referrees( ancestors = Array.new, original_donor = nil )
+    if original_donor.nil? then original_donor = self end
+    ancestors << self
+    direct_refs = ( self.referrees.select { | each_referree | !ancestors.include?( each_referree ) } )
+    all_referred_donors = direct_refs
+    direct_refs.each do | each_ref |
+      all_referred_donors += each_ref.pyramid_of_referrees(ancestors, original_donor )
+    end
+    return all_referred_donors
+  end
+  
+  def number_of_pyramid_referrees
+    return self.pyramid_of_referrees.size
+  end
+  
   def pyramid_total( ancestors = Array.new )
     if ancestors.empty? then
       starting_amount = Money.new( 0 )
