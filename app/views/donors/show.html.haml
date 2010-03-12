@@ -7,9 +7,10 @@
   %h1
     = @donor.display_name
     %p
-      %label{"for"=>"pyramid_total"} 
-        = :total_pyramid_of_giving.l
-      = ": " + @donor.pyramid_total.format(:html)
+      -if @should_display_pyramid_total
+        %label{"for"=>"pyramid_total"} 
+          = :total_pyramid_of_giving.l
+        = ": " + @donor.pyramid_total.format(:html)
 
   .single-column
 

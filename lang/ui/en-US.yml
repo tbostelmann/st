@@ -1334,8 +1334,8 @@ en:
   total_users: Total users
   #en: total_votes: Total votes
   total_votes: Total votes
-  #en: total_pyramid_of_giving: Total Pyramid of Giving
-  total_pyramid_of_giving: Total Pyramid of Giving
+  #en: total_pyramid_of_giving: Total Pyramid of Giving (not including personal contributions)
+  total_pyramid_of_giving: Total Pyramid of Giving (not including personal contributions)
   #en: type_a_username: Type a username
   type_a_username: Type a username
   #en: type_your_password: "Type your password:"

@@ -96,9 +96,14 @@ class Donor < Party
   end
   
   def pyramid_total( ancestors = Array.new )
+    if ancestors.empty? then
+      starting_amount = Money.new( 0 )
+    else
+      starting_amount = self.total_donation_amount
+    end
     ancestors << self
     refs = ( self.referrees.select { | each_referree | !ancestors.include?( each_referree ) } )
-    return refs.inject( self.total_donation_amount ) { | sum, e | sum += e.pyramid_total( ancestors ) }
+    return refs.inject( starting_amount ) { | sum, e | sum += e.pyramid_total( ancestors ) }
   end
   
   def set_up_referrer_from_email( referral_email )
@@ -117,6 +122,20 @@ class Donor < Party
     else
       return ''
     end
+  end
+  
+  def has_significant_pyramid_base?  
+    active_sub_donor_count = 0
+    boolean = true
+    none_found = lambda { boolean = false }
+    self.referrees.detect( none_found) do | each_donor | 
+      if ( each_donor.pyramid_total( [ self ] ) > ( Money.new( 0 ) ) ||
+          each_donor.total_donation_amount > ( Money.new( 0 ) ) ) then
+        active_sub_donor_count += 1
+      end
+      active_sub_donor_count >= 2
+    end
+    return boolean
   end
   
 end
