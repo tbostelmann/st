@@ -859,6 +859,8 @@ en:
   notification_donation_thanks_subject: "Thank you for your donation!"
   #en: number_of_donations: Number of Donations
   number_of_donations: Number of Donations
+  #en: number_of_pyramid_referrees: Donors in My Pyramid
+  number_of_pyramid_referrees: Donors in My Pyramid
   #en: offering_was_successfully_created: Offering was successfully created.
   offering_was_successfully_created: Offering was successfully created.
   #en: on_commentable: On
