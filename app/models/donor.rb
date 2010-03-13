@@ -122,12 +122,23 @@ class Donor < Party
   end
   
   def set_up_referrer_from_email( referral_email )
-    referrer = Donor.find_donor_with_email_address( referral_email )
-    if referrer then self.referred_by_donor = referrer end
+    if !( self.referrer_email == referral_email )
+      referrer = Donor.find_donor_with_email_address( referral_email )
+      if referrer then self.referred_by_donor = referrer end
+    end
   end
   
   def self.find_donor_with_email_address( email )
     Donor.find_by_email( email )
+  end
+  
+  def referrer_email
+    donor = self.referred_by_donor
+    if donor
+      return donor.email
+    else
+      return ''
+    end
   end
   
   def referrer_name

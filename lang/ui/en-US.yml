@@ -861,6 +861,8 @@ en:
   number_of_donations: Number of Donations
   #en: number_of_pyramid_referrees: Donors in My Pyramid
   number_of_pyramid_referrees: Donors in My Pyramid
+  #en: number_of_pyramid_referrees_short: # of referrals
+  number_of_pyramid_referrees_short: Total referrals
   #en: offering_was_successfully_created: Offering was successfully created.
   offering_was_successfully_created: Offering was successfully created.
   #en: on_commentable: On
@@ -1338,6 +1340,8 @@ en:
   total_votes: Total votes
   #en: total_pyramid_of_giving: Total Pyramid of Giving (not including personal contributions)
   total_pyramid_of_giving: Total Pyramid of Giving (not including personal contributions)
+  #en: total_pyramid_of_giving_short: Pyramid Total
+  total_pyramid_of_giving_short: Pyramid Total
   #en: type_a_username: Type a username
   type_a_username: Type a username
   #en: type_your_password: "Type your password:"

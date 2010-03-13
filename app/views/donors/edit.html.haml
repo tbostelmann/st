@@ -36,15 +36,9 @@
             %h3= :why_i_support_savers.l
             = text_area :user, :description, :class => "rich_text_editor", :style => "width:91%; height:232px; margin: 10px 0 10px 0;", :class => "rich_text_editor"
             
-            -if @user.referrer_name.empty?
-              %p{:class => "text12", :width => "32%", :height => "36"}
-                %label{"for"=>"referral_email"} 
-                  =:referral_email.l + ":"
-            -else
-              %p= :referred_by.l + ": " + @user.referrer_name
-              %p{:class => "text12", :width => "32%", :height => "36"}
-                %label{"for"=>"referral_email"} 
-                  =:change_referred_by.l + ":"
-            %p{:class => "text12", :width => "68%", :height => "36"}     
+            - params[ :referral_email ] = @user.referrer_email
+            %p{:class => "text12", :width => "32%", :height => "36"}
+              %label{"for"=>"referral_email"} 
+                =:referred_by.l + ":"
               = text_field_tag( :referral_email, params[ :referral_email ], :size => 35 )
             = submit_tag :save_changes.l
