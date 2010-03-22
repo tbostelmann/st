@@ -149,7 +149,7 @@ class Donor < Party
       return ''
     end
   end
-  
+	
   def has_significant_pyramid_base?  
     active_sub_donor_count = 0
     boolean = true
@@ -162,6 +162,10 @@ class Donor < Party
       active_sub_donor_count >= 2
     end
     return boolean
+  end
+
+  def public_pyramid?
+    return ( self.show_pyramid? and self.has_significant_pyramid_base? )
   end
   
 end

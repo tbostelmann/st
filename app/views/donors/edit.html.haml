@@ -41,4 +41,8 @@
               %label{"for"=>"referral_email"} 
                 =:referred_by.l + ":"
               = text_field_tag( :referral_email, params[ :referral_email ], :size => 35 )
-            = submit_tag :save_changes.l
+            %p{:class => "text12", :width => "32%", :height => "36"}
+              = check_box :user, :show_pyramid
+              =link_to(:show_pyramid.l, "http://en.wikipedia.org/wiki/Earned_Assets_Resource_Network", :popup => true)
+            %p
+              = submit_tag :save_changes.l

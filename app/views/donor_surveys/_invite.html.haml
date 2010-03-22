@@ -11,6 +11,7 @@
         Feel free to send more invitations at any time.
       -else
         Invite Your Friends to Visit Us!
+        = link_to( :build_your_pyramid.l, "http://en.wikipedia.org/wiki/Earned_Assets_Resource_Network", :popup => true) 
   %div{:class => "indent", :style => "margin-top: 15px;"}
     - if (current_user)
       - form_tag :action => :invite do
@@ -48,6 +49,8 @@
 
         %p{:style => "margin-top: 10px;"}
         = image_submit_tag "#{image_path('buttons/invite-small.gif')}", :alt => :invite.l
+        = check_box_tag :show_pyramid, true, current_user.show_pyramid?
+        = link_to(:show_pyramid.l, "http://en.wikipedia.org/wiki/Earned_Assets_Resource_Network", :popup => true) 
     - else
       %p
         = link_to "Login", login_path

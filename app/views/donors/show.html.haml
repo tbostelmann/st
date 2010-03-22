@@ -6,15 +6,6 @@
 
   %h1
     = @donor.display_name
-    %p
-      -if @should_display_pyramid_total
-        %label{"for"=>"pyramid_total"} 
-          = :total_pyramid_of_giving.l
-        = ": " + @donor.pyramid_total.format(:html)
-        %p
-          %label{"for"=>"number_of_pyramid_referrees"} 
-            = :number_of_pyramid_referrees.l
-          = ": " + @donor.number_of_pyramid_referrees.to_s
 
   .single-column
 
@@ -22,7 +13,7 @@
 
       .with-img.plus
         = image_tag( @donor.avatar_photo_url(:medium), :class => 'polaroid')
-
+     
     .party-info
       .box.wide
         - if @donor.eql?(current_user)
@@ -42,7 +33,19 @@
 
     .relax='&nbsp;'
 
-    %h3= :referred_by.l + ": " + ( link_to @donor.referrer_name, :action => :show, :id => @donor.referred_by_donor)
+  %p
+    -if @should_display_pyramid_total or @donor.eql?(current_user)
+      %h2{:style => "margin-top: 30px; margin-bottom: 15px;"}
+        = :pyramid_of_good.l
+      %p
+        %label{"for"=>"pyramid_total"} 
+          = :total_pyramid_amount.l
+        = ": " + @donor.pyramid_total.format(:html)
+      %p
+        %label{"for"=>"number_of_pyramid_referrees"} 
+          = :number_of_pyramid_referrees.l
+        = ": " + @donor.number_of_pyramid_referrees.to_s
+
 
     %h2{:style => "margin-top: 30px; margin-bottom: 15px;"}
       =:savers_i_have_contributed_to.l

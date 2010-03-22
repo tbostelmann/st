@@ -15,7 +15,7 @@
       = link_to((image_tag recipient.avatar_photo_url(:thumb), :alt => recipient.display_name), saver_path(recipient))
       %span.text12GreenBold
         = link_to recipient.display_name.capitalize, saver_path(recipient)
-  - if donor.has_significant_pyramid_base?
+  - if donor.public_pyramid?
     %td{:class => "text12", :valign => "middle", :align => "center"}
       = donor.number_of_pyramid_referrees
     %td{:class => "text12", :valign => "middle", :align => "left"}
