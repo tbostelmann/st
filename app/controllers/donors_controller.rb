@@ -105,7 +105,7 @@ class DonorsController < BaseController
     unless @donor.eql?(current_user) || @donor.profile_public
       redirect_to home_path
     end
-    @should_display_pyramid_total = @donor.public_pyramid?
+    @should_display_pyramid_total = @donor.public_pyramid?  or ( @donor.eql?(current_user) and @donor.has_significant_pyramid_base? )
     @grouped_donations = @donor.donations_grouped_by_beneficiaries
   end
 

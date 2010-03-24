@@ -34,9 +34,10 @@
     .relax='&nbsp;'
 
   %p
-    -if @should_display_pyramid_total or @donor.eql?(current_user)
-      %h2{:style => "margin-top: 30px; margin-bottom: 15px;"}
-        = :pyramid_of_good.l
+    -if @should_display_pyramid_total
+      %h2{:style => "margin-top: 30px; margin-bottom: 15px;"}      
+        %a{:href => "/faq#pyramid", :title => "Go to FAQ to find about the Pyramid feature", :target => "_blank"}
+          = :pyramid_of_good.l
       %p
         %label{"for"=>"pyramid_total"} 
           = :total_pyramid_amount.l
