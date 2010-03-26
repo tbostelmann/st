@@ -58,6 +58,11 @@ class DonorSurveysController < BaseController
     title   = params[:title].strip
     message = params[:message].strip
     emails  = params[:emails].strip
+    
+    if !( current_user.show_pyramid? == params[ :show_pyramid ] ) then
+      current_user.show_pyramid = params[ :show_pyramid ]
+      current_user.save
+    end
 
     invitation = Invitation.new({:title => title, :message => message, :friends => emails})
     if invitation.is_valid?

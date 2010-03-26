@@ -56,6 +56,11 @@ class DonorsController < BaseController
     @avatar.user  = @user
 
     @user.avatar  = @avatar if @avatar.save
+    
+    if params[ :referral_email ]
+      @user.set_up_referrer_from_email( params[ :referral_email ] )
+    end
+
 
     if @user.save!
       @user.track_activity(:updated_profile)
@@ -74,7 +79,7 @@ class DonorsController < BaseController
   def update_account
     @user             = current_user
     @user.attributes  = params[:user]
-
+    
     if @user.save
       flash[:notice] = :your_changes_were_saved.l
       respond_to do |format|
@@ -100,6 +105,7 @@ class DonorsController < BaseController
     unless @donor.eql?(current_user) || @donor.profile_public
       redirect_to home_path
     end
+    @should_display_pyramid_total = @donor.public_pyramid?  || ( @donor.eql?(current_user) and @donor.has_significant_pyramid_base? )
     @grouped_donations = @donor.donations_grouped_by_beneficiaries
   end
 
@@ -111,6 +117,9 @@ class DonorsController < BaseController
     @donor       = Donor.new(params[:donor])
     @donor.role  = Role[:member]
     @donor.birthday = 18.years.ago
+    if params[ :referral_email ]
+      @donor.set_up_referrer_from_email( params[ :referral_email ] )
+    end
 
     if (!AppConfig.require_captcha_on_signup || verify_recaptcha(@donor)) && @donor.valid?
       @donor.activate

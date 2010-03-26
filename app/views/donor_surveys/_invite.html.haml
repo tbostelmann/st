@@ -10,7 +10,10 @@
           Thank you!
         Feel free to send more invitations at any time.
       -else
-        Invite Your Friends to Visit Us!
+        Invite Your Friends to Visit Us and Build Your
+        %a{:href => "/faq#pyramid", :title => "Go to FAQ to find about the Pyramid feature", :target => "_blank"}
+          = :pyramid_of_good.l
+        !
   %div{:class => "indent", :style => "margin-top: 15px;"}
     - if (current_user)
       - form_tag :action => :invite do
@@ -48,6 +51,11 @@
 
         %p{:style => "margin-top: 10px;"}
         = image_submit_tag "#{image_path('buttons/invite-small.gif')}", :alt => :invite.l
+        = check_box_tag :show_pyramid, true, current_user.show_pyramid?
+        Show        
+        %a{:href => "/faq#pyramid", :title => "Go to FAQ to find about the Pyramid feature", :target => "_blank"}
+          = :pyramid_of_good.l
+        ?
     - else
       %p
         = link_to "Login", login_path

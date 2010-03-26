@@ -13,7 +13,7 @@
 
       .with-img.plus
         = image_tag( @donor.avatar_photo_url(:medium), :class => 'polaroid')
-
+     
     .party-info
       .box.wide
         - if @donor.eql?(current_user)
@@ -32,6 +32,23 @@
             = @donor.description
 
     .relax='&nbsp;'
+
+  %p
+    -if @should_display_pyramid_total
+      %h2{:style => "margin-top: 30px; margin-bottom: 15px;"}      
+        = :pyramid_of_good.l	
+        %span{:style => "font-size: 16px; font-weight: normal;"}			
+          %a{:href => "/faq#pyramid", :title => "Go to FAQ to find about the Pyramid feature", :target => "_blank"}
+            (Learn more)
+      %p
+        %label{"for"=>"pyramid_total"} 
+          = :total_pyramid_amount.l
+        = ": " + @donor.pyramid_total.format(:html)
+      %p
+        %label{"for"=>"number_of_pyramid_referrees"} 
+          = :number_of_pyramid_referrees.l
+        = ": " + @donor.number_of_pyramid_referrees.to_s
+
 
     %h2{:style => "margin-top: 30px; margin-bottom: 15px;"}
       =:savers_i_have_contributed_to.l

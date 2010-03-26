@@ -59,6 +59,12 @@ class Donor < Party
            :source => :to_user,
            :conditions => "users.type = 'Saver'",
            :uniq => true
+  belongs_to :referred_by_donor,
+                    :class_name => "Donor",
+                    :foreign_key => "referred_by_donor_id"
+  has_many :referrees,
+                  :class_name => "Donor",
+                  :foreign_key => "referred_by_donor_id"
   
   validates_presence_of :first_name
   validates_presence_of :last_name
@@ -84,4 +90,82 @@ class Donor < Party
     self.activation_code = nil
     save
   end
+  
+  def total_donation_amount
+    return self.donations_given.inject( Money.new( 0 ) ) { | sum, donation | sum += donation.amount }
+  end
+  
+  def pyramid_of_referrees( ancestors = Array.new, original_donor = nil )
+    if original_donor.nil? then original_donor = self end
+    ancestors << self
+    direct_refs = ( self.referrees.select { | each_referree | !ancestors.include?( each_referree ) } )
+    all_referred_donors = direct_refs
+    direct_refs.each do | each_ref |
+      all_referred_donors += each_ref.pyramid_of_referrees(ancestors, original_donor )
+    end
+    return all_referred_donors
+  end
+  
+  def number_of_pyramid_referrees
+    return self.pyramid_of_referrees.size
+  end
+  
+  def pyramid_total( ancestors = Array.new )
+    if ancestors.empty? then
+      starting_amount = Money.new( 0 )
+    else
+      starting_amount = self.total_donation_amount
+    end
+    ancestors << self
+    refs = ( self.referrees.select { | each_referree | !ancestors.include?( each_referree ) } )
+    return refs.inject( starting_amount ) { | sum, e | sum += e.pyramid_total( ancestors ) }
+  end
+  
+  def set_up_referrer_from_email( referral_email )
+    if !( self.referrer_email == referral_email )
+      referrer = Donor.find_donor_with_email_address( referral_email )
+      if referrer then self.referred_by_donor = referrer end
+    end
+  end
+  
+  def self.find_donor_with_email_address( email )
+    Donor.find_by_email( email )
+  end
+  
+  def referrer_email
+    donor = self.referred_by_donor
+    if donor
+      return donor.email
+    else
+      return ''
+    end
+  end
+  
+  def referrer_name
+    donor = self.referred_by_donor
+    if donor
+      return donor.display_name
+    else
+      return ''
+    end
+  end
+	
+  def has_significant_pyramid_base?  
+    active_sub_donor_count = 0
+    boolean = true
+    none_found = lambda { boolean = false }
+    self.referrees.detect( none_found) do | each_donor | 
+      if ( each_donor.pyramid_total( [ self ] ) > ( Money.new( 0 ) ) ||
+          each_donor.total_donation_amount > ( Money.new( 0 ) ) ) then
+        active_sub_donor_count += 1
+      end
+      active_sub_donor_count >= 2
+    end
+    return boolean
+  end
+
+  def public_pyramid?
+    return ( self.show_pyramid? and self.has_significant_pyramid_base? )
+  end
+  
 end
