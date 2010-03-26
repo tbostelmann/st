@@ -36,8 +36,10 @@
   %p
     -if @should_display_pyramid_total
       %h2{:style => "margin-top: 30px; margin-bottom: 15px;"}      
-        %a{:href => "/faq#pyramid", :title => "Go to FAQ to find about the Pyramid feature", :target => "_blank"}
-          = :pyramid_of_good.l
+        = :pyramid_of_good.l	
+        %span{:style => "font-size: 16px; font-weight: normal;"}			
+          %a{:href => "/faq#pyramid", :title => "Go to FAQ to find about the Pyramid feature", :target => "_blank"}
+            (Learn more)
       %p
         %label{"for"=>"pyramid_total"} 
           = :total_pyramid_amount.l
