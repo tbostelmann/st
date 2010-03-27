@@ -78,7 +78,11 @@
       %h4
         What is the Pyramid of Good?
       %p
-        To encourage the community concept, we want to recognize those of you who refer your family and friends to the site.  The Pyramid of Good  tallies up the donation amount of those that you refer as well as those that your referrers referred (and so on) - kind of like a pyramid! You can hide your Pyramid of Good by un-checking the 'Show Pyramid of Good' checkbox in you profile page.
+        To encourage the community concept, we want to recognize those of you who refer your family and friends to the site.  The Pyramid of Good  tallies up the donation amount of those that you refer as well as those that your referrers referred (and so on) - kind of like a pyramid! You can hide your Pyramid of Good by un-checking the 'Show Pyramid of Good' checkbox in your
+        - if current_user
+          =link_to "profile page.", edit_donor_path(current_user)
+        - else
+          profile page.
 
     .block.no-border
 
