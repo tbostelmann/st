@@ -79,12 +79,11 @@
         What is the Pyramid of Good?
       %p
         To encourage the community concept, we want to recognize those of you who refer your family and friends to the site.  The Pyramid of Good  tallies up the donation amount of those that you refer as well as those that your referrers referred (and so on) - kind of like a pyramid! You can hide your Pyramid of Good by un-checking the 'Show Pyramid of Good' checkbox in your
+        - path = if current_user then edit_donor_path( current_user ) else about_us_path end
+        =link_to_unless( current_user.nil?, "profile page.", path, :title => "Go to edit profile page" )
         - if current_user
-          =link_to "profile page.", edit_donor_path(current_user)
           To start building your Pyramid now,
-          =link_to " click here.", do_more_path
-        - else
-          profile page.
+          =link_to " click here.", do_more_path, :title => "Go to Do More page"
 
     .block.no-border
 
