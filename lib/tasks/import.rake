@@ -1,6 +1,6 @@
 namespace :import do
   # rake import:pledge
-  desc "command: rake import:pledge[<from_id>, <to_id>, <amount_cents>] - creates a pledge with one donation from a Donor to a Saver"
+  desc "command: rake import:pledge '<from_id>' '<to_id> '<amount_cents>' - creates a pledge with one donation from a Donor to a Saver"
   task :pledge => :environment do
     fu = Donor.find_by_login(ENV['from'])
     tu = Saver.find_by_login(ENV['to'])
