@@ -1,4 +1,16 @@
 namespace :import do
+  # rake import:pledge
+  desc "command: rake import:pledge '<from_id>' '<to_id> '<amount_cents>' - creates a pledge with one donation from a Donor to a Saver"
+  task :pledge => :environment do
+    fu = Donor.find_by_login(ENV['from'])
+    tu = Saver.find_by_login(ENV['to'])
+    am = ENV['amount']
+
+    p = Pledge.create!(:donor => fu)
+    d = Donation.create!(:from_user => fu, :to_user => tu, :cents => am,
+                         :status => LineItem::STATUS_COMPLETED, :invoice => p)
+  end
+
   # rake import:organizations ./test/files/import/OrgProfiles.csv
   desc "command: rake import:organizations <csv_file> - Import specified data into database"
   task :organizations => :environment do
