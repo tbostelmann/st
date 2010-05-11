@@ -15,4 +15,11 @@ namespace :report do
       end
     end
   end
+
+  task :donor_emails => :environment do
+    donors = Donor.all
+    donors.each do |donor|
+      puts "\"#{donor.first_name} #{donor.last_name}\" <#{donor.email}>\n"
+    end
+  end
 end
